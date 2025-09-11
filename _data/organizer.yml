@@ -19,20 +19,20 @@
 
   - index: 1
     name:
-      ko-KR: "Rahul Mangharam"
-      en-US: "Rahul Mangharam"
+      ko-KR: "배동성"
+      en-US: "Dongsung Pae"
     company:
-      ko-KR: "University of Pennsylvania"
-      en-US: "University of Pennsylvania"
+      ko-KR: "상명대학교"
+      en-US: "Sangmyung University"
     department: 
-      ko-KR: "Department of Electrical and Systems Engineering"
-      en-US: "Department of Electrical and Systems Engineering"
+      ko-KR: "소프트웨어학과"
+      en-US: "Department of Software"
     position:
-      ko-KR: "Associate Professor"
-      en-US: "Associate Professor"
-    image: "images/organizer/RahulProf.jpeg"
-    website: "https://www.seas.upenn.edu/~rahulm/"
-    email: "rahulm@seas.upenn.edu"
+      ko-KR: "조교수"
+      en-US: "Assistant Professor"
+    image: "images/organizer/배동성교수님.jpeg"
+    website: "https://software.smu.ac.kr/software/faculty/faculty.do?mode=view&empNo=11329735&pager.offset=0&pagerLimit=20"
+    email: "paeds915@smu.ac.kr"
     first_elements: false
     last_elements: true
 
