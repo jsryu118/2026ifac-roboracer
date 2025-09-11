@@ -1,6 +1,6 @@
 ---
-title: TIMELINE 3RD F1TENTH KOREA CHAMPIONSHIP
-short_title: TIMELINE 3RD F1TENTH KOREA CHAMPIONSHIP
+title: Timeline
+short_title: Timeline
 layout: page
 section: timeline
 language: en-US
@@ -10,18 +10,19 @@ base_url: timeline.html
 
 | DATE | IN-PERSON COMPETITION |
 |:---|:---:|
-| June 6th | [Registration Open](https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform) |
-| Sep 20th <br> 19:00 KST |Orientation (Online Meeting) <br> [Orientation Slides](../images/ICCAS2024F1tenthProgramOrientation.pdf) <br> Competition overview & QnA |
-| Oct 13th <br> 23:59 KST | Registration Close |
-| Oct 29th | Competition Start & Team Practice |
-| Oct 30th | Qualification Session & Head-to-Head Tournament Racing |
-| Oct 31st | Semi-Final & Final Racing |
+| Mar 1st | [Registration Open](https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform) |
+| TBD <br> 19:00 KST | Orientation <br> [Orientation Slides]() <br> Competition overview & QnA |
+| June 30th <br> 23:59 KST | Registration Close |
+| Aug 24th | On-site team registration and official practice session |
+| Aug 25th | Open practice session |
+| Aug 26th | Race (Time Trial) |
+| Aug 27th | Race (Head-to-Head) , Award Ceremony |
 
 <br>
 
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
     <img src="../images/New_Timetable.png" lt="Competition Schedule" width="700">
-</div>
+</div> -->
 
 <!-- | DATE | IN-PERSON COMPETITION |
 |:---|:---:|

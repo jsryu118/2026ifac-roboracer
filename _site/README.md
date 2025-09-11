@@ -33,18 +33,10 @@ Credits:
 
 
 # :
-
-중요: 이 사이트는 Jekyll을 기반으로 돌아가는 정적 웹페이지 이므로, 대부분의 문법이 Ruby와 Markdown을 따름.
-	 html 파일을 수정 하고 싶다면, Ruby 문법을 숙지 한 후 수정 할 것.
-
-
-1. Hotfix용 Live 서버는 Jekyll 사용해서 구동할 것.
-	1. https://jekyllrb-ko.github.io/
-	2. Ruby가 설치되어 있어야 함.
-
-2. 커밋할때 충돌하지 않게 파일마다 인원을 할당해서 수정하거나, 안전하게 Pull Request후 Auto-merge 기능 사용할 것.
-
-3. _layout/index.html를 제외한 나머지 페이지는 각각의 markdown 파일을 수정할 것.
-	1. 불가피하게 Markdown에서 지원하지 않는 기능 (jQuery, ajax) 구현해야 한다면, 새로운 html 파일 생성하여 링크할것.
-
-4. 페이지 표시를 하고 싶다면 _config.yml 파일 navigation 탭에서 display 값을 수정할 것.
+```bash
+git clone https://github.com/jsryu118/2026ifac-roboracer.git
+cd 2026ifac-roboracer
+sudo apt install jekyll
+jekyll serve
+```
+Go to http://127.0.0.1:4000 or address in terminal using web browser like chrome.

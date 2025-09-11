@@ -28,25 +28,8 @@ base_url: faq-physical.html
 
 - 차에 기본 제공해주는 타이어와 다른 타이어를 사용할 수 있나요?
 
-  네, 사용할 수 있습니다. 하지만 아래 목록에 있는 타이어만 사용할 수 있습니다. 
-  만약 아래 목록에 없는 타이어를 사용하고 싶다면 [Slack][slack]에 문의하면 목록을 추가할 수 있습니다. 
-  모든 팀에게 동일한 타이어를 사용할 수 있는 기회가 주어져야 하기 때문에 누구나 쉽게 구할 수 있는 타이어만 허용하겠습니다. 
-
-  현재 허용되는 타이어 목록은 다음과 같습니다.:
-
-  - [GRP Tyres T03 REVO](https://www.grpgandini.it/tyres/1-8-gt/t03-revo.html)
-    All compounds (XB1 to XM7), 모든 림(rim) 스타일/색깔이 허용됩니다.
-
-  - [GRP Tyres T04 SLICK](https://www.grpgandini.it/tyres/1-8-gt/t04-slick.html)
-    All compounds (XB1 to XM8), 모든 림(rim) 스타일/색깔이 허용됩니다.
-
-  - [Dynamite SpeedTreads Watch Dog (DYN8276)](https://nitrohobbies.com/dyn8276-2/)
-
-  - [AKA 1:8 Buggy Tires](https://www.raceaka.com/18-Buggy-Tires_c_7.html)
-    모든 하위 카테고리, 모든 컴파운드, 모든 인서트, 모든 림(rim) (유형 및 색상).
-
-  - [Contact RC tyres](https://www.racing-cars.com/wheels-tyres/on-road-tyres/brand-brand=contact-rc/)
-    *Sh-types, 모든 모든 림(rim) (유형 및 색상)
+  네, 사용할 수 있습니다. 규정에 따르면 타이어에 제한이 없습니다 (스폰지와 고무 모두 허용). 
+  단, 화학 첨가제는 엄격히 금지됩니다.
 
 
 
@@ -61,7 +44,7 @@ base_url: faq-physical.html
 - 차량의 변속기 기어비를 변경할 수 있나요?
 
   안됩니다.
-  F1/10대회는 “알고리즘 전쟁”입니다. 처음부터 소프트웨어가 진정한 결정적 구성 요소가 
+  F1/10대회는 "알고리즘 기술 경쟁"입니다. 처음부터 소프트웨어가 진정한 결정적 구성 요소가 
   되도록 실체 플랫폼(팀마다 센서가 다르고 섀시 모델이 약간 다를 수 있는 등) 간의 약간의 차이를
   줄이는 데 중점을 두었습니다. 이전에는 Traxxas 스톡 타이어가 실제로 경쟁 표면에 적합하지 않기 
   때문에 타이어를 교체할 수 있도록 하여 이를 약간 느슨하게 하기로 결정했습니다. 
@@ -70,10 +53,16 @@ base_url: faq-physical.html
 # Sensors
 
 - 차량에 장착 가능한 카메라는 무엇이 있나요?
-  - [Intel Realsense L515](https://www.intelrealsense.com/lidar-camera-l515/): 불가능
-  - [Intel Realsense T265](https://www.intelrealsense.com/tracking-camera-t265/): 불가능
-  - [Intel Realsense D455](https://www.intelrealsense.com/depth-camera-d455/): 가능
-  - [Stereolabs ZED 2i](https://www.stereolabs.com/zed-2i/): 가능
+
+  규정에 따르면 단일 카메라와 스테레오 카메라 모두 허용됩니다. 단, **카메라 내부 처리에서 검출이나 VIO 결과와 같은 추가 정보를 제공하는 카메라는 허용되지 않습니다**. (깊이 정보는 허용됨)
+  
+  **불가능한 카메라:**
+  - [Intel Realsense T265](https://www.intelrealsense.com/tracking-camera-t265/): 내장 VIO/SLAM 알고리즘이 6DoF 위치 추적 결과를 직접 제공
+  
+  **가능한 카메라:**
+  - [Intel Realsense L515](https://www.intelrealsense.com/lidar-camera-l515/)
+  - [Intel Realsense D455](https://www.intelrealsense.com/depth-camera-d455/)
+  - [Stereolabs ZED 2i](https://www.stereolabs.com/zed-2i/)
 
 
 # Rules

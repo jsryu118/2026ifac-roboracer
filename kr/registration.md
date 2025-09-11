@@ -17,17 +17,21 @@ base_url: registration.html
 **경기 참가자 용**
 
 경주 참가신청 및 자세한 정보를 보려면 오리엔테이션 및 정보 세션에 등록하세요.
-(Note : 팀원 중 1명은 [ICCAS2024](https://2024.iccas.org/)에 등록하셔야 참가 가능합니다.)
+(Note : 팀원 중 1명은 [IFAC 2026](https://www.ifac2026.org/)에 등록하셔야 참가 가능합니다.)
 
 <center class="actions">
-	<a href="https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform?usp=sf_link" class="button">경주 참가 신청</a>
+	<a href=" " class="button">경주 참가 신청</a>
 </center>
 
 <br>
 
 <center class="actions">
-	<a href="https://join.slack.com/t/f1tenthkoreab-m4i3495/shared_invite/zt-2qqvtmboh-nLfEQWJcoE9pUdybidyqcw" class="button">slack 통한 질문</a>
+	<a href=" " class="button">slack 통한 질문</a>
 </center>
+
+
+<!-- Have to Change -->
+
 
 <!-- **일반 참가자 용**
 
@@ -46,11 +50,13 @@ base_url: registration.html
 
 # 참가자
 
-만약 참가 신청을 했지만 아래 목록이 업데이트되지 않은 경우 dbs2911@unist.ac.kr로 문의하세요.
+만약 참가 신청을 했지만 아래 목록이 업데이트되지 않은 경우 TBD@unist.ac.kr로 문의하세요.
 
 | TEAM NAME | AFFILIATION | TEAM MEMBERS |
 |:---|:---|:---|
-|AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
+|.|.|.|
+
+<!-- |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
 |DSPlay|Sangmyung University|Jihoon Park, Hyundong Lee, Jungmin Hwang, Woojin Lee|
 |KMUTT|King Mongkut's University of Technology Thonburi|Benjamas Panomruttanarug, Phuriphat Chomchuenphrueksa, Peeratchai Chamwong, Rut Huttapong, Pongsakorn Tabtimthai|
 |SEA:ME|Kookmin University|Hamin An, Minsung Ko, Jihwan Kim, Juyeon Park, hyeonjin Cha, Jaeheon Kim|
@@ -86,7 +92,7 @@ base_url: registration.html
 |라이닷|Handong Global University|Minsu Kim, Minyoung Song, Sieun Park|
 |RISE LAB|Sungkyunkwan University|Nabih Pico, JunYoung Han,  Chaeeun Seok, Chaerim Lim, Yeongjun Son, Hansu Shin|
 |PNU-1|Pusan National University|Bugeon Kim, Donghyun Koo, Hyunseop Shim|
-|머리핑|Dong-a University|Namhyeon Kim, Suil Yoon, Yutaek Jin, Seungwoo Ha|
+|머리핑|Dong-a University|Namhyeon Kim, Suil Yoon, Yutaek Jin, Seungwoo Ha| -->
 
 <!-- | Black Crane | 인제대학교 | 김성준, 이호재, 정선용 |
 | Tayo Eagles | 충북대학교 | 김건우, 김택림, 권도현 |

@@ -16,17 +16,17 @@ This competition is open for everyone of all levels, everyone is welcome to part
 A form for race participants
 
 For race registration and more information, sign up to participate in orientation and information session.
-(Note: One of the team members must register with [ICCAS2024](https://2024.iccas.org/) to participate.)
+(Note: One of the team members must register with [IFAC 2026](https://www.ifac2026.org/) to participate.)
 
 <center class="actions">
-	<a href="https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform?usp=sf_link" class="button">Registration for a race</a>
+	<a href=" " class="button">Registration for a race</a>
 
 </center>
 
 <br>
 
 <center class="actions">
-	<a href="https://join.slack.com/t/f1tenthkoreab-m4i3495/shared_invite/zt-2qqvtmboh-nLfEQWJcoE9pUdybidyqcw" class="button">QnA through slack</a>
+	<a href=" " class="button">QnA through slack</a>
 </center>
 
 <!-- A form for race observers
@@ -45,10 +45,13 @@ If you want to observe without participating in the game, please registration th
 
 # Participants
 
-If you have registered for participation but the list below is not updated, please contact us at dbs2911@unist.ac.kr.
+If you have registered for participation but the list below is not updated, please contact us at TBD@unist.ac.kr.
 
 | TEAM NAME | AFFILIATION | TEAM MEMBERS |
 |:---|:---|:---|
+|.|.|.|
+
+<!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
 |DSPlay|Sangmyung University|Jihoon Park, Hyundong Lee, Jungmin Hwang, Woojin Lee|
 |KMUTT|King Mongkut's University of Technology Thonburi|Benjamas Panomruttanarug, Phuriphat Chomchuenphrueksa, Peeratchai Chamwong, Rut Huttapong, Pongsakorn Tabtimthai|
@@ -63,7 +66,7 @@ If you have registered for participation but the list below is not updated, plea
 |GROMIT|Sookmyung Women's University|Yeina Lee, Seongbeen Lee, Jiyoung Kim, Seoyeon Bae|
 |KUml KUml|Korea University|Hyebin Jeong, Gyeongjae Kim, Seongdu Yun, Juho Lee, Hojeong Lee, Abirham Yilkal Mogne|
 |XNK|Korea University|Woojin Ahn, Jiwon Kim, Hyeongrae Cho, Hyunah Kim, Jongchan Park, Sangryul Baek|
-|Breath|Handong Global University|Sunhwan Lee, Sechan Park, Wonbin Lee|
+|Breath|Handong Global University|Sunhwan Lee, Sechan Park, Wonbin Lee|
 |theSuperJazari|MIMOS Berhad|Mahir Sehmi, Anwar Saamad, Fariz Azmi|
 |CIRL|Seoul National University of Science and Technology|Hanif Edma Fauz, Sehyun Jeon, Anak Agung Krisna Ananda Kusuma|
 |F1-Mechanic|Inha University|Hyeongmin Lee, Seungmin Oh, Seokho Kim, Myeonggeun Jo, Hyunjae Park|
@@ -86,3 +89,4 @@ If you have registered for participation but the list below is not updated, plea
 |RISE LAB|Sungkyunkwan University|Nabih Pico, JunYoung Han,  Chaeeun Seok, Chaerim Lim, Yeongjun Son, Hansu Shin|
 |PNU-1|Pusan National University|Bugeon Kim, Donghyun Koo, Hyunseop Shim|
 |머리핑|Dong-a University|Namhyeon Kim, Suil Yoon, Yutaek Jin, Seungwoo Ha|
+-->

@@ -1,16 +1,16 @@
 # Index data
-main_title: "The 3rd F1Tenth Korea Championship"
+main_title: "2026 Roboracer Grand Prix Competition"
 
-conference: "The International Conference on Control, Automation, and Systems (ICCAS) 2024"
-conference_url: "https://2024.iccas.org/"
+conference: "The International Federation of Automatic Control (IFAC) 2026"
+conference_url: "https://www.ifac2026.org/"
 
-date: "2024, Oct 29th - Oct 31st"
+date: "2026, Aug 24th - Aug 27th"
 
-location: "Jeju Shinhwa World at Jeju, Korea"
-location_url: "https://maps.app.goo.gl/kbycH49DZiQCBifYA" 
+location: "BEXCO at Busan, Korea"
+location_url: "https://maps.app.goo.gl/o7TbcazMn1mJxTGdA" 
 
 # Navigation bar icon urls
-twitter: "https://twitter.com/f1tenth"
+# twitter: "https://twitter.com/f1tenth"
 website: "https://f1tenth.org/"
 mailto: "mailto:ryujs@unist.ac.kr"
 discourse: "https://f1tenth.discourse.group/t/iros-2021-f1tenth-competition/36"
