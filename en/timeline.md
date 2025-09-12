@@ -10,13 +10,13 @@ base_url: timeline.html
 
 | DATE | IN-PERSON COMPETITION |
 |:---|:---:|
-| Mar 1st | [Registration Open](https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform) |
+| Mar 1st | [Registration Open]( ) |
 | TBD <br> 19:00 KST | Orientation <br> [Orientation Slides]() <br> Competition overview & QnA |
 | June 30th <br> 23:59 KST | Registration Close |
-| Aug 24th | On-site team registration and official practice session |
-| Aug 25th | Open practice session |
-| Aug 26th | Race (Time Trial) |
-| Aug 27th | Race (Head-to-Head) , Award Ceremony |
+| Aug 24th | On-site team reception and regulated practice sessions |
+| Aug 25th | Open practice sessions |
+| Aug 26th | Qualification time trials |
+| Aug 27th | Head-to-head tournament and award ceremony |
 
 <br>
 

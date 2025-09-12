@@ -1,5 +1,24 @@
   - index: 0
     name:
+      ko-KR: "Rahul Mangharam"
+      en-US: "Rahul Mangharam"
+    company:
+      ko-KR: "University of Pennsylvania"
+      en-US: "University of Pennsylvania"
+    department: 
+      ko-KR: "Department of Electrical and Systems Engineering"
+      en-US: "Department of Electrical and Systems Engineering"
+    position:
+      ko-KR: "Associate Professor"
+      en-US: "Associate Professor"
+    image: "images/organizer/RahulProf.jpeg"
+    website: "https://www.seas.upenn.edu/~rahulm/"
+    email: "rahulm@seas.upenn.edu"
+    first_elements: true
+    last_elements: false   
+  
+  - index: 1
+    name:
       ko-KR: "권철현"
       en-US: "Cheolhyeon Kwon"
     company:
@@ -14,10 +33,10 @@
     image: "images/organizer/권철현교수님.png"
     website: "https://research.unist.ac.kr/post-research/%EA%B3%A0%EC%8B%A0%EB%A2%B0-%EB%AA%A8%EB%B9%8C%EB%A6%AC%ED%8B%B0-%EC%A0%9C%EC%96%B4-%EC%97%B0%EA%B5%AC%EC%8B%A4_%EA%B6%8C%EC%B2%A0%ED%98%84/"
     email: "kwonc@unist.ac.kr"
-    first_elements: true 
+    first_elements: false 
     last_elements: false
 
-  - index: 1
+  - index: 2
     name:
       ko-KR: "배동성"
       en-US: "Dongsung Pae"
@@ -36,26 +55,6 @@
     first_elements: false
     last_elements: true
 
-# Previous Organizers (commented out)
-# 
-#   - index: 2
-#     name:
-#       ko-KR: "Rahul Mangharam"
-#       en-US: "Rahul Mangharam"
-#     company:
-#       ko-KR: "University of Pennsylvania"
-#       en-US: "University of Pennsylvania"
-#     department: 
-#       ko-KR: "Department of Electrical and Systems Engineering"
-#       en-US: "Department of Electrical and Systems Engineering"
-#     position:
-#       ko-KR: "Associate Professor"
-#       en-US: "Associate Professor"
-#     image: "images/organizer/RahulProf.jpeg"
-#     website: "https://www.seas.upenn.edu/~rahulm/"
-#     email: "rahulm@seas.upenn.edu"
-#     first_elements: false
-#     last_elements: false   
 # 
 #   - index: 3
 #     name:

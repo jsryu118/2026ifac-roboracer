@@ -45,16 +45,8 @@ base_url: faq-physical.html
 
 - Are we allowed to change the transmission gear ratio of our cars?
 
-  No.
-  F1/10 competition is designed as a "Battle of the algorithms". From
-  the very beginning, the emphasis was placed on lowering the effect
-  of slight differences between the actual platforms (the teams might
-  have different sensors, slightly different chassis models, etc.)
-  so that the software is the true decisive component.
-  Before, we have decided to loosen this slightly with allowing
-  to change the tires, as the Traxxas stock tires are really not suitable
-  for the competition surface. But beyond this, we would like the teams
-  to focus on the software.
+  Yes. 
+  Hardware modifications, including the transmission gear ratio, are allowed as long as they comply with the general rules. The ROBORACER Autonomous Racing Competition emphasizes algorithmic performance. Teams are encouraged to focus on optimizing their software.
 
 # Sensors
 

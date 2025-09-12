@@ -8,7 +8,7 @@ h2_title: 2026 Roboracer Grand Prix Competition
 
 ---
 
-F1TENTH Autonomous Racing is a competition organized by an international community of researchers, engineers, and autonomous systems enthusiasts.
+ROBORACER Grand Prix is a competition organized by an international community of researchers, engineers, and autonomous systems enthusiasts.
 
 <br>
 <br>
@@ -23,7 +23,7 @@ The teams participating in 2026 Roboracer Grand Prix Competition at IFAC 2026 wi
 IFAC 2026 will be held as an in-person competition.
 <br>
 <br>
-In-person competition: This variant targets participants who will travel to Busan, Republic of Korea. Each team will bring their own physical F1TENTH car with their software. The organizers provide the race setup (rules, submissions, guidelines), the track, related infrastructure and organize the race itself.
+In-person competition: This variant targets participants who will travel to Busan, Republic of Korea. Each team will bring their own physical ROBORACER car with their software. The organizers provide the race setup (rules, submissions, guidelines), the track, related infrastructure and organize the race itself.
 <br>
 
 

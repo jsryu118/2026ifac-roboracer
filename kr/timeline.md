@@ -11,16 +11,24 @@ base_url: timeline.html
 
 | DATE | IN-PERSON COMPETITION |
 |:---|:---:|
-| Mar 1st | [참가자 등록 시작](https://docs.google.com/forms/d/e/1FAIpQLSc8hK-SnthwWaVjcNTqFdi9nbaxAi6ImTIuK7bMWi-5cbc5zw/viewform) |
+| Mar 1st | [참가자 등록 시작]( ) |
 | TBD <br> 19:00 KST | 오리엔테이션 <br> [오리엔테이션 슬라이드]() <br> 대회 소개 및 QnA |
 | June 30th <br> 23:59 KST | 등록 마감 |
 | Aug 24th | 현장 팀 등록 및 공식 연습 세션 |
 | Aug 25th | 자유 연습 세션 |
-| Aug 26th | 경주 (타임 트라이얼) |
-| Aug 27th | 경주 (일대일 경주) , 시상식 |
+| Aug 26th | 예선 타임 트라이얼 |
+| Aug 27th | 1대1 경주 및 시상식 |
 
 <br>
-
+<!-- | DATE | IN-PERSON COMPETITION |
+|:---|:---:|
+| Mar 1st | [Registration Open]( ) |
+| TBD <br> 19:00 KST | Orientation <br> [Orientation Slides]() <br> Competition overview & QnA |
+| June 30th <br> 23:59 KST | Registration Close |
+| Aug 24th | On-site team reception and regulated practice sessions |
+| Aug 25th | Open practice sessions |
+| Aug 26th | Qualification time trials |
+| Aug 27th | Head-to-head tournament and award ceremony | -->
 <!-- <div style="text-align: center;">
     <img src="../images/New_Timetable.png" lt="Competition Schedule" width="700">
 </div> -->
