@@ -34,13 +34,13 @@ h2, h3, h4, h5, h6 {
 
 # 1. 개요
 
-국제 ROBORACER 자율주행 레이싱 대회는 모든 수준의 팀에게 열려있는 경주 대회입니다. 참가팀은 임의의 수의 구성원으로 이루어질 수 있으나, 각 참가자는 오직 한 팀의 구성원이어야 합니다.
+국제 ROBORACER 자율주행 레이싱 대회는 모든 수준의 팀에게 열려있는 경주 대회입니다. 참가팀은 임의의 수의 구성원으로 이루어질 수 있으나, 각 참가자는 **오직 한 팀의 구성원**이어야 합니다.
 
-이 대회는 2026년 8월 24일(월)부터 8월 27일(목)까지 부산 BEXCO에서 개최되는 IFAC 2026에서 대면 경쟁으로 진행됩니다.
+이 대회는 **2026년 8월 24일(월)**부터 **8월 27일(목)**까지 부산 **BEXCO**에서 개최되는 **IFAC 2026**에서 대면 경쟁으로 진행됩니다.
 
-ROBORACER GRAND PRIX 일정: 2026년 8월 24일(월) ~ 27일(목)
+**ROBORACER GRAND PRIX 일정: 2026년 8월 24일(월) ~ 27일(목)**
 
-팀은 공식 웹사이트를 통해 대회에 등록할 수 있습니다. 
+팀은 **공식 웹사이트**를 통해 대회에 **등록**할 수 있습니다. 
 
 <!-- The preferred communication method with the organizers is the ICCAS2024 channel on [F1TENTH-teams Slack](https://join.slack.com/t/f1tenthxkorea/shared_invite/zt-1ibqf5yjq-CkG_z1XRhsZgBsCoSy7JiA). -->
 

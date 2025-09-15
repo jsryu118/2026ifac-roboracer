@@ -73,13 +73,13 @@ Warning cases in Head-to-head race
 
 # 1. General
 
-International ROBORACER Autonomous Racing Competition is a racing competition open to teams of all levels. Competing teams may consist of any number of members; however, each participant should be a member of only one team.
+International ROBORACER Autonomous Racing Competition is a racing competition open to teams of all levels. Competing teams may consist of any number of members; however, each participant should be **a member of only one team**.
 
-This competition will be held as an in-person competition from August 24th (Monday) to August 27th (Thursday), 2026, at BEXCO in Busan during IFAC 2026 (The International Federation of Automatic Control).
+This competition will be held as an in-person competition from **August 24th (Monday)** to **August 27th (Thursday)**, **2026**, at **BEXCO** in Busan during **IFAC 2026** (The International Federation of Automatic Control).
 
-ROBORACER Autonomous Racing Competition Schedule: August 24th (Monday) ~ 27th (Thursday), 2026
+ROBORACER Autonomous Racing Competition Schedule: **August 24th (Monday) ~ 27th (Thursday), 2026**
 
-Teams can register for the competition through the official website. 
+Teams can **register** for the competition through the **official website.** 
 
 <!-- The preferred communication method with the organizers is the ICCAS2024 channel on [ROBORACER GRAND PRIX-teams Slack](https://join.slack.com/t/f1tenthxkorea/shared_invite/zt-1ibqf5yjq-CkG_z1XRhsZgBsCoSy7JiA). -->
 
