@@ -22,8 +22,10 @@ base_url: registration.html
 <center class="actions">
 	<a href=" " class="button">경주 참가 신청</a>
 </center>
-
+<center><strong>등록은 3월 1일부터 시작됩니다.</strong></center>
 <br>
+
+
 
 <center class="actions">
 	<a href=" " class="button">slack 통한 질문</a>

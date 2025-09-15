@@ -22,7 +22,7 @@ For race registration and more information, sign up to participate in orientatio
 	<a href=" " class="button">Registration for a race</a>
 
 </center>
-
+<center><strong>Registration opens on March 1st.</strong></center>
 <br>
 
 <center class="actions">
