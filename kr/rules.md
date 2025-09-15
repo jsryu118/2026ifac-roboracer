@@ -56,7 +56,7 @@ ROBORACER GRAND PRIX 일정: 2026년 8월 24일(월) ~ 27일(목)
 
 2. 대면 경쟁에 등록한 팀들은 아래에 나열된 제약 사항에 따라 직접 차량을 제공하고 제작해야 합니다. 또한, 각 팀은 고유한 차량을 가져야 합니다 (즉, 한 연구실이 하나의 차량으로 여섯 팀을 참가시킬 수 없습니다).
 
-3. 향후 ROBORACER 대회의 품질을 향상시키기 위해, 각 경주의 우승자는 자신의 알고리즘 코드를 Github의 [ROBORACER Autonomous Racing Comunity repository](https://github.com/f1tenth)에 오픈소스 라이선스로 공개하는 것이 권장됩니다.
+3. 향후 ROBORACER 대회의 품질을 향상시키기 위해, 각 경주의 우승자는 자신의 알고리즘 코드를 Github의 [ROBORACER Autonomous Racing Community repository](https://github.com/f1tenth)에 오픈소스 라이선스로 공개하는 것이 권장됩니다.
 
 ## 2.0 비디오 제출
 
