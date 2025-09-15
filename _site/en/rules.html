@@ -181,8 +181,8 @@ Warning cases in Head-to-head race
       <li><a href="#21-inspection" id="markdown-toc-21-inspection">2.1 Inspection</a></li>
       <li><a href="#22-track--racing-environment" id="markdown-toc-22-track--racing-environment">2.2 Track &amp; racing environment</a></li>
       <li><a href="#23-mapping--practice" id="markdown-toc-23-mapping--practice">2.3 Mapping &amp; Practice</a></li>
-      <li><a href="#25-race-rules" id="markdown-toc-25-race-rules">2.5 Race Rules</a></li>
-      <li><a href="#general-rules-for-qualification-and-head-to-head-race" id="markdown-toc-general-rules-for-qualification-and-head-to-head-race">General Rules for Qualification and Head-to-Head Race</a>        <ul>
+      <li><a href="#25-race-rules" id="markdown-toc-25-race-rules">2.5 Race Rules</a>        <ul>
+          <li><a href="#general-rules-for-qualification-and-head-to-head-race" id="markdown-toc-general-rules-for-qualification-and-head-to-head-race">General Rules for Qualification and Head-to-Head Race</a></li>
           <li><a href="#joystick-rules" id="markdown-toc-joystick-rules">Joystick Rules</a></li>
           <li><a href="#remote-computer-rules" id="markdown-toc-remote-computer-rules">Remote Computer Rules</a></li>
           <li><a href="#pit-stop-rules" id="markdown-toc-pit-stop-rules">Pit-stop Rules</a></li>
@@ -305,15 +305,15 @@ Warning cases in Head-to-head race
       <li><em>Battery</em>:
  <strong>4s LiPo Battery</strong> or <strong>lower</strong>. Only one Battery or the combinations of lower-cell cells (Ex: 2s + 2s is allowed).</li>
       <li><em>Detection Box</em>:
- The car has to be easily perceivable by the opponent’s LiDAR. Therefore, the car must occupy a space of size at least 12×12 cm at every horizontal plane between <strong>10 to 30 cm</strong>above the ground.</li>
+ The car has to be easily perceivable by the opponent’s LiDAR. Therefore, the car must occupy a space of size at least 12×12 cm at every horizontal plane between <strong>10 to 30 cm</strong> above the ground.</li>
       <li><em>Foam Bumper</em>:
  The bumper has to be soft to minimize the damage. These two components (Detection Box and Foam Bumper) must be attached if more than one car is on the track.</li>
       <li><em>Main Computation Unit</em>:
  <strong>No limitations</strong>.</li>
       <li><em>LiDAR</em>:
-Both Hokuyo LiDARs with <strong>0.25° or 0.125°</strong> resolution are allowed, as well as 30 m range LiDAR. In particular, <strong>3D LiDAR</strong> is also permitted this time (however, please be aware that high-cost 3D LiDAR units may be damaged in high-speed race).</li>
+Both Hokuyo LiDARs with <strong>0.25° or 0.125°</strong> resolution both are allowed, as well as 30 m range LiDAR. In particular, <strong>3D LiDAR</strong> is also permitted this time (however, please be aware that high-cost 3D LiDAR units may be damaged in high-speed race).</li>
       <li><em>Camera</em>:
-Both <strong>mono camera</strong> (e.g. Logitech C270, Logitech C920, Raspberry Pi Camera Module V2, Arducam) and <strong>stereo cameras</strong> (e.g. Intel Realsense, ZED) are allowed. Cameras that provide additional information such as <strong>detection or VIO results</strong> from onboard processing in camera are <strong>not allowed</strong>. (Depth information is allowed)</li>
+Both mono camera (e.g. Logitech C270, Logitech C920, Raspberry Pi Camera Module V2, Arducam) and stereo cameras (e.g. Intel Realsense, ZED) are allowed. Cameras that provide additional information such as <strong>detection or VIO results</strong> from onboard processing in camera are <strong>not allowed</strong>. (Depth information is allowed)</li>
       <li><em>Other sensors</em>:
 Other sensors (IMUs, encoders, custom electronic speed controllers) are allowed. Indoor GPS sensors (e.g. Marvelmind) <strong>are not allowed</strong>.</li>
     </ol>
@@ -341,15 +341,15 @@ Other sensors (IMUs, encoders, custom electronic speed controllers) are allowed.
 <h4 id="23-mapping--practice">2.3 Mapping &amp; Practice</h4>
 
 <ol>
-  <li><strong>Mapping</strong>: About 5 minutes for each team</li>
-  <li><strong>Practice</strong>: <strong>Regulated practice</strong> and <strong>Open Practice</strong></li>
+  <li>Mapping: About 5 minutes for each team</li>
+  <li>Practice: <strong>Regulated practice</strong> and <strong>Open Practice</strong></li>
   <li>We will provide sample obstacles.</li>
-  <li>The dedicated time for <strong>Mapping</strong>, <strong>Regulated practice</strong> and <strong>Qualification</strong> may vary depending on the number of participating teams.</li>
+  <li>The dedicated time for Mapping, Regulated practice and Qualification may vary <strong>depending on the number of participating teams</strong>.</li>
 </ol>
 
 <h4 id="25-race-rules">2.5 Race Rules</h4>
 
-<h4 id="general-rules-for-qualification-and-head-to-head-race">General Rules for Qualification and Head-to-Head Race</h4>
+<h5 id="general-rules-for-qualification-and-head-to-head-race">General Rules for Qualification and Head-to-Head Race</h5>
 
 <ol>
   <li>
@@ -357,7 +357,7 @@ Other sensors (IMUs, encoders, custom electronic speed controllers) are allowed.
   </li>
   <li>
     <p><strong>No protests regarding Wi-Fi will be accepted.</strong> 
-Please ensure that your autonomous system is designed to operate <strong>independently</strong> regardless of Wi-Fi conditions. You may ask teams not participating in the race to turn off their Wi-Fi, but this is <strong>purely to facilitate your team’s visualization and debugging</strong>, not related to algorithm integrity!</p>
+Please ensure that your autonomous system is designed to operate <strong>independently</strong> regardless of Wi-Fi conditions. You may ask teams not participating in the race to turn off their Wi-Fi, but this is purely to facilitate your team’s visualization and debugging, not related to algorithm integrity!</p>
   </li>
   <li>
     <p><strong>Strictly prohibit manual (human) emergency brake</strong></p>
@@ -370,21 +370,23 @@ Please ensure that your autonomous system is designed to operate <strong>indepen
 <h5 id="joystick-rules">Joystick Rules</h5>
 <ol>
   <li>Joystick <strong>use</strong> or joystick <strong>pressing</strong> during the race <strong>is not allowed</strong>.</li>
-  <li>Please change the code for autonomous &lt;-&gt; human control <strong>switching</strong> from “<strong>press and hold</strong>” method to “<strong>on/off</strong>” <strong>toggle</strong> method.</li>
+  <li>
+    <p>Please change the code for autonomous &lt;-&gt; human control switching from <strong>press and hold</strong> method to <strong>on/off</strong> <strong>toggle</strong> method.</p>
+  </li>
+  <li>Joystick Exceptions:
+    <ul>
+      <li>At the <strong>start</strong> or <strong>re-start</strong> (for start)</li>
+      <li>For <strong>emergency stop</strong> (e.g., after crash, reverse driving, remaining stuck in an obstacle for more than 5 seconds)</li>
+      <li>For entering <strong>pit-stop zone</strong> on the <strong>manual drive zone for pit-stop</strong></li>
+    </ul>
+  </li>
 </ol>
-
-<p><strong>Joystick Exceptions:</strong></p>
-<ul>
-  <li>At the <strong>start</strong> or <strong>re-start</strong> (for start)</li>
-  <li>For <strong>emergency stop</strong> (e.g., after crash, reverse driving, remaining stuck in an obstacle for more than 5 seconds)</li>
-  <li>For entering <strong>pit-stop zone</strong> on the <strong>manual drive zone for pit-stop</strong></li>
-</ul>
 
 <h5 id="remote-computer-rules">Remote Computer Rules</h5>
 <ol>
   <li>Computer (<strong>keyboard and mouse</strong>) use during the race <strong>is</strong> <strong>not allowed</strong>.</li>
   <li>Monitor can only be used for data plots or visualization through Rviz.</li>
-  <li>Only one laptop can be connected for visualization (e.g., RViz) or debugging purposes.</li>
+  <li><strong>Only one laptop</strong> can be connected for visualization (e.g., RViz) or debugging purposes.</li>
 </ol>
 
 <p><strong>Remote Computer Exceptions:</strong></p>
@@ -515,8 +517,11 @@ Please ensure that your autonomous system is designed to operate <strong>indepen
   <li>A <strong>complete rear-end collision</strong>.</li>
   <li>A <strong>severe accident with huge impact</strong> even if it is not a complete rear-end collision</li>
   <li>A fatal accident(spin or crash) caused by any form of <strong>human intervention</strong>
-■ Physical interfere
-■ Remote signal such as manual brake or drive</li>
+    <ul>
+      <li>Physical interfere</li>
+      <li>Remote signal such as manual brake or drive</li>
+    </ul>
+  </li>
   <li>Accumulations of <strong>3 warnings</strong></li>
 </ol>
 
