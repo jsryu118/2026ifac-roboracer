@@ -139,15 +139,15 @@ Teams can **register** for the competition through the **official website.**
     6. _Battery_:
         **4s LiPo Battery** or **lower**. Only one Battery or the combinations of lower-cell cells (Ex: 2s + 2s is allowed).
     7. _Detection Box_:
-        The car has to be easily perceivable by the opponent's LiDAR. Therefore, the car must occupy a space of size at least 12×12 cm at every horizontal plane between **10 to 30 cm**above the ground.
+        The car has to be easily perceivable by the opponent's LiDAR. Therefore, the car must occupy a space of size at least 12×12 cm at every horizontal plane between **10 to 30 cm** above the ground.
     8. _Foam Bumper_:
         The bumper has to be soft to minimize the damage. These two components (Detection Box and Foam Bumper) must be attached if more than one car is on the track.
     9. _Main Computation Unit_:
         **No limitations**.
     10. _LiDAR_:
-        Both Hokuyo LiDARs with **0.25° or 0.125°** resolution are allowed, as well as 30 m range LiDAR. In particular, **3D LiDAR** is also permitted this time (however, please be aware that high-cost 3D LiDAR units may be damaged in high-speed race).
+        Both Hokuyo LiDARs with **0.25° or 0.125°** resolution both are allowed, as well as 30 m range LiDAR. In particular, **3D LiDAR** is also permitted this time (however, please be aware that high-cost 3D LiDAR units may be damaged in high-speed race).
     11. _Camera_:
-        Both **mono camera** (e.g. Logitech C270, Logitech C920, Raspberry Pi Camera Module V2, Arducam) and **stereo cameras** (e.g. Intel Realsense, ZED) are allowed. Cameras that provide additional information such as **detection or VIO results** from onboard processing in camera are **not allowed**. (Depth information is allowed)
+        Both mono camera (e.g. Logitech C270, Logitech C920, Raspberry Pi Camera Module V2, Arducam) and stereo cameras (e.g. Intel Realsense, ZED) are allowed. Cameras that provide additional information such as **detection or VIO results** from onboard processing in camera are **not allowed**. (Depth information is allowed)
     12. _Other sensors_:
         Other sensors (IMUs, encoders, custom electronic speed controllers) are allowed. Indoor GPS sensors (e.g. Marvelmind) **are not allowed**.
 
@@ -172,19 +172,19 @@ TBA
 
 ## 2.3 Mapping & Practice
 
-1. **Mapping**: About 5 minutes for each team
-2. **Practice**: **Regulated practice** and **Open Practice**
+1. Mapping: About 5 minutes for each team
+2. Practice: **Regulated practice** and **Open Practice**
 3. We will provide sample obstacles.
-4. The dedicated time for **Mapping**, **Regulated practice** and **Qualification** may vary depending on the number of participating teams.
+4. The dedicated time for Mapping, Regulated practice and Qualification may vary **depending on the number of participating teams**.
 
 ## 2.5 Race Rules
 
-## General Rules for Qualification and Head-to-Head Race
+### General Rules for Qualification and Head-to-Head Race
 
 1. **All computational processing must be carried out onboard.!!**
 
 2. **No protests regarding Wi-Fi will be accepted.** 
-Please ensure that your autonomous system is designed to operate **independently** regardless of Wi-Fi conditions. You may ask teams not participating in the race to turn off their Wi-Fi, but this is **purely to facilitate your team's visualization and debugging**, not related to algorithm integrity!
+Please ensure that your autonomous system is designed to operate **independently** regardless of Wi-Fi conditions. You may ask teams not participating in the race to turn off their Wi-Fi, but this is purely to facilitate your team's visualization and debugging, not related to algorithm integrity!
 
 3. **Strictly prohibit manual (human) emergency brake**
 
@@ -192,9 +192,9 @@ Please ensure that your autonomous system is designed to operate **independently
 
 ### Joystick Rules
 1. Joystick **use** or joystick **pressing** during the race **is not allowed**.
-2. Please change the code for autonomous <-> human control **switching** from "**press and hold**" method to "**on/off**" **toggle** method.
+2. Please change the code for autonomous <-> human control switching from **press and hold** method to **on/off** **toggle** method.
 
-**Joystick Exceptions:**
+3. Joystick Exceptions:
 - At the **start** or **re-start** (for start)
 - For **emergency stop** (e.g., after crash, reverse driving, remaining stuck in an obstacle for more than 5 seconds)
 - For entering **pit-stop zone** on the **manual drive zone for pit-stop**
@@ -202,7 +202,7 @@ Please ensure that your autonomous system is designed to operate **independently
 ### Remote Computer Rules
 1. Computer (**keyboard and mouse**) use during the race **is** **not allowed**.
 2. Monitor can only be used for data plots or visualization through Rviz.
-3. Only one laptop can be connected for visualization (e.g., RViz) or debugging purposes.
+3. **Only one laptop** can be connected for visualization (e.g., RViz) or debugging purposes.
 
 **Remote Computer Exceptions:**
 - When your car is **out of track**
