@@ -301,8 +301,8 @@ This is a designated zone for adjusting parameters **without removing the vehicl
 1. A **complete rear-end collision**.
 2. A **severe accident with huge impact** even if it is not a complete rear-end collision
 3. A fatal accident(spin or crash) caused by any form of **human intervention**
-   ■ Physical interfere
-   ■ Remote signal such as manual brake or drive
+   - Physical interfere
+   - Remote signal such as manual brake or drive
 4. Accumulations of **3 warnings**
 
 **Only one penalty** will be applied per incident even if that involves **multiple violations**
