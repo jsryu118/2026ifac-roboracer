@@ -29,9 +29,11 @@ Together with registration here, the team must also register for [IFAC 2026](htt
 
 <br>
 <center class="actions">
-	<a href="https://join.slack.com/t/ifacroboracer/shared_invite/zt-3mgo5vzhf-nBkfFiawyHtFCDK6JS6Peg " class="button">QnA through slack</a>
+	<a href="https://robo-racer.slack.com/join/shared_invite/zt-2pq4fuyjq-gTUflzeZDKDDGjuVoeZqNg" class="button">QnA through slack</a>
 </center>
 <br>
+<br>
+
 For more information about the competition, attend the online [orientation]( ) to be held soon. 
 Also join us through Slack and leave questions if any.
 

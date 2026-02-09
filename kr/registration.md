@@ -29,7 +29,7 @@ base_url: registration.html
 
 <br>
 <center class="actions">
-	<a href="https://join.slack.com/t/ifacroboracer/shared_invite/zt-3mgo5vzhf-nBkfFiawyHtFCDK6JS6Peg" class="button">Slack 통한 질문</a>
+	<a href="https://robo-racer.slack.com/join/shared_invite/zt-2pq4fuyjq-gTUflzeZDKDDGjuVoeZqNg" class="button">Slack 통한 질문</a>
 </center>
 <br>
 대회에 대한 자세한 정보는 곧 개최될 온라인 [오리엔테이션]( )에 참석하세요. 또한 Slack을 통해 참여하여 질문이 있으시면 남겨주세요.
