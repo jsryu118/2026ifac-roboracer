@@ -11,7 +11,7 @@ base_url: timeline.html
 | DATE | IN-PERSON COMPETITION |
 |:---|:---:|
 | Feb 1st | [Registration Open]( ) |
-| TBD <br> 19:00 KST | Orientation <br> [Orientation Slides]() <br> Competition overview & QnA |
+| June 12nd <br> TBD KST | Orientation <br> [Orientation Slides]() <br> Competition overview & QnA |
 | June 30th <br> 23:59 KST | Registration Close |
 | Aug 24th | On-site team reception and regulated practice sessions |
 | Aug 25th | Open practice sessions |
