@@ -6,22 +6,41 @@ language: en-US
 base_url: registration.html
 ---
 
-This competition is open for everyone of all levels, everyone is welcome to participate in this competition. A team can consist of multiple teammates. Teams with only one person are also allowed. Teams that take part in the in-person competition need to provide and build an ROBORACER car by themselves.
-<br>
-<br>
-<center class="actions">
-	<a href="https://forms.gle/RvSRwHdDqSfyQyvF6" class="button">Registration for a race</a>
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin: 2rem 0;">
 
-</center>
-<br>
-<center><b>Registration opens on Febrary 1st.</b></center>
-<br>
-Click the registration box above and enroll your team information. 
-We will prepare and manage the whole competition based on the team roster you provide here.
+<div style="flex: 1; min-width: 220px; max-width: 300px; border: 2px solid #444; border-radius: 12px; padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.03);">
+<div style="font-size: 2.5rem; font-weight: bold; color: #f56a6a; margin-bottom: 0.5rem;">1</div>
+<div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.8rem;">Conference Registration</div>
+<p style="font-size: 0.85rem; margin-bottom: 1rem;">Register for IFAC 2026.<br>See the <a href="#registration-fee">fee table</a> for registration costs.</p>
+<a href="https://www.ifac2026.org/fairContents.do?FAIRMENU_IDX=21697&hl=ENG" class="button small">Register for IFAC</a>
+</div>
+
+<div style="flex: 1; min-width: 220px; max-width: 300px; border: 2px solid #444; border-radius: 12px; padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.03);">
+<div style="font-size: 2.5rem; font-weight: bold; color: #f56a6a; margin-bottom: 0.5rem;">2</div>
+<div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.8rem;">Submit Google Form</div>
+<p style="font-size: 0.85rem; margin-bottom: 1rem;">Enroll your team information.<br>We manage the competition based on this.</p>
+<a href="https://forms.gle/RvSRwHdDqSfyQyvF6" class="button small">Submit Form</a>
+</div>
+
+<div style="flex: 1; min-width: 220px; max-width: 300px; border: 2px solid #444; border-radius: 12px; padding: 1.5rem; text-align: center; background: rgba(255,255,255,0.03);">
+<div style="font-size: 2.5rem; font-weight: bold; color: #f56a6a; margin-bottom: 0.5rem;">3</div>
+<div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.8rem;">Confirm Registration</div>
+<p style="font-size: 0.85rem; margin-bottom: 1rem;">Check the participant list below<br>to verify your team is registered.</p>
+<a href="#participants" class="button small">View Participants</a>
+</div>
+
+</div>
+
+<center style="font-size: 0.85rem;">If you completed steps 1 & 2 but your team is not listed, please contact <a href="mailto:ryujs@unist.ac.kr">ryujs@unist.ac.kr</a>.</center>
 
 <br>
-Together with registration here, the team must also register for [IFAC 2026](https://www.ifac2026.org/fairContents.do?FAIRMENU_IDX=21697&hl=ENG) to participate in the competition. 
-**Note that every team member should register for IFAC, for which the competition-only registration option is available.**<br>The corresponding registration fees are set as shown in the table below.
+- Both IFAC registration and Google Form submission are required.
+- IFAC competition registration costs €100 per person. You may also register with other options besides competition-only to participate.
+- If you are presenting a paper at the conference and also participating in the competition, duplicate registration is not required.
+- After completing all steps, you must verify that your team appears in the participant list.
+- This competition is part of the IFAC conference. Only those who have registered for IFAC in any form are allowed entry. <span style="color: #ff3333; font-weight: bold;">(e.g., supervisors/chaperones without IFAC registration will NOT be granted access)</span>
+
+<div id="registration-fee"></div>
 
 | On-Line Registration<br>(Feb. 1 - Aug. 9, 2026) | On-Site Registration<br>(Aug. 22 - 28, 2026) |
 ||:---|:---|
@@ -30,12 +49,12 @@ Together with registration here, the team must also register for [IFAC 2026](htt
 
 <br>
 <center class="actions">
-	<a href="https://robo-racer.slack.com/join/shared_invite/zt-2pq4fuyjq-gTUflzeZDKDDGjuVoeZqNg" class="button">QnA through slack</a>
+	<a href="https://join.slack.com/t/robo-racer/shared_invite/zt-2sfu4qr7p-3oe27mCnH98muwRR9uEAbg" class="button">QnA through slack</a>
 </center>
 <br>
-<br>
+Click the button above to join the official ROBORACER Slack, then add the **2026ifac-competition** channel.
 
-For more information about the competition, attend the online [orientation]( ) to be held soon. 
+For more information about the competition, attend the online [orientation]( ) to be held soon.
 Also join us through Slack and leave questions if any.
 
 <!-- A form for race observers
