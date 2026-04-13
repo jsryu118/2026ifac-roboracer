@@ -86,7 +86,7 @@ Teams may **register** for the competition through the **official website**.
 9. _Motor_:
     **No restriction** on specifications. Only a **single motor** may be used for the powertrain.
 10. _Battery_:
-    **4S LiPo battery** or **3S or lower**. Only one 4S battery or a lower-cell combination is allowed (e.g., 2S + 2S is allowed).
+    **4S LiPo battery** or **3S or lower**. There is no limit on the number of batteries, as long as the total cell count does not exceed 4S (e.g., 2S + 2S is allowed).
 11. _Detection box_:
     The vehicle must be easily detected by the opponent's LiDAR. Therefore, the vehicle must occupy a space of at least **12 x 12 cm** in any horizontal plane between **10 and 30 cm** above the ground.
 12. _Foam bumper_:
