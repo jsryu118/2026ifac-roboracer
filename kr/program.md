@@ -18,7 +18,7 @@ base_url: program.html
 | 12:00~14:00 | 점심 |  |
 | Session 2 | 최신 자율 주행 기술 소개 (영어) | 김경훈 교수(경북대학교) |
 | 14:00~15:00 | [Towards Bridging the Sim-to-Real Gap - F1TENTH Gym Environment for Learning-based Control Policies in Autonomous Racing](../agenda.html#towards-bridging-the-sim-to-real-gap---f1tenth-gym-environment-for-learning-based-control-policies-in-autonomous-racing) | Dr.Kukjin Jang (펜실베니아 대학교) |
-| 15:30~16:30 | Motion Planning and Control in High Dynamic Multi-Vehicle Environments | Professor.Johannes Betz (펜실베니아 대학교) |
+| 15:30~16:30 | Motion Planning and Control in High Dynamic Multi-Vehicle Environments | Professor.Johannes Betz (뮌헨 공과대학교) |
 | 20:00~ | 레이스 트랙 공개 및 각 맵 맵핑 | |
 
 

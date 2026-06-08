@@ -16,7 +16,7 @@ base_url: results.html
 
 <br>
 
-# competition Schedule
+# Competition Schedule
 
 
 <!-- <center class="actions">
