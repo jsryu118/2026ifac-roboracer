@@ -12,7 +12,7 @@ base_url: timeline.html
 |:---|:---:|
 | Feb 1st | [Registration Open]( ) |
 | June 12nd <br> 20:00 KST | [Orientation](https://unist-ac-kr.zoom.us/j/81614466798?pwd=lyyrAGEna7IJTJe61FLkaHe5zwcXi0.1) <br> [Orientation Slides]() <br> Competition overview & QnA |
-| June 30th <br> 23:59 KST | Registration Close |
+| Aug 9th <br> 23:59 KST | Registration Close |
 | Aug 24th | On-site team reception and regulated practice sessions |
 | Aug 25th | Open practice sessions |
 | Aug 26th | Qualification time trials |

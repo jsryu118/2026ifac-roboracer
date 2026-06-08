@@ -13,7 +13,7 @@ base_url: timeline.html
 |:---|:---:|
 | Feb 1st | [참가자 등록 시작]( ) |
 | June 12nd <br> 20:00 KST | [오리엔테이션](https://unist-ac-kr.zoom.us/j/81614466798?pwd=lyyrAGEna7IJTJe61FLkaHe5zwcXi0.1) <br> [오리엔테이션 슬라이드]() <br> 대회 소개 및 QnA |
-| June 30th <br> 23:59 KST | 등록 마감 |
+| Aug 9th <br> 23:59 KST | 등록 마감 |
 | Aug 24th | 현장 팀 등록 및 공식 연습 세션 |
 | Aug 25th | 자유 연습 세션 |
 | Aug 26th | 예선 타임 트라이얼 |
