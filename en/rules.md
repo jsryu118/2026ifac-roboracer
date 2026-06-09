@@ -133,27 +133,6 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
 - The organizers do not assume responsibility for accidents during practice.
 - However, the team involved in an accident is obligated to explain its algorithm at the request of the referees.
 
-## 2.5 Pit Stop
-<center>
-<img src="../images/rules/pitstop.png"  style="width: 17vw" />
-</center>
-
-### 2.5.1 General
-- This zone is designated for adjusting parameters **without removing the vehicle from the track**.
-- This zone may be used in both qualifying and the Head-to-Head Race.
-- When the vehicle is in the pit stop zone, vehicle hardware repair and parameter tuning are allowed without penalty.
-- As with the main track, standing in this zone is prohibited.
-- Additionally, after safely entering this zone, removing the vehicle to the island for repair does not constitute a warning.
-- Fully intruding into this zone during autonomous racing is subject to penalty.
-
-### 2.5.1 Entry
-- Manual driving may be used only to enter the pit stop zone from the **manual driving zone**.
-- During the Head-to-Head Race, manual driving to enter the pit must **not cause harm to the opposing vehicle**.
-
-### 2.5.2 Exit
-- When exiting the pit stop zone to the normal driving area, do **not** use manual driving in any manner.
-- A vehicle exiting the pit stop zone has a duty to protect vehicles in the normal driving area.
-
 ## 2.6 Qualification (Mission Execution, Time Trial)
 <!-- <center>
 <img src="../images/rules/qualification.png"  style="width: 20vw" />
@@ -315,7 +294,7 @@ Races before the quarterfinals may be modified to 10 laps.
 - Sharing a single vehicle across multiple teams is strictly prohibited.
 - If two or more vehicles may be on the track, the Detection box must be attached. (e.g., it is not required during mapping or qualifying.)
 - **No objections regarding Wi-Fi will be accepted.** Please ensure that your autonomous driving system is designed to operate independently of Wi-Fi conditions. While we will request that non-participating teams turn off Wi-Fi, this is solely to facilitate visualization and debugging for teams, not to improve algorithm performance!
-- All hardware repair and maintenance on the track (repairing damaged parts, sensor recalibration, battery replacement, etc.) is prohibited. (Not allowed even in the pit stop area.)
+- All hardware repair and maintenance on the track (repairing damaged parts, sensor recalibration, battery replacement, etc.) is prohibited.
 - Dedicated times for **mapping**, **official practice**, and **qualifying** may vary depending on the number of participating teams.
 - Dedicated times for **mapping** and **official practice** are assigned on a **first-come, first-served** basis, and only teams that have **successfully completed registration and inspection** are eligible.
 - It is prohibited for people to be on the track. (Except during mapping time.)
@@ -334,17 +313,15 @@ Races before the quarterfinals may be modified to 10 laps.
 - Using a keyboard or mouse during the race
     - Keyboard/mouse use is prohibited even if no data transmission occurs
     - Exception 1: When the vehicle is not on the track
-    - Exception 2: When the vehicle is in the pit stop zone
-    - Exception 3: When sending an initial guess for re-localization
+    - Exception 2: When sending an initial guess for re-localization
 - Interfering with one's own vehicle through manual control (joystick, keyboard, or other device)
     - Exception 1: When the referees declare a race stop and emergency stopping is required
     - Exception 2: When transmitting the start signal at the start or restart
     - Exception 3: When emergency stopping is required due to a collision rendering the vehicle inoperable
-    - Exception 4: Manual driving to enter the pit stop zone via the pit-stop manual driving zone
-    - Exception 5: When emergency stopping is required after being stuck on an obstacle for more than 5 seconds
-    - Exception 6: When emergency stopping is required to prevent abnormal driving (sudden acceleration, reverse driving, etc.)
-    - Exception 7: When the opponent vehicle seriously damages the track and the referees permit manual control
-    - Exception 8: When stopping after the end of qualifying
+    - Exception 4: When emergency stopping is required after being stuck on an obstacle for more than 5 seconds
+    - Exception 5: When emergency stopping is required to prevent abnormal driving (sudden acceleration, reverse driving, etc.)
+    - Exception 6: When the opponent vehicle seriously damages the track and the referees permit manual control
+    - Exception 7: When stopping after the end of qualifying
 - **During the race**, a person directly generates or selects a modified route based on obstacle positions
 
 
@@ -362,15 +339,13 @@ Races before the quarterfinals may be modified to 10 laps.
 - Using a keyboard or mouse during the race
     - Keyboard/mouse use is prohibited even if no data transmission occurs
     - Exception 1: When the vehicle is not on the track
-    - Exception 2: When the vehicle is in the pit stop zone
-    - Exception 3: When the vehicle has gone off the track, is placed back on the track, and an initial guess is sent for re-localization
+    - Exception 2: When the vehicle has gone off the track, is placed back on the track, and an initial guess is sent for re-localization
 - Interfering with one's own vehicle through manual control (joystick, keyboard, or other device)
     - Exception 1: When the referees declare a race stop and emergency stopping is required
     - Exception 2: At start, restart, or after finish
     - Exception 3: When the vehicle is inoperable due to a collision
-    - Exception 4: Manual driving to enter the pit stop zone via the pit-stop manual driving zone
-    - Exception 5: When emergency stopping is required after being stuck on an obstacle for more than 5 seconds and switching to manual control
-    - Exception 6: When emergency stopping is required to prevent abnormal driving (sudden acceleration, reverse driving, etc.)
+    - Exception 4: When emergency stopping is required after being stuck on an obstacle for more than 5 seconds and switching to manual control
+    - Exception 5: When emergency stopping is required to prevent abnormal driving (sudden acceleration, reverse driving, etc.)
 - **During the race**, a person directly generates or selects a modified route based on obstacle positions
 
 
@@ -378,9 +353,7 @@ Races before the quarterfinals may be modified to 10 laps.
 ### 3.2.3 One Warning
 - False start
 - Failure to actively restore the track
-- Completely passing through the pit stop zone in autonomous racing mode
 - Detection box not properly secured during the race
-    - Exception 1: If corrected in the pit stop zone within one lap after the warning
     - A new warning may be issued if it is not properly corrected each lap
 - **Intervention** with one's own vehicle during the race
     - Removing the vehicle from the track after a collision
