@@ -34,7 +34,7 @@ base_url: registration.html
 <center style="font-size: 0.85rem;">If you completed steps 1 & 2 but your team is not listed, please contact <a href="mailto:ryujs@unist.ac.kr">ryujs@unist.ac.kr</a>.</center>
 
 <br>
-- Both IFAC registration and Google Form submission are required.
+- Both IFAC registration and Google Form submission are required. You may submit the Google Form first before completing IFAC registration.
 - IFAC competition registration costs €100 per person. You may also register with other options besides competition-only to participate.
 - <span style="color: #ff3333; font-weight: bold;">Every team member must individually register for IFAC — not just the team leader.</span>
 - If you have already registered for IFAC under any category, you do not need to add the competition option separately.

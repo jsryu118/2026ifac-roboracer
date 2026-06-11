@@ -34,7 +34,7 @@ base_url: registration.html
 
 <br>
 
-- IFAC  등록과 google form 제출을 둘다 해야합니다.
+- IFAC 등록과 Google Form 제출을 둘 다 해야합니다. Google Form은 IFAC 등록 전에 먼저 제출해도 됩니다.
 - IFAC competition 등록은 인당 100유로가 필요하며, competition-only 옵션 이외 다른 옵션으로 등록해도 대회에 참가가 가능합니다.
 - <span style="color: #ff3333; font-weight: bold;">팀장만 등록하는 것이 아니라, 팀원 전원이 개별적으로 IFAC 학회에 등록해야 합니다.</span>
 - IFAC 학회에 어떤 카테고리로든 이미 등록한 경우, competition 옵션으로 추가 등록을 하지 않아도 대회에 참가 가능합니다.
