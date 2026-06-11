@@ -37,7 +37,7 @@ base_url: registration.html
 - IFAC  등록과 google form 제출을 둘다 해야합니다.
 - IFAC competition 등록은 인당 100유로가 필요하며, competition-only 옵션 이외 다른 옵션으로 등록해도 대회에 참가가 가능합니다.
 - <span style="color: #ff3333; font-weight: bold;">팀장만 등록하는 것이 아니라, 팀원 전원이 개별적으로 IFAC 학회에 등록해야 합니다.</span>
-- 학회에서 학술 발표 및 대회 참가를 하는 경우, 학회와 대회 중복 등록은 하지 않아도 됩니다.
+- IFAC 학회에 어떤 카테고리로든 이미 등록한 경우, competition 옵션으로 추가 등록을 하지 않아도 대회에 참가 가능합니다.
 - 모든 절차를 완료한 이후, 필수로 참가팀 리스트에 보이는지 확인해야 합니다.
 - 이 대회는 IFAC 학회에 포함된 행사로, 어떠한 형태로든 IFAC 학회 등록을 한 사람만 접근이 가능합니다. <span style="color: #ff3333; font-weight: bold;">(ex. 학회 등록하지 않은 인솔자는 접근 불가)</span>
 <br>
