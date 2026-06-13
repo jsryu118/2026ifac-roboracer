@@ -13,6 +13,7 @@ base_url: timeline.html
 |:---|:---:|
 | Feb 1st | [참가자 등록 시작]( ) |
 | June 12th <br> 20:00 KST | [오리엔테이션](https://unist-ac-kr.zoom.us/j/81614466798?pwd=lyyrAGEna7IJTJe61FLkaHe5zwcXi0.1) <br> [오리엔테이션 슬라이드](../static_data/IFAC2026_orientation.pdf) <br> 대회 소개 및 QnA |
+| July 31st <br> 20:00 KST | [2차 오리엔테이션](https://unist-ac-kr.zoom.us/j/81842547413?pwd=I76225ePgmHJpuz5I6T3YzoamJhzfQ.1) <br> 대회 소개 및 QnA |
 | Aug 9th <br> 23:59 KST | 등록 마감 |
 | Aug 24th | 현장 팀 등록 및 공식 연습 세션 |
 | Aug 25th | 자유 연습 세션 |
