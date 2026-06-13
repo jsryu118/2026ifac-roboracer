@@ -88,7 +88,7 @@ Registration Conference
 
 | TEAM NAME | AFFILIATION | TEAM MEMBERS |
 |:---|:---|:---|
-|.|.|.|
+| HYUMIRU | Hanyang University, Korea | Kyungmin Park, HaeJun Park, ByeongCheol Min, Myungsub Lee, Hyunwoong Na |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
