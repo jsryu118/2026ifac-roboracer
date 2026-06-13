@@ -150,7 +150,7 @@ The track dimensions are approximately **8 m × 22 m**.
     - Number of qualifying rounds passed
     - Record of the most recently completed qualifying round
 - An example of final ranking determination is as follows:
-    - Assume there are 12 teams in total.
+    - Assume there are 14 teams in total.
     - Assume that 3 teams pass each of Q1, Q2, Q3, and 3 teams satisfy Fully Autonomous.
     - Among teams that satisfy Fully Autonomous, assign places 1 through 3 in order of Q3 record.
     - Among teams that pass Q3, assign places 4 through 6 in order of Q3 record.
