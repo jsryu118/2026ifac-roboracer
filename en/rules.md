@@ -150,11 +150,12 @@ The track dimensions are approximately **8 m × 22 m**.
     - Number of qualifying rounds passed
     - Record of the most recently completed qualifying round
 - An example of final ranking determination is as follows:
-    - Assume there are 14 teams in total.
+    - Assume there are 12 teams in total.
     - Assume that 3 teams pass each of Q1, Q2, Q3, and 3 teams satisfy Fully Autonomous.
     - Among teams that satisfy Fully Autonomous, assign places 1 through 3 in order of Q3 record.
-    - Among teams that pass Q3, assign places 4 through 6 in order of Q3 record.
-    - Repeat in the same manner down to Q1.
+    - Among teams that pass Q3 (without Fully Autonomous), assign places 4 through 6 in order of Q3 record.
+    - Among teams that pass Q2 (without Q3), assign places 7 through 9 in order of Q2 record.
+    - Among teams that pass Q1 (without Q2), assign places 10 through 12 in order of Q1 partial laps.
 
 #### 2.5.1.1 Qualification Example
 
@@ -175,14 +176,12 @@ The track dimensions are approximately **8 m × 22 m**.
     <tr><td>4</td><td>X</td><td>9.9 s</td><td>3</td><td>3</td></tr>
     <tr><td>5</td><td>X</td><td>10.1 s</td><td>3</td><td>3</td></tr>
     <tr><td>6</td><td>X</td><td>12.2 s</td><td>3</td><td>3</td></tr>
-    <tr><td>7</td><td>X</td><td>13.2 s</td><td>3</td><td>3</td></tr>
-    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
-    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
-    <tr><td>10</td><td>X</td><td>-</td><td>1</td><td>3</td></tr>
-    <tr><td>11</td><td>X</td><td>-</td><td>0</td><td>3</td></tr>
-    <tr><td>12</td><td>X</td><td>-</td><td>0</td><td>2</td></tr>
-    <tr><td>13</td><td>X</td><td>-</td><td>0</td><td>1</td></tr>
-    <tr><td>14</td><td>X</td><td>-</td><td>0</td><td>0</td></tr>
+    <tr><td>7</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
+    <tr><td>8</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
+    <tr><td>9</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
+    <tr><td>10</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
+    <tr><td>11</td><td>X</td><td>-</td><td>1</td><td>3</td></tr>
+    <tr><td>12</td><td>X</td><td>-</td><td>0</td><td>3</td></tr>
   </tbody>
 </table>
 
