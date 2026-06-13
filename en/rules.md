@@ -24,7 +24,7 @@ h2, h3, h4, h5, h6 {
 }
 </style>
 
-*Last Updated: 2026-01-29*
+*Last Updated: 2026-06-13*
 
 
 **Table of content**
@@ -100,7 +100,9 @@ The competition will be held at BEXCO in Busan. The characteristics of the envir
 <center>
 <img src="../images/environment/bexco_hall_1.jpg"  style="width: 25vw" />
 </center>
-The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN039), where the track will be installed, is hardened concrete with a urethane coating finish. This surface is characterized by a significantly lower friction coefficient compared to typical asphalt pavement and is notably smooth.
+The floor of [BEXCO Exhibition Center 2, 3rd Floor, Hall 5A](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN040), where the track will be installed, is hardened concrete with a urethane coating finish. This surface is characterized by a significantly lower friction coefficient compared to typical asphalt pavement and is notably smooth. ⚠️ **Caution: The surface is slippery.**
+
+The track dimensions are approximately **8 m × 22 m**.
 
 ## 2.3 Inspection
 
@@ -133,12 +135,12 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
 - The organizers do not assume responsibility for accidents during practice.
 - However, the team involved in an accident is obligated to explain its algorithm at the request of the referees.
 
-## 2.6 Qualification (Mission Execution, Time Trial)
+## 2.5 Qualification (Mission Execution, Time Trial)
 <!-- <center>
 <img src="../images/rules/qualification.png"  style="width: 20vw" />
 </center> -->
 <!--needs update-->
-### 2.6.1 General
+### 2.5.1 General
 - Practice and qualifying use the same track.
 - All stages of qualifying must be completed **within 8 minutes**.
     - This may change depending on the total number of participating teams.
@@ -155,7 +157,7 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
     - Among teams that pass Q3, assign places 4 through 6 in order of Q3 record.
     - Repeat in the same manner down to Q1.
 
-#### 2.6.1.1 Qualification Example
+#### 2.5.1.1 Qualification Example
 
 <table>
   <thead>
@@ -168,39 +170,39 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
     </tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td>O</td><td>10.8 s</td><td>3</td><td>2</td></tr>
-    <tr><td>2</td><td>O</td><td>11.2 s</td><td>3</td><td>2</td></tr>
-    <tr><td>3</td><td>O</td><td>13.0 s</td><td>3</td><td>2</td></tr>
-    <tr><td>4</td><td>X</td><td>9.9 s</td><td>3</td><td>2</td></tr>
-    <tr><td>5</td><td>X</td><td>10.1 s</td><td>3</td><td>2</td></tr>
-    <tr><td>6</td><td>X</td><td>12.2 s</td><td>3</td><td>2</td></tr>
-    <tr><td>7</td><td>X</td><td>13.2 s</td><td>3</td><td>2</td></tr>
-    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>2</td></tr>
-    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>2</td></tr>
-    <tr><td>10</td><td>X</td><td>-</td><td>1</td><td>2</td></tr>
-    <tr><td>11</td><td>X</td><td>-</td><td>0</td><td>2</td></tr>
-    <tr><td>12</td><td>X</td><td>-</td><td>0</td><td>1</td></tr>
-    <tr><td>13</td><td>X</td><td>-</td><td>0</td><td>0</td></tr>
-    <tr><td>13</td><td>X</td><td>-</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>O</td><td>10.8 s</td><td>3</td><td>3</td></tr>
+    <tr><td>2</td><td>O</td><td>11.2 s</td><td>3</td><td>3</td></tr>
+    <tr><td>3</td><td>O</td><td>13.0 s</td><td>3</td><td>3</td></tr>
+    <tr><td>4</td><td>X</td><td>9.9 s</td><td>3</td><td>3</td></tr>
+    <tr><td>5</td><td>X</td><td>10.1 s</td><td>3</td><td>3</td></tr>
+    <tr><td>6</td><td>X</td><td>12.2 s</td><td>3</td><td>3</td></tr>
+    <tr><td>7</td><td>X</td><td>13.2 s</td><td>3</td><td>3</td></tr>
+    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
+    <tr><td>8</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
+    <tr><td>10</td><td>X</td><td>-</td><td>1</td><td>3</td></tr>
+    <tr><td>11</td><td>X</td><td>-</td><td>0</td><td>3</td></tr>
+    <tr><td>12</td><td>X</td><td>-</td><td>0</td><td>2</td></tr>
+    <tr><td>13</td><td>X</td><td>-</td><td>0</td><td>1</td></tr>
+    <tr><td>14</td><td>X</td><td>-</td><td>0</td><td>0</td></tr>
   </tbody>
 </table>
 
-### 2.6.2 Qualifying 1 (Q1)
-- The objective of Q1 is to complete **two laps** of the track **without collisions**.
+### 2.5.2 Qualifying 1 (Q1)
+- The objective of Q1 is to complete **three laps** of the track **without collisions**.
 - Vehicles that do not pass Q1 are ranked by the number of collision-free laps completed.
 - Vehicles that pass Q1 advance to Q2.
 
-### 2.6.3 Qualifying 2 (Q2)
+### 2.5.3 Qualifying 2 (Q2)
 - The objective of Q2 is to complete **three laps** **without collisions** in the presence of **random obstacles**.
 - Random obstacles for Q2 are placed by referees, with a total of **two** obstacles. Obstacle locations are not announced in advance.
 - Vehicles that do not pass Q2 are ranked by the number of collision-free laps completed.
 - Vehicles that pass Q2 advance to Q3.
 
-### 2.6.4 Qualifying 3 (Q3)
+### 2.5.4 Qualifying 3 (Q3)
 - The objective of Q3 is to achieve the **minimum lap time** over two minutes on a track without obstacles.
 - The shortest lap time during the two minutes is used as the record.
 
-### 2.6.5 Fully Autonomous (Achievement Condition)
+### 2.5.5 Fully Autonomous (Achievement Condition)
 - The achievement condition applies at all moments during qualifying.
 - The achievement condition is as follows:
     - **Teams that do not directly or indirectly affect the vehicle throughout the entire qualifying process**
@@ -219,19 +221,19 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
 </center>
 
 
-### 2.6.6 Static Obstacles
+### 2.5.6 Static Obstacles
 - The randomly placed obstacles during Q2 are static obstacles.
 - Each obstacle is smaller than 0.5m x 0.5m.
 - Obstacle locations are randomly placed by referees after Q1 is completed.
 - Obstacles are removed after Q2 is completed.
 - Obstacles are removed safely when the vehicle is not affected.
 
-### 2.6.7 Invalid Records
+### 2.5.7 Invalid Records
 - If a human intervenes and affects the vehicle, the **lap time is invalidated** and **excluded from the number of completed laps**.
 - If there is contact with a static obstacle, the **lap time is invalidated** and **excluded from the number of completed laps**.
 - If there is contact with the track but the vehicle can drive without human intervention, it is considered minor contact and the record remains valid.
 
-### 2.6.8 Notes
+### 2.5.8 Notes
 - Moving a vehicle to an **arbitrary location (e.g., the start line)** during qualifying is **strictly prohibited**.
 - If a vehicle is removed from the track and then reinserted, the vehicle's orientation may be adjusted slightly, but it must be placed back at the **same location** from which it was removed.
 - If there is contact with the track, even if the record is not invalidated, the track must be **immediately returned to its original position**.
@@ -242,22 +244,22 @@ The floor of [BEXCO Exhibition Hall 1](https://www.bexco.co.kr/eng/CMS/Contents/
 - There are two islands within the track area, and one island may have two people.
     - The island composition will be as follows: (Referee 1, Team Member 1 in Team 1), (Referee 2, Team Member 2 in Team 1)
 
-## 2.7 Head-to-Head Race
+## 2.6 Head-to-Head Race
 <!-- <center>
 <img src="../images/rules/head_to_head.png"  style="width: 13vw" />
 </center> -->
 <!--needs update-->
-### 2.7.1 General
+### 2.6.1 General
 - The two vehicles start from different start lines located in opposite directions.
 - A total of three static obstacles are used. After all teams are ready to race, each participating team places one obstacle, and the referees place the remaining obstacle.
 - Static obstacles on the track are removed when the leading vehicle has completed 10 laps.
 - Each vehicle must complete 20 laps first within the time limit while avoiding obstacles and the opposing vehicle.
 
-### 2.7.2 Objective
+### 2.6.2 Objective
 - Complete 20 laps first.
 Races before the quarterfinals may be modified to 10 laps.
 
-### 2.7.3 Random Static Obstacles
+### 2.6.3 Random Static Obstacles
 - A total of three **static obstacles** are randomly placed.
 - Each participating team and the referees place one static obstacle each.
 - Each obstacle is smaller than 0.5m x 0.5m.
@@ -266,7 +268,7 @@ Races before the quarterfinals may be modified to 10 laps.
 - **Obstacles are removed during the race.**
 - Obstacles are removed safely when neither vehicle is affected.
 
-### 2.7.4 Collision
+### 2.6.4 Collision
 - Track boundaries and static obstacles
     - Restore the track and obstacles.
     - If the race can continue, it must continue without interruption.
@@ -275,7 +277,7 @@ Races before the quarterfinals may be modified to 10 laps.
     - If the at-fault vehicle is clear but no overtake has occurred, the race continues.
     - If the victim vehicle is clearly identified and the victim vehicle is unable to drive, the collision is severe, or the victim vehicle is overtaken, the race is stopped.
 
-### 2.7.5 Notes
+### 2.6.5 Notes
 - **Do not stop the race at the team's discretion without the referees' stop signal!!**
 - **All computation must be performed on the vehicle!!**
 - **Data must not be transmitted to the vehicle during normal driving.**
@@ -285,7 +287,7 @@ Races before the quarterfinals may be modified to 10 laps.
     - The island composition will be as follows: (Referee 1, Team Member in Team 1), (Referee 2, Team Member in Team 2)
 - In side-by-side contact and incidents, if there is no clear at-fault party, the race will not be stopped.
 
-## 2.8 Common Notes (Important!!)
+## 2.7 Common Notes (Important!!)
 - If a collision makes driving difficult or dangerous, the vehicle must be emergency-stopped immediately.
 - **All computation must be performed on the vehicle!!**
 - **Data must not be transmitted to the vehicle during normal driving.**
