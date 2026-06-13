@@ -239,8 +239,6 @@ The track dimensions are approximately **8 m × 22 m**.
 - **All computation must be performed on the vehicle!!**
 - **Data must not be transmitted to the vehicle during normal driving.**
 - **Manual (human) emergency braking is strictly prohibited during normal driving.**
-- There are two islands within the track area, and one island may have two people.
-    - The island composition will be as follows: (Referee 1, Team Member 1 in Team 1), (Referee 2, Team Member 2 in Team 1)
 
 ## 2.6 Head-to-Head Race
 <!-- <center>
@@ -289,8 +287,6 @@ Races before the quarterfinals may be modified to 10 laps.
 - **Data must not be transmitted to the vehicle during normal driving.**
 - **Manual (human) emergency braking is strictly prohibited during normal driving.**
 - A vehicle that violates the Detection box regulation may not participate in the race.
-- There are two islands within the track area, and one island may have two people.
-    - The island composition will be as follows: (Referee 1, Team Member in Team 1), (Referee 2, Team Member in Team 2)
 - In side-by-side contact and incidents, if there is no clear at-fault party, the race will not be stopped.
 
 ## 2.7 Common Notes (Important!!)
