@@ -121,11 +121,8 @@ The track dimensions are approximately **8 m × 22 m**.
 ## 2.4 Mapping and Practice
 
 ### 2.4.1 Mapping
-- Approximately 3 minutes are allocated to each team.
-- This time is exclusive use of the entire track for a single team.
-- This time may be used for mapping, data collection, and practice.
-- If a team does not arrive at its designated time slot, the opportunity is forfeited and no additional time will be provided.
-- Each team may prepare multiple vehicles and use them on the track.
+- Mapping is conducted as a **group session** — all teams map simultaneously on the track together.
+- Each team may prepare multiple vehicles and use them on the track during the mapping session.
 - Teams without a map file may obtain one from nearby teams, but this is outside the responsibility of the organizers.
 - For this competition, png and yaml files for the track will be provided.
 
