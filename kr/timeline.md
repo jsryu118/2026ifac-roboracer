@@ -15,10 +15,10 @@ base_url: timeline.html
 | June 12th <br> 20:00 KST | [오리엔테이션](https://unist-ac-kr.zoom.us/j/81614466798?pwd=lyyrAGEna7IJTJe61FLkaHe5zwcXi0.1) <br> [오리엔테이션 슬라이드](../static_data/IFAC2026_orientation.pdf) <br> 대회 소개 및 QnA |
 | July 31st <br> 20:00 KST | [2차 오리엔테이션](https://unist-ac-kr.zoom.us/j/81842547413?pwd=I76225ePgmHJpuz5I6T3YzoamJhzfQ.1) <br> 대회 소개 및 QnA |
 | Aug 9th <br> 23:59 KST | 등록 마감 |
-| Aug 24th | 현장 팀 등록 및 공식 연습 세션 |
-| Aug 25th | 자유 연습 세션 |
-| Aug 26th | 예선 타임 트라이얼 |
-| Aug 27th | 1대1 경주 및 시상식 |
+| Aug 24th | **Registration & Mapping Day** — 현장 팀 등록 및 맵핑 세션 |
+| Aug 25th | **Qualifying Day** — 예선 타임 트라이얼 |
+| Aug 26th | **Head-to-Head Day 1** |
+| Aug 27th | **Head-to-Head Day 2** — 시상식 |
 
 <br>
 <!-- | DATE | IN-PERSON COMPETITION |

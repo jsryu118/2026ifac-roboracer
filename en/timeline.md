@@ -14,10 +14,10 @@ base_url: timeline.html
 | June 12th <br> 20:00 KST | [Orientation](https://unist-ac-kr.zoom.us/j/81614466798?pwd=lyyrAGEna7IJTJe61FLkaHe5zwcXi0.1) <br> [Orientation Slides](../static_data/IFAC2026_orientation.pdf) <br> Competition overview & QnA |
 | July 31st <br> 20:00 KST | [2nd Orientation](https://unist-ac-kr.zoom.us/j/81842547413?pwd=I76225ePgmHJpuz5I6T3YzoamJhzfQ.1) <br> Competition overview & QnA |
 | Aug 9th <br> 23:59 KST | Registration Close |
-| Aug 24th | On-site team reception and regulated practice sessions |
-| Aug 25th | Open practice sessions |
-| Aug 26th | Qualification time trials |
-| Aug 27th | Head-to-head tournament and award ceremony |
+| Aug 24th | **Registration & Mapping Day** — On-site team reception and regulated practice sessions |
+| Aug 25th | **Qualifying Day** — Qualification time trials |
+| Aug 26th | **Head-to-Head Day 1** |
+| Aug 27th | **Head-to-Head Day 2** — Award ceremony |
 
 <br>
 
