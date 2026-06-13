@@ -100,7 +100,7 @@ The competition will be held at BEXCO in Busan. The characteristics of the envir
 <center>
 <img src="../images/environment/bexco_hall_1.jpg"  style="width: 25vw" />
 </center>
-The floor of [BEXCO Exhibition Center 2, 3rd Floor, Hall 5A](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN040), where the track will be installed, is hardened concrete with a urethane coating finish. This surface is characterized by a significantly lower friction coefficient compared to typical asphalt pavement and is notably smooth. ⚠️ **Caution: The surface is slippery.**
+The floor of [BEXCO Exhibition Center 2, 3rd Floor, Hall 5A](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN040), where the track will be installed, is hardened concrete with a urethane coating finish. This surface is characterized by a significantly lower friction coefficient compared to typical asphalt pavement and is notably smooth.
 
 The track dimensions are approximately **8 m × 22 m**.
 

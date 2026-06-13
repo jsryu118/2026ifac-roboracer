@@ -101,7 +101,7 @@ h2, h3, h4, h5, h6 {
 <center>
 <img src="../images/environment/bexco_hall_1.jpg"  style="width: 25vw" />
 </center>
- 트랙이 설치되는 [BEXCO 제2전시장 3층 Hall 5A](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN040) 바닥은 경화 콘크리트(Hardened Concrete) 기반에 우레탄 코팅 마감이 되어 있습니다. 이 표면은 일반적인 아스팔트 포장 대비 마찰 계수가 현저히 낮고 표면이 매끄러운 것이 특징입니다. ⚠️ **주의: 바닥이 매우 미끄럽습니다.**
+ 트랙이 설치되는 [BEXCO 제2전시장 3층 Hall 5A](https://www.bexco.co.kr/eng/CMS/Contents/Contents.do?mCode=MN040) 바닥은 경화 콘크리트(Hardened Concrete) 기반에 우레탄 코팅 마감이 되어 있습니다. 이 표면은 일반적인 아스팔트 포장 대비 마찰 계수가 현저히 낮고 표면이 매끄러운 것이 특징입니다.
 
 트랙 크기는 약 **8 m × 22 m**입니다.
  
