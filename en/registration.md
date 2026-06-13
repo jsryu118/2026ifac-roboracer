@@ -35,7 +35,7 @@ base_url: registration.html
 
 <br>
 - Both IFAC registration and Google Form submission are required. You may submit the Google Form first before completing IFAC registration.
-- IFAC competition registration costs €100 per person. You may also register with other options besides competition-only to participate.
+- IFAC competition registration costs €100 per person.
 - <span style="color: #ff3333; font-weight: bold;">Every team member must individually register for IFAC — not just the team leader.</span>
 - If you have already registered for IFAC under any category, you do not need to add the competition option separately.
 - After completing all steps, you must verify that your team appears in the participant list.
