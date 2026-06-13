@@ -185,7 +185,8 @@ The track dimensions are approximately **8 m × 22 m**.
 </table>
 
 ### 2.5.2 Qualifying 1 (Q1)
-- The objective of Q1 is to complete **three laps** of the track **without collisions**.
+- The objective of Q1 is to complete **three laps** of the track **without collisions** on an **obstacle-free track**.
+- **No obstacles are placed on the track during Q1.**
 - Vehicles that do not pass Q1 are ranked by the number of collision-free laps completed.
 - Vehicles that pass Q1 advance to Q2.
 
