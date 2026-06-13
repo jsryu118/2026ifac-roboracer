@@ -249,6 +249,14 @@ The track dimensions are approximately **8 m × 22 m**.
 <img src="../images/rules/head_to_head.png"  style="width: 13vw" />
 </center> -->
 <!--needs update-->
+
+### 2.6.0 Tournament Format
+- The Head-to-Head Race follows a **Double Elimination** format.
+- Each team is eliminated only after **two losses**.
+- **Day 3 (Aug 26):** Winners Bracket — no teams are eliminated on this day.
+- **Day 4 (Aug 27):** Losers Bracket races begin. Teams eliminated from the Winners Bracket enter the Losers Bracket.
+- The final winner is determined through the bracket.
+
 ### 2.6.1 General
 - The two vehicles start from different start lines located in opposite directions.
 - A total of three static obstacles are used. After all teams are ready to race, each participating team places one obstacle, and the referees place the remaining obstacle.
