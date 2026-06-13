@@ -110,7 +110,7 @@ The track dimensions are approximately **8 m × 22 m**.
 - Vehicles must be built according to ROBORACER guidelines, but alternative parts may be allowed as long as they comply with regulations.
 - Vehicle inspection will be conducted on the first day of the competition.
 - Inspections are performed by the race referees.
-- Inspection must be completed **before the Time Trial** and **after any significant changes** to the vehicle's hardware or algorithm.
+- Inspection must be completed **before practice** and **re-inspection is required after any hardware changes**.
 
 ### 2.3.1 Software Inspection
 - Teams must demonstrate that they can activate the **emergency brake via a toggle (on/off) method**.
