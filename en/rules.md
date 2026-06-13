@@ -124,7 +124,6 @@ The track dimensions are approximately **8 m × 22 m**.
 
 ### 2.4.1 Mapping
 - Mapping is conducted as a **group session** — all teams map simultaneously on the track together.
-- Each team may prepare multiple vehicles and use them on the track during the mapping session.
 - Teams without a map file may obtain one from nearby teams, but this is outside the responsibility of the organizers.
 - For this competition, png and yaml files for the track will be provided.
 
