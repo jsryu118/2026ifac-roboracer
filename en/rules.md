@@ -106,17 +106,19 @@ The track dimensions are approximately **8 m × 22 m**.
 
 ## 2.3 Inspection
 
-- The purpose of inspection is to verify that the hardware of the autonomous vehicle meets competition requirements and does not pose a risk to the environment, opponents, or people.
-
+- The purpose of inspection is to verify that the vehicle meets competition requirements and does not pose a risk to the environment, opponents, or people.
 - Vehicles must be built according to ROBORACER guidelines, but alternative parts may be allowed as long as they comply with regulations.
-
-- Teams must demonstrate that they can activate the emergency brake via a toggle method (however, **this may not be used for intervention during the race**!).
-
 - Vehicle inspection will be conducted on the first day of the competition.
-
 - Inspections are performed by the race referees.
-
 - Inspection must be completed **before the Time Trial** and **after any significant changes** to the vehicle's hardware or algorithm.
+
+### 2.3.1 Software Inspection
+- Teams must demonstrate that they can activate the **emergency brake via a toggle (on/off) method**.
+- The toggle-based emergency brake **may not be used for intervention during the race**.
+
+### 2.3.2 Hardware Inspection
+- **Chassis Dimension**: The vehicle dimensions must comply with the constraints specified in Section 2.1.
+- **Detection Box Dimension**: The detection box must occupy a space of at least **12 × 12 cm** in any horizontal plane between **10 and 30 cm** above the ground.
 
 ## 2.4 Mapping and Practice
 
