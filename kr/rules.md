@@ -151,11 +151,11 @@ h2, h3, h4, h5, h6 {
     - 가장 마지막으로 완료한 예선의 기록
 - 최종순위 결정의 예시는 다음과 같습니다.
     - 총 12팀이 있다고 가정.
-    - 각 Q1, Q2, Q3 통과팀이 각각 3팀, Fully Autonomous 만족 팀이 3팀이라고 가정.
+    - Fully Autonomous 만족 팀 3팀, Q3 통과팀(FA 미달성) 3팀, Q2 실패팀(Q1 통과) 3팀, Q1 실패팀 3팀이라고 가정.
     - Fully Autonomous 조건을 만족한 팀 중에서 Q3의 기록 순으로 1위부터 3위까지 배정.
     - Q3를 통과한 팀(Fully Autonomous 미달성) 중에서 Q3 기록 순으로 4위부터 6위까지 배정.
-    - Q2를 통과한 팀(Q3 미달성) 중에서 Q2 기록 순으로 7위부터 9위까지 배정.
-    - Q1을 통과한 팀(Q2 미달성) 중에서 Q1 부분 완주 바퀴 수 순으로 10위부터 12위까지 배정.
+    - Q2를 실패한 팀 중에서 Q2 부분 완주 바퀴 수 순으로 7위부터 9위까지 배정.
+    - Q1을 실패한 팀 중에서 Q1 부분 완주 바퀴 수 순으로 10위부터 12위까지 배정.
 
 #### 2.5.1.1 예선 경기 예시
 
@@ -176,12 +176,12 @@ h2, h3, h4, h5, h6 {
     <tr><td>4</td><td>X</td><td>9.9 s</td><td>3</td><td>3</td></tr>
     <tr><td>5</td><td>X</td><td>10.1 s</td><td>3</td><td>3</td></tr>
     <tr><td>6</td><td>X</td><td>12.2 s</td><td>3</td><td>3</td></tr>
-    <tr><td>7</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
-    <tr><td>8</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
-    <tr><td>9</td><td>X</td><td>-</td><td>3</td><td>3</td></tr>
-    <tr><td>10</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
-    <tr><td>11</td><td>X</td><td>-</td><td>1</td><td>3</td></tr>
-    <tr><td>12</td><td>X</td><td>-</td><td>0</td><td>3</td></tr>
+    <tr><td>7</td><td>X</td><td>-</td><td>2</td><td>3</td></tr>
+    <tr><td>8</td><td>X</td><td>-</td><td>1</td><td>3</td></tr>
+    <tr><td>9</td><td>X</td><td>-</td><td>0</td><td>3</td></tr>
+    <tr><td>10</td><td>X</td><td>-</td><td>-</td><td>2</td></tr>
+    <tr><td>11</td><td>X</td><td>-</td><td>-</td><td>1</td></tr>
+    <tr><td>12</td><td>X</td><td>-</td><td>-</td><td>0</td></tr>
   </tbody>
 </table>
 
