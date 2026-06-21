@@ -79,6 +79,7 @@ If you have registered for participation but the list below is not updated, plea
 | TEAM NAME | AFFILIATION | TEAM MEMBERS |
 |:---|:---|:---|
 | HYUMIRU | Hanyang University, Korea | Kyungmin Park, HaeJun Park, ByeongCheol Min, Myungsub Lee, Hyunwoong Na, Sungho Ahn |
+| HY-Ru | Hanyang University, Korea | Seunghwan Shim, Chani Kim, Hyunwoo Noh, Youjin Lee, Jeonghwan Choi, Geunhyung Park |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
