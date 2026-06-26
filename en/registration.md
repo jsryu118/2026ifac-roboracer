@@ -81,6 +81,7 @@ If you have registered for participation but the list below is not updated, plea
 | HYUMIRU | Hanyang University, Korea | Kyungmin Park, HaeJun Park, ByeongCheol Min, Myungsub Lee, Hyunwoong Na, Sungho Ahn |
 | HY-Ru | Hanyang University, Korea | Seunghwan Shim, Chani Kim, Hyunwoo Noh, Youjin Lee, Jeonghwan Choi, Geunhyung Park |
 | SEA:ME@KOREA | Kookmin University, Korea | Jiwon Kim, Jiwoo Park, Seokjin Kim, Wonjun Na, Daegwang Kim, Jihyun Kim, Chanyong Lee |
+| Falcons | Tongji University, China | HongJian Cai, ZhiHao Xie |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
