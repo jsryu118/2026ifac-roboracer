@@ -92,6 +92,7 @@ Registration Conference
 | HY-Ru | Hanyang University, Korea | Seunghwan Shim, Chani Kim, Hyunwoo Noh, Youjin Lee, Jeonghwan Choi, Geunhyung Park |
 | SEA:ME@KOREA | Kookmin University, Korea | Jiwon Kim, Jiwoo Park, Seokjin Kim, Wonjun Na, Daegwang Kim, Jihyun Kim, Chanyong Lee |
 | Falcons | Tongji University, China | HongJian Cai, ZhiHao Xie |
+| Tianji Horizon | Tianjin University, China | Haifa Zhang, Chongyang Zhao, WeiYi Kong, Ziyi Cheng, Xinghao Qin |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
