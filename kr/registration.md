@@ -94,6 +94,7 @@ Registration Conference
 | Falcons | Tongji University, China | HongJian Cai, ZhiHao Xie |
 | Tianji Horizon | Tianjin University, China | Haifa Zhang, Chongyang Zhao, WeiYi Kong, Ziyi Cheng, Xinghao Qin |
 | SpaceRacer | Shenzhen University, China | Haorong Yuan, Shengyao Lan |
+| Raptor | Hanyang University, Korea | Suhyeon Seok, Jeeseung Lee, Seungyeon Han, Joohyuk Kim, Sangbum Kim, Min-a Kim |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
