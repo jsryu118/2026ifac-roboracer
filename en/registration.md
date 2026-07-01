@@ -88,6 +88,8 @@ If you have registered for participation but the list below is not updated, plea
 | MSCLAB | Chung-Ang University, Korea | WonSeok Choi, Minjae Kwak, JongHun Park, MinYoung Cho, MinSung Choi |
 | TeSSUla | Soongsil University, Korea | YeonJoo Kim, JuHee Son, ByeongSu Seo, GyuHyeok Song |
 | InTheEND | Soongsil University, Korea | Woobin Choi, Subin Lim, Chaehyeon Jung, Minho Kim, Juyoung Choi |
+| Onedrive | Soongsil University, Korea | YoungJin Won, GeonYeong Na, Hyewon Jeong, Yunseo Yang, Hangyeol Woo |
+| SSU-PATH | Soongsil University, Korea | Hahyeon Song, Heewoo Choi, Seeun Jung, Yujin Song, Jiyul Kim, Minwoo Lee |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
