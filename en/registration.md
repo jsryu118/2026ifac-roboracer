@@ -83,7 +83,7 @@ If you have registered for participation but the list below is not updated, plea
 | SEA:ME@KOREA | Kookmin University, Korea | Jiwon Kim, Jiwoo Park, Seokjin Kim, Wonjun Na, Daegwang Kim, Jihyun Kim, Chanyong Lee |
 | Falcons | Tongji University, China | HongJian Cai, ZhiHao Xie |
 | Tianji Horizon | Tianjin University, China | Haifa Zhang, Chongyang Zhao, WeiYi Kong, Ziyi Cheng, Xinghao Qin |
-| SpaceRacer | Shenzhen University, China | Haorong Yuan, Shengyao Lan |
+| SpaceRacer | Shenzhen University, China | Haorong Yuan, Shengyao Lan, Yukang Cui |
 | Raptor | Hanyang University, Korea | Suhyeon Seok, Jeeseung Lee, Seungyeon Han, Joohyuk Kim, Sangbum Kim, Min-a Kim |
 | MSCLAB | Chung-Ang University, Korea | WonSeok Choi, Minjae Kwak, JongHun Park, MinYoung Cho, MinSung Choi |
 | TeSSUla | Soongsil University, Korea | YeonJoo Kim, JuHee Son, ByeongSu Seo, GyuHyeok Song |
