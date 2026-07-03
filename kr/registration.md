@@ -100,6 +100,7 @@ Registration Conference
 | InTheEND | Soongsil University, Korea | Woobin Choi, Subin Lim, Chaehyeon Jung, Minho Kim, Juyoung Choi |
 | Onedrive | Soongsil University, Korea | YoungJin Won, GeonYeong Na, Hyewon Jeong, Yunseo Yang, Hangyeol Woo |
 | SSU-PATH | Soongsil University, Korea | Hahyeon Song, Heewoo Choi, Seeun Jung, Yujin Song, Jiyul Kim, Minwoo Lee |
+| SSU-MARHUH | Soongsil University, Korea | Jimin Jeon, Juncheol Shin, Mingyu Lee, Sangmi Lee |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
