@@ -91,6 +91,7 @@ If you have registered for participation but the list below is not updated, plea
 | Onedrive | Soongsil University, Korea | YoungJin Won, GeonYeong Na, Hyewon Jeong, Yunseo Yang, Hangyeol Woo |
 | SSU-PATH | Soongsil University, Korea | Hahyeon Song, Heewoo Choi, Seeun Jung, Yujin Song, Jiyul Kim, Minwoo Lee |
 | SSU-MARHUH | Soongsil University, Korea | Jimin Jeon, Juncheol Shin, Mingyu Lee, Sangmi Lee |
+| Oudtra | Independent Team (No Institutional Affiliation) | Mingguang Zhou, Qianli Song |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
