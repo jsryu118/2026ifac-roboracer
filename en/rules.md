@@ -329,25 +329,36 @@ This is the approximate map shape, and it may change slightly.
 
 # 7. Common Cautions (Important!!)
 
-- If driving is difficult or dangerous due to a collision, the vehicle must be emergency-stopped immediately.
+## 7.1 Vehicle Computation, Communication & Control
+
 - **All computation must be performed onboard the vehicle!!**
 - **No data may be transmitted to the vehicle during normal driving.**
 - **Manual (human) emergency braking during normal driving is strictly prohibited.**
-- Sharing one vehicle across multiple teams is strictly prohibited.
-- Whenever more than one vehicle can be on the track, the detection box must be attached. (e.g. it does not need to be attached during qualifying.)
-- **No appeals regarding Wi-Fi are accepted.** Make sure your autonomous system is designed to operate independently of Wi-Fi conditions. We will ask teams not participating in a race to turn off their Wi-Fi, but this is purely to ease teams' visualization and debugging — not for algorithm performance!
-- All hardware repair and maintenance on the track (repairing broken parts, recalibrating sensors, swapping batteries, etc.) is prohibited.
-- The dedicated time for **mapping**, **official practice**, and **qualifying** may vary depending on the number of participating teams.
-- The dedicated time for **mapping** and **official practice** sessions is assigned on a **first-come, first-served basis**, and only teams that have **successfully completed registration and inspection** are eligible.
-- People are prohibited from being on the track. (Except during mapping time.)
 - **Using** or **pressing** a joystick during a race is **not allowed**.
   - Please change the module for **switching** between autonomous ↔ human control from a "**press and hold**" style to an "**on/off**" **toggle** style.
 - Only one laptop may be connected, for visualization (e.g. RViz) or debugging purposes.
+
+## 7.2 Safety
+
+- If driving is difficult or dangerous due to a collision, the vehicle must be emergency-stopped immediately.
+- People are prohibited from being on the track. (Except during mapping time.)
+- Sharing one vehicle across multiple teams is strictly prohibited.
+- Whenever more than one vehicle can be on the track, the detection box must be attached. (e.g. it does not need to be attached during qualifying.)
+
+## 7.3 Track & Obstacle Handling
+
 - If the vehicle is stopped too close to an obstacle ahead (an opponent vehicle or a static obstacle) and cannot make an avoidance maneuver, you may ask the referee to move it back slightly if space is needed.
 - In the finals, a collision with an obstacle is fine as long as the vehicle can keep driving. For how obstacle contact affects qualifying records, see [5.7 Invalidated Records](#57-invalidated-records).
 - If the vehicle is taken off the track and put back for any reason, its heading may be adjusted slightly, but it must be placed back at the **position where it left**.
 - If there is contact with the track, even if the record is not invalidated, the track must be **restored to its original position immediately**.
 - If there is contact with an obstacle, it must be restored to its original position immediately.
+
+## 7.4 Operations
+
+- **No appeals regarding Wi-Fi are accepted.** Make sure your autonomous system is designed to operate independently of Wi-Fi conditions. We will ask teams not participating in a race to turn off their Wi-Fi, but this is purely to ease teams' visualization and debugging — not for algorithm performance!
+- All hardware repair and maintenance on the track (repairing broken parts, recalibrating sensors, swapping batteries, etc.) is prohibited.
+- The dedicated time for **mapping**, **official practice**, and **qualifying** may vary depending on the number of participating teams.
+- The dedicated time for **mapping** and **official practice** sessions is assigned on a **first-come, first-served basis**, and only teams that have **successfully completed registration and inspection** are eligible.
 
 # 8. Static Obstacles
 
@@ -381,34 +392,44 @@ This is the approximate map shape, and it may change slightly.
 
 Even for an incident involving **multiple violations**, only **one penalty** is applied per incident.
 
-- Human-intended parameter tuning or path planning during a race (Qualifying: <span style="color:#e67e22; font-weight:bold;">one-rank demotion</span>, Finals: <span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span>)
-- Using a keyboard or mouse during a race (Qualifying: <span style="color:#e67e22; font-weight:bold;">one-rank demotion</span>, Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-  - Keyboard/mouse use is prohibited even if no data transmission occurs
-  - Allowed exceptions
-    - When the vehicle is not on the track (allowed)
-    - Sending an initial guess for re-localization
-    - When the referee declares a race stop and an emergency stop is needed
-    - Sending the start signal at a start or restart
-    - When an emergency stop is needed because the vehicle cannot drive due to a collision
-    - When an emergency stop is needed because the vehicle is stuck on an obstacle for more than 5 seconds
-    - When an emergency stop is needed to prevent abnormal driving (sudden acceleration, driving in reverse, etc.)
-    - Stopping the vehicle after the race has ended
-    - When the referee allows manual operation because the opponent has seriously damaged the track and driving is impossible
-- Accumulating 3 warnings (Finals: <span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span>)
-- **Critical human interference** with the opponent's vehicle during a race (Finals: <span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span>)
-  - Physically contacting the opponent's vehicle while going to fix the track, affecting its driving
-- **Causing damage with a full rear-end collision** (Finals: <span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span>)
-- **An accident with a heavy impact, even if not a full rear-end collision** (Finals: <span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span>)
-- Failing to actively repair a track damaged by a collision (Qualifying: <span style="color:#e67e22; font-weight:bold;">one-rank demotion</span>, Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-  - A new warning may be issued each lap if it is not properly repaired
-- False start (Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-- Detection box not properly secured (Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-  - A new warning may be issued each lap if it is not properly fixed
-- Accumulating additional laps during a race totaling 3 extra laps (Finals: <span style="color:#8b0000; font-weight:bold;">disqualification</span>)
-- Human **intervention** on one's own vehicle during a race (Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-  - Pulling the vehicle off the track after a collision
-  - Directly correcting the vehicle's heading
-- Human **interference** with the opponent's vehicle during a race (Finals: <span style="color:#b8860b; font-weight:bold;">warning</span>)
-  - Being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
+<table>
+<thead>
+<tr><th>Violation</th><th>Qualifying</th><th>Finals</th></tr>
+</thead>
+<tbody>
+<tr><td>Human-intended parameter tuning or path planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Using a keyboard or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Accumulating 3 warnings</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Critical human interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Causing damage with a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>An accident with a heavy impact, even if not a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Failing to actively repair a track damaged by a collision <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>False start</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Detection box not properly secured <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Accumulating additional laps during a race totaling 3 extra laps</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">disqualification</span></td></tr>
+<tr><td>Human intervention on one's own vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Human interference with the opponent's vehicle during a race <sup>[f]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+</tbody>
+</table>
+
+**Details**
+
+1. **Using a keyboard or mouse**: prohibited even if no data transmission occurs. Allowed exceptions:
+   - When the vehicle is not on the track (allowed)
+   - Sending an initial guess for re-localization
+   - When the referee declares a race stop and an emergency stop is needed
+   - Sending the start signal at a start or restart
+   - When an emergency stop is needed because the vehicle cannot drive due to a collision
+   - When an emergency stop is needed because the vehicle is stuck on an obstacle for more than 5 seconds
+   - When an emergency stop is needed to prevent abnormal driving (sudden acceleration, driving in reverse, etc.)
+   - Stopping the vehicle after the race has ended
+   - When the referee allows manual operation because the opponent has seriously damaged the track and driving is impossible
+2. **Critical human interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
+3. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
+4. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
+5. **Human intervention on one's own vehicle**:
+   - Pulling the vehicle off the track after a collision
+   - Directly correcting the vehicle's heading
+6. **Human interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
 
 ## 9.1 Example Cases
