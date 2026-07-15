@@ -398,9 +398,7 @@ h2, h3, h4, h5, h6 {
 <tr><th>위반 사항</th><th>예선</th><th>본선</th></tr>
 </thead>
 <tbody>
-<tr><td>장애물 위치에 따른 사람의 경로 수정 및 선택</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>레이스 중 파라미터 튜닝 또는 경로 수정 및 계획</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>조이스틱, 키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>장애물 위치에 따른 사람의 경로 수정 및 선택</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr><tr><td>조이스틱, 키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>충돌로 망가진 트랙을 적극적으로 수정하지 않는 경우 <sup>[b]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>부정출발</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>감지 박스의 고정이 제대로 되지 않는 경우 <sup>[c]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>

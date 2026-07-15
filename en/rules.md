@@ -398,9 +398,7 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <tr><th>Violation</th><th>Qualifying</th><th>Finals</th></tr>
 </thead>
 <tbody>
-<tr><td>Human path modification or selection based on obstacle position</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Parameter tuning or path modification/planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Using a joystick, keyboard, or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Human path modification or selection based on obstacle position</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr><tr><td>Using a joystick, keyboard, or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Failing to actively repair a track damaged by a collision <sup>[b]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>False start</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Detection box not properly secured <sup>[c]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
