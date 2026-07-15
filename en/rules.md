@@ -429,3 +429,13 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 5. **Human interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
 
 ## 9.1 Example Cases
+
+<table>
+<tbody>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: No penalty in either qualifying or finals. However, the track must be corrected immediately after a collision.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: In qualifying, the lap time is invalidated. In finals, there is no issue. When repairing the track, it is important not to affect the opponent's vehicle. Even if the repair is delayed slightly, it must be done when the opponent is not affected.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: In qualifying, in addition to lap time invalidation, the team is also demoted one rank. In finals, one warning is issued.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: In qualifying, the lap time is invalidated. In finals, there is no issue.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: In qualifying, Fully Autonomous cannot be achieved. In finals, there is no penalty, and the vehicle may be taken off the track to adjust parameters.</td></tr>
+</tbody>
+</table>
