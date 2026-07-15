@@ -25,7 +25,7 @@ h2, h3, h4, h5, h6 {
 </style>
 
 
-*Last Updated: 2026-07-10*
+*Last Updated: 2026-07-15*
 
 
 **Table of content**
@@ -219,10 +219,7 @@ This is the approximate map shape, and it may change slightly.
 ## 5.6 Static Obstacles
 
 - The obstacles placed randomly during Q2 are static obstacles.
-- Each obstacle is smaller than 0.5m x 0.5m.
-- The obstacle positions are placed randomly by the referees after Q1 is completed.
-- The obstacles are removed after Q2 is completed.
-- Obstacles are removed safely when the vehicle is not affected.
+- The detailed regulations follow [8. Static Obstacles](#8-static-obstacles).
 
 ## 5.7 Invalidated Records
 
@@ -318,7 +315,6 @@ This is the approximate map shape, and it may change slightly.
 ## 6.5 Collisions
 
 - Track boundary and static obstacles
-  - Restore the track and obstacles.
   - If the race can continue, it must continue without interruption.
 - Vehicle vs. vehicle
   - **Do not stop the race at the team's discretion without the referee's stop signal!!**
@@ -327,7 +323,6 @@ This is the approximate map shape, and it may change slightly.
 
 ## 6.6 Cautions
 
-- **Do not stop the race at the team's discretion without the referee's stop signal!!**
 - Vehicles whose detection box violates the regulations cannot participate in the race.
 - For contact and accidents that occur while driving side by side, the race is not stopped if there is no clear offender.
 - For other common cautions, see [7. Common Cautions](#7-common-cautions-important).
@@ -349,7 +344,7 @@ This is the approximate map shape, and it may change slightly.
   - Please change the module for **switching** between autonomous ↔ human control from a "**press and hold**" style to an "**on/off**" **toggle** style.
 - Only one laptop may be connected, for visualization (e.g. RViz) or debugging purposes.
 - If the vehicle is stopped too close to an obstacle ahead (an opponent vehicle or a static obstacle) and cannot make an avoidance maneuver, you may ask the referee to move it back slightly if space is needed.
-- In the finals, a collision with an obstacle is fine as long as the vehicle can keep driving, but in qualifying, a collision or even minor contact with an obstacle invalidates that lap.
+- In the finals, a collision with an obstacle is fine as long as the vehicle can keep driving. For how obstacle contact affects qualifying records, see [5.7 Invalidated Records](#57-invalidated-records).
 - If the vehicle is taken off the track and put back for any reason, its heading may be adjusted slightly, but it must be placed back at the **position where it left**.
 - If there is contact with the track, even if the record is not invalidated, the track must be **restored to its original position immediately**.
 - If there is contact with an obstacle, it must be restored to its original position immediately.
