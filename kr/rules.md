@@ -397,6 +397,7 @@ h2, h3, h4, h5, h6 {
 <tr><th>위반 사항</th><th>예선</th><th>본선</th></tr>
 </thead>
 <tbody>
+<tr><td>장애물 위치에 따른 사람의 경로 수정 및 선택</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>레이스 중 파라미터 튜닝 또는 경로 수정 및 계획</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>조이스틱, 키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>충돌로 망가진 트랙을 적극적으로 수정하지 않는 경우 <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
@@ -413,16 +414,15 @@ h2, h3, h4, h5, h6 {
 
 **세부 사항**
 
-1. **조이스틱, 키보드, 마우스 사용**: 데이터 전송이 일어나지 않더라도 사용이 금지됩니다. 예외 허용 사례:
-   - 차량이 트랙 위에 없는 경우(허용)
+1. **조이스틱, 키보드, 마우스 사용**: 예외 허용 사례:
+   - 차량이 트랙위에서 빠진 경우
    - re-localization을 위한 initial guess 를 전송하는 경우
    - 심판이 레이스 중지를 선언하여 비상 정지가 필요한 경우
    - 출발, 재출발에서 출발신호를 전달하는 경우
    - 충돌로 인한 주행 불가 상태인 경우 비상정지가 필요한 경우
    - 장애물에 5초이상 갇혀서 비상정지가 필요한 경우
-   - 이상 주행(급발진, 역주행 등)을 막기 위한 비상정지가 필요한 경우
+   - 이상 주행(ex. 역주행)을 막기 위한 비상정지가 필요한 경우
    - 레이스 종료 이후 정지하는 경우
-   - 상대 차량이 트랙을 심각하게 손상해서 주행이 불가능하여 심판이 매뉴얼로 조작하는 것을 허용한 경우
 2. **상대방 차량에 대한 사람의 치명적인 방해**: 트랙을 고치러 가다가 상대방 차량에 물리적인 접촉으로 주행에 영향을 주는 경우
 3. **충돌로 망가진 트랙 미수정**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
 4. **감지 박스 고정 불량**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
@@ -433,9 +433,9 @@ h2, h3, h4, h5, h6 {
 <table>
 <tbody>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: 예선과 본선 모두 페널티가 없습니다. 다만 충돌 이후에는 트랙을 즉시 수정해야 합니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다. 트랙을 수정할 때는 상대방 차량에 영향을 주지 않는 것이 중요합니다. 트랙 수정이 다소 늦어지더라도, 상대방이 영향받지 않는 시점에 수정해야 합니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 페널티가 없습니다. 트랙을 수정할 때는 상대방 차량에 영향을 주지 않는 것이 중요합니다. 트랙 수정이 다소 늦어지더라도, 상대방이 영향받지 않는 시점에 수정해야 합니다.</td></tr>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: 예선에서는 랩 타임 무효화뿐만 아니라 한순위 강등이 됩니다. 본선에서는 경고 1회가 부여됩니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: 접촉의 강도와 상관없이 경미한 접촉이더라도, 예선에서는 랩 타임이 무효화됩니다. 본선에서는 페널티가 없습니다.</td></tr>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: 예선에서는 Fully Autonomous를 달성할 수 없습니다. 본선에서는 페널티가 없으며, 차량을 트랙에서 빼서 파라미터를 수정할 수 있습니다.</td></tr>
 </tbody>
 </table>

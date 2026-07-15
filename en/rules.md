@@ -397,6 +397,7 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <tr><th>Violation</th><th>Qualifying</th><th>Finals</th></tr>
 </thead>
 <tbody>
+<tr><td>Human path modification or selection based on obstacle position</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Parameter tuning or path modification/planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Using a joystick, keyboard, or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Failing to actively repair a track damaged by a collision <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
@@ -413,16 +414,15 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 
 **Details**
 
-1. **Using a joystick, keyboard, or mouse**: prohibited even if no data transmission occurs. Allowed exceptions:
-   - When the vehicle is not on the track (allowed)
+1. **Using a joystick, keyboard, or mouse**: Allowed exceptions:
+   - When the vehicle is removed from the track
    - Sending an initial guess for re-localization
    - When the referee declares a race stop and an emergency stop is needed
    - Sending the start signal at a start or restart
    - When an emergency stop is needed because the vehicle cannot drive due to a collision
    - When an emergency stop is needed because the vehicle is stuck on an obstacle for more than 5 seconds
-   - When an emergency stop is needed to prevent abnormal driving (sudden acceleration, driving in reverse, etc.)
+   - When an emergency stop is needed to prevent abnormal driving (ex. driving in reverse)
    - Stopping the vehicle after the race has ended
-   - When the referee allows manual operation because the opponent has seriously damaged the track and driving is impossible
 2. **Critical human interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
 3. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
 4. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
@@ -433,9 +433,9 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <table>
 <tbody>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: No penalty in either qualifying or finals. However, the track must be corrected immediately after a collision.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: In qualifying, the lap time is invalidated. In finals, there is no issue. When repairing the track, it is important not to affect the opponent's vehicle. Even if the repair is delayed slightly, it must be done when the opponent is not affected.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: In qualifying, the lap time is invalidated. In finals, there is no penalty. When repairing the track, it is important not to affect the opponent's vehicle. Even if the repair is delayed slightly, it must be done when the opponent is not affected.</td></tr>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: In qualifying, in addition to lap time invalidation, the team is also demoted one rank. In finals, one warning is issued.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: In qualifying, the lap time is invalidated. In finals, there is no issue.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: Regardless of severity, even minor contact invalidates the lap time in qualifying. In finals, there is no penalty.</td></tr>
 <tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: In qualifying, Fully Autonomous cannot be achieved. In finals, there is no penalty, and the vehicle may be taken off the track to adjust parameters.</td></tr>
 </tbody>
 </table>
