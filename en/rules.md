@@ -341,13 +341,13 @@ This is the approximate map shape, and it may change slightly.
 ## 7.2 Safety
 
 - If driving is difficult or dangerous due to a collision, the vehicle must be emergency-stopped immediately.
-- People are prohibited from being on the track. (Except during mapping time.)
+- People are prohibited from being on the track.
 - Sharing one vehicle across multiple teams is strictly prohibited.
 - Whenever more than one vehicle can be on the track, the detection box must be attached. (e.g. it does not need to be attached during qualifying.)
 
 ## 7.3 Track & Obstacle Handling
 
-- If the vehicle is stopped too close to an obstacle ahead (an opponent vehicle or a static obstacle) and cannot make an avoidance maneuver, you may ask the referee to move it back slightly if space is needed.
+- If the vehicle is stopped too close to an obstacle ahead (an opponent vehicle or a static obstacle) and cannot make an avoidance maneuver, it may be moved back slightly.
 - In the finals, a collision with an obstacle is fine as long as the vehicle can keep driving. For how obstacle contact affects qualifying records, see [5.7 Invalidated Records](#57-invalidated-records).
 - If the vehicle is taken off the track and put back for any reason, its heading may be adjusted slightly, but it must be placed back at the **position where it left**.
 - If there is contact with the track, even if the record is not invalidated, the track must be **restored to its original position immediately**.
@@ -397,24 +397,23 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <tr><th>Violation</th><th>Qualifying</th><th>Finals</th></tr>
 </thead>
 <tbody>
-<tr><td>Human-intended parameter tuning or path planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Using a keyboard or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Accumulating 3 warnings</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Critical human interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Causing damage with a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>An accident with a heavy impact, even if not a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Parameter tuning or path modification/planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Using a joystick, keyboard, or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Failing to actively repair a track damaged by a collision <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>False start</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Detection box not properly secured <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Human interference with the opponent's vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Critical human interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Causing damage with a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>An accident with a heavy impact, even if not a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Accumulating 3 warnings</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Accumulating additional laps during a race totaling 3 extra laps</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">disqualification</span></td></tr>
-<tr><td>Human intervention on one's own vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Human interference with the opponent's vehicle during a race <sup>[f]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 </tbody>
 </table>
 
 **Details**
 
-1. **Using a keyboard or mouse**: prohibited even if no data transmission occurs. Allowed exceptions:
+1. **Using a joystick, keyboard, or mouse**: prohibited even if no data transmission occurs. Allowed exceptions:
    - When the vehicle is not on the track (allowed)
    - Sending an initial guess for re-localization
    - When the referee declares a race stop and an emergency stop is needed
@@ -427,9 +426,6 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 2. **Critical human interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
 3. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
 4. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
-5. **Human intervention on one's own vehicle**:
-   - Pulling the vehicle off the track after a collision
-   - Directly correcting the vehicle's heading
-6. **Human interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
+5. **Human interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
 
 ## 9.1 Example Cases

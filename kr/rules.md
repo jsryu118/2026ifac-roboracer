@@ -341,13 +341,13 @@ h2, h3, h4, h5, h6 {
 ## 7.2 안전
 
 - 충돌로 인해 주행이 어렵거나 위험한 경우 즉시 차량을 비상정지 시켜야 합니다.
-- 사람이 트랙 위에 있는 것은 금지 됩니다. (Mapping 시간 제외)
+- 사람이 트랙 위에 있는 것은 금지 됩니다.
 - 한 차량을 여러 팀에서 공유하는 것은 엄격히 금지 됩니다.
 - 트랙 내에 2대 이상의 차가 존재할 수 있는 경우라면 detection 박스는 필수로 부착하여야 합니다. (ex. 예선에서는 부착하지 않아도 됨.)
 
 ## 7.3 트랙·장애물 처리
 
-- 앞의 장애물(상대차량 또는 정적장애물)에 너무 가까이 붙어 정지해 있어 회피 기동이 불가능하여, 공간이 필요한 경우 심판에게 요청하면 뒤로 조금 옮길 수 있습니다.
+- 앞의 장애물(상대차량 또는 정적장애물)에 너무 가까이 붙어 정지해 있어 회피 기동이 불가능한 경우, 뒤쪽으로 조금 옮길 수 있습니다.
 - 본선에서 장애물과의 충돌은 계속 주행할 수 있다면 괜찮습니다. 예선에서 장애물 접촉 시 기록 무효 처리는 [5.7 기록 무효](#57-기록-무효)를 따릅니다.
 - 차량이 어떤 이유로든 트랙에 뺐다가 다시 넣는 경우에는, 차량의 방향은 약간 조정할 수 있지만 **나갔던 위치**에 다시 배치해야 합니다.
 - 트랙에 접촉이 있다면, 기록이 무효화가 되지 않더라도 **즉시 트랙을 원래의 위치로 돌려놓아야** 합니다.
@@ -397,24 +397,23 @@ h2, h3, h4, h5, h6 {
 <tr><th>위반 사항</th><th>예선</th><th>본선</th></tr>
 </thead>
 <tbody>
-<tr><td>사람의 의도가 들어간 파라미터 튜닝 또는 경로 계획</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>경고 3회 누적</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>상대방 차량에 대한 사람의 치명적인 방해 <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>완전한 후방 충돌로 피해를 준 경우</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
-<tr><td>완전한 후방 충돌이 아니더라도 큰 충격을 동반한 사고</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>레이스 중 파라미터 튜닝 또는 경로 수정 및 계획</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>조이스틱, 키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>충돌로 망가진 트랙을 적극적으로 수정하지 않는 경우 <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>부정출발</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>감지 박스의 고정이 제대로 되지 않는 경우 <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>상대방 차량에 대한 사람의 방해 <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>상대방 차량에 대한 사람의 치명적인 방해 <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>완전한 후방 충돌로 피해를 준 경우</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>완전한 후방 충돌이 아니더라도 큰 충격을 동반한 사고</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>경고 3회 누적</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>경주 진행 중 추가 1바퀴가 누적되어 총 3바퀴가 추가된 경우</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">실격</span></td></tr>
-<tr><td>자신의 차량에 대한 개입 <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>상대방 차량에 대한 사람의 방해 <sup>[f]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 </tbody>
 </table>
 
 **세부 사항**
 
-1. **키보드, 마우스 사용**: 데이터 전송이 일어나지 않더라도 사용이 금지됩니다. 예외 허용 사례:
+1. **조이스틱, 키보드, 마우스 사용**: 데이터 전송이 일어나지 않더라도 사용이 금지됩니다. 예외 허용 사례:
    - 차량이 트랙 위에 없는 경우(허용)
    - re-localization을 위한 initial guess 를 전송하는 경우
    - 심판이 레이스 중지를 선언하여 비상 정지가 필요한 경우
@@ -427,9 +426,6 @@ h2, h3, h4, h5, h6 {
 2. **상대방 차량에 대한 사람의 치명적인 방해**: 트랙을 고치러 가다가 상대방 차량에 물리적인 접촉으로 주행에 영향을 주는 경우
 3. **충돌로 망가진 트랙 미수정**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
 4. **감지 박스 고정 불량**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
-5. **자신의 차량에 대한 개입**:
-   - 충돌 이후 차량을 트랙 바깥으로 빼는 행위
-   - 차량의 헤딩을 직접 수정하는 경우
-6. **상대방 차량에 대한 사람의 방해**: 트랙을 고치러 가다가 상대방 차량의 detection 모듈에 감지되어서 주행에 영향을 주는 경우.
+5. **상대방 차량에 대한 사람의 방해**: 트랙을 고치러 가다가 상대방 차량의 detection 모듈에 감지되어서 주행에 영향을 주는 경우.
 
 ## 9.1 예시 사례
