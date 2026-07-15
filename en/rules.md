@@ -370,6 +370,7 @@ This is the approximate map shape, and it may change slightly.
 - Obstacles must be restored immediately after a collision.
   - The restoration process must not affect the opponent.
 - The minimum distance between obstacles is 1m.
+- Even with an obstacle in place, the track width must provide a minimum clearance of 0.5 m.
 
 **Qualifying only**
 
@@ -400,12 +401,12 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <tr><td>Human path modification or selection based on obstacle position</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Parameter tuning or path modification/planning during a race</td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Using a joystick, keyboard, or mouse during a race <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Failing to actively repair a track damaged by a collision <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Failing to actively repair a track damaged by a collision <sup>[b]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>False start</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Detection box not properly secured <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Indirect interference with the opponent's vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Detection box not properly secured <sup>[c]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Indirect interference with the opponent's vehicle during a race <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Minor rear-end collision</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Direct interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Direct interference with the opponent's vehicle <sup>[e]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Causing an accident with a heavy impact</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Accumulating 3 warnings</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Accumulating penalty laps totaling 3 extra laps</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">disqualification</span></td></tr>
@@ -423,10 +424,10 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
    - When an emergency stop is needed because the vehicle is stuck on an obstacle for more than 5 seconds
    - When an emergency stop is needed to prevent abnormal driving (ex. driving in reverse)
    - Stopping the vehicle after the race has ended
-2. **Direct interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
-3. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
-4. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
-5. **Indirect interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
+2. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
+3. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
+4. **Indirect interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
+5. **Direct interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
 
 ## 9.1 Example Cases
 

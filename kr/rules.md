@@ -370,6 +370,7 @@ h2, h3, h4, h5, h6 {
 - 장애물은 충돌 이후 바로 복구되어야 합니다.
   - 복구하는 과정에서 상대방에게 영향을 주면 안됩니다.
 - 장애물 간의 최소 거리는 1m 입니다.
+- 장애물이 있는 상황에서도 트랙 폭은 최소 0.5m 이상 여유공간이 확보되어야 합니다.
 
 **예선 전용**
 
@@ -400,12 +401,12 @@ h2, h3, h4, h5, h6 {
 <tr><td>장애물 위치에 따른 사람의 경로 수정 및 선택</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>레이스 중 파라미터 튜닝 또는 경로 수정 및 계획</td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>조이스틱, 키보드, 마우스 사용 <sup>[a]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>충돌로 망가진 트랙을 적극적으로 수정하지 않는 경우 <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>충돌로 망가진 트랙을 적극적으로 수정하지 않는 경우 <sup>[b]</sup></td><td><span style="color:#e67e22; font-weight:bold;">한순위 강등</span></td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>부정출발</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>감지 박스의 고정이 제대로 되지 않는 경우 <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>상대방 차량에 대한 간접적 방해 <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>감지 박스의 고정이 제대로 되지 않는 경우 <sup>[c]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
+<tr><td>상대방 차량에 대한 간접적 방해 <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
 <tr><td>경미한 후방 충돌</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">경고</span></td></tr>
-<tr><td>상대방 차량에 대한 직접적 방해 <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
+<tr><td>상대방 차량에 대한 직접적 방해 <sup>[e]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>큰 충격을 주는 사고를 유발한 경우</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>경고 3회 누적</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1랩 페널티</span></td></tr>
 <tr><td>페널티 랩이 누적되어 총 3바퀴가 추가된 경우</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">실격</span></td></tr>
@@ -423,10 +424,10 @@ h2, h3, h4, h5, h6 {
    - 장애물에 5초이상 갇혀서 비상정지가 필요한 경우
    - 이상 주행(ex. 역주행)을 막기 위한 비상정지가 필요한 경우
    - 레이스 종료 이후 정지하는 경우
-2. **상대방 차량에 대한 직접적 방해**: 트랙을 고치러 가다가 상대방 차량에 물리적인 접촉으로 주행에 영향을 주는 경우
-3. **충돌로 망가진 트랙 미수정**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
-4. **감지 박스 고정 불량**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
-5. **상대방 차량에 대한 간접적 방해**: 트랙을 고치러 가다가 상대방 차량의 detection 모듈에 감지되어서 주행에 영향을 주는 경우.
+2. **충돌로 망가진 트랙 미수정**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
+3. **감지 박스 고정 불량**: 매 바퀴마다 제대로 수정하지 않을 시 새로운 경고 부여 가능
+4. **상대방 차량에 대한 간접적 방해**: 트랙을 고치러 가다가 상대방 차량의 detection 모듈에 감지되어서 주행에 영향을 주는 경우.
+5. **상대방 차량에 대한 직접적 방해**: 트랙을 고치러 가다가 상대방 차량에 물리적인 접촉으로 주행에 영향을 주는 경우
 
 ## 9.1 예시 사례
 
