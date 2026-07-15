@@ -282,6 +282,12 @@ This is the approximate map shape, and it may change slightly.
 - **No data may be transmitted to the vehicle during normal driving.**
 - **Manual (human) emergency braking during normal driving is strictly prohibited.**
 
+## 5.10 Reference Video
+
+<center>
+  <iframe width="896" height="504" style="max-width: 70%;" src="https://www.youtube.com/embed/SlJMuDHodnY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>
+
 # 6. Head-to-Head Races
 
 <!-- <center>

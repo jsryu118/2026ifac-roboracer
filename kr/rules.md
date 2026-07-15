@@ -282,6 +282,12 @@ h2, h3, h4, h5, h6 {
 - **정상 주행 중 차량에 데이터를 전송해서는 안 됩니다.**
 - **정상 주행 중 수동(인간) 비상 브레이크는 엄격히 금지 됩니다**
 
+## 5.10 참고 영상
+
+<center>
+  <iframe width="896" height="504" style="max-width: 70%;" src="https://www.youtube.com/embed/SlJMuDHodnY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>
+
 # 6. 일대일 경주
 
 <!-- <center>
