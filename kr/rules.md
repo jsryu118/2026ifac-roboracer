@@ -432,10 +432,10 @@ h2, h3, h4, h5, h6 {
 
 <table>
 <tbody>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: 예선과 본선 모두 페널티가 없습니다. 다만 충돌 이후에는 트랙을 즉시 수정해야 합니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다. 트랙을 수정할 때는 상대방 차량에 영향을 주지 않는 것이 중요합니다. 트랙 수정이 다소 늦어지더라도, 상대방이 영향받지 않는 시점에 수정해야 합니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: 예선에서는 랩 타임 무효화뿐만 아니라 한순위 강등이 됩니다. 본선에서는 경고 1회가 부여됩니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 720px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: 예선에서는 Fully Autonomous를 달성할 수 없습니다. 본선에서는 페널티가 없으며, 차량을 트랙에서 빼서 파라미터를 수정할 수 있습니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: 예선과 본선 모두 페널티가 없습니다. 다만 충돌 이후에는 트랙을 즉시 수정해야 합니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다. 트랙을 수정할 때는 상대방 차량에 영향을 주지 않는 것이 중요합니다. 트랙 수정이 다소 늦어지더라도, 상대방이 영향받지 않는 시점에 수정해야 합니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: 예선에서는 랩 타임 무효화뿐만 아니라 한순위 강등이 됩니다. 본선에서는 경고 1회가 부여됩니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: 예선에서는 랩 타임이 무효화됩니다. 본선에서는 문제가 없습니다.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: 예선에서는 Fully Autonomous를 달성할 수 없습니다. 본선에서는 페널티가 없으며, 차량을 트랙에서 빼서 파라미터를 수정할 수 있습니다.</td></tr>
 </tbody>
 </table>
