@@ -403,12 +403,12 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
 <tr><td>Failing to actively repair a track damaged by a collision <sup>[c]</sup></td><td><span style="color:#e67e22; font-weight:bold;">one-rank demotion</span></td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>False start</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
 <tr><td>Detection box not properly secured <sup>[d]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Human interference with the opponent's vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
-<tr><td>Critical human interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Causing damage with a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>An accident with a heavy impact, even if not a full rear-end collision</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Indirect interference with the opponent's vehicle during a race <sup>[e]</sup></td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Minor rear-end collision</td><td>-</td><td><span style="color:#b8860b; font-weight:bold;">warning</span></td></tr>
+<tr><td>Direct interference with the opponent's vehicle <sup>[b]</sup></td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
+<tr><td>Causing an accident with a heavy impact</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
 <tr><td>Accumulating 3 warnings</td><td>-</td><td><span style="color:#e74c3c; font-weight:bold;">1-lap penalty</span></td></tr>
-<tr><td>Accumulating additional laps during a race totaling 3 extra laps</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">disqualification</span></td></tr>
+<tr><td>Accumulating penalty laps totaling 3 extra laps</td><td>-</td><td><span style="color:#8b0000; font-weight:bold;">disqualification</span></td></tr>
 </tbody>
 </table>
 
@@ -423,19 +423,19 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
    - When an emergency stop is needed because the vehicle is stuck on an obstacle for more than 5 seconds
    - When an emergency stop is needed to prevent abnormal driving (ex. driving in reverse)
    - Stopping the vehicle after the race has ended
-2. **Critical human interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
+2. **Direct interference with the opponent's vehicle**: physically contacting the opponent's vehicle while going to fix the track, affecting its driving
 3. **Failing to repair a damaged track**: a new warning may be issued each lap if it is not properly repaired
 4. **Detection box not properly secured**: a new warning may be issued each lap if it is not properly fixed
-5. **Human interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
+5. **Indirect interference with the opponent's vehicle**: being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
 
 ## 9.1 Example Cases
 
 <table>
 <tbody>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: No penalty in either qualifying or finals. However, the track must be corrected immediately after a collision.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: In qualifying, the lap time is invalidated. In finals, there is no penalty. When repairing the track, it is important not to affect the opponent's vehicle. Even if the repair is delayed slightly, it must be done when the opponent is not affected.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: In qualifying, in addition to lap time invalidation, the team is also demoted one rank. In finals, one warning is issued.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: Regardless of severity, even minor contact invalidates the lap time in qualifying. In finals, there is no penalty.</td></tr>
-<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: In qualifying, Fully Autonomous cannot be achieved. In finals, there is no penalty, and the vehicle may be taken off the track to adjust parameters.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid1_주행가능.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 1</strong>: Contact with the track occurs, but the vehicle can continue driving in autonomous mode<br>No penalty in either qualifying or finals. However, the track must be corrected immediately after a collision.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/valid2_sujung.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 2</strong>: Contact with the track makes it impossible for the vehicle to continue driving<br>In qualifying, the lap time is invalidated. In finals, there is no penalty. When repairing the track, it is important not to affect the opponent's vehicle. Even if the repair is delayed slightly, it must be done when the opponent is not affected.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid3_조이사용.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 3</strong>: After a collision, the vehicle is manually operated with a joystick and the race continues<br>In qualifying, in addition to lap time invalidation, the team is also demoted one rank. In finals, one warning is issued.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid2_장애물_터치.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 4</strong>: Contact or collision with an obstacle occurs<br>Regardless of severity, even minor contact invalidates the lap time in qualifying. In finals, there is no penalty.</td></tr>
+<tr><td style="vertical-align: top;"><img src="../images/rules/examples/invalid4_5초이상움직임X.gif" style="width: 1440px; max-width: 100%;" /></td><td style="vertical-align: top;"><strong>Case 5</strong>: The vehicle cannot proceed and stops in front of an obstacle for 5+ seconds<br>In qualifying, Fully Autonomous cannot be achieved. In finals, there is no penalty, and the vehicle may be taken off the track to adjust parameters.</td></tr>
 </tbody>
 </table>
