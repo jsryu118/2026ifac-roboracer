@@ -200,7 +200,7 @@ This is the approximate map shape, and it may change slightly.
 
 - The achievement condition applies at every moment of qualifying.
 - The achievement condition is as follows.
-  - **A team that did not directly or indirectly influence the vehicle during the entire qualifying process**
+  - **A team whose vehicle was not directly or indirectly influenced by a person during the entire qualifying process**
   - Cases of being stopped for more than 5 seconds are excluded.
 - Direct or indirect influence includes:
   - Touching the vehicle
@@ -274,13 +274,7 @@ This is the approximate map shape, and it may change slightly.
 
 ## 5.9 Cautions
 
-- Taking the vehicle to an **arbitrary position (e.g. the start line)** during qualifying is **strictly prohibited**.
-- If the vehicle is taken off the track and put back for any reason, its heading may be adjusted slightly, but it must be placed back at the **position where it left**.
-- If there is contact with the track, even if the record is not invalidated, the track must be **restored to its original position immediately**.
-- If there is contact with an obstacle, it must be restored to its original position immediately.
-- **All computation must be performed onboard the vehicle!!**
-- **No data may be transmitted to the vehicle during normal driving.**
-- **Manual (human) emergency braking during normal driving is strictly prohibited.**
+- For other common cautions, see [7. Common Cautions](#7-common-cautions-important).
 
 ## 5.10 Reference Video
 
@@ -299,11 +293,11 @@ This is the approximate map shape, and it may change slightly.
 ## 6.1 Tournament Format
 
 - Head-to-head races proceed in a **Double Elimination** format.
-  - Depending on the number of participating teams, a regular tournament may be used instead.
 - Each team is eliminated after **two losses**.
 - **Day 3 (August 26):** Winners Bracket — no team is eliminated on this day.
 - **Day 4 (August 27):** Losers Bracket races begin. Teams eliminated from the Winners Bracket join the Losers Bracket.
 - The final winner is decided through the bracket.
+- Depending on the number of participating teams, a regular tournament may be used instead.
 
 ## 6.2 General
 
@@ -334,11 +328,9 @@ This is the approximate map shape, and it may change slightly.
 ## 6.6 Cautions
 
 - **Do not stop the race at the team's discretion without the referee's stop signal!!**
-- **All computation must be performed onboard the vehicle!!**
-- **No data may be transmitted to the vehicle during normal driving.**
-- **Manual (human) emergency braking during normal driving is strictly prohibited.**
 - Vehicles whose detection box violates the regulations cannot participate in the race.
 - For contact and accidents that occur while driving side by side, the race is not stopped if there is no clear offender.
+- For other common cautions, see [7. Common Cautions](#7-common-cautions-important).
 
 # 7. Common Cautions (Important!!)
 
@@ -357,6 +349,10 @@ This is the approximate map shape, and it may change slightly.
   - Please change the module for **switching** between autonomous ↔ human control from a "**press and hold**" style to an "**on/off**" **toggle** style.
 - Only one laptop may be connected, for visualization (e.g. RViz) or debugging purposes.
 - If the vehicle is stopped too close to an obstacle ahead (an opponent vehicle or a static obstacle) and cannot make an avoidance maneuver, you may ask the referee to move it back slightly if space is needed.
+- In the finals, a collision with an obstacle is fine as long as the vehicle can keep driving, but in qualifying, a collision or even minor contact with an obstacle invalidates that lap.
+- If the vehicle is taken off the track and put back for any reason, its heading may be adjusted slightly, but it must be placed back at the **position where it left**.
+- If there is contact with the track, even if the record is not invalidated, the track must be **restored to its original position immediately**.
+- If there is contact with an obstacle, it must be restored to its original position immediately.
 
 # 8. Static Obstacles
 
@@ -421,11 +417,3 @@ Even for an incident involving **multiple violations**, only **one penalty** is 
   - Being detected by the opponent vehicle's detection module while going to fix the track, affecting its driving.
 
 ## 9.1 Example Cases
-
-<center>
-<img src="../images/rules/crash1.png"  style="height: 18vw" />
-</center>
-
-<center>
-<img src="../images/rules/crash2.png"  style="height: 18vw" />
-</center>
