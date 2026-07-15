@@ -317,7 +317,7 @@ This is the approximate map shape, and it may change slightly.
 - Track boundary and static obstacles
   - If the race can continue, it must continue without interruption.
 - Vehicle vs. vehicle
-  - **Do not stop the race at the team's discretion without the referee's stop signal!!**
+  - **Do not stop the race at the team's discretion without the referee's stop signal.**
   - If the offending vehicle is clear but did not overtake, the race continues as is.
   - If the victim vehicle is clear and cannot drive, the collision is severe, or it is overtaken, the race is stopped.
 
@@ -327,11 +327,11 @@ This is the approximate map shape, and it may change slightly.
 - For contact and accidents that occur while driving side by side, the race is not stopped if there is no clear offender.
 - For other common cautions, see [7. Common Cautions](#7-common-cautions-important).
 
-# 7. Common Cautions (Important!!)
+# 7. Common Cautions (Important)
 
 ## 7.1 Vehicle Computation, Communication & Control
 
-- **All computation must be performed onboard the vehicle!!**
+- **All computation must be performed onboard the vehicle.**
 - **No data may be transmitted to the vehicle during normal driving.**
 - **Manual (human) emergency braking during normal driving is strictly prohibited.**
 - **Using** or **pressing** a joystick during a race is **not allowed**.
@@ -355,7 +355,7 @@ This is the approximate map shape, and it may change slightly.
 
 ## 7.4 Operations
 
-- **No appeals regarding Wi-Fi are accepted.** Make sure your autonomous system is designed to operate independently of Wi-Fi conditions. We will ask teams not participating in a race to turn off their Wi-Fi, but this is purely to ease teams' visualization and debugging — not for algorithm performance!
+- **No appeals regarding Wi-Fi are accepted.** Make sure your autonomous system is designed to operate independently of Wi-Fi conditions. We will ask teams not participating in a race to turn off their Wi-Fi, but this is purely to ease teams' visualization and debugging — not for algorithm performance.
 - All hardware repair and maintenance on the track (repairing broken parts, recalibrating sensors, swapping batteries, etc.) is prohibited.
 - The dedicated time for **mapping**, **official practice**, and **qualifying** may vary depending on the number of participating teams.
 - The dedicated time for **mapping** and **official practice** sessions is assigned on a **first-come, first-served basis**, and only teams that have **successfully completed registration and inspection** are eligible.
