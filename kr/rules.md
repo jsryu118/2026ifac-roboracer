@@ -118,6 +118,8 @@ h2, h3, h4, h5, h6 {
 
 트랙 크기는 약 **8 m × 22 m**입니다.
 
+트랙은 최소 1m 폭을 가집니다.
+
 <center>
 <img src="../images/rules/track_layout_2026.png" style="width: 30vw; min-width: 320px;" />
 </center>

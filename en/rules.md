@@ -118,6 +118,8 @@ The floor of Hall 5A on the 3rd floor of BEXCO Exhibition Center 2, where the tr
 
 The track size is approximately **8 m × 22 m**.
 
+The track has a minimum width of 1m.
+
 <center>
 <img src="../images/rules/track_layout_2026.png" style="width: 30vw; min-width: 320px;" />
 </center>
