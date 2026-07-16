@@ -235,6 +235,7 @@ This is the approximate map shape, and it may change slightly.
   - Whether Fully Autonomous was satisfied
   - The number of qualifying missions passed
   - The record of the last qualifying mission completed
+  - If no valid Q3 lap time exists and the Q2 or Q1 record is tied, the team that completed inspection earlier is ranked higher.
 - An example of the final ranking decision is as follows.
   - Assume there are 12 teams in total.
   - Assume 3 teams satisfied Fully Autonomous, 3 teams passed Q3 (without FA), 3 teams failed Q2 (passed Q1), and 3 teams failed Q1.
