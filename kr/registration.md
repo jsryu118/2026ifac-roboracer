@@ -102,6 +102,9 @@ Registration Conference
 | SSU-PATH | Soongsil University, Korea | Hahyeon Song, Heewoo Choi, Seeun Jung, Yujin Song, Jiyul Kim, Minwoo Lee |
 | SSU-MARHUH | Soongsil University, Korea | Jimin Jeon, Juncheol Shin, Mingyu Lee, Sangmi Lee |
 | Oudtra | Independent Team (No Institutional Affiliation) | Mingguang Zhou, Qianli Song |
+| SSUpernova | Soongsil University, Korea | Wookhee Cho, Seongmin Park, Jeongbin Park, Eunseong Ko |
+| PEGASSUs | Soongsil University, Korea | Suwon Jang, NakYeon Ko, SeokKyu Lee, Junyeong Kwon |
+| SSUng | Soongsil University, Korea | Woojin Jeong, Taeyeon Kim, Jaehyeok Lee, Yeeun Lee |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
