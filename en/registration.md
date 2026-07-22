@@ -96,6 +96,7 @@ If you have registered for participation but the list below is not updated, plea
 | PEGASSUs | Soongsil University, Korea | Suwon Jang, NakYeon Ko, SeokKyu Lee, Junyeong Kwon |
 | SSUng | Soongsil University, Korea | Woojin Jeong, Taeyeon Kim, Jaehyeok Lee, Yeeun Lee |
 | GhostRacer | Soongsil University, Korea | Hyun Namgung, SungHyo Moon, Juwon Jang, Dongwook Lee |
+| TAYO-Eagles | Chungbuk National University, Korea | Junhyeok Jang, Bohyeong Kim, Juyeong Heo |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
