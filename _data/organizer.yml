@@ -53,8 +53,46 @@
     website: "https://www.seas.upenn.edu/~rahulm/"
     email: "rahulm@seas.upenn.edu"
     first_elements: false
-    last_elements: true  
-  
+    last_elements: false
+
+  - index: 4
+    name:
+      ko-KR: "심주용"
+      en-US: "JooYong Sim"
+    company:
+      ko-KR: "숙명여자대학교"
+      en-US: "Sookmyung Women's University"
+    department:
+      ko-KR: "기계시스템학부"
+      en-US: "Department of Mechanical Systems Engineering"
+    position:
+      ko-KR: "조교수"
+      en-US: "Assistant Professor"
+    image: "images/organizer/심주용교수님.png"
+    website: "https://www.sim-research.org/home"
+    email: "jysim@sookmyung.ac.kr"
+    first_elements: false
+    last_elements: false
+
+  - index: 5
+    name:
+      ko-KR: "김백규"
+      en-US: "BaekGyu Kim"
+    company:
+      ko-KR: "DGIST"
+      en-US: "DGIST"
+    department:
+      ko-KR: "전기전자컴퓨터공학과"
+      en-US: "Department of Electrical Engineering and Computer Science"
+    position:
+      ko-KR: "부교수"
+      en-US: "Associate Professor"
+    image: "images/organizer/김백규교수님.jpg"
+    website: "https://sites.google.com/view/hass-dgist/hass-lab"
+    email: "bkim@dgist.ac.kr"
+    first_elements: false
+    last_elements: true
+
 # 
 #   - index: 3
 #     name:
@@ -92,23 +130,4 @@
 #     website: "https://sites.google.com/view/misysssu/members/prof-kanghee-kim"
 #     email: "khkim@ssu.ac.kr"
 #     first_elements: true
-#     last_elements: false
-# 
-#   - index: 5
-#     name:
-#       ko-KR: "심주용"
-#       en-US: "Joo Yong Sim"
-#     company:
-#       ko-KR: "숙명여대학교"
-#       en-US: "Sookmyung Women's University"
-#     department: 
-#       ko-KR: "기계시스템학과"
-#       en-US: "Department of Mechanical System Engineering"
-#     position:
-#       ko-KR: "조교수"
-#       en-US: "Assistant Professor"
-#     image: "images/organizer/심주용교수님.png"
-#     website: "https://sim-research.org/members/"
-#     email: "jysim@sookmyung.ac.kr"
-#     first_elements: false
 #     last_elements: false
