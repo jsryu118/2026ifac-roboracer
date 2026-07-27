@@ -10,7 +10,10 @@ base_url: results.html
 
 | Ranking | Team | Prize |
 |:---|:---|:---|
-| TBD | TBD | TBD |
+| 1st (1 team) | TBD | Grand Prize – President's Award, Pusan National University / KRW 3,000,000 |
+| 2nd (1 team) | TBD | Best Excellence Prize – ANCHOR Project Director's Award, Pusan National University / KRW 2,000,000 |
+| Tied 3rd (2 teams) | TBD | Excellence Prize – Dean's Award, School of Mechanical Engineering, Pusan National University / KRW 1,000,000 each |
+| Tied 4th (4 teams) | TBD | Encouragement Prize – Dean's Award, School of Mechanical Engineering, Pusan National University / No prize money |
 
 
 <br>
