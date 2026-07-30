@@ -91,25 +91,6 @@
     website: "https://sites.google.com/view/hass-dgist/hass-lab"
     email: "bkim@dgist.ac.kr"
     first_elements: false
-    last_elements: false
-
-  - index: 6
-    name:
-      ko-KR: "김강희"
-      en-US: "Kanghee Kim"
-    company:
-      ko-KR: "숭실대학교"
-      en-US: "Soongsil University"
-    department:
-      ko-KR: "AI 융합학부"
-      en-US: "School of AI Convergence"
-    position:
-      ko-KR: "교수"
-      en-US: "Professor"
-    image: "images/organizer/김강희교수님.png"
-    website: "https://sites.google.com/view/misysssu/home"
-    email: "khkim@ssu.ac.kr"
-    first_elements: false
     last_elements: true
 
 # 
