@@ -110,8 +110,12 @@ Registration Conference
 | UNICORN Racing | Ulsan National Institute of Science and Technology (UNIST), Korea | Sanghun Lee, Heedo Kim, Ukjin Choi, Yunho Lee |
 | AMSLab | Keimyung University, Korea | Bumyeon Lee, Jongbin Kim, Jaemin Cho, Hyunseok Lee |
 | Makers Disco | Independent Team (No Institutional Affiliation) | Hiromi Kondo |
-| DDRX | Zhejiang University, China | Yangyang Xie, Cheng Hu, Yiqin Wang, Zhiping Wu, Mingyi Zhang, Weizhan Huang, Zhouheng Li, Yueyue Hu, Wule Mao, Hongyi Dai, Junhao Ye, Jizhong Sheng |
+| DDRX | Zhejiang University, China | Zhouheng Li |
 | Dexter Dynamics | Indian Institute of Technology Delhi (IIT Delhi), India | Abhinav Joshi |
+| Sookshark | Sookmyung Women's University, Korea | ChaeHyun Yoon, MinHee Kim, JiHyeon Kim, GaGyeong Eom |
+| ASMR | Gyeongsang National University, Korea | Junwon Lee, Seonung Yoo, Dongwoo Kim, Junehee Lee |
+| UNITAYO | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
+| DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Chennupati Sri Siva Sai Abhiram |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
