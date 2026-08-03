@@ -111,6 +111,7 @@ Registration Conference
 | AMSLab | Keimyung University, Korea | Bumyeon Lee, Jongbin Kim, Jaemin Cho, Hyunseok Lee |
 | Makers Disco | Independent Team (No Institutional Affiliation) | Hiromi Kondo |
 | DDRX | Zhejiang University, China | Yangyang Xie, Cheng Hu, Yiqin Wang, Zhiping Wu, Mingyi Zhang, Weizhan Huang, Zhouheng Li, Yueyue Hu, Wule Mao, Hongyi Dai, Junhao Ye, Jizhong Sheng |
+| Dexter Dynamics | Indian Institute of Technology Delhi (IIT Delhi), India | Abhinav Joshi |
 
 <!-- Previous Competition Participants (2024)
 |AIML|Jeju National University|Junhyeok Yang, Juho Kim, Byeongyeon Kim, Suhwan Kim, Yuncheol Yang, Junhyeok Choi, Jiwook Park|
