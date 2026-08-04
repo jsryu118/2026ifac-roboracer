@@ -120,6 +120,7 @@ Registration Conference
 | YAX_Convex | Yonsei University, Korea | YunSang Nam, MinJun Song, HyunSeo Oh |
 | RCV-FORMULA | Inha University, Korea | Inwook Shim, Yebin Lee, Jaeseo Shin, Jonghak Kim, Raeyeon Kang, Jihoon Moon |
 | Dopamine | Pusan National University, Korea | Sangkyu Shin, Dabin Hwang, Dongjae Cho, Haeun Kim, Suyeong Jung |
+| SKKUDERIA_SKKAI | Sungkyunkwan University, Korea | Donghwan Kim, Sukmin Hwang, Sungjae Kim, Minjun No, Jeongyeon Kim, Chae-eun Seok |
 
 <br>
 <br>
