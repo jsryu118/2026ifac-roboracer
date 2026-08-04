@@ -117,6 +117,7 @@ Registration Conference
 | UNITA | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
 | DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Chennupati Sri Siva Sai Abhiram |
 | Muinjilju | Pusan National University, Korea | ChanHyeok Park, Junseong Bae, Gihoon Yang, Jiwoo Park |
+| YAX_Convex | Yonsei University, Korea | YunSang Nam, MinJun Song, HyunSeo Oh |
 
 <br>
 <br>
