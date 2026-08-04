@@ -118,6 +118,8 @@ Registration Conference
 | DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Chennupati Sri Siva Sai Abhiram |
 | Muinjilju | Pusan National University, Korea | ChanHyeok Park, Junseong Bae, Gihoon Yang, Jiwoo Park |
 | YAX_Convex | Yonsei University, Korea | YunSang Nam, MinJun Song, HyunSeo Oh |
+| RCV-FORMULA | Inha University, Korea | Inwook Shim, Yebin Lee, Jaeseo Shin, Jonghak Kim, Raeyeon Kang, Jihoon Moon |
+| Dopamine | Pusan National University, Korea | Sangkyu Shin, Dabin Hwang, Dongjae Cho, Haeun Kim, Suyeong Jung |
 
 <br>
 <br>
