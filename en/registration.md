@@ -104,8 +104,9 @@ If you have registered for participation but the list below is not updated, plea
 | Dexter Dynamics | Indian Institute of Technology Delhi (IIT Delhi), India | Abhinav Joshi |
 | Sookshark | Sookmyung Women's University, Korea | ChaeHyun Yoon, MinHee Kim, JiHyeon Kim, GaGyeong Eom |
 | ASMR | Gyeongsang National University, Korea | Junwon Lee, Seonung Yoo, Dongwoo Kim, Junehee Lee |
-| UNITAYO | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
+| UNITA | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
 | DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Chennupati Sri Siva Sai Abhiram |
+| Muinjilju | Pusan National University, Korea | ChanHyeok Park, Junseong Bae, Gihoon Yang, Jiwoo Park |
 
 <br>
 <br>
