@@ -112,6 +112,8 @@ If you have registered for participation but the list below is not updated, plea
 | Dopamine | Pusan National University, Korea | Sangkyu Shin, Dabin Hwang, Dongjae Cho, Haeun Kim, Suyeong Jung |
 | SKKUDERIA_SKKAI | Sungkyunkwan University, Korea | Donghwan Kim, Sukmin Hwang, Sungjae Kim, Minjun No, Jeongyeon Kim, Chae-eun Seok |
 | YAX_Formula | Yonsei University, Korea | Nayeon Kwak, Jian Baek, Hyunjun Choe, Jeongseok Moon |
+| Rena | Pusan National University, Korea | TaeMin Lim, SangHoon Lee, MinHyeok Kim, JeongBeen Nam, SeoJin Park |
+| SAI | Kangwon National University, Korea | Hajin Kim, Yeonjun Kim |
 
 <br>
 <br>
