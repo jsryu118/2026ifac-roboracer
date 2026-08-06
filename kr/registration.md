@@ -125,6 +125,7 @@ Registration Conference
 | Rena | Pusan National University, Korea | TaeMin Lim, SangHoon Lee, MinHyeok Kim, JeongBeen Nam, SeoJin Park |
 | SAI | Kangwon National University, Korea | Hajin Kim, Yeonjun Kim |
 | F1TENTH_Kyutech | Kyushu Institute of Technology, Japan | Mitsuki Morimoto, Kaito Tominaga, Junya Kaneko |
+| PAIR LAB | Inje University, Korea | HyeonJin Woo, SeongWoo Cho, JangUk Hwang, SeongJin Lee |
 
 <br>
 <br>
