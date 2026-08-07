@@ -117,6 +117,8 @@ If you have registered for participation but the list below is not updated, plea
 | F1TENTH_Kyutech | Kyushu Institute of Technology, Japan | Mitsuki Morimoto, Kaito Tominaga, Junya Kaneko |
 | PAIR LAB | Inje University, Korea | HyeonJin Woo, SeongWoo Cho, JangUk Hwang, SeongJin Lee |
 | RPM | Kangwon National University, Korea | GyuHyeon Woo, Sumin Chae, DongSeok Han, JuHwang Kim, Isu Jung, ChanHyuk Lee, ChanU Kim |
+| IDEA_LAB | Gyeongsang National University, Korea | Sujin Park, Shinho Cho, Junseo Jang, Jonga Ha, Jaehyeong Kim |
+| SMOC | Pusan National University, Korea | JeongMin An, HaeWoong Kong, YuMin Kim, JunHa Park, MinCheol Sung, SeokWon Lee, JunSeo Jeon |
 
 <br>
 <br>
