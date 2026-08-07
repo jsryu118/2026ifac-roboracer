@@ -116,6 +116,7 @@ If you have registered for participation but the list below is not updated, plea
 | SAI | Kangwon National University, Korea | Hajin Kim, Yeonjun Kim |
 | F1TENTH_Kyutech | Kyushu Institute of Technology, Japan | Mitsuki Morimoto, Kaito Tominaga, Junya Kaneko |
 | PAIR LAB | Inje University, Korea | HyeonJin Woo, SeongWoo Cho, JangUk Hwang, SeongJin Lee |
+| RPM | Kangwon National University, Korea | GyuHyeon Woo, Sumin Chae, DongSeok Han, JuHwang Kim, Isu Jung, ChanHyuk Lee, ChanU Kim |
 
 <br>
 <br>
