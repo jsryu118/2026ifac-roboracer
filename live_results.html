@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RoboRacer 2026 — Live Results</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --tarmac:#12161C; --t2:#1B222B; --t3:#242C37; --line:#37414F;
+  --paint:#EDEFF2; --dim:#8A97A8; --signal:#F5C518;
+  --go:#3DBE7A; --stop:#E0483B; --blue:#4E9CE8;
+  --sans:"Inter",-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0B0E13;min-height:100%}
+body{font-family:var(--sans);color:var(--paint);-webkit-font-smoothing:antialiased}
+::selection{background:var(--signal);color:var(--tarmac)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+a{color:inherit}
+
+/* ---------- top bar ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.htop{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:16px 32px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--go);box-shadow:0 0 10px var(--go);flex:none}
+.dot.off{background:var(--stop);box-shadow:0 0 10px var(--stop)}
+.htitle{font-weight:800;font-size:17px;letter-spacing:-.01em}
+.hsub{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.14em}
+.hright{margin-left:auto;display:flex;align-items:center;gap:14px}
+.hupdated{font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+.tabs{max-width:1280px;margin:0 auto;display:flex;gap:4px;padding:0 32px}
+.tab{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--dim);
+  background:none;border:0;padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
+.tab:hover{color:var(--paint)}
+.tab.active{color:var(--signal);border-bottom-color:var(--signal)}
+
+main{max-width:1280px;margin:0 auto;padding:36px 32px 90px}
+.panel{display:none}
+.panel.on{display:block;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.section{margin-bottom:44px}
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sectitle{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.secsub{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
+
+.state{padding:60px 20px;text-align:center;color:var(--dim);font-size:14px}
+.state.err{color:#F2A79F}
+.state code{font-family:var(--mono);background:var(--t3);padding:2px 7px;border-radius:4px}
+
+/* ---------- buttons / toggles ---------- */
+.toggle{display:inline-flex;gap:2px;background:var(--t2);border:1px solid var(--line);border-radius:8px;padding:3px}
+.toggle button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--dim);
+  background:none;border:0;padding:8px 14px;border-radius:6px;cursor:pointer;transition:.15s}
+.toggle button.active{background:var(--signal);color:var(--tarmac)}
+.toggle button:hover:not(.active){color:var(--paint)}
+
+/* ---------- qualifying table ---------- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+.qtable th{text-align:left;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em;
+  padding:10px 14px;border-bottom:1px solid var(--line);background:var(--t2);position:sticky;top:106px}
+.qtable td{padding:11px 14px;border-bottom:1px solid rgba(55,65,79,.5)}
+.qtable tr:hover td{background:rgba(255,255,255,.02)}
+.qtable .rankcell{font-family:var(--mono);font-weight:800;color:var(--signal)}
+.qtable .name{font-weight:600}
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.06em;
+  padding:3px 7px;border-radius:4px}
+.badge.fa{background:rgba(245,197,24,.16);color:var(--signal)}
+.mono{font-family:var(--mono)}
+.dimtext{color:var(--dim)}
+
+/* ---------- group cards ---------- */
+.gridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.gcard{background:var(--t2);border:1px solid var(--line);border-radius:10px;padding:18px 20px;cursor:pointer;
+  transition:.15s;text-align:left}
+.gcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.gcard.sel{border-color:var(--signal);background:rgba(245,197,24,.06)}
+.gcard .gname{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--signal)}
+.gcard .gstatus{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);margin-top:4px}
+.gcard .gstatus.done{color:var(--go)}
+.gcard ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.gcard li{font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.gdetail{margin-top:24px;background:var(--t2);border:1px solid var(--line);border-radius:10px;
+  padding:24px 26px;display:none}
+.gdetail.on{display:block;animation:fadein .3s ease}
+.gdetail h3{font-family:var(--mono);font-size:16px;color:var(--signal);margin-bottom:16px;letter-spacing:.06em}
+.matchrow{display:grid;grid-template-columns:70px 1fr 30px 1fr;align-items:center;gap:10px;
+  padding:12px 14px;background:var(--t3);border-radius:8px;margin-bottom:8px;font-size:14px}
+.matchrow .mid{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em}
+.matchrow .side{padding:6px 10px;border-radius:5px;font-weight:600;text-align:center}
+.matchrow .side.win{background:rgba(61,190,122,.18);color:#9FE6BE;font-weight:800}
+.matchrow .vs{text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.matchnote{font-family:var(--mono);font-size:10px;color:var(--dim);text-align:center;margin-top:4px}
+
+/* ---------- final tournament ---------- */
+.roundnav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.roundnav button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--dim);
+  background:var(--t2);border:1px solid var(--line);padding:9px 16px;border-radius:100px;cursor:pointer;transition:.15s}
+.roundnav button.active{background:var(--signal);color:var(--tarmac);border-color:var(--signal)}
+.roundnav button:hover:not(.active){color:var(--paint);border-color:var(--dim)}
+
+.bmatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.bmatch{background:var(--t2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bmatch .bh{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.08em;padding:8px 14px;
+  background:var(--t3)}
+.bside{display:flex;align-items:center;gap:10px;padding:12px 14px;font-size:14px;font-weight:600;
+  border-bottom:1px solid rgba(55,65,79,.5)}
+.bside:last-of-type{border-bottom:0}
+.bside.win{background:rgba(61,190,122,.14);color:#9FE6BE}
+.bside .bseed{font-family:var(--mono);font-size:11px;color:var(--dim);min-width:16px}
+
+footer{max-width:1280px;margin:0 auto;padding:20px 32px;color:var(--dim);font-size:12px;font-family:var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media (max-width:640px){.matchrow{grid-template-columns:1fr}.matchrow .vs{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="htop">
+    <span class="dot" id="liveDot"></span>
+    <span class="htitle">ROBORACER 2026</span>
+    <span class="hsub">GRAND PRIX &middot; LIVE RESULTS</span>
+    <div class="hright">
+      <span class="hupdated" id="updatedAt">connecting&hellip;</span>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="qualifying">QUALIFYING</button>
+    <button class="tab" data-tab="groups">GROUP STAGE</button>
+    <button class="tab" data-tab="final">FINAL TOURNAMENT</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ QUALIFYING ============ -->
+  <section class="panel on" id="panel-qualifying">
+    <div class="section">
+      <div class="sechead">
+        <span class="sectitle">Qualifying</span>
+        <span class="secsub" id="qCount"></span>
+        <div class="toggle" style="margin-left:auto">
+          <button data-sort="order" class="active">RACE ORDER</button>
+          <button data-sort="rank">RANKING</button>
+        </div>
+      </div>
+      <div id="qualifyingWrap"><div class="state">Loading qualifying data&hellip;</div></div>
+    </div>
+  </section>
+
+  <!-- ============ GROUP STAGE ============ -->
+  <section class="panel" id="panel-groups">
+    <div class="section">
+      <div class="sechead"><span class="sectitle">Groups</span>
+        <span class="secsub">TAP A GROUP TO SEE ITS MATCHES</span></div>
+      <div id="groupsWrap"><div class="state">Loading groups&hellip;</div></div>
+      <div class="gdetail" id="groupDetail"></div>
+    </div>
+
+    <div class="section">
+      <div class="sechead"><span class="sectitle">Qualified — 33 Teams</span>
+        <span class="secsub" id="q33Count"></span></div>
+      <div id="q33Wrap"><div class="state">Waiting for group stage to complete&hellip;</div></div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL TOURNAMENT ============ -->
+  <section class="panel" id="panel-final">
+    <div class="section">
+      <div class="sechead"><span class="sectitle">Final Tournament</span>
+        <span class="secsub">SINGLE ELIMINATION</span></div>
+      <div class="roundnav" id="roundNav"></div>
+      <div id="bracketWrap"><div class="state">Loading bracket&hellip;</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>ROBORACER 2026 GRAND PRIX &middot; auto-refreshing every 8 seconds</footer>
+
+<script>
+/* ====================================================================
+ *  CONFIGURE THIS: paste your Apps Script Web App /exec URL below.
+ *  Deploy -> New deployment -> Web app -> Execute as Me -> Anyone -> Deploy
+ * ==================================================================== */
+const API_URL = 'https://script.google.com/macros/s/AKfycbwbJ_5IkRjlJ9YdxBgNHItxwE-DQ4QHKxrwXWZ_7e267WXhI64ArQqRT11xupkDrvOc/exec';
+const POLL_MS = 8000;
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let STATE = null;
+let qualifyingSort = 'order';
+let selectedGroup = null;
+let selectedRound = 'R32';
+
+/* ---------------- tabs ---------------- */
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{
+  $$('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  $$('.panel').forEach(p=>p.classList.remove('on'));
+  $('#panel-'+t.dataset.tab).classList.add('on');
+}));
+
+/* ---------------- fetch loop (JSONP — avoids CORS entirely) ---------------- */
+let jsonpCounter = 0;
+
+function fetchData(){
+  if (!API_URL || API_URL.indexOf('PASTE_YOUR') === 0){
+    showConfigError();
+    return;
+  }
+
+  const cbName = 'roboracerCb' + (jsonpCounter++);
+  const script = document.createElement('script');
+  let settled = false;
+
+  const timeoutId = setTimeout(()=>{
+    if (settled) return;
+    settled = true;
+    cleanup();
+    $('#updatedAt').textContent = 'connection failed';
+    $('#liveDot').classList.add('off');
+    if (!STATE) showFetchError(new Error('Timed out waiting for a response.'));
+  }, 12000);
+
+  function cleanup(){
+    clearTimeout(timeoutId);
+    delete window[cbName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  }
+
+  window[cbName] = function(data){
+    if (settled) return;
+    settled = true;
+    cleanup();
+    STATE = data;
+    $('#liveDot').classList.remove('off');
+    $('#updatedAt').textContent = 'updated ' + timeAgo(data.updatedAt);
+    render();
+  };
+
+  script.onerror = function(){
+    if (settled) return;
+    settled = true;
+    cleanup();
+    $('#updatedAt').textContent = 'connection failed';
+    $('#liveDot').classList.add('off');
+    if (!STATE) showFetchError(new Error('Could not load the API script (check the URL and deployment access).'));
+  };
+
+  const sep = API_URL.indexOf('?') === -1 ? '?' : '&';
+  script.src = API_URL + sep + 'callback=' + cbName + '&t=' + Date.now();
+  document.body.appendChild(script);
+}
+
+function showConfigError(){
+  $('#updatedAt').textContent = 'not configured';
+  $('#liveDot').classList.add('off');
+  const msg = '<div class="state err">API not configured.<br><br>' +
+    'Open this file and set <code>API_URL</code> to your Apps Script Web App URL ' +
+    '(Deploy &rarr; New deployment &rarr; Web app).</div>';
+  $('#qualifyingWrap').innerHTML = msg;
+  $('#groupsWrap').innerHTML = msg;
+  $('#bracketWrap').innerHTML = msg;
+}
+function showFetchError(err){
+  $('#updatedAt').textContent = 'connection failed';
+  $('#liveDot').classList.add('off');
+  const msg = '<div class="state err">Could not reach the results API.<br>' +
+    '<span class="dimtext mono" style="font-size:12px">'+String(err.message||err)+'</span></div>';
+  $('#qualifyingWrap').innerHTML = msg;
+  $('#groupsWrap').innerHTML = msg;
+  $('#bracketWrap').innerHTML = msg;
+}
+function timeAgo(iso){
+  if(!iso) return 'just now';
+  const s = Math.max(0, Math.floor((Date.now()-new Date(iso).getTime())/1000));
+  if(s<5) return 'just now';
+  if(s<60) return s+'s ago';
+  const m = Math.floor(s/60);
+  if(m<60) return m+'m ago';
+  return Math.floor(m/60)+'h ago';
+}
+
+function render(){
+  renderQualifying();
+  renderGroups();
+  renderQualified33();
+  renderBracket();
+}
+
+/* ============ QUALIFYING ============ */
+$$('.toggle button[data-sort]').forEach(b=>b.addEventListener('click',()=>{
+  qualifyingSort = b.dataset.sort;
+  $$('.toggle button[data-sort]').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderQualifying();
+}));
+
+function renderQualifying(){
+  if(!STATE) return;
+  const rows = (STATE.qualifying || []).slice();
+  $('#qCount').textContent = rows.length + ' TEAMS';
+
+  if (qualifyingSort === 'order'){
+    rows.sort((a,b)=>(a.raceOrder||9999)-(b.raceOrder||9999));
+  } else {
+    rows.sort((a,b)=>(a.seed||9999)-(b.seed||9999));
+  }
+
+  if (rows.length===0){
+    $('#qualifyingWrap').innerHTML = '<div class="state">No qualifying data yet.</div>';
+    return;
+  }
+
+  const leftLabel = qualifyingSort==='order' ? 'ORDER' : 'RANK';
+  let html = '<table class="qtable"><thead><tr>' +
+    '<th>'+leftLabel+'</th><th>TEAM</th><th>FA</th><th>Q1</th><th>Q2</th><th>Q3 TIME</th>' +
+    '</tr></thead><tbody>';
+  rows.forEach(r=>{
+    const shown = qualifyingSort==='order' ? r.raceOrder : r.seed;
+    html += '<tr>' +
+      '<td class="rankcell">'+(shown!=null?shown:'&mdash;')+'</td>' +
+      '<td class="name">'+esc(r.name)+'</td>' +
+      '<td>'+(r.fa?'<span class="badge fa">FA</span>':'<span class="dimtext mono" style="font-size:11px">&mdash;</span>')+'</td>' +
+      '<td class="mono dimtext">'+fmt(r.q1)+'</td>' +
+      '<td class="mono dimtext">'+fmt(r.q2)+'</td>' +
+      '<td class="mono">'+(r.q3!==''&&r.q3!=null?r.q3+'s':'<span class="dimtext">&mdash;</span>')+'</td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  $('#qualifyingWrap').innerHTML = html;
+}
+
+/* ============ GROUP STAGE ============ */
+function renderGroups(){
+  if(!STATE) return;
+  const groups = STATE.groups || [];
+  if (groups.length===0){
+    $('#groupsWrap').innerHTML = '<div class="state">No groups drawn yet.</div>';
+    return;
+  }
+  $('#groupsWrap').innerHTML = '<div class="gridcards">' +
+    groups.map(g=>{
+      const matches = g.matches || [];
+      const done = matches.length>0 && matches.every(m=>m.winner);
+      const statusText = matches.length===0 ? 'NOT STARTED' : (done ? 'COMPLETE' : (matches.filter(m=>m.winner).length+'/'+matches.length+' PLAYED'));
+      return '<button class="gcard'+(selectedGroup===g.group?' sel':'')+'" data-group="'+esc(g.group)+'">' +
+        '<div class="gname">'+esc(g.group)+'</div>' +
+        '<div class="gstatus'+(done?' done':'')+'">'+statusText+'</div>' +
+        '<ul>'+g.teams.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>' +
+        '</button>';
+    }).join('') + '</div>';
+
+  $$('.gcard').forEach(c=>c.addEventListener('click',()=>{
+    selectedGroup = c.dataset.group;
+    renderGroups();
+    renderGroupDetail();
+  }));
+
+  if (selectedGroup) renderGroupDetail();
+}
+
+function renderGroupDetail(){
+  const g = (STATE.groups||[]).find(x=>x.group===selectedGroup);
+  const box = $('#groupDetail');
+  if (!g){ box.classList.remove('on'); return; }
+  box.classList.add('on');
+  const matches = g.matches || [];
+  if (matches.length===0){
+    box.innerHTML = '<h3>'+esc(g.group)+'</h3><div class="state">Matches not generated yet.</div>';
+    return;
+  }
+  box.innerHTML = '<h3>'+esc(g.group)+' &middot; MATCHES</h3>' +
+    matches.map(m=>{
+      const aWin = m.winner && m.winner===m.teamA;
+      const bWin = m.winner && m.winner===m.teamB;
+      return '<div class="matchrow">' +
+        '<span class="mid">'+esc(m.id).toUpperCase()+'</span>' +
+        '<span class="side'+(aWin?' win':'')+'">'+(m.teamA?esc(m.teamA):'<span class="dimtext">TBD</span>')+'</span>' +
+        '<span class="vs">VS</span>' +
+        '<span class="side'+(bWin?' win':'')+'">'+(m.teamB?esc(m.teamB):'<span class="dimtext">TBD</span>')+'</span>' +
+        '</div>';
+    }).join('');
+}
+
+/* ============ QUALIFIED — 33 TEAMS ============ */
+function renderQualified33(){
+  if(!STATE) return;
+  const rows = (STATE.qualified33 || []).slice().sort((a,b)=>(a.seed||9999)-(b.seed||9999));
+  $('#q33Count').textContent = rows.length ? (rows.length+' TEAMS · SORTED BY QUALIFYING SEED') : '';
+  if (rows.length===0){
+    $('#q33Wrap').innerHTML = '<div class="state">Waiting for group stage to complete&hellip;</div>';
+    return;
+  }
+  let html = '<table class="qtable"><thead><tr>' +
+    '<th>SEED</th><th>TEAM</th><th>GROUP</th><th>GROUP RANK</th><th></th>' +
+    '</tr></thead><tbody>';
+  rows.forEach(r=>{
+    html += '<tr>' +
+      '<td class="rankcell">'+r.seed+'</td>' +
+      '<td class="name">'+esc(r.name)+'</td>' +
+      '<td class="mono dimtext">'+esc(r.group)+'</td>' +
+      '<td class="mono dimtext">'+esc(r.rank)+'</td>' +
+      '<td>'+(r.note?'<span class="badge" style="background:rgba(224,72,59,.16);color:#F2A79F">'+esc(r.note).toUpperCase()+'</span>':'')+'</td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  $('#q33Wrap').innerHTML = html;
+}
+
+/* ============ FINAL TOURNAMENT ============ */
+const ROUNDS = [
+  {key:'R32', label:'ROUND OF 32'},
+  {key:'R16', label:'ROUND OF 16'},
+  {key:'QF', label:'QUARTERFINALS'},
+  {key:'SF', label:'SEMIFINALS'},
+  {key:'F', label:'FINAL'}
+];
+
+function renderBracket(){
+  if(!STATE) return;
+  const nav = $('#roundNav');
+  nav.innerHTML = ROUNDS.map(r=>
+    '<button data-round="'+r.key+'" class="'+(selectedRound===r.key?'active':'')+'">'+r.label+'</button>'
+  ).join('');
+  $$('#roundNav button').forEach(b=>b.addEventListener('click',()=>{
+    selectedRound = b.dataset.round;
+    renderBracket();
+  }));
+
+  const data = (STATE.bracket32 && STATE.bracket32[selectedRound]) || [];
+  if (data.length===0){
+    $('#bracketWrap').innerHTML = '<div class="state">No matches yet for this round.</div>';
+    return;
+  }
+  $('#bracketWrap').innerHTML = '<div class="bmatches">' + data.map(m=>{
+    const aWin = m.winner && m.winner===m.teamA;
+    const bWin = m.winner && m.winner===m.teamB;
+    return '<div class="bmatch">' +
+      '<div class="bh">'+esc(m.id).toUpperCase()+'</div>' +
+      '<div class="bside'+(aWin?' win':'')+'">'+(m.teamA?esc(m.teamA):'<span class="dimtext">TBD</span>')+'</div>' +
+      '<div class="bside'+(bWin?' win':'')+'">'+(m.teamB?esc(m.teamB):'<span class="dimtext">TBD</span>')+'</div>' +
+      '</div>';
+  }).join('') + '</div>';
+}
+
+/* ---------------- utils ---------------- */
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmt(v){ return (v===''||v==null) ? '<span class="dimtext">&mdash;</span>' : v; }
+
+fetchData();
+setInterval(fetchData, POLL_MS);
+</script>
+
+</body>
+</html>

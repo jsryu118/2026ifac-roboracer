@@ -6,6 +6,14 @@ language: ko-KR
 base_url: results.html
 ---
 
+# Live Results
+
+<iframe src="../live_results.html" style="width:100%; height:900px; border:1px solid #ddd; border-radius:8px;" title="ROBORACER 2026 Live Results"></iframe>
+
+<center style="font-size: 0.85rem;"><a href="../live_results.html" target="_blank">새 창에서 보기</a></center>
+
+<br>
+
 # Podium Ceremony
 
 
