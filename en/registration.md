@@ -96,7 +96,7 @@ If you have registered for participation but the list below is not updated, plea
 | PEGASSUs | Soongsil University, Korea | Suwon Jang, NakYeon Ko, SeokKyu Lee, Junyeong Kwon |
 | SSUng | Soongsil University, Korea | Woojin Jeong, Taeyeon Kim, Jaehyeok Lee, Yeeun Lee |
 | GhostRacer | Soongsil University, Korea | Hyun Namgung, SungHyo Moon, Juwon Jang, Dongwook Lee |
-| TAYO-Eagles | Chungbuk National University, Korea | Junhyeok Jang, Bohyeong Kim, Juyeong Heo |
+| TAYO-Eagles | Chungbuk National University, Korea | Junhyeok Jang, Bohyeong Kim, Juyeong Heo, Minsung Kim |
 | UNICORN Racing | Ulsan National Institute of Science and Technology (UNIST), Korea | Sanghun Lee, Heedo Kim, Ukjin Choi, Yunho Lee |
 | AMSLab | Keimyung University, Korea | Bumyeon Lee, Jongbin Kim, Jaemin Cho, Hyunseok Lee |
 | Makers Disco | Independent Team (No Institutional Affiliation) | Hiromi Kondo |
