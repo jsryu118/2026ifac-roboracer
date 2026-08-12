@@ -337,7 +337,7 @@ This is the approximate map shape, and it may change slightly.
 
 - **All computation must be performed onboard the vehicle.**
 - **No data may be transmitted to the vehicle during normal driving.**
-- **Manual (human) emergency braking during normal driving is strictly prohibited.**
+- **Triggering the kill switch during normal driving is strictly prohibited** — it is for safety emergencies only, not for avoiding an anticipated collision (see 3.3.1).
 - **Using** or **pressing** a joystick during a race is **not allowed**.
   - Please change the module for **switching** between autonomous ↔ human control from a "**press and hold**" style to an "**on/off**" **toggle** style.
 - Only one laptop may be connected, for visualization (e.g. RViz) or debugging purposes.
