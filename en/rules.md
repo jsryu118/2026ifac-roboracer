@@ -136,8 +136,9 @@ This is the approximate map shape, and it may change slightly.
 
 ### 3.3.1 Software Inspection
 
-- Teams must demonstrate that the emergency brake can be operated in a **toggle (on/off) manner**.
-- For the toggle-type emergency brake, **use by a human anticipating a collision is prohibited.**
+- Teams must demonstrate a **kill switch** — a manually triggered emergency stop that immediately halts the vehicle.
+- The kill switch must operate as a **toggle (on/off)**, not as a press-and-hold button.
+- The kill switch is for **safety emergencies only**. Triggering it as a driving aid — a human stopping the vehicle because they anticipate a collision — is **prohibited** (see 7.1).
 
 ### 3.3.2 Hardware Inspection
 
