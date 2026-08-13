@@ -94,7 +94,7 @@ Registration Conference
 | Falcons | Tongji University, China | HongJian Cai, ZhiHao Xie |
 | Tianji Horizon | Tianjin University, China | Haifa Zhang, Chongyang Zhao, WeiYi Kong, Ziyi Cheng, Xinghao Qin |
 | SpaceRacer | Shenzhen University, China | Haorong Yuan, Shengyao Lan, Yukang Cui |
-| Raptor | Hanyang University, Korea | Suhyeon Seok, Jeeseung Lee, Seungyeon Han, Joohyuk Kim, Sangbum Kim, Min-a Kim |
+| Raptor | Hanyang University, Korea | Suhyeon Seok, Jiseung Lee, Seungyeon Han, Juhyeok Kim, Sangbum Kim, Minah Kim |
 | MSCLAB | Chung-Ang University, Korea | WonSeok Choi, Minjae Kwak, JongHun Park, MinYoung Cho, MinSung Choi |
 | TeSSUla | Soongsil University, Korea | YeonJoo Kim, JuHee Son, ByeongSu Seo, GyuHyeok Song |
 | InTheEND | Soongsil University, Korea | Woobin Choi, Subin Lim, Chaehyeon Jung, Minho Kim, Juyoung Choi |
@@ -103,32 +103,47 @@ Registration Conference
 | SSU-MARHUH | Soongsil University, Korea | Jimin Jeon, Juncheol Shin, Mingyu Lee, Sangmi Lee |
 | Oudtra | Independent Team (No Institutional Affiliation) | Mingguang Zhou, Qianli Song |
 | SSUpernova | Soongsil University, Korea | Wookhee Cho, Seongmin Park, Jeongbin Park, Eunseong Ko |
-| PEGASSUs | Soongsil University, Korea | Suwon Jang, NakYeon Ko, SeokKyu Lee, Junyeong Kwon |
+| PEGASSUs | Soongsil University, Korea | Suwon Jang, NakYeon Ko, SeokKyu Lee, Junyoung Kwon |
 | SSUng | Soongsil University, Korea | Woojin Jeong, Taeyeon Kim, Jaehyeok Lee, Yeeun Lee |
 | GhostRacer | Soongsil University, Korea | Hyun Namgung, SungHyo Moon, Juwon Jang, Dongwook Lee |
-| TAYO-Eagles | Chungbuk National University, Korea | Junhyeok Jang, Bohyeong Kim, Juyeong Heo, Minsung Kim |
+| TAYO-Eagles | Chungbuk National University, Korea | Junhyeok Jang, Bohyeong Kim, Juyeong Heo, MinSeong Kim |
 | UNICORN Racing | Ulsan National Institute of Science and Technology (UNIST), Korea | Sanghun Lee, Heedo Kim, Ukjin Choi, Yunho Lee |
 | AMSLab | Keimyung University, Korea | Bumyeon Lee, Jongbin Kim, Jaemin Cho, Hyunseok Lee |
 | Makers Disco | Independent Team (No Institutional Affiliation) | Hiromi Kondo |
-| DDRX | Zhejiang University, China | Zhouheng Li |
+| DDRX | Zhejiang University, China | Yangyang Xie, Cheng Hu, Yiqin Wang, Zhiping Wu, Mingyi Zhang, Weizhan Huang, Zhouheng Li, Yueyue Hu, Wule Mao, Hongyi Dai, Junhao Ye, Jizhong Sheng |
 | Dexter Dynamics | Indian Institute of Technology Delhi (IIT Delhi), India | Abhinav Joshi |
 | Sookshark | Sookmyung Women's University, Korea | ChaeHyun Yoon, MinHee Kim, JiHyeon Kim, GaGyeong Eom |
-| ASMR | Gyeongsang National University, Korea | Junwon Lee, Seonung Yoo, Dongwoo Kim, Junehee Lee |
-| UNITA | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
-| DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Chennupati Sri Siva Sai Abhiram |
+| ASMR | Gyeongsang National University, Korea | Junwon Lee, Sunwoong You, Dongwoo Kim, Joonhee Lee |
+| UNITAYO | Incheon National University, Korea | JuHyeong Han, HyunYoung Sung, DaBin Lee, GeunHo Park, JiYoon Yoon, DongHyeok Jang, SeokJin Kim |
+| DeepSpeed | Nanyang Technological University, Singapore | CHEN Ting-Ju, LEE Yun-Tung, LI Mu-En, Sarvajana Hari, Abhiram Chennupati |
 | Muinjilju | Pusan National University, Korea | ChanHyeok Park, Junseong Bae, Gihoon Yang, Jiwoo Park |
-| YAX_Convex | Yonsei University, Korea | YunSang Nam, MinJun Song, HyunSeo Oh |
+| YAX_Convex | Yonsei University, Korea | YunSang Nam, MinJun Song, Hyeonseo Oh |
 | RCV-FORMULA | Inha University, Korea | Inwook Shim, Yebin Lee, Jaeseo Shin, Jonghak Kim, Raeyeon Kang, Jihoon Moon |
 | Dopamine | Pusan National University, Korea | Sangkyu Shin, Dabin Hwang, Dongjae Cho, Haeun Kim, Suyeong Jung |
-| SKKUDERIA_SKKAI | Sungkyunkwan University, Korea | Donghwan Kim, Sukmin Hwang, Sungjae Kim, Minjun No, Jeongyeon Kim, Chae-eun Seok |
+| SKKUDERIA_SKKAI | Sungkyunkwan University, Korea | Donghwan Kim, Sukmin Hwang, Sungjae Kim, Minjun Noh, Jeongyeon Kim, Chae-eun Seok |
 | YAX_Formula | Yonsei University, Korea | Nayeon Kwak, Jian Baek, Hyunjun Choe, Jeongseok Moon |
 | Rena | Pusan National University, Korea | TaeMin Lim, SangHoon Lee, MinHyeok Kim, JeongBeen Nam, SeoJin Park |
 | SAI | Kangwon National University, Korea | Hajin Kim, Yeonjun Kim |
 | F1TENTH_Kyutech | Kyushu Institute of Technology, Japan | Mitsuki Morimoto, Kaito Tominaga, Junya Kaneko |
 | PAIR LAB | Inje University, Korea | HyeonJin Woo, SeongWoo Cho, JangUk Hwang, SeongJin Lee |
-| RPM | Kangwon National University, Korea | GyuHyeon Woo, Sumin Chae, DongSeok Han, JuHwang Kim, Isu Jung, ChanHyuk Lee, ChanU Kim |
-| IDEA_LAB | Gyeongsang National University, Korea | Sujin Park, Shinho Cho, Junseo Jang, Jonga Ha, Jaehyeong Kim |
+| RPM | Kangwon National University, Korea | GyuHyeon Woo, Sumin Chae, DongSeok Han, JuHwang Kim, Isu Jeong, ChanHyuk Lee, ChanU Kim |
+| IDEA_LAB | Gyeongsang National University, Korea | Sujin Park, Sinho Cho, Junseo Jang, Jongah Ha, Jaehyoung Kim |
 | SMOC | Pusan National University, Korea | JeongMin An, HaeWoong Kong, YuMin Kim, JunHa Park, MinCheol Sung, SeokWon Lee, JunSeo Jeon |
+| 4D-REPUBLIC | Pusan National University, Korea | Geunmin Lee, Wondae Jang, Kyoungju Song, Sangmin Sul, Hyunsoo Bae |
+| A:UTO | Ajou University, Korea | Jiwon Park, Hyeonjae Jung, Eunjae Cho, Sangwoo Kwon, Jaewoong Moon |
+| ACUS | Inje University, Korea | MinHyeok Kim, DongYeop Lee, Geon Kim, InYoung Choi, MinGyo Seo |
+| AIRLab | Jeonbuk National University, Korea | HyeonUng Yang, DongHun Kim |
+| APEX | Inje University, Korea | MinJun Kim, DongBeen Jeon, JoonHyung Im, MinJae Kim |
+| ASUF1Tenth | Ain Shams University, Egypt | Mohammed Hany, Mohamed Mahmoud |
+| COSIN@KMUTT | King Mongkut's University of Technology Thonburi, Thailand | Tapanasamon Taladon, Muttreeyaporn Munkong, Assoc.Prof.Dr.Benjamas Panomruttanarug |
+| Gromit | Sookmyung Women's University, Korea | Nayoung Hong, Soan Kim, Seohyun Park, Sehee Park, Yowon Chae, YooBeen Choi |
+| JEONJIN | Jeonbuk National University, Korea | Sohee Kang, Jihun Kim, Kyeongho Kim, Heewoong Oh, Minjae Kim |
+| JSND | Incheon National University, Korea | MinSung Kim, SangHyun Lim, Jeho Yoon, Taeho Ha, Wonjong Lee, Jooeun Lee, HyeRyoung Lee, Kyumin Jeong |
+| KMUTT_AE | King Mongkut's University of Technology Thonburi, Thailand | Pongsakorn Tabtimthai, Chotivit Lekwattananond, Naphat Phinarod |
+| SNU FAM | Seoul National University, Korea | Hyewoo Jeong, Seoyoung Lim, Jiwon Kong, Hyeongjun Song, Hyunjoo Im, Sangjin Han, Daehyeok Yun, Seunggu Kang, Hyunho Song |
+| SNU One | Seoul National University, Korea | Seolmin Lee, Jinseo Chung, Junhee Kim, KangHee Jo, SuHwan Yoon, MinSeung Kim, MinJune Kim, Wonseon Lee, Jinsung Park |
+| SNU ZERO | Seoul National University, Korea | Doyoung Kim, Sungbin Choi, Seoyoung Cho, Seongwoong Hong, Yugeon Han, Yonggeon In, Hojeong Son, Eunhyeog Jang, Gyungyoon Do, Minjun Seo |
+| Umic-SeDrica | Indian Institute of Technology Bombay (IIT Bombay), India | Parav Solanki, Vatsh Van, Devesh Rawat, Shivam Yadav, Avishkar Bahirwar |
 
 <br>
 <br>
