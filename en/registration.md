@@ -100,7 +100,7 @@ If you have registered for participation but the list below is not updated, plea
 | UNICORN Racing | Ulsan National Institute of Science and Technology (UNIST), Korea | Sanghun Lee, Heedo Kim, Ukjin Choi, Yunho Lee |
 | AMSLab | Keimyung University, Korea | Bumyeon Lee, Jongbin Kim, Jaemin Cho, Hyunseok Lee |
 | Makers Disco | Independent Team (No Institutional Affiliation) | Hiromi Kondo |
-| DDRX | Zhejiang University, China | Yangyang Xie, Cheng Hu, Yiqin Wang, Zhiping Wu, Mingyi Zhang, Weizhan Huang, Zhouheng Li, Yueyue Hu, Wule Mao, Hongyi Dai, Junhao Ye, Jizhong Sheng |
+| DDRX | Zhejiang University, China | Yangyang Xie, Cheng Hu, Yiqin Wang, Zhiping Wu, Mingyi Zhang, Weizhan Huang, Zhouheng Li, Yueyue Hu, Wule Mao, Hongyi Dai, Junhao Ye |
 | Dexter Dynamics | Indian Institute of Technology Delhi (IIT Delhi), India | Abhinav Joshi |
 | Sookshark | Sookmyung Women's University, Korea | ChaeHyun Yoon, MinHee Kim, JiHyeon Kim, GaGyeong Eom |
 | ASMR | Gyeongsang National University, Korea | Junwon Lee, Sunwoong You, Dongwoo Kim, Joonhee Lee |
@@ -131,8 +131,8 @@ If you have registered for participation but the list below is not updated, plea
 | JSND | Incheon National University, Korea | MinSung Kim, SangHyun Lim, Jeho Yoon, Taeho Ha, Wonjong Lee, Jooeun Lee, HyeRyoung Lee, Kyumin Jeong |
 | KMUTT_AE | King Mongkut's University of Technology Thonburi, Thailand | Pongsakorn Tabtimthai, Chotivit Lekwattananond, Naphat Phinarod |
 | SNU FAM | Seoul National University, Korea | Hyewoo Jeong, Seoyoung Lim, Jiwon Kong, Hyeongjun Song, Hyunjoo Im, Sangjin Han, Daehyeok Yun, Seunggu Kang, Hyunho Song |
-| SNU One | Seoul National University, Korea | Seolmin Lee, Jinseo Chung, Junhee Kim, KangHee Jo, SuHwan Yoon, MinSeung Kim, MinJune Kim, Wonseon Lee, Jinsung Park |
-| SNU ZERO | Seoul National University, Korea | Doyoung Kim, Sungbin Choi, Seoyoung Cho, Seongwoong Hong, Yugeon Han, Yonggeon In, Hojeong Son, Eunhyeog Jang, Gyungyoon Do, Minjun Seo |
+| SNU One | Seoul National University, Korea | MinSeung Kim, MinJune Kim, SuHwan Yoon, Hojeong Son, Seolmin Lee, Jinseo Chung, Yugeon Han, Doyoung Kim, Jinsung Park |
+| SNU ZERO | Seoul National University, Korea | Minjun Seo, Eunhyeog Jang, KangHee Jo, Sungbin Choi, Seoyoung Cho, Gyungyoon Do, Wonseon Lee, Yonggeon In, Seongwoong Hong, Junhee Kim |
 | Umic-SeDrica | Indian Institute of Technology Bombay (IIT Bombay), India | Parav Solanki, Vatsh Van, Devesh Rawat, Shivam Yadav, Avishkar Bahirwar |
 
 <br>
