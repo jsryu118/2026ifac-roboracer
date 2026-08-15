@@ -193,7 +193,13 @@ td .sb{margin-right:6px;vertical-align:1px}
 .nb.done{background:var(--go);border-color:var(--go);color:#07210F}
 tr.rdone td{opacity:.5}
 tr.rdone td.num{color:var(--go)}
-.mbox.mdone{opacity:.72;border-color:rgba(61,190,122,.4)}
+/* Finished matches read as dimmed, but never with opacity — a translucent box
+   forms its own stacking context and the connector lines show straight through
+   it. Dim the contents by colour instead and keep the background opaque. */
+.mbox.mdone{border-color:rgba(61,190,122,.4)}
+.mbox.mdone .mh{color:var(--dim)}
+.mbox.mdone .slot,.mbox.mdone .side{color:var(--dim)}
+.mbox.mdone .snm{color:var(--dim)}
 .fabadge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.06em;
   padding:3px 7px;border-radius:4px;background:var(--signal-s);color:var(--signal)}
 .dembadge{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:800;
@@ -526,7 +532,8 @@ tbody tr.hllive td:first-child{box-shadow:inset 3px 0 0 var(--go)}
 .mrow .side.wdside .snm{text-decoration:line-through}
 .nowside.wdside{background:transparent;border-color:var(--line2);color:#5A6577}
 .nowside.wdside .nnm{text-decoration:line-through}
-.slot.wdslot{opacity:.5}
+/* Dim by colour, not opacity — see the .mbox.mdone note above. */
+.slot.wdslot{color:#5A6577}
 .slot.wdslot .nm{text-decoration:line-through;color:#5A6577}
 .slot .wdtag{margin-left:auto;flex:0 0 auto}
 .mbox.mlive{border-color:var(--go);box-shadow:0 0 0 1px var(--go),0 0 16px rgba(61,190,122,.25)}
