@@ -2,283 +2,1791 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RoboRacer 2026 — Live Results</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IFAC 2026 RoboRacer — Live</title>
 <style>
 :root{
-  --tarmac:#12161C; --t2:#1B222B; --t3:#242C37; --line:#37414F;
-  --paint:#EDEFF2; --dim:#8A97A8; --signal:#F5C518;
-  --go:#3DBE7A; --stop:#E0483B; --blue:#4E9CE8;
-  --sans:"Inter",-apple-system,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  /* --- 레퍼런스 팔레트 --- */
+  --bg:#0B0E13; --tarmac:#12161C; --t2:#1B222B; --t3:#242C37; --t4:#2C3542;
+  --line:#37414F; --line2:#2A323D;
+  --paint:#EDEFF2; --dim:#8A97A8; --dim2:#6C7889;
+  --signal:#F5C518; --signal-d:#C99F0B; --signal-s:rgba(245,197,24,.16);
+  --go:#3DBE7A; --go-s:rgba(61,190,122,.16);
+  --stop:#E0483B; --blue:#4E9CE8; --teal:#33C3D6;
+  /* Pot colours — the same set the draw tool uses, so a team keeps its
+     colour from the pot table through to the draw. */
+  --p1:#F2789F; --p2:#7FB2FF; --p3:#A78BFA; --p4:#FF8A5B; --p5:#3DBE7A; --p6:#5FD3C0;
+  --sans:"Inter","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,"D2Coding",monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#0B0E13;min-height:100%}
-body{font-family:var(--sans);color:var(--paint);-webkit-font-smoothing:antialiased}
+html,body{background:var(--bg);min-height:100%}
+body{
+  font-family:var(--sans);color:var(--paint);font-size:14px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;padding-bottom:240px;
+}
 ::selection{background:var(--signal);color:var(--tarmac)}
 ::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
-a{color:inherit}
-
-/* ---------- top bar ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line)}
-.htop{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:16px 32px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--go);box-shadow:0 0 10px var(--go);flex:none}
-.dot.off{background:var(--stop);box-shadow:0 0 10px var(--stop)}
-.htitle{font-weight:800;font-size:17px;letter-spacing:-.01em}
-.hsub{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.14em}
-.hright{margin-left:auto;display:flex;align-items:center;gap:14px}
-.hupdated{font-family:var(--mono);font-size:12px;color:var(--dim)}
-
-.tabs{max-width:1280px;margin:0 auto;display:flex;gap:4px;padding:0 32px}
-.tab{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--dim);
-  background:none;border:0;padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
-.tab:hover{color:var(--paint)}
-.tab.active{color:var(--signal);border-bottom-color:var(--signal)}
-
-main{max-width:1280px;margin:0 auto;padding:36px 32px 90px}
-.panel{display:none}
-.panel.on{display:block;animation:fadein .3s ease}
-@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-.section{margin-bottom:44px}
-.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap}
-.sectitle{font-size:22px;font-weight:800;letter-spacing:-.01em}
-.secsub{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
-
-.state{padding:60px 20px;text-align:center;color:var(--dim);font-size:14px}
-.state.err{color:#F2A79F}
-.state code{font-family:var(--mono);background:var(--t3);padding:2px 7px;border-radius:4px}
-
-/* ---------- buttons / toggles ---------- */
-.toggle{display:inline-flex;gap:2px;background:var(--t2);border:1px solid var(--line);border-radius:8px;padding:3px}
-.toggle button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--dim);
-  background:none;border:0;padding:8px 14px;border-radius:6px;cursor:pointer;transition:.15s}
-.toggle button.active{background:var(--signal);color:var(--tarmac)}
-.toggle button:hover:not(.active){color:var(--paint)}
-
-/* ---------- qualifying table ---------- */
-table{width:100%;border-collapse:collapse;font-size:14px}
-.qtable th{text-align:left;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em;
-  padding:10px 14px;border-bottom:1px solid var(--line);background:var(--t2);position:sticky;top:106px}
-.qtable td{padding:11px 14px;border-bottom:1px solid rgba(55,65,79,.5)}
-.qtable tr:hover td{background:rgba(255,255,255,.02)}
-.qtable .rankcell{font-family:var(--mono);font-weight:800;color:var(--signal)}
-.qtable .name{font-weight:600}
-.badge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.06em;
-  padding:3px 7px;border-radius:4px}
-.badge.fa{background:rgba(245,197,24,.16);color:var(--signal)}
+::-webkit-scrollbar-thumb:hover{background:var(--dim2)}
 .mono{font-family:var(--mono)}
-.dimtext{color:var(--dim)}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,14,19,.93);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.hbar{display:flex;align-items:center;gap:16px;padding:16px 32px;max-width:1560px;margin:0 auto}
+h1{font-size:17px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+h1 small{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;color:var(--dim);margin-top:3px;
+}
+.hspace{flex:1}
+nav{display:flex;gap:4px;padding:0 32px;overflow-x:auto;max-width:1560px;margin:0 auto}
+nav button{
+  font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;
+  color:var(--dim);background:none;border:0;border-bottom:2px solid transparent;
+  padding:14px 18px;cursor:pointer;white-space:nowrap;transition:.15s;
+}
+nav button:hover{color:var(--paint)}
+nav button.on{color:var(--signal);border-bottom-color:var(--signal)}
+.actbar{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid var(--line)}
+.actbar:empty{display:none}
+.segtog{display:inline-flex;gap:2px;background:var(--t3);border:1px solid var(--line);border-radius:8px;padding:3px;flex:0 0 auto}
+.segtog button{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;
+  color:var(--dim);background:none;border:0;padding:7px 14px;border-radius:6px;cursor:pointer;transition:.15s}
+.segtog button:hover:not(.on){color:var(--paint)}
+.segtog button.on{background:var(--signal);color:var(--tarmac)}
+.langsw{display:inline-flex;gap:2px;background:var(--t2);border:1px solid var(--line);border-radius:8px;padding:3px;flex:0 0 auto}
+.langsw button{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;
+  color:var(--dim);background:none;border:0;padding:7px 12px;border-radius:6px;cursor:pointer;transition:.15s;
+}
+.langsw button:hover:not(.on){color:var(--paint)}
+.langsw button.on{background:var(--signal);color:var(--tarmac)}
+.pill{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;
+  padding:5px 10px;border-radius:100px;border:1px solid var(--line);color:var(--dim);
+}
+.pill.ok{border-color:var(--signal);color:var(--signal)}
+
+/* ---------- layout ---------- */
+main{max-width:1560px;margin:0 auto;padding:32px 32px 40px}
+section.tab{display:none}
+section.tab.on{display:block;animation:fadein .28s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--t2);border:1px solid var(--line);border-radius:10px;margin-bottom:20px}
+.card>*:last-child{border-bottom-left-radius:9px;border-bottom-right-radius:9px;overflow:hidden}
+.card>h2{
+  margin:0;padding:14px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--paint);background:var(--t2);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;
+  position:sticky;top:var(--hh,104px);z-index:20;
+  border-radius:9px 9px 0 0;
+  white-space:nowrap;overflow:hidden;
+}
+.card>h2 .sub{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.card>h2:hover{background:var(--t3)}
+.card>h2 .cav{color:var(--signal);font-size:10px;width:10px;flex:none}
+.card>h2 .sub{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;
+  color:var(--dim);text-transform:none;
+}
+.card>h2.stuck{box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.card.fold>h2{border-bottom:0}
+.card.fold>*:not(h2){display:none}
+.body{padding:20px}
+.card>div:not(.body){overflow-x:auto}
+.grid2{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;align-items:start}
+.grid2>.card{min-width:0}
+@media(max-width:1400px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.legend{color:var(--dim);font-size:12.5px;line-height:1.65;margin:0 0 12px}
+.legend b{color:var(--paint);font-weight:700}
+.legend code{font-family:var(--mono);background:var(--t3);padding:2px 7px;border-radius:4px;font-size:12px}
+
+/* ---------- controls ---------- */
+button.btn{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;
+  background:var(--t3);border:1px solid var(--line);color:var(--paint);
+  padding:9px 15px;border-radius:7px;cursor:pointer;transition:.15s;
+}
+button.btn:hover{border-color:var(--dim);background:var(--t4)}
+button.btn.pri{background:var(--signal);border-color:var(--signal);color:var(--tarmac)}
+button.btn.pri:hover{background:#FFD838;border-color:#FFD838}
+button.btn.dgr:hover{border-color:var(--stop);color:#F2A79F}
+button.btn.sm{padding:7px 12px;font-size:11.5px}
+input,select{
+  font-family:var(--sans);font-size:13px;color:var(--paint);
+  background:var(--t3);border:1px solid var(--line);border-radius:6px;padding:7px 10px;
+  transition:.15s;
+}
+input:hover,select:hover{border-color:var(--dim2)}
+input:focus,select:focus{outline:none;border-color:var(--signal);box-shadow:0 0 0 3px rgba(245,197,24,.12)}
+input::placeholder{color:var(--dim2)}
+input.t{width:76px;text-align:center;font-family:var(--mono)}
+input.t3{width:52px;text-align:center;font-family:var(--mono)}
+label.lb{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--dim)}
+.lb{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--dim)}
+.chk{display:inline-flex;align-items:center;gap:7px;color:var(--dim);font-size:12px;cursor:pointer;font-family:var(--mono)}
+.chk input{accent-color:var(--signal)}
+.tsel{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;vertical-align:middle}
+.tsel + button, .tsel + .nb{margin-left:7px;vertical-align:middle}
+.tsel select{width:44px;padding:6px 0 6px 4px;text-align:center;font-family:var(--mono);font-size:12.5px}
+.tsel.hms select{width:44px}
+.tsel select:disabled{opacity:.5;cursor:not-allowed}
+.tsel i{color:var(--dim2);font-style:normal;font-family:var(--mono);font-size:11px}
+.lapcell{white-space:nowrap}
+.lapcell>*{vertical-align:middle}
+.lapcell .tsel,.lapcell input,.lapcell .unit{display:inline-block}
+/* td 에 flex 를 걸면 행 정렬이 깨지므로, 간격은 여백으로 준다 */
+.lapcell input{margin-right:5px}
+.lapcell .unit{margin-right:8px}
+.lapcell button{vertical-align:middle}
+.lapcell input{width:62px;text-align:right;font-family:var(--mono)}
+.lapcell .unit{font-family:var(--mono);color:var(--dim2);font-size:11px}
+button.nb{
+  font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.04em;
+  padding:5px 6px;border-radius:5px;background:var(--t3);border:1px solid var(--line);
+  color:var(--dim);cursor:pointer;transition:.15s;
+}
+button.nb:hover{border-color:var(--dim);color:var(--paint)}
+button.nb.on{background:var(--signal);border-color:var(--signal);color:var(--tarmac)}
+
+/* toggle switch */
+.sw{position:relative;width:34px;height:18px;flex:none;cursor:pointer}
+.sw input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.sw span{position:absolute;inset:0;background:var(--t4);border:1px solid var(--line);border-radius:10px;transition:.15s}
+.sw span:after{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--dim);transition:.15s}
+.sw input:checked+span{background:var(--signal);border-color:var(--signal)}
+.sw input:checked+span:after{left:18px;background:var(--tarmac)}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);background:var(--t3);text-align:left;white-space:nowrap;
+  padding:11px 14px;border-bottom:1px solid var(--line);
+}
+td{padding:8px 9px;border-bottom:1px solid rgba(55,65,79,.45);vertical-align:middle}
+td.mono{white-space:nowrap}
+th{padding-left:9px;padding-right:9px}
+/* 번호는 우측 정렬인데 머리글은 좌측이라 열이 어긋나 보였다 — 숫자에 맞춘다 */
+.sheetbox th:first-child+th{text-align:right}
+tbody tr{transition:background .12s}
+tbody tr:hover td{background:rgba(255,255,255,.025)}
+tbody tr.dragging{opacity:.35}
+tbody tr.dragover td{box-shadow:inset 0 2px 0 var(--signal)}
+td.num{font-family:var(--mono);font-size:13px;font-weight:800;color:var(--signal);text-align:right;width:48px}
+td.grip{width:22px;color:var(--line);cursor:grab;text-align:center;user-select:none;font-size:12px}
+tr:hover td.grip{color:var(--dim)}
+.empty{color:var(--dim);padding:56px 20px;text-align:center;font-size:13.5px}
+.sb{
+  display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.04em;
+  padding:3px 6px;border-radius:4px;background:rgba(51,195,214,.14);color:var(--teal);
+}
+td .sb{margin-right:6px;vertical-align:1px}
+
+.nb.done{background:var(--go);border-color:var(--go);color:#07210F}
+tr.rdone td{opacity:.5}
+tr.rdone td.num{color:var(--go)}
+.mbox.mdone{opacity:.72;border-color:rgba(61,190,122,.4)}
+.fabadge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.06em;
+  padding:3px 7px;border-radius:4px;background:var(--signal-s);color:var(--signal)}
+.dembadge{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:800;
+  padding:2px 7px;border-radius:4px;background:rgba(224,72,59,.16);color:#F2A79F}
+select.demon{border-color:var(--stop);color:#F2A79F}
+
+/* ---------- roster ---------- */
+.rosterwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:8px}
+.rchip{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:7px;
+  background:var(--t3);border:1px solid var(--line);cursor:pointer;transition:.13s;
+  font-size:13px;font-weight:500;text-align:left;color:var(--paint);width:100%;
+}
+.rchip:hover{border-color:var(--signal);background:var(--t4)}
+.rchip .rn{font-family:var(--mono);font-size:10.5px;color:var(--dim2);min-width:18px}
+.rchip .rt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rchip .rk{font-family:var(--mono);font-size:10px;color:var(--dim2)}
+.rchip.done{background:transparent;border-color:var(--line2);color:var(--dim2);cursor:default}
+.rchip.done:hover{border-color:var(--line2);background:transparent}
+.rchip.done .rt{text-decoration:line-through}
+.rchip.done .rk{color:var(--go)}
+.rchip.hide{display:none}
+.rsep{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:6px 0 2px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dim2)}
+.rsep:after{content:"";flex:1;height:1px;background:var(--line2)}
+.rsep b{color:var(--go);font-size:11px;order:3}
+.rchip.extra{border-style:dashed}
+.rchip.extra .rn{color:var(--signal)}
+.rchip.extra .rt{text-decoration:none;color:var(--dim)}
 
 /* ---------- group cards ---------- */
-.gridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
-.gcard{background:var(--t2);border:1px solid var(--line);border-radius:10px;padding:18px 20px;cursor:pointer;
-  transition:.15s;text-align:left}
-.gcard:hover{border-color:var(--signal);transform:translateY(-2px)}
-.gcard.sel{border-color:var(--signal);background:rgba(245,197,24,.06)}
-.gcard .gname{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--signal)}
-.gcard .gstatus{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);margin-top:4px}
-.gcard .gstatus.done{color:var(--go)}
-.gcard ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:4px}
-.gcard li{font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.grp{background:var(--t3);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;transition:.15s}
+.grp.fixed{border-color:var(--signal-d);background:rgba(245,197,24,.05)}
+/* Pot cards carry their pot colour on the header, so the same team is
+   recognisable here, in the practice groups and in the draw tool. */
+.grp[style*="--pc"] h3{color:var(--pc)}
+.grp[style*="--pc"]{border-color:color-mix(in srgb,var(--pc) 34%,var(--line))}
+.grp h3{
+  margin:0;padding:12px 14px;font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.06em;
+  color:var(--signal);text-transform:uppercase;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;
+}
+.grp h3 .cnt{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--dim);text-transform:none}
+.grp h3 .cnt.full{color:var(--signal)}
+.fixlb{font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--dim2)}
+.fixlb.on{color:var(--signal)}
+.glist{min-height:40px;padding:8px;display:flex;flex-direction:column;gap:3px;
+  flex:1 1 auto}                                   /* 카드 아래 빈 공간까지 드롭 영역으로 */
+.gwrap{align-items:stretch}                        /* 같은 줄의 카드 높이를 맞춘다 */
+.glist.dragover{outline:1px dashed var(--signal);outline-offset:-3px;border-radius:6px;
+  background:rgba(245,197,24,.06)}
+.gi{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;
+  background:var(--t2);border:1px solid transparent;cursor:grab;font-size:13px;transition:.12s;
+}
+.gi:hover{border-color:var(--line);background:var(--t4)}
+.gi.dragging{opacity:.35}
+.gi.dragover{border-color:var(--signal);box-shadow:inset 0 2px 0 var(--signal)}
+.gi .ix{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--dim);min-width:16px}
+.gi .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.gi .mt{font-family:var(--mono);font-size:10.5px;color:var(--dim2)}
+.gi .mt.rk{font-size:11px;font-weight:700;color:var(--signal);
+  background:rgba(245,197,24,.12);padding:2px 6px;border-radius:4px}
+.gi .gx{background:none;border:0;color:var(--line);font-size:13px;line-height:1;cursor:pointer;
+  padding:2px 3px;border-radius:3px;flex:0 0 auto;opacity:0;transition:.12s}
+.gi:hover .gx{opacity:1}
+.gi .gx:hover{color:#F2A79F;background:rgba(224,72,59,.14)}
 
-.gdetail{margin-top:24px;background:var(--t2);border:1px solid var(--line);border-radius:10px;
-  padding:24px 26px;display:none}
-.gdetail.on{display:block;animation:fadein .3s ease}
-.gdetail h3{font-family:var(--mono);font-size:16px;color:var(--signal);margin-bottom:16px;letter-spacing:.06em}
-.matchrow{display:grid;grid-template-columns:70px 1fr 30px 1fr;align-items:center;gap:10px;
-  padding:12px 14px;background:var(--t3);border-radius:8px;margin-bottom:8px;font-size:14px}
-.matchrow .mid{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em}
-.matchrow .side{padding:6px 10px;border-radius:5px;font-weight:600;text-align:center}
-.matchrow .side.win{background:rgba(61,190,122,.18);color:#9FE6BE;font-weight:800}
-.matchrow .vs{text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim)}
-.matchnote{font-family:var(--mono);font-size:10px;color:var(--dim);text-align:center;margin-top:4px}
+/* ---------- brackets ---------- */
+.d1g{background:var(--t3);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.d1g>.hd{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none;transition:.15s}
+.d1g>.hd:hover{background:var(--t4)}
+.d1g>.hd .tw{color:var(--signal);width:12px;font-size:11px}
+.d1g>.hd b{font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--paint)}
+.d1g>.hd .adv{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.d1g>.hd{min-width:0}
+.d1g>.hd b{white-space:nowrap}
+.d1g>.bd{padding:18px 16px;border-top:1px solid var(--line);display:none}
+.d1g.open>.bd{display:block}
+.tree{overflow-x:auto;overflow-y:hidden;padding:4px 2px 14px}
+.tcanvas{position:relative}
+/* Connector lines sit behind everything. A run that passes a box has to
+   disappear under it rather than being drawn across the team names — the
+   vertical legs are routed from a box centre, so they do cross other
+   boxes on the way down. */
+.tcanvas svg{position:absolute;left:0;top:0;pointer-events:none;z-index:0}
+.tcanvas .mbox{position:absolute;width:212px;height:76px;z-index:2;min-width:0;
+  background:var(--t2)}
+.tcanvas .mbox.tall{height:100px}
+.tcanvas .mh{height:24px;line-height:16px;padding:4px 10px}
+.tcanvas .slot{height:26px;line-height:18px;padding:4px 10px}
+.tcanvas .rh{
+  position:absolute;top:0;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.1em;
+  color:var(--dim);text-transform:uppercase;white-space:nowrap;z-index:3;
+}
+.bracket{display:flex;gap:28px;overflow-x:auto;padding:4px 2px 12px}
+.round{display:flex;flex-direction:column;justify-content:space-around;min-width:212px;gap:10px}
+.round>.rh{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:2px}
+.mbox{background:var(--t2);border:1px solid var(--line);border-radius:8px;min-width:212px;overflow:hidden}
+.mbox .mh{
+  display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--t4);
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);
+}
+.mbox .mh{white-space:nowrap}
+.mbox .mh .lbl{font-weight:800;color:var(--signal);letter-spacing:.08em;flex:none}
+.mbox .mh>span:not(.lbl):not(.ord){overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mbox .mh .ord{margin-left:auto;flex:none;font-weight:800;font-size:11px;color:var(--signal);
+  background:rgba(245,197,24,.12);padding:2px 6px;border-radius:4px}
+.slot{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;font-size:13px;font-weight:500;transition:.12s}
+.slot+.slot{border-top:1px solid rgba(55,65,79,.5)}
+.slot:hover{background:var(--t4)}
+.slot .sd{font-family:var(--mono);font-size:10px;color:var(--dim2);min-width:12px}
+.slot .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot.win{background:var(--go-s);color:#9FE6BE;font-weight:700}
+.slot.win .sb{background:rgba(61,190,122,.18);color:#9FE6BE}
+.slot.lose{color:var(--dim2)}
+.slot.lose .nm{text-decoration:line-through}
+.slot.lose .sb{background:transparent;color:var(--dim2);border:1px solid var(--line2)}
+.slot.tbd{color:var(--dim2);font-style:italic}
+.lnk{fill:none;stroke:var(--line);stroke-width:1.5}
+.lnk.lose{stroke-dasharray:4 4;stroke:var(--line2)}
+.lnk.lit{stroke:var(--signal);stroke-width:2.5;filter:drop-shadow(0 0 5px rgba(245,197,24,.5))}
+.lnk.lit.lose{stroke:var(--dim2);stroke-width:2;filter:none}
 
-/* ---------- final tournament ---------- */
-.roundnav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
-.roundnav button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--dim);
-  background:var(--t2);border:1px solid var(--line);padding:9px 16px;border-radius:100px;cursor:pointer;transition:.15s}
-.roundnav button.active{background:var(--signal);color:var(--tarmac);border-color:var(--signal)}
-.roundnav button:hover:not(.active){color:var(--paint);border-color:var(--dim)}
 
-.bmatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.bmatch{background:var(--t2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.bmatch .bh{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.08em;padding:8px 14px;
-  background:var(--t3)}
-.bside{display:flex;align-items:center;gap:10px;padding:12px 14px;font-size:14px;font-weight:600;
-  border-bottom:1px solid rgba(55,65,79,.5)}
-.bside:last-of-type{border-bottom:0}
-.bside.win{background:rgba(61,190,122,.14);color:#9FE6BE}
-.bside .bseed{font-family:var(--mono);font-size:11px;color:var(--dim);min-width:16px}
 
-footer{max-width:1280px;margin:0 auto;padding:20px 32px;color:var(--dim);font-size:12px;font-family:var(--mono)}
+/* ---------- 평평한 섹션 (카드 중첩 없이 접기 지원) ---------- */
+.sect{margin:28px 0 20px}
+.secthead{
+  display:flex;align-items:center;gap:12px;margin:0 0 14px;cursor:pointer;user-select:none;
+  font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--paint);
+}
+.secthead .cav{color:var(--signal);font-size:11px;width:11px;flex:none}
+.secthead .hint{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;
+  color:var(--dim2);text-transform:uppercase}
+.sect.fold>*:not(.secthead){display:none}
+.sect .sbody{padding:0}
+.sect .actbar{padding:0 0 14px;border-bottom:0}
+.sect .legend{margin-bottom:14px}
+.sheetbox{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.sheetbox:empty{display:none}
+
+
+/* ---------- 현재 경기 띠 ---------- */
+.nowbar{position:sticky;top:var(--hh,104px);z-index:30;margin-bottom:20px}
+.nowbar:empty{display:none}
+.nowin{
+  background:linear-gradient(180deg,#16202c 0%,#131b25 100%);
+  border:1px solid var(--go);border-radius:12px;padding:16px 20px 18px;
+  box-shadow:0 10px 34px rgba(0,0,0,.5), 0 0 0 1px rgba(61,190,122,.2);
+}
+.nowin.idle{border-color:var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.nowtop{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.nowtag{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.16em;
+  color:#07210F;background:var(--go);padding:4px 9px;border-radius:5px}
+.nowin.idle .nowtag{background:var(--line);color:var(--dim)}
+.nowseq{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--paint);line-height:1}
+.nowid{font-family:var(--mono);font-size:14px;font-weight:800;letter-spacing:.08em;color:var(--signal)}
+.nownote{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+.nowprog{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);
+  display:flex;align-items:center;gap:10px}
+.nowprog .bar{width:120px;height:5px;border-radius:3px;background:var(--t4);overflow:hidden}
+.nowprog .bar i{display:block;height:100%;background:var(--go);border-radius:3px}
+.nowmid{display:flex;align-items:stretch;gap:12px}
+.nowside{
+  flex:1;display:flex;align-items:center;gap:11px;justify-content:center;padding:18px 18px;
+  border-radius:10px;background:var(--t3);border:2px solid transparent;cursor:pointer;
+  font-size:19px;font-weight:800;overflow:hidden;transition:.13s;min-width:0;
+}
+.nowside:hover{border-color:var(--dim2);background:var(--t4)}
+.nowside.win{background:rgba(61,190,122,.22);border-color:var(--go);color:#C6F5DC}
+.nowside.lose{background:transparent;border-color:var(--line2);color:#5A6577;font-weight:600}
+.nowside.lose .nnm{text-decoration:line-through}
+.nowside.tbd{background:transparent;border:2px dashed var(--line2);color:var(--dim2);
+  font-size:15px;font-weight:600;font-style:italic;cursor:default}
+.nowside .nnm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nowside .sb{font-size:11px;padding:4px 7px}
+.nowvs{display:flex;align-items:center;font-family:var(--mono);font-size:12px;font-weight:800;
+  letter-spacing:.14em;color:var(--dim2);flex:0 0 auto}
+.nowact{display:flex;gap:9px;margin-top:14px;justify-content:flex-end;align-items:center}
+.nowhint{margin-right:auto;font-family:var(--mono);font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--dim2)}
+.btn.go{background:var(--go);border-color:var(--go);color:#07210F;font-size:13px;padding:11px 20px}
+.btn.go:hover{background:#5AD494;border-color:#5AD494}
+.btn.go:disabled{opacity:.4;cursor:not-allowed;background:var(--t3);border-color:var(--line);color:var(--dim2)}
+
+tr.offsep td{background:transparent;border:0;border-top:1px solid var(--line);padding:14px 11px 8px}
+tr.offsep span{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--dim2)}
+tr.offsep b{font-family:var(--mono);font-size:11px;color:var(--dim2);margin-left:10px}
+tr.offrow td{opacity:.42}
+tr.offrow td:nth-child(3){text-decoration:line-through}
+
+.wotag{font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.08em;
+  padding:4px 7px;border-radius:5px;background:var(--t4);color:var(--dim2)}
+tr.rwo td{opacity:.4}
+.gcard .gt div[data-t]{cursor:grab;border-radius:5px;padding:2px 5px;margin:0 -5px;transition:.1s}
+.gcard .gt div[data-t]:hover{background:var(--t3);outline:1px solid var(--line)}
+.gcard .gt div[data-t]:active{cursor:grabbing}
+.gcard .gt .gh6{color:var(--line);font-size:9px;letter-spacing:-1px;flex:0 0 auto;
+  opacity:0;transition:.1s;font-weight:400}
+.gcard .gt div[data-t]:hover .gh6{opacity:1;color:var(--signal)}
+.gcard .gt div.dragging{opacity:.3}
+.gcard .gt div.dragover{box-shadow:inset 0 0 0 1px var(--signal);background:rgba(245,197,24,.16)}
+.gcard .gt div[data-t].picked,
+.gcard .gt div[data-t].picked:hover{background:rgba(245,197,24,.22);
+  outline:1px solid var(--signal);box-shadow:none}
+.gcard .gt div[data-t].picked span[data-raw]{color:var(--signal);font-weight:700}
+
+.gcard.dropinto{border-color:var(--signal)}
+.gi.wd{opacity:.5}
+.gi.wd .nm{text-decoration:line-through;color:#5A6577}
+.gi .wdtag{margin-left:auto}
+.gcard .gt div.wd{color:#5A6577}
+.gcard .gt div.wd span[data-raw]{text-decoration:line-through}
+.ptag{font-family:var(--mono);font-size:9px;font-weight:700;font-style:normal;letter-spacing:.02em;
+  color:var(--teal);background:rgba(51,195,214,.13);padding:2px 5px;border-radius:3px;
+  margin-left:auto;flex:0 0 auto;line-height:1.25;align-self:center}
+.wdtag{font-family:var(--mono);font-size:8.5px;font-weight:800;letter-spacing:.08em;font-style:normal;
+  padding:1px 4px;border-radius:3px;background:rgba(224,72,59,.18);color:#F2A79F;margin-left:auto}
+
+/* 경기 순서 시트 — 이긴 팀 셀 강조 (글꼴·두께는 상태와 무관하게 고정) */
+td.pick{white-space:nowrap;cursor:pointer;padding:5px 11px}
+td.pick .pk{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:8px;
+  border:1px solid transparent;transition:.12s;max-width:100%;
+  font-size:13.5px;font-weight:600;letter-spacing:0}
+td.pick:hover .pk{border-color:var(--line);background:var(--t3)}
+td.pick.win .pk{background:rgba(245,197,24,.14);border-color:var(--signal);color:#FFE79B}
+td.pick.win:hover .pk{background:rgba(245,197,24,.2);border-color:var(--signal)}
+td.pick.lose .pk{color:var(--dim2)}
+td.pick.lose .pk span[data-raw]{text-decoration:line-through}
+td.pick.empty{color:var(--dim2);font-style:italic;font-size:12.5px}
+
+/* 순서 변경 중인 항목 표시 */
+tr.picked td{background:rgba(245,197,24,.13)}
+tr.picked td:first-child{box-shadow:inset 3px 0 0 var(--signal)}
+tr.picked td.num{color:var(--signal)}
+.gi.picked{background:rgba(245,197,24,.16);border-color:var(--signal);
+  box-shadow:0 0 0 1px var(--signal)}
+.picked{position:relative}
+
+/* ---------- 순위 1·2·3위 ---------- */
+.medal{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;
+  border-radius:50%;font-family:var(--mono);font-size:12.5px;font-weight:800;line-height:1}
+tr.md-gold   .medal{background:linear-gradient(180deg,#FFDE5C,#D9A400);color:#3A2A00;
+  box-shadow:0 0 0 1px rgba(255,222,92,.5),0 0 12px rgba(255,200,40,.3)}
+tr.md-silver .medal{background:linear-gradient(180deg,#E6EDF5,#A9B6C6);color:#2A3140;
+  box-shadow:0 0 0 1px rgba(230,237,245,.4)}
+tr.md-bronze .medal{background:linear-gradient(180deg,#E0A46A,#B06A28);color:#3A2008;
+  box-shadow:0 0 0 1px rgba(224,164,106,.4)}
+tr.md-gold   td{background:rgba(255,210,60,.07)}
+tr.md-silver td{background:rgba(200,214,230,.055)}
+tr.md-bronze td{background:rgba(205,127,50,.06)}
+tr.md-gold   td:nth-child(3){color:#FFDE5C;font-weight:800}
+tr.md-silver td:nth-child(3){color:#E6EDF5;font-weight:800}
+tr.md-bronze td:nth-child(3){color:#E8B489;font-weight:800}
+tr.md-gold td:first-child{box-shadow:inset 3px 0 0 #FFD23C}
+tr.md-silver td:first-child{box-shadow:inset 3px 0 0 #C8D6E6}
+tr.md-bronze td:first-child{box-shadow:inset 3px 0 0 #CD7F32}
+
+/* ---------- H2H group grid ---------- */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px;margin-bottom:22px}
+.gcard{
+  background:var(--tarmac);border:1px solid var(--line2);border-radius:9px;padding:12px 13px;
+  cursor:pointer;transition:.14s;text-align:left;width:100%;color:var(--paint);
+}
+.gcard:hover{border-color:var(--dim2);background:var(--t2)}
+.gcard.sel{background:var(--t3);border-color:var(--signal);box-shadow:0 0 0 1px var(--signal)}
+.gcard.live{border-color:var(--go);box-shadow:0 0 0 1px var(--go)}
+.gcard.sel.live{box-shadow:0 0 0 1px var(--signal),0 0 0 3px rgba(61,190,122,.35)}
+.gcard .gh{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;color:var(--signal)}
+.gcard .gs{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;margin:2px 0 10px;color:var(--dim2)}
+.gcard .gs.done{color:var(--go)}
+.gcard .gs.live{color:var(--go)}
+.gcard .gt{font-size:12px;line-height:1.85;color:var(--dim)}
+.gcard .gt div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:6px;align-items:center;min-height:22px}
+.gcard .gt em{font-family:var(--mono);font-size:9.5px;font-style:normal;color:var(--dim2);flex:0 0 auto;min-width:20px}
+.gcard .gt div.adv{color:#9FE6BE;font-weight:600}
+.gcard .gt div.out{color:#5A6577;text-decoration:line-through}
+
+/* 선택한 조 — 카드 배경 위에 직접 얹어 중첩감을 없앤다 */
+.gdetail{border-top:1px solid var(--line);margin:0 -20px -20px;padding:0}
+.gdetail>.dh{display:flex;align-items:center;gap:12px;padding:15px 20px 13px;
+  font-family:var(--mono);font-size:14px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.gdetail>.dh .dn{font-size:11px;color:var(--dim);font-weight:600;letter-spacing:.04em}
+.mrow{display:flex;align-items:stretch;gap:0;border-top:1px solid rgba(55,65,79,.35)}
+.mrow.done{opacity:.42}
+.mrow.live{background:rgba(61,190,122,.09)}
+.mrow .mno{
+  flex:0 0 88px;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  padding:14px 0 14px 20px;border-left:3px solid transparent;
+}
+.mrow.live .mno{border-left-color:var(--go)}
+.mrow .mno b.byen{font-size:17px;letter-spacing:0;color:var(--line)}
+.mrow .mno b{font-family:var(--mono);font-size:19px;font-weight:800;color:var(--paint);line-height:1}
+.mrow.live .mno b{color:var(--go)}
+.mrow.done .mno b{color:var(--dim2)}
+.mrow .mno span{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--signal);
+  letter-spacing:.02em;background:rgba(245,197,24,.12);padding:2px 6px;border-radius:4px;align-self:flex-start}
+.mrow.done .mno span{color:var(--dim2);background:var(--t3)}
+.mrow .mbody{flex:1;display:flex;align-items:center;gap:12px;padding:10px 20px 10px 0;min-width:0}
+.mrow .side{
+  flex:1;display:flex;align-items:center;gap:9px;justify-content:flex-end;padding:11px 15px;border-radius:8px;
+  background:var(--t3);border:1px solid transparent;cursor:pointer;font-size:15px;font-weight:700;
+  overflow:hidden;transition:.13s;min-width:0;
+}
+.mrow .side.b{justify-content:flex-start}
+.mrow .side:hover{border-color:var(--dim2);background:var(--t4)}
+.mrow .side.win{background:rgba(61,190,122,.2);border-color:rgba(61,190,122,.55);color:#B6F0D0}
+.mrow .side.lose{background:transparent;color:#5A6577;font-weight:500}
+.mrow .side.lose .snm{text-decoration:line-through}
+.mrow .side.tbd{background:transparent;border:1px dashed var(--line2);color:var(--dim2);
+  font-style:italic;font-size:13px;font-weight:500;cursor:default}
+.mrow .side .snm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .vs{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--dim2);flex:0 0 auto}
+.mrow .mnote{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--dim);
+  flex:0 0 152px;text-align:right;line-height:1.4}
+@media(max-width:900px){.mrow .mnote{display:none}}
+
+/* 순서 시트 하이라이트 */
+tbody tr.hlgroup td{background:rgba(245,197,24,.09)}
+tbody tr.hlgroup td.num{color:var(--signal)}
+tbody tr.hllive td{background:rgba(61,190,122,.16)}
+tbody tr.hllive td.num{color:var(--go)}
+tbody tr.hllive td:first-child{box-shadow:inset 3px 0 0 var(--go)}
+.mrow .side.wdside{background:transparent;border-color:var(--line2);color:#5A6577}
+.mrow .side.wdside .snm{text-decoration:line-through}
+.nowside.wdside{background:transparent;border-color:var(--line2);color:#5A6577}
+.nowside.wdside .nnm{text-decoration:line-through}
+.slot.wdslot{opacity:.5}
+.slot.wdslot .nm{text-decoration:line-through;color:#5A6577}
+.slot .wdtag{margin-left:auto;flex:0 0 auto}
+.mbox.mlive{border-color:var(--go);box-shadow:0 0 0 1px var(--go),0 0 16px rgba(61,190,122,.25)}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;z-index:200;background:rgba(6,9,14,.78);backdrop-filter:blur(3px);
+  display:none;align-items:center;justify-content:center;padding:24px}
+#modal.on{display:flex;animation:fadein .18s ease}
+#modal .mwin{background:var(--t2);border:1px solid var(--line);border-radius:12px;max-width:520px;width:100%;
+  box-shadow:0 24px 70px rgba(0,0,0,.6)}
+#modal .mtitle{
+  padding:16px 22px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);
+}
+#modal .mtext{padding:22px;white-space:pre-wrap;font-size:13.5px;line-height:1.7;color:var(--paint)}
+#modal .mact{padding:0 22px 20px;display:flex;gap:10px;justify-content:flex-end}
+#modal .minput{padding:0 22px 18px;display:none}
+#modal .minput input{width:100%;font-size:22px;font-weight:800;text-align:center;padding:12px}
+#modal.num .minput{display:block}
+
+/* ---------- log ---------- */
+#logbar{position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:rgba(11,14,19,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+#logbar .lh{display:flex;align-items:center;gap:12px;padding:9px 32px;border-bottom:1px solid var(--line);cursor:pointer}
+#logbar .lh b{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--signal);text-transform:uppercase}
+#logbar .lh .st{font-family:var(--mono);font-size:11.5px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#logbody{height:172px;overflow:auto;padding:8px 32px 12px;font-family:var(--mono);font-size:11.5px;line-height:1.7}
+#logbar.min #logbody{display:none}
+.le{white-space:pre-wrap;padding:1px 0}
+.le .ts{color:var(--dim2);margin-right:10px}
+.le.i .ms{color:#B4BFCE}
+.le.ok .ms{color:var(--go)}
+.le.w .ms{color:var(--signal)}
+.le.e .ms{color:#F2A79F}
+
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
-@media (max-width:640px){.matchrow{grid-template-columns:1fr}.matchrow .vs{display:none}}
+@media(max-width:760px){
+  .hbar,nav,#logbar .lh,#logbody{padding-left:16px;padding-right:16px}
+  main{padding:20px 16px 32px}
+}
+
+
+/* ---------- viewer additions ---------- */
+.livewrap{display:flex;align-items:center;gap:8px}
+.livedot{width:8px;height:8px;border-radius:50%;background:var(--go);
+  box-shadow:0 0 10px var(--go);flex:none}
+.livedot.off{background:var(--stop);box-shadow:0 0 10px var(--stop)}
+.upd{font-size:11px;color:var(--dim2);letter-spacing:.04em}
+
+/* DAY 1 / DAY 2 lives in the header, next to the team count.
+   Sized to match the .pill beside it: same font, same box height. */
+.hbar{align-items:center}
+.dayseg{padding:2px;border-radius:100px;align-self:center}
+.dayseg button{font-size:11px;line-height:1.4;padding:3px 13px;border-radius:100px;
+  letter-spacing:.08em}
+.hbar .pill{align-self:center;line-height:1.4}
+
+/* second heading inside a group detail (bracket follows the match list) */
+.gdetail .dh2{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+
+/* The fold caret was a text glyph (U+25BE / U+25B8). Both draw their triangle
+   high inside the em box, so even a perfectly centred box reads as "too high".
+   Draw it with a border triangle instead: the shape is the box, so centring
+   it is exact and the two states share one baseline. */
+.secthead{align-items:center}
+.secthead .cav{
+  display:inline-block;width:11px;height:25.5px;flex:none;
+  font-size:0;color:transparent;position:relative;
+}
+.secthead .cav::before{
+  content:"";position:absolute;left:50%;top:50%;
+  border-style:solid;transition:transform .15s ease;
+}
+/* expanded: pointing down (odd height, so shift by half a pixel) */
+.secthead .cav::before{
+  border-width:5px 4px 0 4px;
+  border-color:var(--signal) transparent transparent transparent;
+  transform:translate(-50%,-2.5px);
+}
+/* folded: pointing right */
+.sect.fold>.secthead .cav::before{
+  border-width:4px 0 4px 5px;
+  border-color:transparent transparent transparent var(--signal);
+  transform:translate(-50%,-4px);
+}
+
+/* The hint rides in a different font at a much smaller size, so centring the
+   boxes leaves its capitals sitting high against the title's. Nudge it down
+   to put the two cap-height centres on one line. */
+.secthead .hint{position:relative;top:0.5px}
+
+/* read-only: nothing in the sheets is interactive */
+.sheetbox td,.sheetbox th{cursor:default}
+.gi,.gcard>.gt>div{cursor:default}
+.gcard{cursor:pointer}
+
+/* Status pills in the race-order sheet. They are inline boxes, so left to
+   themselves they sit on the text baseline and ride ~3 px below the plain
+   text in the other cells; inline-flex centres them on the row instead. */
+.dntag,.lvtag{display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.1em;
+  padding:3px 7px;border-radius:4px;line-height:1}
+/* An inline-flex pill still hangs off the cell's text baseline, so in a row
+   made tall by the winner badges it sits low. Turning the cell into a flex
+   container fixes the alignment but collapses the row height, so keep the
+   table layout and lift the pill by the baseline's own descent instead. */
+.lvtag,.dntag,.wotag{position:relative;top:-3px}
+.dntag{color:var(--go);background:var(--go-s)}
+.lvtag{color:#07210F;background:var(--go)}
+
+/* The winner badge is a click target in the management tool, so it carries
+   generous padding. Nothing is clickable here, so tighten it until it hugs
+   the name rather than floating around it. */
+td.pick .pk{padding:2px 9px;border-radius:6px}
+
+/* winner cells keep the management look, but are not clickable here */
+td.pick{cursor:default}
+td.pick:hover .pk{border-color:transparent;background:none}
+td.pick.win:hover .pk{background:rgba(245,197,24,.14);border-color:var(--signal)}
+
+/* now-bar collapse */
+.nowtgl{background:none;border:0;color:var(--dim);font-size:12px;cursor:pointer;
+  padding:2px 6px;border-radius:4px;line-height:1}
+.nowtgl:hover{color:var(--paint);background:rgba(255,255,255,.06)}
+.nowin.mini{padding:10px 16px}
+.nowin.mini .nowmid{display:none}
+.nowin.mini .nowtop{margin-bottom:0}
+
+/* the viewer never shows editing affordances */
+.grip,.gx,.sw,.fixlb{display:none!important}
+
+/* ---------- pot colours ----------
+   The draw tool gives every pot its own colour and the audience learns them
+   there, so the viewer uses the same six. Pots and practice groups both carry
+   the tint: practice groups are seeded from the pots, so the colour tells you
+   at a glance which pot a team came from. */
+:root{--p1:#F2789F; --p2:#7FB2FF; --p3:#A78BFA; --p4:#FF8A5B; --p5:#3DBE7A; --p6:#5FD3C0}
+.grp[data-pot]{border-color:color-mix(in srgb, var(--pc) 38%, var(--line))}
+.grp[data-pot]>h3{color:var(--pc)}
+.grp[data-pot]>h3 .cnt{border-color:color-mix(in srgb, var(--pc) 45%, var(--line));
+  color:var(--pc)}
+.grp[data-pot]>h3::before{content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--pc);flex:none;margin-right:2px;
+  box-shadow:0 0 8px color-mix(in srgb, var(--pc) 60%, transparent)}
+/* Any pot badge — on a practice card or in the ranking table — carries the
+   colour of the pot it names, so the eye can follow a team from the draw
+   through to the standings. */
+/* the small pot tag on a day 1 group card */
+.ptag[data-pot]{color:var(--pc)!important;
+  background:color-mix(in srgb, var(--pc) 15%, transparent)!important;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--pc) 34%, transparent)}
+.sb[data-pot]{color:var(--pc);
+  background:color-mix(in srgb, var(--pc) 15%, transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--pc) 38%, transparent)}
+
+/* a team the draw still references but the roster no longer has */
+.gone{color:var(--dim2);font-style:italic}
+
+/* The WD badge is built for a flex row (it relies on margin-left:auto), so in
+   a plain table cell it collapses against the team name and hangs off the text
+   baseline. Rather than nudging it by hand — which only holds for one font
+   size — make the cell a flex line so the browser centres the two for us. */
+/* Two boxes of different font sizes on one text line cannot be centred by
+   CSS alone: `vertical-align:middle` aligns to the parent's x-height, not to
+   the cap-height the eye actually reads. `display:flex` on the cell would fix
+   it but drops the cell out of the table's row-height calculation.
+   So the badge is lifted by a measured amount — 2.5 px at the desktop size,
+   1.8 px at the phone size, both taken from rendered pixels. */
+td .wdtag{display:inline-flex;align-items:center;vertical-align:middle;
+  margin-left:7px;position:relative;top:-2.5px;line-height:1}
+/* Inside the winner/loser pill the badge is already a flex child, so the pill
+   centres it and supplies the gap. The nudge meant for bare cell text would
+   push it above the name and double the spacing. */
+td .pk .wdtag{top:0;margin-left:0}
+
+/* The running number is right-aligned but its heading was not, so "NO" sat
+   away from the column it labels. Align the heading to the numbers. */
+.sheetbox th:first-child{text-align:right}
+
+
+/* =========================================================
+   MOBILE — most spectators are on a phone.
+   Wide things (sheets, brackets) scroll inside their own box
+   so the page body itself never scrolls sideways.
+   ========================================================= */
+@media (max-width:900px){
+  body{padding-bottom:60px}
+  main{padding:16px 12px 32px}
+
+  /* --- header --- */
+  header .hbar{flex-wrap:wrap;gap:8px 10px;padding:10px 12px}
+  header h1{font-size:15px;flex:1 1 100%}
+  header h1 small{font-size:9px;letter-spacing:.1em}
+  .hbar .hspace{display:none}
+  .dayseg{order:3}
+  .pill{order:4;font-size:10px;padding:4px 9px}
+  .livewrap{order:5;margin-left:auto}
+  .upd{font-size:10px}
+
+  /* --- tab bar: swipeable, never wraps --- */
+  nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+      padding:0 12px;gap:2px}
+  nav::-webkit-scrollbar{display:none}
+  nav button{white-space:nowrap;font-size:11px;padding:11px 12px;flex:none}
+
+  /* --- section headings --- */
+  .secthead{font-size:15px;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .secthead .hint{flex:1 1 100%;order:9;font-size:9px}
+  .secthead .hspace{display:none}
+  .sect{margin:18px 0 14px}
+  /* Toggles are the main thing a spectator taps, so give them a fingertip's
+     worth of height (~44 px including the wrapper) rather than the desktop
+     size, which measured 26 px here. */
+  .segtog{margin-left:auto;padding:4px}
+  .segtog button{font-size:11px;padding:9px 13px;letter-spacing:.04em;min-height:34px}
+  .dayseg button{padding:7px 14px;min-height:30px}
+
+  /* --- sheets scroll inside their own frame ---
+     min-width:0 is required: without it the box refuses to shrink
+     below its table and the whole page scrolls sideways instead. */
+  .sect,.tab,main>*{min-width:0}
+  .sheetbox{overflow-x:auto;-webkit-overflow-scrolling:touch;
+    max-width:100%;min-width:0;width:100%;display:block}
+  .sheetbox table{min-width:560px}
+  /* Last line of defence against sideways scroll. `overflow-x:hidden` would
+     do it, but setting overflow on an ancestor silently kills position:sticky
+     for everything inside — which is how the NOW bar stopped following the
+     screen. `clip` confines the overflow without creating a scroll container. */
+  html,body{overflow-x:clip}
+  .sheetbox th,.sheetbox td{padding:8px 9px;font-size:12.5px}
+  td.pick .pk{padding:5px 9px}
+
+  /* A race-order row is a fixture: showing Team A without Team B tells the
+     reader nothing. Drop the status column, tighten the rest and let the two
+     team cells share what is left, so both names fit without scrolling. */
+  #d1Sheet table,#d2Sheet table{min-width:0;width:100%;table-layout:fixed}
+  #d1Sheet th:nth-child(2),#d1Sheet td:nth-child(2),
+  #d2Sheet th:nth-child(2),#d2Sheet td:nth-child(2){display:none}
+  /* With the status column gone, a finished race is signalled only by the row
+     fading — too faint to read at arm's length. Colour its running number
+     green instead: the number stays readable and the state is obvious. */
+  #d1Sheet tr.rdone td.num,#d2Sheet tr.rdone td.num{color:var(--go)}
+  #d1Sheet tr.rwo td.num,#d2Sheet tr.rwo td.num{color:var(--dim2)}
+  #d1Sheet th:nth-child(1),#d1Sheet td:nth-child(1),
+  #d2Sheet th:nth-child(1),#d2Sheet td:nth-child(1){width:26px;padding:6px 2px 6px 6px}
+  /* The match label was shrunk to 10 px to save width, but that left its
+     capitals a different height from every other cell and the row stopped
+     reading as one line. Keep it at the shared size and claw the width back
+     from padding instead. */
+  #d1Sheet th:nth-child(3),#d1Sheet td:nth-child(3),
+  #d2Sheet th:nth-child(3),#d2Sheet td:nth-child(3){width:56px;padding:6px 2px;
+    font-size:11px;letter-spacing:0}
+  #d1Sheet th:nth-child(4),#d1Sheet td:nth-child(4),
+  #d1Sheet th:nth-child(5),#d1Sheet td:nth-child(5),
+  #d2Sheet th:nth-child(4),#d2Sheet td:nth-child(4),
+  #d2Sheet th:nth-child(5),#d2Sheet td:nth-child(5){padding:6px 4px}
+  #d1Sheet td.pick,#d2Sheet td.pick{white-space:normal}
+  /* An odd vertical padding rounds the badge half a pixel off the text
+     beside it; keep it even so every cell lands on the same line. */
+  /* `display:flex` stretched the badge across the whole cell, so a short name
+     floated in a box three times its width. inline-flex keeps the ellipsis
+     behaviour while letting the badge shrink to the name, as on desktop. */
+  #d1Sheet td.pick .pk,#d2Sheet td.pick .pk{padding:1px 6px;font-size:11.5px;
+    display:inline-flex;min-width:0;max-width:100%;line-height:15px}
+  /* Shifting the text inside the badge lifted it off-centre within its own
+     border; move the whole badge instead so it stays centred on its name and
+     still lines up with the plain cells beside it. */
+  #d1Sheet td.pick .pk span,#d2Sheet td.pick .pk span{overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  /* The badge's own line-box is what makes it taller than the name inside;
+     matching it to the text removes the slack without moving anything. */
+  /* An odd line-height rounds the badge's baseline a pixel below the plain
+     cells beside it; an even one lands them on the same line. */
+  #d1Sheet td.pick .pk,#d2Sheet td.pick .pk{line-height:14px;padding:1px 6px}
+  #d1Sheet td.pick.empty,#d2Sheet td.pick.empty{font-size:11px}
+
+  /* The winner badge is a padded pill while the other cells are plain text,
+     so their baselines drift apart. Centre every cell on the row instead and
+     give them one shared line-box, so the number, the match label and the
+     team names all sit on the same line despite their different sizes. */
+  #d1Sheet td,#d2Sheet td{vertical-align:middle;line-height:15px}
+  #d1Sheet td.num,#d2Sheet td.num,
+  #d1Sheet td.mono,#d2Sheet td.mono{line-height:15px}
+  /* The column is only wide enough for two digits on a phone, so centring
+     reads better than hugging the right edge. */
+  #d1Sheet td.num,#d2Sheet td.num{width:26px;font-size:12px;text-align:center}
+  #d1Sheet th:first-child,#d2Sheet th:first-child{text-align:center}
+
+  /* --- NOW bar ---
+     The two teams stack on a phone, so the VS sits between them and has to
+     be centred rather than left-aligned. The progress counter stays on the
+     title line, pushed right, instead of dropping to a line of its own. */
+  /* The NOW bar is the whole point of looking at this on a phone, so it
+     stays stuck to the top like it does on a desktop. It is collapsible if
+     the reader wants the space back. */
+  .nowbar{margin-bottom:12px}
+  .nowin{padding:6px 10px 7px;border-radius:9px}
+  /* The row mixes a padded badge with three different type sizes, so their
+     glyphs sit at different heights even when the boxes line up. Give every
+     child the same line-box and centre on that instead. */
+  .nowtop{gap:6px;margin-bottom:5px;flex-wrap:nowrap;line-height:18px}
+  .nowtop > *{display:inline-flex;align-items:center;height:18px;line-height:1}
+  .nowtag{font-size:8.5px;padding:0 5px;letter-spacing:.1em}
+  .nowseq{font-size:13px}
+  .nowid{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    display:block!important;line-height:18px}
+  /* Even on one line-box the glyphs land at different heights: Inter's digits
+     sit lower than the mono capitals beside them. Nudge each to put the ink,
+     not the box, on a single line. Values come from measuring the rendered
+     pixels at 4x. */
+  /* Inter's digits ride higher than the mono capitals beside them, so the
+     label needs a nudge down to share their line. Measured at 6x. */
+  .nowtop .nowid{position:relative;top:0.5px}
+  .nownote{display:none}                 /* the note repeats what the sheet says */
+  .nowprog{margin-left:auto;flex:none;gap:5px;font-size:9.5px}
+  .nowprog .bar{width:44px;height:3px}
+  .nowmid{flex-direction:column;gap:1px}
+  .nowvs{justify-content:center;padding:0;font-size:9px;line-height:1.1}
+  .nowside{width:100%;padding:5px 10px;border-width:1px;border-radius:7px}
+  .nowside .nnm{font-size:13.5px}
+  .nowtgl{padding:0 3px;font-size:11px}
+
+  /* --- group cards ---
+     Eleven groups stacked one per row makes the page thousands of pixels
+     long; two columns keeps the whole draw within a couple of screens. */
+  .ggrid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gcard{padding:9px 10px}
+  .gcard .gh{font-size:12px}
+  .gcard .gs{font-size:9px;margin-top:2px}
+  .gcard .gt{margin-top:7px;gap:1px}
+  .gcard .gt div{font-size:11px;padding:2px 4px;gap:5px}
+  .gcard .gt div em{min-width:9px;font-size:9px}
+  /* The pot tag is what ties a team in a group back to the draw, so it stays
+     even on a phone; shrink it instead of hiding it. */
+  .gcard .gt div .ptag{font-size:8.5px;padding:1px 3px;letter-spacing:0}
+  .gcard .gt div{gap:4px}
+  .gcard .gt div span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* --- group detail match rows ---
+     On a wide screen the two sides face each other across the VS (A right-
+     aligned, B left-aligned). In a narrow column that reads as a stray
+     right-alignment, and a fixed 40% basis clipped the names, so give both
+     sides an equal share and centre the text. */
+  .gdetail{padding:14px 10px}
+  .mrow .mno{padding:8px 6px 8px 6px;min-width:46px}
+  .mrow .mno b{font-size:15px}
+  .mrow .mno span{font-size:10px}
+  .mrow .mbody{gap:5px;padding:8px 4px 8px 0}
+  .mrow .side,.mrow .side.b{flex:1 1 0;min-width:0;justify-content:center;
+    text-align:center;padding:9px 5px;font-size:13.5px;gap:5px}
+  .mrow .side.tbd{font-size:11.5px}
+  .mrow .vs{font-size:9px}
+  /* The losing side is transparent on desktop, which in a narrow column
+     reads as the pair being off-centre. Keep both boxes visible so the row
+     stays symmetrical; the strikethrough still marks the loser. */
+  .mrow .side.lose{background:var(--t3);border-color:transparent}
+
+  /* --- pots / groups cards --- */
+  .gwrap{grid-template-columns:1fr;gap:10px}
+
+  /* --- brackets scroll horizontally, never overflow the page --- */
+  .tree{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .sbody{overflow-x:auto}
+
+  /* --- qualifying sheet ---
+     A spectator opens this to see the lap times, but they were the first
+     thing pushed off a 390 px screen. Drop the operator-only columns
+     (scheduled slot, check-in number) and let the results have the width. */
+  /* The ranking keeps its pot column — the colour is how a spectator follows
+     a team from the draw into the groups — so the table scrolls sideways in
+     its own box rather than dropping information. */
+  #rankTbl table{min-width:470px}
+  /* RACE ORDER is a timetable — the scheduled slot is the whole point, so it
+     keeps every column and scrolls sideways inside its own box like the
+     race-order sheet does. Only the ranking sheds columns. */
+  #qualTbl table{min-width:520px}
+  #qualTbl th:nth-child(3),#qualTbl td:nth-child(3){display:none}  /* check-in no. */
+  /* only the operator-only columns go: demotion, previous rank, check-in */
+  #rankTbl th:nth-child(7),#rankTbl td:nth-child(7),
+  #rankTbl th:nth-child(8),#rankTbl td:nth-child(8),
+  #rankTbl th:nth-child(10),#rankTbl td:nth-child(10){display:none}
+  #rankTbl th,#rankTbl td{padding:8px 5px}
+
+  /* the badge is 10 px here against 8.5 px on desktop, so it needs less lift */
+  td .wdtag{top:-1.8px}
+
+  /* legends are for operators, not spectators */
+  .legend{font-size:11.5px;line-height:1.6}
+
+  /* 9 px is fine on a desktop monitor and unreadable on a phone */
+  .hint,.wotag,.dntag,.lvtag,.wdtag,.ptag,.sb,.mnote,
+  h1 small,.gcard .gt div em{font-size:10px}
+  .nowtag,.nowseq{font-size:11px}
+  .gcard .gs{font-size:10px}
+
+  /* the fold caret is the one control small enough to miss */
+  .secthead .cav{width:26px;height:34px}
+  .secthead{padding:2px 0}
+}
+
+@media (max-width:420px){
+  /* keep two columns even here — one per row makes the page far too long */
+  .secthead{font-size:14px}
+  nav button{font-size:10px;padding:10px 9px}
+  .gcard .gt div{font-size:10.5px}
+}
+
 </style>
 </head>
 <body>
-
 <header>
-  <div class="htop">
-    <span class="dot" id="liveDot"></span>
-    <span class="htitle">ROBORACER 2026</span>
-    <span class="hsub">GRAND PRIX &middot; LIVE RESULTS</span>
-    <div class="hright">
-      <span class="hupdated" id="updatedAt">connecting&hellip;</span>
-    </div>
+  <div class="hbar">
+    <h1>IFAC 2026 RoboRacer<small>29th RoboRacer Autonomous Racing Competition · Live</small></h1>
+    <div class="hspace"></div>
+    <span class="segtog dayseg" id="daySeg" style="display:none">
+      <button id="segH1" class="on">DAY 1</button>
+      <button id="segH2">DAY 2</button>
+    </span>
+    <span class="pill" id="teamCnt">0 teams</span>
+    <span class="livewrap"><i class="livedot" id="liveDot"></i><span class="upd mono" id="upd">connecting…</span></span>
   </div>
-  <nav class="tabs">
-    <button class="tab active" data-tab="qualifying">QUALIFYING</button>
-    <button class="tab" data-tab="groups">GROUP STAGE</button>
-    <button class="tab" data-tab="final">FINAL TOURNAMENT</button>
-  </nav>
+  <nav id="nav"></nav>
 </header>
 
 <main>
+  <!-- ============ INSPECTION ============ -->
+  <section class="tab" id="tab-insp">
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">▾</span>INSPECTION SHEET
+        <span class="hint">CHECK-IN ORDER</span></h3>
+      <div class="sheetbox" id="inspTbl"></div>
+    </div>
+  </section>
+
+  <!-- ============ GROUPS ============ -->
+  <section class="tab" id="tab-grp">
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">▾</span>MAPPING / PRACTICE
+        <span class="hspace"></span>
+        <span class="segtog">
+          <button id="segGM" class="on">MAPPING</button>
+          <button id="segGP">PRACTICE</button>
+        </span>
+      </h3>
+      <div class="sbody">
+        <div class="gwrap" id="gmWrap"></div>
+        <div class="gwrap" id="gpWrap" style="display:none"></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ QUALIFYING ============ -->
-  <section class="panel on" id="panel-qualifying">
-    <div class="section">
-      <div class="sechead">
-        <span class="sectitle">Qualifying</span>
-        <span class="secsub" id="qCount"></span>
-        <div class="toggle" style="margin-left:auto">
-          <button data-sort="order" class="active">RACE ORDER</button>
-          <button data-sort="rank">RANKING</button>
-        </div>
+  <section class="tab" id="tab-qual">
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">▾</span>QUALIFYING
+        <span class="hspace"></span>
+        <span class="segtog">
+          <button id="segQO" class="on">RACE ORDER</button>
+          <button id="segQR">RANKING</button>
+        </span>
+      </h3>
+      <div class="sheetbox" id="qualTbl"></div>
+      <div class="sheetbox" id="rankTbl" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- ============ POTS ============ -->
+  <section class="tab" id="tab-seed">
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">▾</span>POTS / PRACTICE
+        <span class="hspace"></span>
+        <span class="segtog">
+          <button id="segPT" class="on">POT</button>
+          <button id="segPR">PRACTICE</button>
+        </span>
+      </h3>
+      <div class="sbody">
+        <div class="gwrap" id="seedWrap"></div>
+        <div class="gwrap" id="spWrap" style="display:none"></div>
       </div>
-      <div id="qualifyingWrap"><div class="state">Loading qualifying data&hellip;</div></div>
     </div>
   </section>
 
-  <!-- ============ GROUP STAGE ============ -->
-  <section class="panel" id="panel-groups">
-    <div class="section">
-      <div class="sechead"><span class="sectitle">Groups</span>
-        <span class="secsub">TAP A GROUP TO SEE ITS MATCHES</span></div>
-      <div id="groupsWrap"><div class="state">Loading groups&hellip;</div></div>
-      <div class="gdetail" id="groupDetail"></div>
+  <!-- ============ HEAD-TO-HEAD ============ -->
+  <section class="tab" id="tab-h2h">
+    <!-- ---- DAY 1 ---- -->
+    <div id="h2hD1">
+      <div class="nowbar" id="d1Now"></div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span>RACE ORDER SHEET
+          <span class="hspace"></span>
+          <span class="segtog">
+            <button id="segWoI" class="on">IN PLACE</button>
+            <button id="segWoG">GROUPED</button>
+          </span>
+        </h3>
+        <div class="sheetbox" id="d1Sheet"></div>
+      </div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span>GROUPS
+          <span class="hint">TAP A GROUP TO SEE ITS MATCHES</span>
+        </h3>
+        <div class="ggrid" id="d1GroupGrid"></div>
+        <div id="d1GroupDetail"></div>
+      </div>
     </div>
 
-    <div class="section">
-      <div class="sechead"><span class="sectitle">Qualified — 33 Teams</span>
-        <span class="secsub" id="q33Count"></span></div>
-      <div id="q33Wrap"><div class="state">Waiting for group stage to complete&hellip;</div></div>
+    <!-- ---- DAY 2 ---- -->
+    <div id="h2hD2" style="display:none">
+      <div class="nowbar" id="d2Now"></div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span><span id="d2QT">QUALIFIED TEAMS</span>
+        </h3>
+        <div class="legend" id="d2Info"></div>
+        <div class="sheetbox" id="d2Entrants"></div>
+      </div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span>RACE ORDER SHEET
+          <span class="hspace"></span>
+          <span class="segtog">
+            <button id="segWoI2" class="on">IN PLACE</button>
+            <button id="segWoG2">GROUPED</button>
+          </span>
+        </h3>
+        <div class="sheetbox" id="d2Sheet"></div>
+      </div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span>BRACKET</h3>
+        <div class="sbody"><div class="tree" id="d2Tree"></div></div>
+      </div>
     </div>
   </section>
-
-  <!-- ============ FINAL TOURNAMENT ============ -->
-  <section class="panel" id="panel-final">
-    <div class="section">
-      <div class="sechead"><span class="sectitle">Final Tournament</span>
-        <span class="secsub">SINGLE ELIMINATION</span></div>
-      <div class="roundnav" id="roundNav"></div>
-      <div id="bracketWrap"><div class="state">Loading bracket&hellip;</div></div>
-    </div>
-  </section>
-
 </main>
 
-<footer>ROBORACER 2026 GRAND PRIX &middot; auto-refreshing every 8 seconds</footer>
-
 <script>
-/* ====================================================================
- *  CONFIGURE THIS: paste your Apps Script Web App /exec URL below.
- *  Deploy -> New deployment -> Web app -> Execute as Me -> Anyone -> Deploy
- * ==================================================================== */
-const API_URL = 'https://script.google.com/macros/s/AKfycbwbJ_5IkRjlJ9YdxBgNHItxwE-DQ4QHKxrwXWZ_7e267WXhI64ArQqRT11xupkDrvOc/exec';
-const POLL_MS = 8000;
+/* wording lifted from the management tool — do not edit here */
+const VIZ_EN = {
+  '승자 진출': 'winner advances',
+  '패자 탈락': 'loser eliminated',
+  '승자 진출 / 패자 탈락': 'winner advances · loser out',
+  '4 vs 5': 'seeds 4 v 5',
+  '직행': 'Bye',
+  '예선전': 'Play-in',
+  '패자전 1': 'Losers 1',
+  '패자전 2': 'Losers 2',
+  'Round 2 · 진출전': 'Round 2 · advancement'
+};
+const VIZ_EN_RE = [
+  [/^승자 · (.+)$/, function(m,p1){ return 'Winner of ' + enText(p1); }],
+  [/^패자 · (.+)$/, function(m,p1){ return 'Loser of ' + enText(p1); }],
+  [/^(\d+)강 (\d+)$/, 'R$1 M$2'],
+  [/^(\d+)강$/, 'R$1'],
+  [/^패자전 (\d+)$/, 'Losers $1'],
+  [/^예선전 PI(\d+)$/, 'Play-in PI$1']
+];
 
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let STATE = null;
-let qualifyingSort = 'order';
-let selectedGroup = null;
-let selectedRound = 'R32';
-
-/* ---------------- tabs ---------------- */
-$$('.tab').forEach(t=>t.addEventListener('click',()=>{
-  $$('.tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  $$('.panel').forEach(p=>p.classList.remove('on'));
-  $('#panel-'+t.dataset.tab).classList.add('on');
-}));
-
-/* ---------------- fetch loop (JSONP — avoids CORS entirely) ---------------- */
-let jsonpCounter = 0;
-
-function fetchData(){
-  if (!API_URL || API_URL.indexOf('PASTE_YOUR') === 0){
-    showConfigError();
-    return;
+const TW=212, TH=76, TGAPX=58, TROW=54, THEAD=44;
+const TROW2=94;   // Day 2 트리 — 행이 연속이라 박스 높이보다 넓게
+const TX = c => c*(TW+TGAPX);
+function toSec(str){
+  if(str==null) return null;
+  const p = String(str).trim().split(':');
+  if(p.length<2) return null;
+  const h=parseInt(p[0],10), m=parseInt(p[1],10), s=p.length>2?parseInt(p[2],10):0;
+  if([h,m,s].some(x=>isNaN(x))) return null;
+  return h*3600+m*60+s;
+}
+function fmtHM(sec){
+  if(sec==null||isNaN(sec)) return '';
+  sec = ((sec%86400)+86400)%86400;
+  return String(Math.floor(sec/3600)).padStart(2,'0')+':'+String(Math.floor(sec/60)%60).padStart(2,'0');
+}
+function fmtHMS(sec){
+  if(sec==null||isNaN(sec)) return '';
+  sec = ((sec%86400)+86400)%86400;
+  return fmtHM(sec)+':'+String(sec%60).padStart(2,'0');
+}
+function isWD(tid){ const t=team(tid); return !!(t && t.wd); }
+function phaseOf(m){ return (m && m.phase) ? m.phase : 'd1'; }
+function isWDp(tid, phase){
+  if(isWD(tid)) return true;
+  return phase==='d2' && (D.d2wd||[]).indexOf(tid)>=0;
+}
+function achievedQ3(r){ return r.q1>=3 && r.q2>=3; }
+function faValid(r){ return r.fa && r.q3!=null; }
+function cmpQual(a,b){
+  const fa = (faValid(b)?1:0)-(faValid(a)?1:0);            // 1. Fully Autonomous 우선
+  if(fa) return fa;
+  const ta = (a.q3==null? Infinity : a.q3), tb = (b.q3==null? Infinity : b.q3);
+  if(ta!==tb) return ta-tb;                                 // 2. Q3 랩타임 빠른 순
+  if(a.q2!==b.q2) return b.q2-a.q2;                         // 3. Q2 랩 수
+  if(a.q1!==b.q1) return b.q1-a.q1;                         // 4. Q1 랩 수
+  const ta2 = toSec((team(a.tid)||{}).time), tb2 = toSec((team(b.tid)||{}).time);
+  const va = (ta2==null? 9e9 : ta2), vb = (tb2==null? 9e9 : tb2);
+  if(va!==vb) return va-vb;                                 // 5. 인스펙션 통과 시각이 빠른 팀
+  return tindex(a.tid)-tindex(b.tid);                       // 6. 인스펙션 시트 순서
+}
+function applyDemotions(order, rows){
+  const dm={}; rows.forEach(r=>{ if(r.dem<0) dm[r.tid]=-r.dem; });
+  const base=order.slice();
+  const targets=base.filter(t=>dm[t]);
+  if(!targets.length) return 0;
+  targets.slice().sort((a,b)=> base.indexOf(b)-base.indexOf(a)).forEach(tid=>{
+    const from=order.indexOf(tid); if(from<0) return;
+    order.splice(from,1);
+    order.splice(Math.min(order.length, from+dm[tid]), 0, tid);
+  });
+  return targets.length;
+}
+function rankMap(){
+  // 기권 팀은 번호를 건너뛴다 — 순위 시트에 보이는 번호와 항상 같아야 한다
+  const m={}; let n=0;
+  D.rank.forEach(tid=>{ m[tid] = isWD(tid) ? null : (++n); });
+  return m;
+}
+function rankNumbers(){
+  // 기권 팀은 번호를 받지 않고 건너뛴다 (자리는 유지)
+  let n=0;
+  return D.rank.map(tid => isWD(tid) ? null : (++n));
+}
+function mk(phase, id, label, a, b, meta){
+  return Object.assign({id, phase, label, a, b, winner:null, time:null}, meta||{});
+}
+function seedTag(tid){
+  if(!tid) return '';
+  for(let i=0;i<D.seeds.length;i++){
+    const k=D.seeds[i].indexOf(tid);
+    if(k>=0) return 'P'+(i+1)+'-'+(k+1);
   }
-
-  const cbName = 'roboracerCb' + (jsonpCounter++);
-  const script = document.createElement('script');
-  let settled = false;
-
-  const timeoutId = setTimeout(()=>{
-    if (settled) return;
-    settled = true;
-    cleanup();
-    $('#updatedAt').textContent = 'connection failed';
-    $('#liveDot').classList.add('off');
-    if (!STATE) showFetchError(new Error('Timed out waiting for a response.'));
-  }, 12000);
-
-  function cleanup(){
-    clearTimeout(timeoutId);
-    delete window[cbName];
-    if (script.parentNode) script.parentNode.removeChild(script);
+  return '';
+}
+function gLabel(i){ return i<26 ? String.fromCharCode(65+i) : 'G'+(i+1); }
+function isBye(id){ const m=D.d1.matches[id]||D.d2.matches[id]; return !!m && (M.empty(m.a)||M.empty(m.b)); }
+function d1SeqIds(gi){
+  const g=D.d1.groups[gi]; if(!g) return [];
+  const pos=id=>{ const i=D.d1.order.indexOf(id); return i<0 ? 9e9 : i; };   // 부전승은 맨 뒤
+  return g.ids.slice().sort((a,b)=>pos(a)-pos(b) || g.ids.indexOf(a)-g.ids.indexOf(b));
+}
+function mLabel(id){
+  const m=D.d1.matches[id];
+  if(m){
+    const gi=d1GroupOfMatch(id);
+    if(gi>=0){
+      if(isBye(id) || M.walkover(D.d1.matches[id])) return gLabel(gi)+' · —';
+      const k=d1SeqIds(gi).filter(x=>!isBye(x) && !M.walkover(D.d1.matches[x])).indexOf(id);
+      return gLabel(gi)+' · M'+(k+1);
+    }
   }
+  const m2=D.d2.matches[id];
+  return m2 ? m2.label : (m? m.label : '');
+}
+function slotHint(src){
+  if(!src) return 'TBD';
+  /* 부전승 경기를 거쳐 오는 자리는 그 경기를 건너뛰고 실질적인 출처를 가리킨다 */
+  if(src.t==='W' || src.t==='L'){
+    let s=src, guard=0;
+    while(s && (s.t==='W'||s.t==='L') && isBye(s.m) && guard++<20){
+      const mm=M.get(s.m); if(!mm) break;
+      const nx = M.empty(mm.a) ? mm.b : mm.a;      // 비어 있지 않은 쪽이 실질적 출처
+      if(!nx) break;
+      if(nx.t==='team'){ return tname(nx.id) || 'TBD'; }
+      s = nx;
+    }
+    if(s && s.t==='team') return tname(s.id) || 'TBD';
+    const lb = (s && M.get(s.m)) ? mLabel(s.m) : '?';
+    return (s && s.t==='L' ? '패자 · ' : '승자 · ') + lb;
+  }
+  if(src.t==='seed'){
+    const e=d2Entry(src.n);
+    if(e && !e.bye){
+      const pid='d2-pi-'+e.j;
+      if(D.d2.matches[pid]) return L('승자 · PI'+(e.j+1), 'Winner of PI'+(e.j+1));
+    }
+    return 'Seed '+src.n;
+  }
+  if(src.t==='rank') return 'Rank '+src.n;
+  return 'TBD';
+}
+function groupBracketDefs(N){
+  const P=n=>({p:n}), Wm=i=>({t:'W',i}), Lm=i=>({t:'L',i});
+  const ADV='승자 진출', ELM='패자 탈락', BOTH='승자 진출 / 패자 탈락';
+  if(N<=3) return [];                       // 전원 진출 — 경기 없음
+  if(N===4) return [
+    { a:P(1), b:P(4), br:'WB', adv:true,  note:ADV },
+    { a:P(2), b:P(3), br:'WB', adv:true,  note:ADV },
+    { a:Lm(1), b:Lm(0), br:'LB', adv:true, elim:true, note:BOTH },
+  ];
+  if(N===5) return [
+    { a:P(4), b:P(5), br:'WB',              note:'4 vs 5' },
+    { a:P(1), b:Wm(0), br:'WB', adv:true,  note:ADV },
+    { a:P(2), b:P(3),  br:'WB', adv:true,  note:ADV },
+    { a:Lm(2), b:Lm(0), br:'LB', elim:true, note:ELM },
+    { a:Lm(1), b:Wm(3), br:'LB', adv:true, elim:true, note:BOTH },
+  ];
+  if(N===6) return [
+    { a:P(4), b:P(5), br:'WB',              note:'4 vs 5' },
+    { a:P(3), b:P(6), br:'WB',              note:'3 vs 6' },
+    { a:P(1), b:Wm(0), br:'WB', adv:true,  note:ADV },
+    { a:P(2), b:Wm(1), br:'WB', adv:true,  note:ADV },
+    { a:Lm(2), b:Lm(1), br:'LB', elim:true, note:ELM },
+    { a:Lm(3), b:Lm(0), br:'LB', elim:true, note:ELM },
+    { a:Wm(4), b:Wm(5), br:'LB', adv:true, elim:true, note:BOTH },
+  ];
+  /* 그 밖의 인원 — 하위 시드끼리 사다리로 올려 상위 시드와 붙이고, 패자조는 순차 합류 */
+  const defs=[], r1=[], r2=[];
+  const pre=N-3;
+  for(let k=0;k<pre;k++){
+    const a=3+k+1, b=N-k;
+    if(a>=b) break;
+    defs.push({a:P(a), b:P(b), br:'WB', note:a+' vs '+b}); r1.push(defs.length-1);
+  }
+  for(let s=Math.min(3,N-r1.length*1); s>=1; s--){
+    const from=r1[s-1];
+    defs.push({a:P(s), b: from!=null?Wm(from):null, br:'WB', adv:true, note:ADV});
+    r2.push(defs.length-1);
+  }
+  const q=r1.concat(r2);
+  let prev=null;
+  for(let k=0;k<q.length;k++){
+    if(prev===null){ if(k+1>=q.length) break;
+      defs.push({a:Lm(q[k]), b:Lm(q[k+1]), br:'LB', elim:true, note:ELM}); prev=defs.length-1; k++;
+    } else { defs.push({a:Wm(prev), b:Lm(q[k]), br:'LB', elim:true, note:ELM}); prev=defs.length-1; }
+  }
+  if(prev!==null){ defs[prev].adv=true; defs[prev].note=BOTH; }
+  return defs;
+}
+function d1GroupCount(){
+  if(!D.seeds.length) return 0;
+  const total = D.seeds.reduce((s,x)=>s+x.length, 0);
+  const maxPot = Math.max.apply(null, D.seeds.map(s=>s.length));
+  if(D.cfg.d1Spread!=='tight') return maxPot;
+  return Math.min(maxPot, Math.max(1, Math.floor(total/5)));
+}
+function d1Advancers(gi){
+  const gr = D.d1.groups[gi]; if(!gr) return [];
+  const ms = D.d1.matches;
+  if(!gr.ids.length) return gr.teams.slice();   // 3팀 이하 — 경기 없이 전원 진출
+  // 진출 경기는 대진 정의에서 adv 로 표시된다 (그룹 인원에 따라 위치가 달라짐)
+  return gr.ids.map(id=>ms[id]).filter(m=>m && m.adv).map(m=>M.win(m)).filter(Boolean);
+}
+function raceNo(phase, id){
+  const ord=D[phase].order, ms=D[phase].matches;
+  let n=0;
+  for(let i=0;i<ord.length;i++){
+    const m=ms[ord[i]]; if(!m) continue;
+    if(!M.walkover(m)) n++;
+    if(ord[i]===id) return M.walkover(m) ? 0 : n;
+  }
+  return 0;
+}
+function raceTotal(phase){
+  const ord=D[phase].order, ms=D[phase].matches;
+  return ord.filter(id=>ms[id] && !M.walkover(ms[id])).length;
+}
+function nextMatchId(phase){
+  const ord=D[phase].order, ms=D[phase].matches;
+  for(let i=0;i<ord.length;i++){
+    const mm=ms[ord[i]];
+    if(!mm || mm.done) continue;
+    if(M.win(mm) && !M.live(mm)) continue;   // 부전승·기권으로 이미 결정된 경기는 건너뛴다
+    return ord[i];
+  }
+  return null;
+}
+function d1GroupOfMatch(id){
+  for(let i=0;i<D.d1.groups.length;i++) if(D.d1.groups[i].ids.indexOf(id)>=0) return i;
+  return -1;
+}
+function d2Entrants(){
+  if(_entCache) return _entCache;
+  const rankIdx={}; D.rank.forEach((t,i)=>rankIdx[t]=i);
+  let all=[];
+  D.d1.groups.forEach((g,gi)=> d1Advancers(gi).forEach(t=>all.push(t)));
+  /* 기권 팀도 자리를 유지한다 — 대진 규모가 흔들리지 않도록.
+     그 경기는 상대 부전승이 되고 순번에서 빠진다. (Remove 만 명단에서 완전히 제외) */
+  const drop = D.d2drop||[];
+  all = all.filter(t=> drop.indexOf(t)<0 && !isWD(t));
+  all.sort((a,b)=>(rankIdx[a]==null?9e9:rankIdx[a])-(rankIdx[b]==null?9e9:rankIdx[b]));
+  /* 수동으로 순서를 바꿨다면 그 순서를 유지하고, 새로 확정된 팀은 뒤에 붙인다 */
+  if(D.d2ent && D.d2ent.length){
+    const set=new Set(all);
+    const kept=D.d2ent.filter(t=>set.has(t));
+    const rest=all.filter(t=>kept.indexOf(t)<0);
+    all=kept.concat(rest);
+  }
+  _entCache = all;
+  return all;
+}
+function invalidateEntrants(){ _entCache = null; }
+function d2Plan(){
+  const Mtot = D.d1.groups.length ? d2Entrants().length : D.rank.length;
+  if(Mtot<2) return {M:Mtot, P:Mtot>0?1:0, playIn:0, byes:0};
+  let P=1; while(P*2<=Mtot) P*=2;
+  let playIn = Mtot-P;
+  if(playIn > P/2){ P*=2; playIn=0; }          // 예선전이 과반이면 브래킷을 키운다
+  return {M:Mtot, P, playIn, byes: Math.max(0, P-Mtot) };   // 인원이 모자라면 상위 시드 부전
+}
+function d2SeedTeam(n){
+  const {P, playIn} = d2Plan();
+  const byes = P-playIn;
+  if(n<=byes) return d2Entrants()[n-1] || null;
+  const pi = n-byes-1;
+  const m = D.d2.matches['d2-pi-'+pi];
+  return m ? M.win(m) : null;
+}
+function seedOrder(n){
+  let r=[1];
+  while(r.length<n){ const m=r.length*2+1; const o=[]; r.forEach(x=>{o.push(x); o.push(m-x);}); r=o; }
+  return r;
+}
+function roundName(P, r){
+  const left = P/Math.pow(2,r-1);
+  if(left===2) return 'FINAL';
+  if(left===4) return 'SF';
+  if(left===8) return 'QF';
+  return left+'강';
+}
+function d2Entry(n){
+  // n = Day2 시드 번호 → 32강 직행 여부 / 소속 예선전 경기
+  const p=d2Plan(), byes=p.P-p.playIn;
+  if(n<=byes) return {bye:true, label:'직행'};
+  const j = (n<=byes+p.playIn) ? (n-byes-1) : (p.M-n);   // 상·하위가 같은 경기에서 만난다
+  return {bye:false, j:j, label:'예선전 PI'+(j+1)};
+}
+function tPlace(canvas, node){
+  const el = node.el || mbox(node.m, node.note||'');
+  el.style.left = TX(node.col)+'px';
+  el.style.top  = (node.cy+THEAD)+'px';
+  canvas.appendChild(el);
+  return el;
+}
+function tTitle(canvas, col, text){
+  const t=document.createElement('div'); t.className='rh'; t.textContent=text;
+  t.style.left = TX(col)+'px'; t.style.width = TW+'px'; t.style.textAlign='center';
+  canvas.appendChild(t);
+}
+function tLinks(canvas, links, w, h){
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('width', w); svg.setAttribute('height', h);
+  /* side  출발 변 : R 오른쪽 / B 아래
+     into  도착 변 : L 왼쪽   / T 위
+     bend  꺾이는 x 를 좌우로 미세 조정
+     vy    수평으로 지나는 통로 y (도착 박스 기준 상대) */
+  links.forEach(k=>{
+    const sx0=TX(k.c1), sy0=k.y1+THEAD, sh=k.h1||TH;
+    const tx0=TX(k.c2), ty0=k.y2+THEAD, th=k.h2||TH;
+    const side=k.side||'R', into=k.into||'L', bend=k.bend||0, vy=(k.vy==null?0:k.vy);
+    const sx = side==='B' ? sx0+TW/2+bend : sx0+TW;
+    const sy = side==='B' ? sy0+sh        : sy0+sh/2;
+    const tx = into==='T' ? tx0+TW/2      : tx0;
+    const ty = into==='T' ? ty0           : ty0+th/2;
+    let d;
+    if(side==='B'){
+      const my = ty0 + vy;
+      d = (into==='T') ? 'M'+sx+' '+sy+' V'+my+' H'+tx+' V'+ty
+                       : 'M'+sx+' '+sy+' V'+my+' H'+tx;
+    } else {
+      const mx = sx0+TW+20+bend;
+      d = (into==='T') ? 'M'+sx+' '+sy+' H'+mx+' V'+(ty0+vy)+' H'+tx+' V'+ty
+                       : 'M'+sx+' '+sy+' H'+mx+' V'+ty+' H'+tx;
+    }
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d', d); p.setAttribute('fill','none');
+    p.setAttribute('class', 'lnk'+(k.kind==='L'?' lose':'')+(k.lit?' lit':''));
+    svg.appendChild(p);
+  });
+  canvas.insertBefore(svg, canvas.firstChild);
+}
+function tCanvas(host, cols, maxCy, extraH){
+  host.innerHTML='';
+  const c=document.createElement('div'); c.className='tcanvas';
+  c.style.width  = (TX(cols-1)+TW+8)+'px';
+  c.style.height = (maxCy+THEAD+(extraH||TH)+8)+'px';
+  host.appendChild(c);
+  return c;
+}
+function d1Bracket(wrap, gi, live){
+  const gr=D.d1.groups[gi], ms=D.d1.matches, adv=d1Advancers(gi);
+  const ids=gr.ids, n=ids.length;
+  if(!n){ wrap.innerHTML='<div class="empty">'+esc(L('경기 없이 전원 진출합니다.','All teams advance without racing.'))+'</div>'; return; }
+  const plan = BRK[gr.teams.length] || BRK[5];
+  const R=TROW;
+  const cell = k => plan.box[k] || [0,k];
+  const colOf = k => cell(k)[0], cyOf = k => cell(k)[1]*R;
+  const advCol = plan.adv[0], advCy = plan.adv[1]*R + (plan.advDy||0);
+  const nCol = advCol;
+  const lastY = Math.max(advCy+100-TH, ...ids.map((id,k)=>cyOf(k)));
 
-  window[cbName] = function(data){
-    if (settled) return;
-    settled = true;
-    cleanup();
-    STATE = data;
-    $('#liveDot').classList.remove('off');
-    $('#updatedAt').textContent = 'updated ' + timeAgo(data.updatedAt);
-    render();
+  const canvas=tCanvas(wrap, advCol+1, lastY, TH);
+  const wbCols = Math.max(...ids.map((id,k)=> ms[id]&&ms[id].br==='LB' ? 0 : colOf(k)))+1;
+  const titles=[];
+  for(let c=0;c<advCol;c++){
+    titles.push(c<wbCols ? (c===wbCols-1 ? L('진출전','ADVANCEMENT') : L('1라운드','ROUND 1'))
+                         : L('패자전 '+(c-wbCols+1),'LOSERS '+(c-wbCols+1)));
+  }
+  titles.push(L('DAY 2 진출','TO DAY 2'));
+  titles.forEach((t,i)=>tTitle(canvas,i,t));
+
+  ids.forEach((id,k)=>{
+    const mm=ms[id]; if(!mm || !plan.box[k]) return;
+    const el=tPlace(canvas, {m:mm, col:colOf(k), cy:cyOf(k), note:mm.note||''});
+    if(id===live) el.classList.add('mlive');
+  });
+
+  const advBox=document.createElement('div'); advBox.className='mbox tall';
+  advBox.innerHTML='<div class="mh"><span class="lbl">ADVANCE</span><span class="ord mono">'+adv.length+'/3</span></div>'+
+    [0,1,2].map(k=>'<div class="slot '+(adv[k]?'win':'tbd')+'"><span class="sd mono">'+(k+1)+'</span>'+
+      '<span class="nm"'+(adv[k]?' data-raw':'')+'>'+esc(adv[k]?tname(adv[k]):'TBD')+'</span></div>').join('');
+  tPlace(canvas, {el:advBox, col:advCol, cy:advCy});
+
+  const links=[];
+  plan.link.forEach(l=>{
+    const fm=ms[ids[l.f]]; if(!fm) return;
+    const toAdv = (l.t==='A');
+    if(!toAdv && !plan.box[l.t]) return;
+    links.push({
+      c1:colOf(l.f), y1:cyOf(l.f),
+      c2: toAdv? advCol : colOf(l.t), y2: toAdv? advCy : cyOf(l.t),
+      h2: toAdv? 100 : TH,
+      kind:l.k, side:l.side, into:l.into, bend:l.bend, vy:l.vy,
+      lit: l.k==='W' ? !!M.win(fm) : !!M.lose(fm)
+    });
+  });
+  tLinks(canvas, links, TX(advCol)+TW+8, lastY+THEAD+TH+8);
+}
+const M = {
+  get(id){ return D.d1.matches[id] || D.d2.matches[id] || null; },
+  resolve(src, depth){
+    depth = depth||0;
+    if(!src || depth>40) return null;
+    if(src.t==='team') return src.id || null;
+    if(src.t==='rank') return d2Entrants()[src.n-1] || null;
+    if(src.t==='seed') return d2SeedTeam(src.n);
+    const m = M.get(src.m); if(!m) return null;
+    return src.t==='W' ? M.win(m, depth+1) : M.lose(m, depth+1);
+  },
+  // 구조적으로 비어 있는 자리(팀 수 부족 등) = 부전승 대상.
+  // 아직 결과가 안 나온 자리(미정)는 비어 있는 게 아니다 → 부전승 금지.
+  empty(src, depth){
+    depth = depth||0;
+    if(depth>40) return false;
+    if(!src) return true;
+    if(src.t==='team') return !src.id;
+    if(src.t==='rank') return !d2Entrants()[src.n-1];
+    if(src.t==='seed'){
+      const p = d2Plan(), byes = p.P - p.playIn;
+      if(src.n<=byes) return !d2Entrants()[src.n-1];
+      const pm = D.d2.matches['d2-pi-'+(src.n-byes-1)];
+      return !pm || (M.empty(pm.a, depth+1) && M.empty(pm.b, depth+1));
+    }
+    const m = M.get(src.m); if(!m) return true;
+    if(src.t==='W') return M.empty(m.a, depth+1) && M.empty(m.b, depth+1);
+    if(src.t==='L') return M.empty(m.a, depth+1) || M.empty(m.b, depth+1);
+    return false;
+  },
+  win(m, depth){
+    if(!m) return null;
+    const a = M.resolve(m.a, depth), b = M.resolve(m.b, depth);
+    // 기권 팀은 자동 패배 — 남은 상대가 부전승으로 진출한다
+    if(a && b){
+      const ph=phaseOf(m), wa=isWDp(a,ph), wb=isWDp(b,ph);
+      if(wa && !wb) return b;
+      if(wb && !wa) return a;
+      if(wa && wb) return null;
+    }
+    if(m.winner==='A' && a) return a;
+    if(m.winner==='B' && b) return b;
+    if(a && !b && M.empty(m.b)) return a;   // 상대 자리가 구조적으로 비어 있을 때만 부전승
+    if(!a && b && M.empty(m.a)) return b;
+    return null;
+  },
+  lose(m, depth){
+    if(!m) return null;
+    const a = M.resolve(m.a, depth), b = M.resolve(m.b, depth);
+    if(!a || !b) return null;
+    if(a && b){
+      const ph=phaseOf(m), wa=isWDp(a,ph), wb=isWDp(b,ph);
+      if(wa && !wb) return a;
+      if(wb && !wa) return b;
+      if(wa && wb) return null;
+    }
+    if(m.winner==='A') return b;
+    if(m.winner==='B') return a;
+    return null;
+  },
+  // 아직 대진이 확정되지 않았는가 (미정 자리가 있으면 부전승 판정을 미룬다)
+  pending(m){
+    if(!m) return false;
+    const a=M.resolve(m.a), b=M.resolve(m.b);
+    if(!a && !M.empty(m.a)) return true;
+    if(!b && !M.empty(m.b)) return true;
+    return false;
+  },
+  // 부전승·기권으로 이미 승자가 정해져 실제로는 달리지 않는 경기
+  walkover(m){
+    if(!m) return false;
+    /* 이미 승자가 정해졌는데 실제로 치르지 않은 경기 */
+    if(!M.pending(m) && !!M.win(m) && !M.live(m)) return true;
+    /* 상대가 아직 미정이어도, 확정된 한쪽이 기권이면 이 경기는 치르지 않는다 */
+    const a=M.resolve(m.a), b=M.resolve(m.b), ph=phaseOf(m);
+    if((a && isWDp(a,ph)) || (b && isWDp(b,ph))) return true;
+    return false;
+  },
+  // 이 경기가 실제로 치러지는가 (양쪽 다 있고, 기권 팀이 없어야 한다)
+  live(m){
+    if(!m) return false;
+    const a=M.resolve(m.a), b=M.resolve(m.b), ph=phaseOf(m);
+    if(!a || !b) return false;
+    return !isWDp(a,ph) && !isWDp(b,ph);
+  }
+};
+const BRK = {
+  4: { box:{0:[0,1], 1:[0,3], 2:[1,2]}, adv:[2,2], advDy:-12,
+       link:[ {f:0,t:2,k:'L',side:'B',vy:38}, {f:1,t:2,k:'L',side:'B',vy:38},
+              {f:0,t:'A',k:'W',bend:276}, {f:1,t:'A',k:'W',bend:276}, {f:2,t:'A',k:'W',bend:6} ] },
+  5: { box:{0:[0,2], 1:[1,1], 2:[1,3], 3:[2,5], 4:[3,4]}, adv:[4,2], advDy:-12,
+       link:[ {f:0,t:1,k:'W',bend:9},
+              /* M1·M3 패자는 아래로 나와 M3 아래 통로에서 합쳐져 M4 로 */
+              {f:0,t:3,k:'L',side:'B',vy:38}, {f:2,t:3,k:'L',side:'B',vy:38},
+              /* M2 패자는 M5 위로 꽂힌다 */
+              {f:1,t:4,k:'L',side:'B',into:'T',vy:-124},
+              {f:3,t:4,k:'W',bend:9},
+              /* M2·M3 진출선은 M4→M5 꺾임과 세로선을 맞춘다 */
+              {f:1,t:'A',k:'W',bend:279}, {f:2,t:'A',k:'W',bend:279}, {f:4,t:'A',k:'W',bend:9} ] },
+  6: { box:{0:[0,1], 1:[0,3], 2:[1,1], 3:[1,3], 4:[2,5], 5:[2,7], 6:[3,6]}, adv:[4,2], advDy:-12,
+       link:[ {f:0,t:2,k:'W'}, {f:1,t:3,k:'W'},
+              {f:2,t:4,k:'L',side:'B',vy:38,bend:-24}, {f:1,t:4,k:'L',side:'B',vy:38,bend:-24},
+              {f:3,t:5,k:'L',side:'B',vy:38,bend:24},  {f:0,t:5,k:'L',side:'B',vy:38,bend:24},
+              {f:4,t:6,k:'W',bend:6}, {f:5,t:6,k:'W',bend:6},
+              {f:2,t:'A',k:'W',bend:276}, {f:3,t:'A',k:'W',bend:276}, {f:6,t:'A',k:'W',bend:6} ] },
+};
+/* =========================================================
+   VIEWER — read-only. No editing, no drag, no winner buttons.
+   Rules live in the shared logic block above; this file only draws.
+   ========================================================= */
+
+/* ---------- state ---------- */
+const D = {
+  cfg:{ groupMax:11, seedMax:11, wdView:'inline', woView:'inline' },
+  teams: [], gm: [], gp: [], qual: [], rank: [],
+  baseRank: {}, seeds: [], sprac: [], d2wd: [], d2drop: [], d2ent: null,
+  d1: { groups: [], matches: {}, order: [] },
+  d2: { matches: {}, order: [], built:false }
+};
+let UPDATED_AT = null;
+
+/* ---------- utils ---------- */
+const $  = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,
+  c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function team(tid){ return D.teams.find(t=>t.id===tid) || null; }
+/* A draw can outlive its teams: delete a team in the management tool and the
+   bracket still references its id. Returning '' there paints an empty badge
+   that reads as a rendering fault, so name the gap instead. */
+function tname(tid){
+  if(!tid) return '';
+  const t=team(tid);
+  return t ? t.name : '(removed)';
+}
+function tindex(tid){ return D.teams.findIndex(t=>t.id===tid); }
+/* Pot colours match the draw tool, so a team keeps the same colour from the
+   draw through to the pot sheet. */
+const POTC=['var(--p1)','var(--p2)','var(--p3)','var(--p4)','var(--p5)','var(--p6)'];
+const potColor = n => POTC[((n||1)-1) % POTC.length];
+function potOf(tid){
+  for(let i=0;i<D.seeds.length;i++) if(D.seeds[i].indexOf(tid)>=0) return i+1;
+  return 0;
+}
+function lapTxt(v){ return (Math.round(v*10)/10).toFixed(1)+' s'; }
+function safe(fn){ return function(){ try{ return fn.apply(this,arguments); }catch(e){ console.error(e); }; }; }
+/* the shared logic calls L(ko,en); the viewer is English-only */
+function L(ko, en){ return en!=null ? en : ko; }
+function log(){}   // operator log has no place in the viewer
+
+/* ---------------------------------------------------------------
+   Wording comes from the management tool's own EN dictionary
+   (VIZ_EN / VIZ_EN_RE, extracted by build_viz.py). The viewer holds
+   no phrasing of its own, so both tools always read the same.
+
+   Unlike the management tool, translation happens *before* the text
+   reaches the DOM — nothing Korean is ever painted, and there is no
+   whole-document TreeWalker pass on every refresh.
+   --------------------------------------------------------------- */
+const _trCache = new Map();
+function enText(s){
+  s = String(s==null?'':s);
+  if(!/[가-힣]/.test(s)) return s;
+  const k = s.trim();
+  if(!k) return s;
+  if(_trCache.has(k)) return s.replace(k, _trCache.get(k));
+  let out = null;
+  if(VIZ_EN[k] !== undefined) out = VIZ_EN[k];
+  else {
+    for(let i=0;i<VIZ_EN_RE.length;i++){
+      const [re, rep] = VIZ_EN_RE[i];
+      if(re.test(k)){
+        out = (typeof rep === 'function')
+          ? k.replace(re, (...a)=>rep.apply(null, a))
+          : k.replace(re, rep);
+        break;
+      }
+    }
+  }
+  if(out === null) out = k;          // nothing matched — leave it alone
+  _trCache.set(k, out);
+  return s.replace(k, out);
+}
+/* every match label passes through here before it is drawn */
+function mLabelEN(id){ return enText(mLabel(id)); }
+const noteEN = n => enText(n || '');
+
+/* A handful of team names (SKKUDERIA_SKKAI, F1TENTH_Kyutech) overrun a
+   half-width match box on a phone by a few pixels. Ellipsis hides the end of
+   a name the spectator came to read, so shrink the type just enough to fit
+   instead — down to a floor where it is still legible. */
+function fitNames(root){
+  const MIN = 9.5;
+  root.querySelectorAll('.side .snm, .nowside .nnm').forEach(el=>{
+    el.style.fontSize = '';
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    let guard = 0;
+    while(el.scrollWidth > el.clientWidth + 1 && size > MIN && guard++ < 14){
+      size -= 0.5;
+      el.style.fontSize = size + 'px';
+    }
+  });
+}
+
+/* The sticky NOW bar parks directly under the header, so --hh has to track
+   the header's real height. That height changes when the tab bar wraps or the
+   DAY switch appears, so watch the element rather than measuring once. */
+function syncHeaderHeight(){
+  const h=document.querySelector('header');
+  if(!h) return;
+  document.documentElement.style.setProperty('--hh', Math.ceil(h.getBoundingClientRect().height)+'px');
+}
+if(typeof ResizeObserver === 'function'){
+  const _hro = new ResizeObserver(()=>syncHeaderHeight());
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const h=document.querySelector('header');
+    if(h) _hro.observe(h);
+  });
+}
+
+/* view toggles */
+let CUR='insp', CUR_GSET='gm', CUR_QVIEW='order', CUR_PVIEW='pot',
+    CUR_D1G=null, CUR_H2H='d1';
+
+/* =========================================================
+   FETCH — JSONP, so the page works from file:// and any host
+   ========================================================= */
+const API_URL = 'https://script.google.com/macros/s/AKfycbwCrJhXfwwxiAYcTWw2iZnjjDLf9edKuT_vO8qHTcgErWBOEMbtL3_OkBp0EPrI4hdOlg/exec';
+/* Poll cadence. Each check asks for `?live=meta` first — a ~100 byte reply
+   carrying just the timestamp — and only pulls the full 27 kB state when that
+   timestamp has moved. Checking often is therefore cheap, so the interval is
+   set by how fresh the screen should feel, not by bandwidth.
+   Measured: 300 concurrent readers all answered in under 2 s. */
+const POLL_MS = 2000;
+let jsonpN = 0, FIRST = true;
+
+/* Local preview: ?demo=<path> loads a saved status JSON instead of the API,
+   so the layout can be checked without a deployment. */
+const DEMO = new URLSearchParams(location.search).get('demo');
+
+function fetchState(){
+  if(DEMO){ fetchDemo(); return; }
+  fetchLive();
+}
+
+function fetchDemo(){
+  fetch(DEMO).then(r=>r.json()).then(d=>{
+    applyState(d);
+    $('liveDot').classList.remove('off');
+    $('upd').textContent = 'demo · ' + DEMO.split('/').pop();
+    FIRST = false;
+  }).catch(e=>{
+    $('liveDot').classList.add('off');
+    $('upd').textContent = 'demo load failed';
+    if(FIRST) showError('Could not load ' + DEMO + ' — ' + e.message);
+  });
+}
+
+/* One JSONP round trip. `mode` is 'meta' (timestamp only) or '1' (full state). */
+function jsonp(mode, ok, fail){
+  const cb = '__rrviz' + (jsonpN++);
+  const s = document.createElement('script');
+  let done = false;
+  const clean = ()=>{ try{ delete window[cb]; }catch(_){ window[cb]=undefined; }
+                      if(s.parentNode) s.parentNode.removeChild(s); };
+  window[cb] = data=>{ if(done) return; done=true; clean(); ok(data); };
+  s.onerror = ()=>{ if(done) return; done=true; clean(); fail('connection failed'); };
+  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 12000);
+  s.src = API_URL + (API_URL.indexOf('?')<0?'?':'&') +
+          'live=' + mode + '&callback=' + cb + '&t=' + Date.now();
+  document.head.appendChild(s);
+}
+
+let LAST_STAMP = null;
+let inFlight = false;
+
+/* Ask for the timestamp first and pull the body only when it has moved. A
+   quiet minute then costs ~100 bytes per check instead of 27 kB, which is
+   what makes a short interval affordable for a whole grandstand. */
+function fetchLive(){
+  if(inFlight) return;
+  inFlight = true;
+
+  const fail = msg =>{
+    inFlight = false;
+    $('liveDot').classList.add('off');
+    $('upd').textContent = msg;
+    if(FIRST) showError(msg);
   };
 
-  script.onerror = function(){
-    if (settled) return;
-    settled = true;
-    cleanup();
-    $('#updatedAt').textContent = 'connection failed';
-    $('#liveDot').classList.add('off');
-    if (!STATE) showFetchError(new Error('Could not load the API script (check the URL and deployment access).'));
-  };
-
-  const sep = API_URL.indexOf('?') === -1 ? '?' : '&';
-  script.src = API_URL + sep + 'callback=' + cbName + '&t=' + Date.now();
-  document.body.appendChild(script);
+  jsonp('meta', meta=>{
+    if(!meta || meta.ok===false || !meta.hasLive){
+      fail(meta && meta.error ? 'waiting for the management tool' : 'no data yet');
+      return;
+    }
+    $('liveDot').classList.remove('off');
+    if(meta.updatedAt === LAST_STAMP && !FIRST){
+      // nothing new — skip the body entirely
+      inFlight = false;
+      UPDATED_AT = meta.updatedAt;
+      $('upd').textContent = 'updated ' + timeAgo(UPDATED_AT);
+      return;
+    }
+    jsonp('1', data=>{
+      inFlight = false;
+      if(!data || data.ok===false){ fail(data && data.error || 'no data'); return; }
+      LAST_STAMP = data.updatedAt || meta.updatedAt;
+      applyState(data);
+      $('liveDot').classList.remove('off');
+      $('upd').textContent = 'updated ' + timeAgo(UPDATED_AT);
+      FIRST = false;
+    }, fail);
+  }, fail);
 }
 
-function showConfigError(){
-  $('#updatedAt').textContent = 'not configured';
-  $('#liveDot').classList.add('off');
-  const msg = '<div class="state err">API not configured.<br><br>' +
-    'Open this file and set <code>API_URL</code> to your Apps Script Web App URL ' +
-    '(Deploy &rarr; New deployment &rarr; Web app).</div>';
-  $('#qualifyingWrap').innerHTML = msg;
-  $('#groupsWrap').innerHTML = msg;
-  $('#bracketWrap').innerHTML = msg;
+function applyState(d){
+  const live = d.live || d;
+  D.teams = live.teams || [];
+  D.gm = live.gm || []; D.gp = live.gp || [];
+  D.qual = live.qual || []; D.rank = live.rank || [];
+  D.baseRank = live.baseRank || {};
+  D.seeds = live.seeds || []; D.sprac = live.sprac || [];
+  D.d2wd = live.d2wd || []; D.d2drop = live.d2drop || []; D.d2ent = live.d2ent || null;
+  D.d1 = live.d1 || {groups:[],matches:{},order:[]};
+  D.d2 = live.d2 || {matches:{},order:[],built:false};
+  if(live.cfg){ Object.assign(D.cfg, live.cfg); }
+  /* Withdrawn teams always show in place here: the grouped view is an
+     operator convenience, and a spectator reading a ranking wants each team
+     where its number says it is. The tool's own setting is ignored. */
+  D.cfg.wdView = 'inline';
+  UPDATED_AT = live.updatedAt || d.updatedAt || null;
+  invalidateEntrants();
+  renderAll();
 }
-function showFetchError(err){
-  $('#updatedAt').textContent = 'connection failed';
-  $('#liveDot').classList.add('off');
-  const msg = '<div class="state err">Could not reach the results API.<br>' +
-    '<span class="dimtext mono" style="font-size:12px">'+String(err.message||err)+'</span></div>';
-  $('#qualifyingWrap').innerHTML = msg;
-  $('#groupsWrap').innerHTML = msg;
-  $('#bracketWrap').innerHTML = msg;
-}
+
 function timeAgo(iso){
   if(!iso) return 'just now';
   const s = Math.max(0, Math.floor((Date.now()-new Date(iso).getTime())/1000));
@@ -288,177 +1796,597 @@ function timeAgo(iso){
   if(m<60) return m+'m ago';
   return Math.floor(m/60)+'h ago';
 }
-
-function render(){
-  renderQualifying();
-  renderGroups();
-  renderQualified33();
-  renderBracket();
-}
-
-/* ============ QUALIFYING ============ */
-$$('.toggle button[data-sort]').forEach(b=>b.addEventListener('click',()=>{
-  qualifyingSort = b.dataset.sort;
-  $$('.toggle button[data-sort]').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  renderQualifying();
-}));
-
-function renderQualifying(){
-  if(!STATE) return;
-  const rows = (STATE.qualifying || []).slice();
-  $('#qCount').textContent = rows.length + ' TEAMS';
-
-  if (qualifyingSort === 'order'){
-    rows.sort((a,b)=>(a.raceOrder||9999)-(b.raceOrder||9999));
-  } else {
-    rows.sort((a,b)=>(a.seed||9999)-(b.seed||9999));
-  }
-
-  if (rows.length===0){
-    $('#qualifyingWrap').innerHTML = '<div class="state">No qualifying data yet.</div>';
-    return;
-  }
-
-  const leftLabel = qualifyingSort==='order' ? 'ORDER' : 'RANK';
-  let html = '<table class="qtable"><thead><tr>' +
-    '<th>'+leftLabel+'</th><th>TEAM</th><th>FA</th><th>Q1</th><th>Q2</th><th>Q3 TIME</th>' +
-    '</tr></thead><tbody>';
-  rows.forEach(r=>{
-    const shown = qualifyingSort==='order' ? r.raceOrder : r.seed;
-    html += '<tr>' +
-      '<td class="rankcell">'+(shown!=null?shown:'&mdash;')+'</td>' +
-      '<td class="name">'+esc(r.name)+'</td>' +
-      '<td>'+(r.fa?'<span class="badge fa">FA</span>':'<span class="dimtext mono" style="font-size:11px">&mdash;</span>')+'</td>' +
-      '<td class="mono dimtext">'+fmt(r.q1)+'</td>' +
-      '<td class="mono dimtext">'+fmt(r.q2)+'</td>' +
-      '<td class="mono">'+(r.q3!==''&&r.q3!=null?r.q3+'s':'<span class="dimtext">&mdash;</span>')+'</td>' +
-      '</tr>';
+function showError(msg){
+  ['inspTbl','gmWrap','qualTbl','seedWrap','d1Sheet'].forEach(id=>{
+    const h=$(id); if(h) h.innerHTML='<div class="empty">'+esc(msg)+'</div>';
   });
-  html += '</tbody></table>';
-  $('#qualifyingWrap').innerHTML = html;
 }
 
-/* ============ GROUP STAGE ============ */
+/* =========================================================
+   1. INSPECTION
+   ========================================================= */
+function renderInspection(){
+  const host=$('inspTbl'); if(!host) return;
+  $('teamCnt').textContent = D.teams.length + ' teams';
+  if(!D.teams.length){ host.innerHTML='<div class="empty">Waiting for check-in.</div>'; return; }
+  const tb=document.createElement('table');
+  tb.innerHTML='<thead><tr><th>#</th><th>Time</th><th>Team</th><th>Map</th><th>Prac</th></tr></thead>';
+  const body=document.createElement('tbody');
+  D.teams.forEach((t,i)=>{
+    const gmi=D.gm.findIndex(g=>g.indexOf(t.id)>=0);
+    const gpi=D.gp.findIndex(g=>g.indexOf(t.id)>=0);
+    const tr=document.createElement('tr');
+    if(t.wd) tr.className='offrow';
+    tr.innerHTML='<td class="num">'+(i+1)+'</td>'+
+      '<td class="mono" style="color:var(--dim2)">'+esc(t.time||'')+'</td>'+
+      '<td style="min-width:140px;font-weight:600">'+esc(t.name)+
+        (t.wd?'<i class="wdtag">WD</i>':'')+'</td>'+
+      '<td class="mono" style="color:var(--mut)">'+(gmi<0?'-':'G'+(gmi+1))+'</td>'+
+      '<td class="mono" style="color:var(--mut)">'+(gpi<0?'-':'G'+(gpi+1))+'</td>';
+    body.appendChild(tr);
+  });
+  tb.appendChild(body); host.innerHTML=''; host.appendChild(tb);
+}
+
+/* =========================================================
+   2. GROUPS  (Mapping / Practice)
+   ========================================================= */
+function renderGroupSet(hostId, lists, opts){
+  opts = opts||{};
+  const host=$(hostId); if(!host) return;
+  host.innerHTML='';
+  if(!lists.length || !lists.some(g=>g.length)){
+    host.innerHTML='<div class="empty">Not assigned yet.</div>'; return;
+  }
+  lists.forEach((g, gi)=>{
+    const box=document.createElement('div'); box.className='grp';
+    /* Pot cards take their own pot's colour; practice cards have no single
+       pot, so they stay neutral and colour each team's badge instead. */
+    if(opts.potTint){
+      box.dataset.pot = gi+1;
+      box.style.setProperty('--pc', potColor(gi+1));
+    }
+    const liveN=g.filter(t=>!isWD(t)).length;
+    const capN=Math.max(opts.max!=null?opts.max:D.cfg.groupMax, g.length);
+    box.innerHTML='<h3>'+(opts.label||'Group')+' '+(gi+1)+
+      '<span class="cnt'+(liveN>=capN?' full':'')+'">'+liveN+' / '+capN+'</span></h3>';
+    const list=document.createElement('div'); list.className='glist';
+    g.forEach((tid, idx)=>{
+      const t=team(tid), wdT=isWD(tid);
+      const it=document.createElement('div'); it.className='gi'+(wdT?' wd':'');
+      const pn = potOf(tid);
+      it.innerHTML='<span class="ix mono">'+(idx+1)+'</span>'+
+        (opts.badge?'<span class="sb mono"'+(pn?' data-pot="'+pn+'" style="--pc:'+
+           potColor(pn)+'"':'')+'>'+esc(opts.badge(tid))+'</span>':'')+
+        '<span class="nm">'+esc(t?t.name:'—')+'</span>'+
+        (wdT?'<i class="wdtag">WD</i>'
+            :'<span class="mt mono'+(opts.meta?' rk':'')+'">'+
+              esc(opts.meta?opts.meta(tid):(t?t.time:''))+'</span>');
+      list.appendChild(it);
+    });
+    box.appendChild(list); host.appendChild(box);
+  });
+}
 function renderGroups(){
-  if(!STATE) return;
-  const groups = STATE.groups || [];
-  if (groups.length===0){
-    $('#groupsWrap').innerHTML = '<div class="state">No groups drawn yet.</div>';
-    return;
-  }
-  $('#groupsWrap').innerHTML = '<div class="gridcards">' +
-    groups.map(g=>{
-      const matches = g.matches || [];
-      const done = matches.length>0 && matches.every(m=>m.winner);
-      const statusText = matches.length===0 ? 'NOT STARTED' : (done ? 'COMPLETE' : (matches.filter(m=>m.winner).length+'/'+matches.length+' PLAYED'));
-      return '<button class="gcard'+(selectedGroup===g.group?' sel':'')+'" data-group="'+esc(g.group)+'">' +
-        '<div class="gname">'+esc(g.group)+'</div>' +
-        '<div class="gstatus'+(done?' done':'')+'">'+statusText+'</div>' +
-        '<ul>'+g.teams.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>' +
-        '</button>';
-    }).join('') + '</div>';
-
-  $$('.gcard').forEach(c=>c.addEventListener('click',()=>{
-    selectedGroup = c.dataset.group;
-    renderGroups();
-    renderGroupDetail();
-  }));
-
-  if (selectedGroup) renderGroupDetail();
+  renderGroupSet('gmWrap', D.gm, {label:'Group'});
+  renderGroupSet('gpWrap', D.gp, {label:'Group'});
+  applyGroupSetView();
+}
+function applyGroupSetView(){
+  const m = CUR_GSET==='gm';
+  $('gmWrap').style.display = m?'':'none';
+  $('gpWrap').style.display = m?'none':'';
+  $('segGM').classList.toggle('on', m);
+  $('segGP').classList.toggle('on', !m);
 }
 
-function renderGroupDetail(){
-  const g = (STATE.groups||[]).find(x=>x.group===selectedGroup);
-  const box = $('#groupDetail');
-  if (!g){ box.classList.remove('on'); return; }
-  box.classList.add('on');
-  const matches = g.matches || [];
-  if (matches.length===0){
-    box.innerHTML = '<h3>'+esc(g.group)+'</h3><div class="state">Matches not generated yet.</div>';
-    return;
-  }
-  box.innerHTML = '<h3>'+esc(g.group)+' &middot; MATCHES</h3>' +
-    matches.map(m=>{
-      const aWin = m.winner && m.winner===m.teamA;
-      const bWin = m.winner && m.winner===m.teamB;
-      return '<div class="matchrow">' +
-        '<span class="mid">'+esc(m.id).toUpperCase()+'</span>' +
-        '<span class="side'+(aWin?' win':'')+'">'+(m.teamA?esc(m.teamA):'<span class="dimtext">TBD</span>')+'</span>' +
-        '<span class="vs">VS</span>' +
-        '<span class="side'+(bWin?' win':'')+'">'+(m.teamB?esc(m.teamB):'<span class="dimtext">TBD</span>')+'</span>' +
-        '</div>';
-    }).join('');
-}
-
-/* ============ QUALIFIED — 33 TEAMS ============ */
-function renderQualified33(){
-  if(!STATE) return;
-  const rows = (STATE.qualified33 || []).slice().sort((a,b)=>(a.seed||9999)-(b.seed||9999));
-  $('#q33Count').textContent = rows.length ? (rows.length+' TEAMS · SORTED BY QUALIFYING SEED') : '';
-  if (rows.length===0){
-    $('#q33Wrap').innerHTML = '<div class="state">Waiting for group stage to complete&hellip;</div>';
-    return;
-  }
-  let html = '<table class="qtable"><thead><tr>' +
-    '<th>SEED</th><th>TEAM</th><th>GROUP</th><th>GROUP RANK</th><th></th>' +
-    '</tr></thead><tbody>';
-  rows.forEach(r=>{
-    html += '<tr>' +
-      '<td class="rankcell">'+r.seed+'</td>' +
-      '<td class="name">'+esc(r.name)+'</td>' +
-      '<td class="mono dimtext">'+esc(r.group)+'</td>' +
-      '<td class="mono dimtext">'+esc(r.rank)+'</td>' +
-      '<td>'+(r.note?'<span class="badge" style="background:rgba(224,72,59,.16);color:#F2A79F">'+esc(r.note).toUpperCase()+'</span>':'')+'</td>' +
-      '</tr>';
+/* =========================================================
+   3. QUALIFYING  (Race order / Ranking)
+   ========================================================= */
+function renderQual(){
+  const host=$('qualTbl'); if(!host) return;
+  if(!D.qual.length){ host.innerHTML='<div class="empty">No qualifying entries yet.</div>'; return; }
+  const tb=document.createElement('table');
+  tb.innerHTML='<thead><tr><th>#</th><th>Sched</th><th>Insp</th><th>Team</th>'+
+    '<th>FA</th><th>Q3</th><th>Q2</th><th>Q1</th></tr></thead>';
+  const body=document.createElement('tbody');
+  D.qual.forEach((r,i)=>{
+    const t=team(r.tid), ii=tindex(r.tid);
+    const tr=document.createElement('tr');
+    if(isWD(r.tid)) tr.className='offrow';
+    tr.innerHTML='<td class="num">'+(i+1)+'</td>'+
+      '<td class="mono">'+esc(fmtHM(r.sched))+'</td>'+
+      '<td class="mono" style="color:var(--dim2);white-space:nowrap">'+(ii<0?'–':'#'+(ii+1))+'</td>'+
+      '<td style="min-width:130px;font-weight:600">'+esc(t?t.name:'—')+'</td>'+
+      '<td>'+(faValid(r)?'<span class="fabadge">FA</span>':'<span class="mono" style="color:var(--dim2)">–</span>')+'</td>'+
+      '<td class="mono">'+(r.q3==null?'<span style="color:var(--dim2)">–</span>':lapTxt(r.q3))+'</td>'+
+      '<td class="mono">'+(r.q2||0)+'</td><td class="mono">'+(r.q1||0)+'</td>';
+    body.appendChild(tr);
   });
-  html += '</tbody></table>';
-  $('#q33Wrap').innerHTML = html;
+  tb.appendChild(body); host.innerHTML=''; host.appendChild(tb);
 }
 
-/* ============ FINAL TOURNAMENT ============ */
-const ROUNDS = [
-  {key:'R32', label:'ROUND OF 32'},
-  {key:'R16', label:'ROUND OF 16'},
-  {key:'QF', label:'QUARTERFINALS'},
-  {key:'SF', label:'SEMIFINALS'},
-  {key:'F', label:'FINAL'}
-];
+function renderRank(){
+  const host=$('rankTbl'); if(!host) return;
+  if(!D.rank.length){ host.innerHTML='<div class="empty">Ranking not published yet.</div>'; return; }
+  const map=D.qual.reduce((m,r)=>(m[r.tid]=r,m),{});
+  const nums=rankNumbers();
+  const tb=document.createElement('table');
+  tb.innerHTML='<thead><tr><th>Rank</th><th>Team</th><th>FA</th><th>Q3</th><th>Q2</th><th>Q1</th>'+
+    '<th>Demote</th><th>Was</th><th>Pot</th><th>Insp</th></tr></thead>';
+  const body=document.createElement('tbody');
+  const shown = D.rank.map((_,i)=>i);   // withdrawn teams stay in place
+  let medalN=0;
+  shown.forEach(i=>{
+    const tid=D.rank[i], r=map[tid]||{fa:false,q3:null,q2:0,q1:0}, t=team(tid), wd=isWD(tid);
+    const tr=document.createElement('tr');
+    const medal=(!wd && medalN<3)?['gold','silver','bronze'][medalN++]:'';
+    if(medal) tr.className='md-'+medal;
+    if(wd) tr.classList.add('offrow');
+    tr.innerHTML=
+      '<td class="num">'+(wd?'<span style="color:var(--dim2)">–</span>'
+        :(medal?'<span class="medal">'+nums[i]+'</span>':nums[i]))+'</td>'+
+      '<td style="min-width:118px;font-weight:600;white-space:nowrap">'+esc(t?t.name:'—')+
+        (wd?'<i class="wdtag">WD</i>':'')+'</td>'+
+      '<td>'+(faValid(r)?'<span class="fabadge">FA</span>':'<span class="mono" style="color:var(--dim2)">–</span>')+'</td>'+
+      '<td class="mono">'+(r.q3==null?'<span style="color:var(--dim2)">–</span>':lapTxt(r.q3))+'</td>'+
+      '<td class="mono">'+(r.q2||0)+'</td><td class="mono">'+(r.q1||0)+'</td>'+
+      '<td class="mono">'+(r.dem<0?'<span class="dembadge">'+r.dem+'</span>':'<span style="color:var(--dim2)">–</span>')+'</td>'+
+      '<td class="mono" style="color:var(--dim2)">'+(r.dem<0 && D.baseRank[tid]?D.baseRank[tid]:'–')+'</td>'+
+      '<td>'+(seedTag(tid)
+          ? '<span class="sb mono" data-pot="'+potOf(tid)+'" style="--pc:'+potColor(potOf(tid))+'">'
+            +seedTag(tid)+'</span>'
+          : '<span class="mono" style="color:var(--dim2)">–</span>')+'</td>'+
+      '<td class="mono" style="color:var(--dim2)">'+esc(t?t.time:'')+'</td>';
+    body.appendChild(tr);
+  });
+  tb.appendChild(body); host.innerHTML=''; host.appendChild(tb);
+}
+function applyQualView(){
+  const o = CUR_QVIEW==='order';
+  $('qualTbl').style.display = o?'':'none';
+  $('rankTbl').style.display = o?'none':'';
+  $('segQO').classList.toggle('on', o);
+  $('segQR').classList.toggle('on', !o);
+}
 
-function renderBracket(){
-  if(!STATE) return;
-  const nav = $('#roundNav');
-  nav.innerHTML = ROUNDS.map(r=>
-    '<button data-round="'+r.key+'" class="'+(selectedRound===r.key?'active':'')+'">'+r.label+'</button>'
-  ).join('');
-  $$('#roundNav button').forEach(b=>b.addEventListener('click',()=>{
-    selectedRound = b.dataset.round;
-    renderBracket();
-  }));
+/* =========================================================
+   4. POTS  (Pot / Practice)
+   ========================================================= */
+function renderSeedsView(){
+  const rankOf=rankMap();
+  const meta = tid => rankOf[tid] ? '#'+rankOf[tid] : '–';
+  renderGroupSet('seedWrap', D.seeds, {label:'Pot', max:D.cfg.seedMax, meta:meta, potTint:true});
+  const origin={};
+  D.seeds.forEach((s,i)=> s.forEach(t=> origin[t]='P'+(i+1)));
+  renderGroupSet('spWrap', D.sprac, {label:'Practice', max:D.cfg.seedMax,
+    badge:tid=>origin[tid]||'', meta:meta});
+  applyPotView();
+}
+function applyPotView(){
+  const p = CUR_PVIEW==='pot';
+  $('seedWrap').style.display = p?'':'none';
+  $('spWrap').style.display = p?'none':'';
+  $('segPT').classList.toggle('on', p);
+  $('segPR').classList.toggle('on', !p);
+}
 
-  const data = (STATE.bracket32 && STATE.bracket32[selectedRound]) || [];
-  if (data.length===0){
-    $('#bracketWrap').innerHTML = '<div class="state">No matches yet for this round.</div>';
+/* =========================================================
+   5. NOW BAR  (read-only, collapsible)
+   ========================================================= */
+let NOW_MINI = false;
+function renderNowBar(phase){
+  const host=$(phase+'Now'); if(!host) return;
+  const ord=D[phase].order, ms=D[phase].matches;
+  if(!ord.length){ host.innerHTML=''; return; }
+  const doneN=ord.filter(id=>ms[id]&&ms[id].done&&!M.walkover(ms[id])).length;
+  const totalN=raceTotal(phase);
+  const live=nextMatchId(phase);
+  const box=document.createElement('div');
+  box.className='nowin'+(live?'':' idle')+(NOW_MINI?' mini':'');
+  const pct=Math.round(doneN/Math.max(1,totalN)*100);
+  const tgl='<button class="nowtgl" data-mini title="Collapse">'+(NOW_MINI?'▸':'▾')+'</button>';
+  if(!live){
+    box.innerHTML='<div class="nowtop">'+tgl+'<span class="nowtag">ALL DONE</span>'+
+      '<span class="nowid">'+(phase==='d1'?'ALL DAY 1 MATCHES COMPLETE':'ALL DAY 2 MATCHES COMPLETE')+'</span>'+
+      '<span class="nowprog"><span>'+doneN+' / '+totalN+'</span>'+
+      '<span class="bar"><i style="width:100%"></i></span></span></div>';
+  } else {
+    const m=ms[live], seq=raceNo(phase, live);
+    const a=M.resolve(m.a), b=M.resolve(m.b), w=M.win(m);
+    const nt=noteEN(m.note);
+    const side=(tid,src)=>{
+      const wdS = tid && isWDp(tid, phaseOf(m));
+      const cls = wdS?'wdside':(tid?(w?(tid===w?'win':'lose'):''):'tbd');
+      return '<div class="nowside '+cls+'">'+
+        '<span class="nnm">'+esc(tid?tname(tid):enText(slotHint(src)))+'</span>'+
+        (wdS?'<i class="wdtag">WD</i>':'')+'</div>';
+    };
+    box.innerHTML=
+      '<div class="nowtop">'+tgl+'<span class="nowtag">NOW</span>'+
+        '<span class="nowseq mono">#'+seq+'</span>'+
+        '<span class="nowid">'+esc(phase==='d1'?'GROUP '+mLabelEN(live):mLabelEN(live))+'</span>'+
+        (nt?'<span class="nownote">'+esc(nt)+'</span>':'')+
+        '<span class="nowprog"><span>'+doneN+' / '+totalN+'</span>'+
+        '<span class="bar"><i style="width:'+pct+'%"></i></span></span></div>'+
+      '<div class="nowmid">'+side(a,m.a)+'<span class="nowvs">VS</span>'+side(b,m.b)+'</div>';
+  }
+  const tg=box.querySelector('[data-mini]');
+  if(tg) tg.onclick=safe(()=>{ NOW_MINI=!NOW_MINI; renderNowBar(phase); });
+  host.innerHTML=''; host.appendChild(box);
+  fitNames(box);
+}
+
+/* =========================================================
+   6. RACE ORDER SHEET  (read-only)
+   ========================================================= */
+function renderMatchSheet(hostId, phase){
+  const host=$(hostId); if(!host) return;
+  const ord0=D[phase].order, ms=D[phase].matches;
+  if(!ord0.length){ host.innerHTML='<div class="empty">Draw not published yet.</div>'; return; }
+  const LIVE=nextMatchId(phase);
+  const ord = (D.cfg.woView==='inline') ? ord0
+    : ord0.filter(id=>!M.walkover(ms[id])).concat(ord0.filter(id=>M.walkover(ms[id])));
+  const tb=document.createElement('table');
+  tb.innerHTML='<thead><tr><th>No</th><th>Status</th><th>Match</th><th>Team A</th><th>Team B</th></tr></thead>';
+  const body=document.createElement('tbody');
+  let seqNo=0;
+  ord.forEach(id=>{
+    const m=ms[id]; if(!m) return;
+    const wo=M.walkover(m);
+    if(!wo) seqNo++;
+    const a=M.resolve(m.a), b=M.resolve(m.b), w=M.win(m);
+    const tr=document.createElement('tr');
+    let cls=(m.done||wo)?'rdone':'';
+    if(wo) cls+=' rwo';
+    if(id===LIVE) cls+=' hllive';
+    else if(phase==='d1' && CUR_D1G!=null && D.d1.groups[CUR_D1G]
+            && D.d1.groups[CUR_D1G].ids.indexOf(id)>=0) cls+=' hlgroup';
+    tr.className=cls.trim();
+    /* same markup as the management sheet, minus the click target */
+    const cell=(tid,src)=>{
+      if(!tid) return '<td class="pick empty">'+esc(enText(slotHint(src)))+'</td>';
+      const wdS = isWDp(tid, phaseOf(m));
+      const cls = w ? (tid===w ? 'pick win' : 'pick lose') : 'pick';
+      return '<td class="'+cls+'"><span class="pk"><span data-raw>'+esc(tname(tid))+'</span>'+
+        (wdS?'<i class="wdtag">WD</i>':'')+'</span></td>';
+    };
+    tr.innerHTML='<td class="num">'+(wo?'<span style="color:var(--dim2)">–</span>':seqNo)+'</td>'+
+      '<td>'+(wo?'<span class="wotag">W.O.</span>'
+        :(m.done?'<span class="dntag">DONE</span>'
+          :(id===LIVE?'<span class="lvtag">NOW</span>':'<span style="color:var(--dim2)">—</span>')))+'</td>'+
+      '<td class="mono" style="color:var(--signal);white-space:nowrap;font-weight:700">'+esc(mLabelEN(id))+'</td>'+
+      cell(a,m.a)+cell(b,m.b);
+    body.appendChild(tr);
+  });
+  tb.appendChild(body); host.innerHTML=''; host.appendChild(tb);
+}
+function applyWoView(){
+  const inl = D.cfg.woView==='inline';
+  [['segWoI',inl],['segWoG',!inl],['segWoI2',inl],['segWoG2',!inl]].forEach(([id,v])=>{
+    const el=$(id); if(el) el.classList.toggle('on', v);
+  });
+}
+
+/* =========================================================
+   7. DAY 1
+   ========================================================= */
+function mbox(m, extra){
+  const a=M.resolve(m.a), b=M.resolve(m.b), w=M.win(m);
+  const el=document.createElement('div'); el.className='mbox'+(m.done?' mdone':'');
+  const line=(side,tid,src)=>{
+    const wdS = tid && isWDp(tid, phaseOf(m));
+    const isW = w && tid===w, isL = w && tid && tid!==w;
+    const cls = wdS?'wdslot':(tid?(isW?'win':(isL?'lose':'')):'tbd');
+    return '<div class="slot '+cls+'">'+
+      '<span class="sd mono">'+side+'</span>'+
+      '<span class="nm">'+esc(tid?tname(tid):enText(slotHint(src)))+'</span>'+
+      (wdS?'<i class="wdtag">WD</i>':'')+'</div>';
+  };
+  const ph = D.d1.matches[m.id] ? 'd1' : 'd2';
+  const seq = raceNo(ph, m.id);
+  el.innerHTML='<div class="mh"><span class="lbl">'+esc(mLabelEN(m.id))+'</span>'+
+    (extra?'<span>'+esc(enText(extra))+'</span>':'')+
+    '<span class="ord mono">'+(seq>0?'#'+seq:'')+'</span></div>'+
+    line('A',a,m.a)+line('B',b,m.b);
+  return el;
+}
+
+function renderDay1(){
+  renderMatchSheet('d1Sheet','d1');
+  renderNowBar('d1');
+  applyWoView();
+  const grid=$('d1GroupGrid'), detail=$('d1GroupDetail');
+  if(!grid||!detail) return;
+  if(!D.d1.groups.length){
+    grid.innerHTML='';
+    detail.innerHTML='<div class="empty">Groups not drawn yet.</div>';
     return;
   }
-  $('#bracketWrap').innerHTML = '<div class="bmatches">' + data.map(m=>{
-    const aWin = m.winner && m.winner===m.teamA;
-    const bWin = m.winner && m.winner===m.teamB;
-    return '<div class="bmatch">' +
-      '<div class="bh">'+esc(m.id).toUpperCase()+'</div>' +
-      '<div class="bside'+(aWin?' win':'')+'">'+(m.teamA?esc(m.teamA):'<span class="dimtext">TBD</span>')+'</div>' +
-      '<div class="bside'+(bWin?' win':'')+'">'+(m.teamB?esc(m.teamB):'<span class="dimtext">TBD</span>')+'</div>' +
-      '</div>';
-  }).join('') + '</div>';
+  const live=nextMatchId('d1'), liveG=live?d1GroupOfMatch(live):-1;
+  if(CUR_D1G==null || CUR_D1G>=D.d1.groups.length) CUR_D1G=(liveG>=0?liveG:0);
+
+  grid.innerHTML='';
+  D.d1.groups.forEach((g,gi)=>{
+    const ms=D.d1.matches;
+    /* A match counts as settled once its result is known — a walkover from a
+       withdrawal decides it just as firmly as a race does. Counting only
+       `winner` made a finished group read as "2 / 5" and still in progress.
+       Byes drop out of the total for the same reason. */
+    const real = g.ids.filter(id=>ms[id] && !M.walkover(ms[id]));
+    const played = real.filter(id=>M.win(ms[id])).length;
+    const adv=d1Advancers(gi);
+    const b=document.createElement('div');
+    b.setAttribute('role','button'); b.tabIndex=0;
+    b.className='gcard'+(gi===CUR_D1G?' sel':'')+(gi===liveG?' live':'');
+    const total=real.length;
+    const status = gi===liveG?'UP NEXT'
+      :(played>=total?'COMPLETE':(played?played+' / '+total:'PENDING'));
+    const cls = gi===liveG?'live':(played>=total?'done':'');
+    let list='';
+    g.teams.forEach((t,k)=>{
+      const isAdv=adv.indexOf(t)>=0, wd=isWD(t);
+      const out=!wd && played>=total && !isAdv;
+      list+='<div class="'+(wd?'wd':(isAdv?'adv':(out?'out':'')))+'">'+
+            '<em>'+(k+1)+'</em>'+
+            '<span>'+esc(tname(t))+'</span>'+
+            (wd?'<i class="wdtag">WD</i>'
+                :'<i class="ptag" data-pot="'+potOf(t)+'" style="--pc:'+potColor(potOf(t))+'">'
+                  +esc(seedTag(t)||'')+'</i>')+'</div>';
+    });
+    b.innerHTML='<div class="gh">GROUP '+gLabel(gi)+'</div>'+
+                '<div class="gs '+cls+'">'+esc(status)+'</div>'+
+                '<div class="gt">'+list+'</div>';
+    b.onclick=safe(()=>{ CUR_D1G=gi; renderDay1(); });
+    grid.appendChild(b);
+  });
+
+  const gr=D.d1.groups[CUR_D1G], ms=D.d1.matches;
+  detail.innerHTML='';
+  const box=document.createElement('div'); box.className='gdetail';
+  const adv=d1Advancers(CUR_D1G);
+  box.innerHTML='<div class="dh">GROUP '+gLabel(CUR_D1G)+'  ·  MATCHES'+
+    '<span class="hspace" style="flex:1"></span>'+
+    '<span class="dn">ADVANCING '+adv.length+' / 3</span></div>';
+  {
+    let mno=0;
+    d1SeqIds(CUR_D1G).forEach(id=>{
+      const m=ms[id]; if(!m) return;
+      const wo=M.walkover(m), bye=isBye(id)||wo;
+      const k=bye?-1:mno++;
+      const a=M.resolve(m.a), b2=M.resolve(m.b), w=M.win(m);
+      const seq=raceNo('d1', id);
+      const row=document.createElement('div');
+      row.className='mrow'+((m.done||bye)?' done':'')+(id===live?' live':'');
+      const side=(key,tid,src)=>{
+        const wdS = tid && isWDp(tid, phaseOf(m));
+        const cls = wdS?'wdside':(tid?(w?(tid===w?'win':'lose'):''):'tbd');
+        return '<div class="side'+(key==='B'?' b':'')+' '+cls+'">'+
+          '<span class="snm">'+esc(tid?tname(tid):enText(slotHint(src)))+'</span>'+
+          (wdS?'<i class="wdtag">WD</i>':'')+'</div>';
+      };
+      row.innerHTML='<div class="mno">'+(bye?'<b class="byen">—</b>'
+          :'<b>M'+(k+1)+'</b><span>'+(seq?'#'+seq:'W.O.')+'</span>')+'</div>'+
+        '<div class="mbody">'+side('A',a,m.a)+'<span class="vs">VS</span>'+side('B',b2,m.b)+
+        '<span class="mnote">'+esc(noteEN(m.note))+'</span></div>';
+      box.appendChild(row);
+      fitNames(row);
+    });
+  }
+  /* bracket follows the match list — no toggle, both are always shown */
+  const bh=document.createElement('div');
+  bh.className='dh dh2';
+  bh.innerHTML='GROUP '+gLabel(CUR_D1G)+'  ·  BRACKET';
+  box.appendChild(bh);
+  const wrap=document.createElement('div');
+  wrap.className='tree'; wrap.style.padding='16px 0 4px';
+  box.appendChild(wrap);
+  d1Bracket(wrap, CUR_D1G, live);
+  detail.appendChild(box);
 }
 
-/* ---------------- utils ---------------- */
-function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function fmt(v){ return (v===''||v==null) ? '<span class="dimtext">&mdash;</span>' : v; }
+/* =========================================================
+   8. DAY 2
+   ========================================================= */
+function renderD2Entrants(){
+  const host=$('d2Entrants'); if(!host) return;
+  const cnt=$('d2QT');
+  if(!D.d1.groups.length){
+    host.innerHTML='<div class="empty">Day 1 must finish first.</div>'; return;
+  }
+  const ent=d2Entrants(), p=d2Plan();
+  /* A Day 2 withdrawal keeps its slot so the bracket size does not shift —
+     its match becomes a walkover. The heading counts the teams still in,
+     which is what the management tool shows; the note below explains the gap. */
+  const liveN = ent.filter(t=>!isWDp(t,'d2')).length;
+  if(cnt) cnt.textContent = 'Qualified Teams · ' + liveN;
+  if(!ent.length){ host.innerHTML='<div class="empty">No qualified teams yet.</div>'; return; }
+  const rankOf=rankMap();
+  const tb=document.createElement('table');
+  tb.innerHTML='<thead><tr><th>Seed</th><th>Team</th><th>Qual</th><th>Pot</th>'+
+    '<th>Group</th><th>Entry</th></tr></thead>';
+  const body=document.createElement('tbody');
+  const gOf={};
+  D.d1.groups.forEach((g,gi)=> g.teams.forEach(t=> gOf[t]=gLabel(gi)));
+  /* Seed numbers count only the teams still in, matching the heading and the
+     management tool: a withdrawn team keeps its bracket slot but takes no
+     number, so the sequence never claims more runners than there are. */
+  let seedN = 0;
+  ent.forEach((tid,i)=>{
+    const wdE=isWDp(tid,'d2');
+    const n = wdE ? null : (++seedN);
+    const e=d2Entry(i+1);
+    const tr=document.createElement('tr');
+    if(wdE) tr.className='offrow';
+    tr.innerHTML='<td class="num">'+(n==null?'<span style="color:var(--dim2)">–</span>':n)+'</td>'+
+      '<td style="min-width:130px;font-weight:600">'+esc(tname(tid))+
+        (wdE?'<i class="wdtag">WD</i>':'')+'</td>'+
+      '<td class="mono" style="color:var(--dim2)">'+(rankOf[tid]?'#'+rankOf[tid]:'–')+'</td>'+
+      '<td>'+(seedTag(tid)
+          ? '<span class="sb mono" data-pot="'+potOf(tid)+'" style="--pc:'+potColor(potOf(tid))+'">'
+            +seedTag(tid)+'</span>'
+          : '<span class="mono" style="color:var(--dim2)">–</span>')+'</td>'+
+      '<td class="mono">'+esc(gOf[tid]||'–')+'</td>'+
+      '<td class="mono" style="color:var(--dim2)">'+esc(e?enText(e.label):'')+'</td>';
+    body.appendChild(tr);
+  });
+  tb.appendChild(body); host.innerHTML=''; host.appendChild(tb);
+}
 
-fetchData();
-setInterval(fetchData, POLL_MS);
+function renderDay2(){
+  const p=d2Plan();
+  const info=$('d2Info');
+  if(info){
+    if(!D.d1.groups.length || p.M<2){
+      info.textContent='Day 2 seeding appears once Day 1 results are in.';
+    } else {
+      /* A withdrawn team keeps its place in the bracket — its match becomes a
+         walkover — so the qualified count and the racing count differ. Say so
+         outright rather than quietly showing two numbers that look like a typo. */
+      const ent = d2Entrants();
+      const wdN = ent.filter(t=>isWDp(t,'d2')).length;
+      info.innerHTML='Three teams advance from each Day 1 group → <b>'+p.M+' qualified</b>.<br>'+
+        (p.playIn>0 ? 'The bottom '+(p.playIn*2)+' contest '+p.playIn+' play-in '+
+                      (p.playIn===1?'match':'matches')+' to fill the round of '+p.P+'.'
+                    : 'They go straight into the round of '+p.P+'.')+
+        /* Withdrawals keep their bracket slot, so the two counts differ.
+           Give that its own line rather than burying it mid-sentence. */
+        (wdN ? '<br><b>'+wdN+'</b> '+(wdN===1?'has':'have')+' withdrawn, so <b>'+
+               (p.M-wdN)+'</b> '+(p.M-wdN===1?'team':'teams')+' will race.' : '');
+    }
+  }
+  renderD2Entrants();
+  renderMatchSheet('d2Sheet','d2');
+  renderNowBar('d2');
+  applyWoView();
+
+  const host=$('d2Tree'); if(!host) return;
+  if(!D.d2.built){ host.innerHTML='<div class="empty">Day 2 draw not published yet.</div>'; return; }
+  const live2=nextMatchId('d2');
+  const ms=D.d2.matches, P=p.P, playIn=p.playIn, rounds=Math.round(Math.log2(P));
+  const hasPI=playIn>0, base=hasPI?1:0;
+  const cy={};
+  cy[1]=[]; for(let i=0;i<P/2;i++) cy[1][i]=i*TROW2;
+  for(let r=2;r<=rounds;r++){
+    cy[r]=[];
+    for(let i=0;i<P/Math.pow(2,r);i++) cy[r][i]=(cy[r-1][2*i]+cy[r-1][2*i+1])/2;
+  }
+  const maxCy=cy[1][P/2-1];
+  const cols=base+rounds;
+  const canvas=tCanvas(host, cols, maxCy, TH);
+  const links=[];
+  for(let r=1;r<=rounds;r++){
+    tTitle(canvas, base+r-1, enText(roundName(P,r)));
+    for(let i=0;i<P/Math.pow(2,r);i++){
+      const m=ms['d2-r'+r+'-m'+i]; if(!m) continue;
+      const el2=tPlace(canvas,{m, col:base+r-1, cy:cy[r][i]});
+      if(m.id===live2) el2.classList.add('mlive');
+      if(r<rounds){
+        const par=ms['d2-r'+(r+1)+'-m'+Math.floor(i/2)];
+        if(par) links.push({c1:base+r-1,y1:cy[r][i],c2:base+r,
+                            y2:cy[r+1][Math.floor(i/2)],kind:'W',lit:!!M.win(m)});
+      }
+    }
+  }
+  if(hasPI){
+    tTitle(canvas, 0, 'PLAY-IN');
+    const ord=seedOrder(P), byes=P-playIn, used={};
+    for(let j=0;j<playIn;j++){
+      const m=ms['d2-pi-'+j]; if(!m) continue;
+      const seed=byes+1+j, posIdx=ord.indexOf(seed);
+      const r1i=posIdx>=0?Math.floor(posIdx/2):j;
+      used[r1i]=(used[r1i]||0)+1;
+      const y=cy[1][r1i]+(used[r1i]-1)*(TH+8);
+      const elp=tPlace(canvas,{m, col:0, cy:y});
+      if(m.id===live2) elp.classList.add('mlive');
+      links.push({c1:0,y1:y,c2:base,y2:cy[1][r1i],kind:'W',lit:!!M.win(m)});
+    }
+  }
+  tLinks(canvas, links, TX(cols-1)+TW+8, maxCy+THEAD+TH+8);
+}
+function applyH2HView(){
+  const one = CUR_H2H==='d1';
+  $('h2hD1').style.display = one?'':'none';
+  $('h2hD2').style.display = one?'none':'';
+  $('segH1').classList.toggle('on', one);
+  $('segH2').classList.toggle('on', !one);
+}
+
+/* =========================================================
+   9. TABS / RENDER
+   ========================================================= */
+const TABS=[['insp','INSPECTION'],['grp','MAPPING/PRACTICE'],['qual','QUALIFYING'],
+            ['seed','POTS/PRACTICE'],['h2h','HEAD-TO-HEAD']];
+function buildNav(){
+  const nav=$('nav'); nav.innerHTML='';
+  TABS.forEach(([k,label])=>{
+    const b=document.createElement('button');
+    b.textContent=label; b.dataset.tab=k;
+    b.className=(k===CUR?'on':'');
+    b.onclick=safe(()=>{ CUR=k; syncTabs(); });
+    nav.appendChild(b);
+  });
+}
+function syncTabs(){
+  TABS.forEach(([k])=>{
+    const s=$('tab-'+k); if(s) s.classList.toggle('on', k===CUR);
+  });
+  document.querySelectorAll('#nav button').forEach(b=>
+    b.classList.toggle('on', b.dataset.tab===CUR));
+  // the DAY switch belongs to Head-to-Head only
+  $('daySeg').style.display = (CUR==='h2h') ? '' : 'none';
+}
+function renderAll(){
+  renderInspection();
+  renderGroups();
+  renderQual(); renderRank(); applyQualView();
+  renderSeedsView();
+  renderDay1(); renderDay2(); applyH2HView();
+  syncTabs();
+}
+
+/* section fold */
+function wireFolds(){
+  document.querySelectorAll('.secthead').forEach(h=>{
+    h.onclick=safe(ev=>{
+      if(ev.target.closest('.segtog')) return;   // toggles are not fold triggers
+      const s=h.closest('.sect'); if(!s) return;
+      s.classList.toggle('fold');
+      const cav=h.querySelector('.cav');
+      if(cav) cav.textContent = s.classList.contains('fold')?'▸':'▾';
+    });
+  });
+}
+
+/* view toggle wiring */
+const VIEWS = {
+  segGM:()=>{ CUR_GSET='gm'; applyGroupSetView(); },
+  segGP:()=>{ CUR_GSET='gp'; applyGroupSetView(); },
+  segQO:()=>{ CUR_QVIEW='order'; applyQualView(); },
+  segQR:()=>{ CUR_QVIEW='rank'; applyQualView(); },
+  segPT:()=>{ CUR_PVIEW='pot'; applyPotView(); },
+  segPR:()=>{ CUR_PVIEW='practice'; applyPotView(); },
+  segWoI:()=>{ D.cfg.woView='inline'; renderDay1(); },
+  segWoG:()=>{ D.cfg.woView='grouped'; renderDay1(); },
+  segWoI2:()=>{ D.cfg.woView='inline'; renderDay2(); },
+  segWoG2:()=>{ D.cfg.woView='grouped'; renderDay2(); },
+  segH1:()=>{ CUR_H2H='d1'; applyH2HView(); },
+  segH2:()=>{ CUR_H2H='d2'; applyH2HView(); }
+};
+function wireViews(){
+  Object.keys(VIEWS).forEach(id=>{
+    const el=$(id); if(el) el.onclick=safe(VIEWS[id]);
+  });
+}
+
+/* ---------- boot ---------- */
+buildNav(); wireFolds(); wireViews(); syncTabs();
+syncHeaderHeight();
+window.addEventListener('resize', syncHeaderHeight);
+fetchState();
+if(!DEMO) setInterval(fetchState, POLL_MS);
+setInterval(()=>{ if(UPDATED_AT) $('upd').textContent='updated '+timeAgo(UPDATED_AT); }, 5000);
+
 </script>
-
 </body>
 </html>
