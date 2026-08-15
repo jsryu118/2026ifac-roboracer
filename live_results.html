@@ -463,9 +463,11 @@ tr.md-silver td:first-child{box-shadow:inset 3px 0 0 #C8D6E6}
 tr.md-bronze td:first-child{box-shadow:inset 3px 0 0 #CD7F32}
 
 /* ---------- H2H group grid ---------- */
-.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px;margin-bottom:22px}
+/* 196px keeps the longest team names intact next to their pot badge — at 172px
+   the grid packed in one more column and every name ellipsized. */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px;margin-bottom:22px}
 .gcard{
-  background:var(--tarmac);border:1px solid var(--line2);border-radius:9px;padding:12px 13px;
+  background:var(--tarmac);border:1px solid var(--line2);border-radius:9px;padding:12px 10px;
   cursor:pointer;transition:.14s;text-align:left;width:100%;color:var(--paint);
 }
 .gcard:hover{border-color:var(--dim2);background:var(--t2)}
@@ -478,8 +480,15 @@ tr.md-bronze td:first-child{box-shadow:inset 3px 0 0 #CD7F32}
 .gcard .gs.done{color:var(--go)}
 .gcard .gs.live{color:var(--go)}
 .gcard .gt{font-size:12px;line-height:1.85;color:var(--dim)}
-.gcard .gt div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:6px;align-items:center;min-height:22px}
-.gcard .gt em{font-family:var(--mono);font-size:9.5px;font-style:normal;color:var(--dim2);flex:0 0 auto;min-width:20px}
+.gcard .gt div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:5px;align-items:center;min-height:22px}
+/* Seed numbers only ever run 1..6 here, so a 20px column was pure dead space
+   on a narrow card — every pixel saved goes to the team name. */
+.gcard .gt em{font-family:var(--mono);font-size:9.5px;font-style:normal;color:var(--dim2);flex:0 0 auto;min-width:9px;text-align:right}
+/* A flex item defaults to min-width:auto, so a long team name refuses to shrink
+   and pushes the pot badge out of the row, where overflow:hidden clips it.
+   Let the name shrink and ellipsize; the badge keeps its full width. */
+.gcard .gt div>span{flex:0 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gcard .gt div.adv{color:#9FE6BE;font-weight:600}
 .gcard .gt div.out{color:#5A6577;text-decoration:line-through}
 
