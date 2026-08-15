@@ -829,7 +829,8 @@ td .pk .wdtag{top:0;margin-left:0}
      child the same line-box and centre on that instead. */
   .nowtop{gap:6px;margin-bottom:5px;flex-wrap:nowrap;line-height:18px}
   .nowtop > *{display:inline-flex;align-items:center;height:18px;line-height:1}
-  .nowtag{font-size:8.5px;padding:0 5px;letter-spacing:.1em}
+  /* "ALL DONE" is two words — without nowrap it breaks inside the badge. */
+  .nowtag{font-size:8.5px;padding:0 5px;letter-spacing:.1em;white-space:nowrap}
   .nowseq{font-size:13px}
   .nowid{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     display:block!important;line-height:18px}
@@ -1987,8 +1988,15 @@ function renderNowBar(phase){
   const pct=Math.round(doneN/Math.max(1,totalN)*100);
   const tgl='<button class="nowtgl" data-mini title="Collapse">'+(NOW_MINI?'▸':'▾')+'</button>';
   if(!live){
+    /* The long form does not fit a phone: the badge wraps to two lines and
+       the sentence is cut off mid-word. Say the same thing in fewer words
+       when the screen is narrow. */
+    const narrow = window.matchMedia('(max-width:900px)').matches;
+    const doneMsg = narrow
+      ? (phase==='d1' ? 'DAY 1 COMPLETE' : 'DAY 2 COMPLETE')
+      : (phase==='d1' ? 'ALL DAY 1 MATCHES COMPLETE' : 'ALL DAY 2 MATCHES COMPLETE');
     box.innerHTML='<div class="nowtop">'+tgl+'<span class="nowtag">ALL DONE</span>'+
-      '<span class="nowid">'+(phase==='d1'?'ALL DAY 1 MATCHES COMPLETE':'ALL DAY 2 MATCHES COMPLETE')+'</span>'+
+      '<span class="nowid">'+doneMsg+'</span>'+
       '<span class="nowprog"><span>'+doneN+' / '+totalN+'</span>'+
       '<span class="bar"><i style="width:100%"></i></span></span></div>';
   } else {
@@ -2246,8 +2254,10 @@ function renderDay2(){
       const ent = d2Entrants();
       const wdN = ent.filter(t=>isWDp(t,'d2')).length;
       info.innerHTML='Three teams advance from each Day 1 group → <b>'+p.M+' qualified</b>.<br>'+
-        (p.playIn>0 ? 'The bottom '+(p.playIn*2)+' contest '+p.playIn+' play-in '+
-                      (p.playIn===1?'match':'matches')+' to fill the round of '+p.P+'.'
+        (p.playIn>0 ? 'The lowest '+(p.playIn*2)+' seeds meet in '+
+                      (p.playIn===1 ? 'a play-in' : p.playIn+' play-ins')+
+                      ' to fill the last '+(p.playIn===1?'place':'places')+
+                      ' in the round of '+p.P+'.'
                     : 'They go straight into the round of '+p.P+'.')+
         /* Withdrawals keep their bracket slot, so the two counts differ.
            Give that its own line rather than burying it mid-sentence. */
