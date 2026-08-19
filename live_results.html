@@ -245,6 +245,10 @@ select.demon{border-color:var(--stop);color:#F2A79F}
   display:flex;align-items:center;gap:8px;
 }
 .grp h3 .cnt{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--dim);text-transform:none}
+/* session time band from the timetable, under the card header */
+.grp .gtime{padding:7px 14px;border-bottom:1px solid var(--line2);
+  font-size:10.5px;line-height:1.7;color:var(--dim);letter-spacing:.01em}
+.grp .gtime b{color:var(--signal);font-weight:800;margin-right:2px}
 .grp h3 .cnt.full{color:var(--signal)}
 .fixlb{font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--dim2)}
 .fixlb.on{color:var(--signal)}
@@ -587,6 +591,44 @@ tbody tr.hllive td:first-child{box-shadow:inset 3px 0 0 var(--go)}
 }
 
 
+/* ---------- timetable ---------- */
+/* Two fixed columns on desktop: the long days (1·2) pair on the top row and
+   the short days (3·4) on the bottom, so no card ends up orphaned the way
+   auto-fit left Day 4 alone under a three-column row. One column on phones. */
+.ttgrid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.ttgrid{grid-template-columns:1fr 1fr}}
+/* Cards on the same grid row stretch to one height, and the rows inside
+   share the extra space evenly — no dead strip at the bottom of the
+   shorter day. */
+.ttday{background:var(--t2);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column}
+.ttday .ttrow{flex:1 0 auto}
+.tthead{display:flex;align-items:center;gap:10px;padding:12px 16px;
+  border-bottom:1px solid var(--line);background:var(--t3)}
+.tthead b{font-family:var(--mono);font-size:14px;font-weight:800;letter-spacing:.06em;color:var(--signal)}
+.tthead span{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--dim2)}
+/* The time sits on the vertical centre of the programme block, as on the
+   official timetable poster — steadier than first-line alignment when the
+   programme runs to two lines. */
+.ttrow{display:flex;gap:14px;padding:10px 16px;align-items:center;
+  border-bottom:1px solid rgba(55,65,79,.45)}
+.ttrow:last-child{border-bottom:0}
+/* Time and programme share one 20px first-line box, so their first lines
+   sit on the same visual centre regardless of font size. */
+.ttt{flex:0 0 106px;font-size:11.5px;font-weight:700;color:var(--paint);
+  line-height:20px;white-space:nowrap}
+.ttp{font-size:13px;font-weight:600;color:var(--paint);min-width:0;line-height:20px}
+.ttp small{display:block;font-family:var(--mono);font-size:10px;font-weight:500;
+  color:var(--dim);margin-top:2px;letter-spacing:.02em}
+.ttrow.brk .ttt,.ttrow.brk .ttp{color:var(--dim2);font-weight:500}
+.ttrow.brk .ttp small{color:var(--dim2)}
+
+/* ---------- rules (link out) ---------- */
+a.rulego{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:800;
+  letter-spacing:.06em;background:var(--signal);color:var(--tarmac);
+  border-radius:7px;padding:8px 15px;text-decoration:none;transition:.15s}
+a.rulego:hover{background:#FFD838}
+
 /* ---------- viewer additions ---------- */
 .livewrap{display:flex;align-items:center;gap:8px}
 .livedot{width:8px;height:8px;border-radius:50%;background:var(--go);
@@ -778,6 +820,9 @@ td.pick.win:hover .pk{background:rgba(245,197,24,.14);border-color:var(--signal)
 .thit:hover{border-color:var(--pick);background:var(--t3)}
 .thit.tnone{color:var(--dim2);font-weight:500;cursor:default;border-style:dashed}
 .thit.tnone:hover{border-color:var(--line);background:var(--t2)}
+/* keyboard-highlighted candidate (arrow keys) */
+.thit.kbd{border-color:var(--signal);background:var(--t3);
+  box-shadow:inset 3px 0 0 var(--signal)}
 
 .tteam{display:flex;flex-direction:column;gap:12px}
 .thead{display:flex;align-items:center;gap:10px;padding:2px 2px 0}
@@ -871,6 +916,11 @@ div.tchead:hover{background:rgba(255,255,255,.02)}
 /* A slash is punctuation — it should separate without competing. Both halves
    read as values; only the mark between them steps back. */
 .trow[data-pot] .tv{color:var(--pc)}
+/* Day tags (D1/D2) inside a sub: yellow like the group-card time bands,
+   with a breath of space so runs of times read as separate sessions. */
+.tsub b{color:var(--signal);font-weight:800}
+.tsub b:not(:first-child){margin-left:7px}
+
 /* The second half of a pair is a value too — same size, same face, same
    weight as the first. Only the slash between them steps back. */
 .trow[data-pot] .tsub,.trow.tpair .tsub{color:var(--paint);font-weight:700;
@@ -968,19 +1018,26 @@ td .pk .wdtag{top:0;margin-left:0}
    Wide things (sheets, brackets) scroll inside their own box
    so the page body itself never scrolls sideways.
    ========================================================= */
-@media (max-width:900px){
-  body{padding-bottom:60px}
-  main{padding:16px 12px 32px}
-
-  /* --- header --- */
+/* Header keeps the one-row desktop layout down to 841px — everything still
+   fits on one line there. Only below that (phones) does it wrap: title on
+   its own row, then the toggles left and the update stamp right. */
+@media (max-width:840px){
   header .hbar{flex-wrap:wrap;gap:8px 10px;padding:10px 12px}
   header h1{font-size:15px;flex:1 1 100%}
   header h1 small{font-size:9px;letter-spacing:.1em}
   .hbar .hspace{display:none}
   .dayseg{order:3}
+  /* .segtog's mobile margin-left:auto is for in-section toggles; the header
+     day toggle stays left, next to the team count */
+  .hbar .dayseg{margin-left:0}
   .pill{order:4;font-size:10px;padding:4px 9px}
   .livewrap{order:5;margin-left:auto}
   .upd{font-size:10px}
+}
+
+@media (max-width:900px){
+  body{padding-bottom:60px}
+  main{padding:16px 12px 32px}
 
   /* --- tab bar: swipeable, never wraps --- */
   nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -1371,6 +1428,24 @@ td .pk .wdtag{top:0;margin-left:0}
       <div id="teamHits" class="thits"></div>
       <div id="teamCard"></div>
     </div>
+
+    <!-- ============ TIMETABLE (official schedule, folded by default) ============ -->
+    <div class="sect fold">
+      <h3 class="secthead"><span class="cav">&#9662;</span>TIME TABLE
+        <span class="hint">AUG 24 &ndash; 27</span>
+      </h3>
+      <!-- built by renderTimetable() from D.tt so operator edits flow in -->
+      <div class="ttgrid" id="ttGrid"></div>
+    </div>
+
+    <!-- ============ RULES (opens the rules site in a new tab) ============ -->
+    <div class="sect fold">
+      <h3 class="secthead"><span class="cav">&#9662;</span>RULES
+        <span class="hint">OPENS IN A NEW TAB</span>
+      </h3>
+      <a class="rulego" href="https://2026ifac-roboracer.com/en/rules.html"
+         target="_blank" rel="noopener">OPEN RULES &nearr;</a>
+    </div>
   </section>
 
   <!-- ============ FINAL RANKING ============ -->
@@ -1477,7 +1552,7 @@ function seedTag(tid){
   if(!tid) return '';
   for(let i=0;i<D.seeds.length;i++){
     const k=D.seeds[i].indexOf(tid);
-    if(k>=0) return 'P'+(i+1)+'-'+(k+1);
+    if(k>=0) return 'P'+(i+1)+' - '+(k+1);
   }
   return '';
 }
@@ -1891,7 +1966,7 @@ const BRK = {
 const D = {
   cfg:{ groupMax:11, seedMax:11, wdView:'inline', woView:'inline' },
   teams: [], gm: [], gp: [], qual: [], rank: [],
-  baseRank: {}, seeds: [], sprac: [], d2wd: [], d2drop: [], d2ent: null,
+  baseRank: {}, seeds: [], sprac: [], d2wd: [], d2drop: [], d2ent: null, tt: null,
   d1: { groups: [], matches: {}, order: [] },
   d2: { matches: {}, order: [], built:false }
 };
@@ -2011,8 +2086,22 @@ let CUR='team', CUR_GSET='gm', CUR_QVIEW='order', CUR_PVIEW='pot',
 
 /* =========================================================
    FETCH — JSONP, so the page works from file:// and any host
-   ========================================================= */
+   =========================================================
+   Two read paths:
+   1) gviz (preferred) — reads the _live sheet straight from
+      docs.google.com. No Apps Script in the loop, so there is no cold
+      start, no execution-slot queueing, no intermittent 404. Requires
+      SHEET_ID below and the spreadsheet shared as
+      "Anyone with the link – Viewer".
+   2) legacy — the Apps Script /exec relay. Used only while SHEET_ID
+      is empty. Measured at 20-34 s per request under load, with
+      occasional 404 error pages from Google's front end.            */
 const API_URL = 'https://script.google.com/macros/s/AKfycbwCrJhXfwwxiAYcTWw2iZnjjDLf9edKuT_vO8qHTcgErWBOEMbtL3_OkBp0EPrI4hdOlg/exec';
+/* docs.google.com/spreadsheets/d/<THIS PART>/edit — the public RELAY
+   spreadsheet (LIVE_BOOK_ID in the Apps Script), not the private
+   operations sheet. It carries only the _live JSON the page displays,
+   so sharing it read-only leaks nothing the page doesn't show. */
+const SHEET_ID = '1wpMj1OZcBamub1BZXvFEoX9uRuEGtEAx_9EevW51iWo';
 /* Poll cadence. Each check asks for `?live=meta` first — a ~100 byte reply
    carrying just the timestamp — and only pulls the full 27 kB state when that
    timestamp has moved. Checking often is therefore cheap, so the interval is
@@ -2022,7 +2111,15 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbwCrJhXfwwxiAYcTWw2iZnj
    slot for the ~1.4s it takes to answer, whatever the response size. At 2s a
    viewer was almost never idle, so 300 phones meant ~150 requests a second.
    Eight seconds leaves each viewer quiet ~80% of the time. */
-const POLL_MS = 8000;
+/* 폴링은 상황에 맞춰 조절한다 — 최근 10분 안에 결과가 갱신됐으면
+   "경기 중"으로 보고 2초, 조용하면 8초. A1 폴링은 ~1KB짜리 요청이고
+   실측에서 동시 100요청이 평균 0.47초에 전부 성공했으므로, 경기 중
+   300명이 2초 간격이어도(초당 ~150요청) gviz 는 감당한다.
+   (구 Apps Script 경로였다면 이 간격은 불가능하다 — 실행 슬롯이
+   30개뿐이라 8초가 한계였다.) */
+const POLL_FAST = 2000, POLL_IDLE = 4000, ACTIVE_MS = 10*60*1000;
+let _lastChange = 0;
+const markChange = iso => { _lastChange = new Date(iso).getTime() || Date.now(); };
 let jsonpN = 0, FIRST = true;
 
 /* Local preview: ?demo=<path> loads a saved status JSON instead of the API,
@@ -2064,13 +2161,88 @@ function jsonp(mode, ok, fail){
   document.head.appendChild(s);
 }
 
+/* One gviz round trip: the column-A cells of `range` on the _live sheet.
+   Served by Google's document infrastructure — the same thing that answers
+   every open spreadsheet — so it holds up a grandstand of phones without
+   involving Apps Script at all. */
+function gviz(range, ok, fail){
+  const cb = '__rrgv' + (jsonpN++);
+  const s = document.createElement('script');
+  let done = false;
+  const clean = ()=>{ try{ delete window[cb]; }catch(_){ window[cb]=undefined; }
+                      if(s.parentNode) s.parentNode.removeChild(s); };
+  window[cb] = res=>{
+    if(done) return; done = true; clean();
+    if(!res || res.status === 'error'){
+      fail((res && res.errors && res.errors[0] && res.errors[0].reason) || 'gviz error');
+      return;
+    }
+    const rows = (res.table && res.table.rows) || [];
+    ok(rows.map(r => (r.c && r.c[0] && r.c[0].v != null) ? String(r.c[0].v) : ''));
+  };
+  s.onerror = ()=>{ if(done) return; done=true; clean(); fail('connection failed'); };
+  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 15000);
+  s.src = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq' +
+          '?tqx=out:json;responseHandler:' + cb +
+          '&sheet=_live&range=' + range + '&headers=0&t=' + Date.now();
+  document.head.appendChild(s);
+}
+
 let LAST_STAMP = null;
 let inFlight = false;
 
-/* Ask for the timestamp first and pull the body only when it has moved. A
-   quiet minute then costs ~100 bytes per check instead of 27 kB, which is
-   what makes a short interval affordable for a whole grandstand. */
+/* Ask for the timestamp first and pull the body only when it has moved —
+   cell A1 alone is a ~1 kB reply; the full body only moves when a result
+   was entered. */
 function fetchLive(retry){
+  if(inFlight) return;
+  if(!SHEET_ID){ fetchLegacy(retry); return; }
+  inFlight = true;
+
+  const fail = msg =>{
+    inFlight = false;
+    /* One transient miss (mid-write snapshot, dropped packet) should not
+       flip the page to an error — try once more before saying anything. */
+    if(!retry){ setTimeout(safe(()=>fetchLive(1)), 1200); return; }
+    $('liveDot').classList.add('off');
+    $('upd').textContent = msg;
+    if(FIRST) showError(msg);
+  };
+
+  const pullBody = ()=> gviz('A1:A100', cells=>{
+    const stamp = cells[0] || null;
+    let d;
+    try{ d = JSON.parse(cells.slice(1).join('')); }
+    catch(e){ fail('waiting for the management tool'); return; }
+    inFlight = false;
+    LAST_STAMP = stamp;
+    if(stamp) markChange(stamp);
+    d.updatedAt = stamp;
+    applyState(d);
+    $('liveDot').classList.remove('off');
+    $('upd').textContent = 'updated ' + timeAgo(UPDATED_AT);
+    FIRST = false;
+  }, fail);
+
+  if(FIRST){ pullBody(); return; }
+
+  gviz('A1:A1', cells=>{
+    const stamp = cells[0] || null;
+    if(!stamp){ fail('waiting for the management tool'); return; }
+    $('liveDot').classList.remove('off');
+    if(stamp === LAST_STAMP){
+      // nothing new — skip the body entirely
+      inFlight = false;
+      UPDATED_AT = stamp;
+      $('upd').textContent = 'updated ' + timeAgo(UPDATED_AT);
+      return;
+    }
+    pullBody();
+  }, fail);
+}
+
+/* Legacy path — Apps Script relay, kept while SHEET_ID is empty. */
+function fetchLegacy(retry){
   if(inFlight) return;
   inFlight = true;
 
@@ -2083,6 +2255,22 @@ function fetchLive(retry){
     $('upd').textContent = msg;
     if(FIRST) showError(msg);
   };
+
+  /* The first load has nothing to compare against, so asking for the stamp
+     before the body just doubles the round trips — and each one costs a full
+     Apps Script call (measured at 8-9 s cold). Go straight for the data. */
+  if(FIRST){
+    jsonp('1', data=>{
+      inFlight = false;
+      if(!data || data.ok===false){ fail(data && data.error || 'no data'); return; }
+      LAST_STAMP = data.updatedAt || null;
+      applyState(data);
+      $('liveDot').classList.remove('off');
+      $('upd').textContent = 'updated ' + timeAgo(UPDATED_AT);
+      FIRST = false;
+    }, fail);
+    return;
+  }
 
   jsonp('meta', meta=>{
     if(!meta || meta.ok===false || !meta.hasLive){
@@ -2119,6 +2307,7 @@ function applyState(d){
   D.d2wd = live.d2wd || []; D.d2drop = live.d2drop || []; D.d2ent = live.d2ent || null;
   D.d1 = live.d1 || {groups:[],matches:{},order:[]};
   D.d2 = live.d2 || {matches:{},order:[],built:false};
+  D.tt = live.tt || null;
   if(live.cfg){ Object.assign(D.cfg, live.cfg); }
   /* Withdrawn teams always show in place here: the grouped view is an
      operator convenience, and a spectator reading a ranking wants each team
@@ -2131,7 +2320,10 @@ function applyState(d){
 
 function timeAgo(iso){
   if(!iso) return 'just now';
-  const s = Math.max(0, Math.floor((Date.now()-new Date(iso).getTime())/1000));
+  /* A garbage stamp (e.g. reading the wrong tab) must never render "NaN". */
+  const t = new Date(iso).getTime();
+  if(isNaN(t)) return '—';
+  const s = Math.max(0, Math.floor((Date.now()-t)/1000));
   if(s<5) return 'just now';
   if(s<60) return s+'s ago';
   const m = Math.floor(s/60);
@@ -2174,6 +2366,52 @@ function renderInspection(){
 /* =========================================================
    2. GROUPS  (Mapping / Practice)
    ========================================================= */
+/* Official timetable. These are the DEFAULTS; the management tool sends its
+   own copy in the live state (D.tt) and that one wins, so the operator can
+   shift a session mid-event and every card and the TIME TABLE section follow.
+   Rotation sessions run the groups 1→5 in `min`-minute turns; the long Day-1
+   evening block is two rotations (prc2a, prc2b). */
+const TT_DEF = {
+  reg:   {start:'09:00'},
+  map:   {start:'10:30', min:30, order:[1,2,3,4,5]},
+  brk1:  {start:'13:00', end:'13:30'},
+  prc1:  {start:'13:30', min:30, order:[1,2,3,4,5]},
+  brk2:  {start:'16:00', end:'16:30'},
+  prc2a: {start:'16:30', min:30, order:[1,2,3,4,5]},
+  prc2b: {start:'19:00', min:30, order:[1,2,3,4,5]},
+  prcD2: {start:'10:00', min:30, order:[1,2,3,4,5]},
+  brk3:  {start:'12:30', end:'13:00'},
+  qual:  {start:'13:00', end:'18:00'},
+  brk4:  {start:'18:00', end:'18:30'},
+  pot:   {start:'18:30', min:30, order:[1,2,3,4,5]},
+  h2h1:  {start:'10:00', end:'21:00'},
+  h2h2:  {start:'10:00', end:'16:00'},
+  award: {start:'16:00'}
+};
+const ttGet = k => Object.assign({}, TT_DEF[k], (D.tt && D.tt[k]) || {});
+/* Slot times are pinned to the slot INDEX; `order` only decides which group
+   sits in which slot, so swapping groups never moves the clock. */
+const ttOrder = s => (Array.isArray(s.order) && s.order.length===5)
+  ? s.order : [1,2,3,4,5];
+const hm2min = s => { const p=String(s||'0:0').split(':'); return (+p[0])*60 + (+p[1]||0); };
+const min2hm = x => String(Math.floor(x/60)).padStart(2,'0') + ':' +
+                    String(x%60).padStart(2,'0');
+
+function slot30(startHM, gi, min){
+  min = min || 30;
+  const a = hm2min(startHM) + gi*min;
+  return min2hm(a) + ' – ' + min2hm(a + min);
+}
+const sessSlot   = (k, gi) => {
+  const s = ttGet(k);
+  const idx = ttOrder(s).indexOf(gi+1);
+  return idx >= 0 ? slot30(s.start, idx, s.min) : null;
+};
+const mapSlot    = gi => sessSlot('map', gi);
+const prcSlotsD1 = gi => gi<5 ? [sessSlot('prc1',gi), sessSlot('prc2a',gi), sessSlot('prc2b',gi)] : null;
+const prcSlotD2  = gi => sessSlot('prcD2', gi);
+const potPrcSlot = gi => sessSlot('pot', gi);
+
 function renderGroupSet(hostId, lists, opts){
   opts = opts||{};
   const host=$(hostId); if(!host) return;
@@ -2193,6 +2431,16 @@ function renderGroupSet(hostId, lists, opts){
     const capN=Math.max(opts.max!=null?opts.max:D.cfg.groupMax, g.length);
     box.innerHTML='<h3>'+(opts.label||'Group')+' '+(gi+1)+
       '<span class="cnt'+(liveN>=capN?' full':'')+'">'+liveN+' / '+capN+'</span></h3>';
+    /* session time band under the header, from the official timetable */
+    if(opts.times){
+      const lines = opts.times(gi);
+      if(lines && lines.length){
+        const tdiv=document.createElement('div');
+        tdiv.className='gtime mono';
+        tdiv.innerHTML=lines.join('<br>');
+        box.appendChild(tdiv);
+      }
+    }
     const list=document.createElement('div'); list.className='glist';
     g.forEach((tid, idx)=>{
       const t=team(tid), wdT=isWD(tid);
@@ -2212,8 +2460,15 @@ function renderGroupSet(hostId, lists, opts){
   });
 }
 function renderGroups(){
-  renderGroupSet('gmWrap', D.gm, {label:'Group'});
-  renderGroupSet('gpWrap', D.gp, {label:'Group'});
+  renderGroupSet('gmWrap', D.gm, {label:'Group', times: gi=>{
+    const s=mapSlot(gi); return s ? ['<b>D1</b> '+s] : null;
+  }});
+  renderGroupSet('gpWrap', D.gp, {label:'Group', times: gi=>{
+    const a=prcSlotsD1(gi), b=prcSlotD2(gi);
+    /* three full ranges wrap badly on a narrow card — list the starts only */
+    return a ? ['<b>D1</b> '+a.map(s=>s.split('–')[0].trim()).join(' · '),
+                '<b>D2</b> '+b] : null;
+  }});
   applyGroupSetView();
 }
 function applyGroupSetView(){
@@ -2306,7 +2561,9 @@ function renderSeedsView(){
   const origin={};
   D.seeds.forEach((s,i)=> s.forEach(t=> origin[t]='P'+(i+1)));
   renderGroupSet('spWrap', D.sprac, {label:'Practice', max:D.cfg.seedMax,
-    badge:tid=>origin[tid]||'', meta:meta});
+    badge:tid=>origin[tid]||'', meta:meta, times: gi=>{
+      const s=potPrcSlot(gi); return s ? ['<b>D2</b> '+s] : null;
+    }});
   applyPotView();
 }
 function applyPotView(){
@@ -2848,14 +3105,17 @@ function teamFacts(tid){
   if(ci >= 0){
     const rows = [{k:'Order', v:'#' + (ci+1), sub:t.time || '', tab:'insp'}];
     const gm = groupIndex(D.gm), gp = groupIndex(D.gp);
-    const grp = [];
-    if(gm >= 0) grp.push('Mapping ' + (gm+1));
-    if(gp >= 0) grp.push('Practice ' + (gp+1));
-    /* two values, not one string — the separator can then be toned down and
-       each half keeps its own weight, exactly as the pot row does */
-    if(grp.length) rows.push({k:'Groups', v:grp[0], sub:grp[1] || '',
-                              pair:true, tab:'grp',
-                              gset: gm>=0 ? 'gm' : 'gp'});
+    /* one row per session set, each carrying its timetable slot */
+    if(gm >= 0) rows.push({k:'Mapping', v:'Group ' + (gm+1),
+      sub: mapSlot(gm) ? 'D1 ' + mapSlot(gm) : '',
+      tab:'grp', gset:'gm'});
+    if(gp >= 0){
+      const a = prcSlotsD1(gp), b = prcSlotD2(gp);
+      rows.push({k:'Practice', v:'Group ' + (gp+1),
+        sub: a ? 'D1 ' + a.map(s=>s.split('–')[0].trim()).join(' · ')
+               + ' D2 ' + b.split('–')[0].trim() : '',
+        tab:'grp', gset:'gp'});
+    }
     f.cards.push({key:'checkin', title:'Check-in', tab:'insp', rows:rows});
   }
 
@@ -2887,12 +3147,13 @@ function teamFacts(tid){
   const pot = seedTag(tid);
   const sp = groupIndex(D.sprac);
   if(pot || sp >= 0){
-    const bits = [];
-    if(pot) bits.push(pot);
-    if(sp >= 0) bits.push('Practice ' + (sp+1));
-    f.cards.push({key:'pot', title:'Pots', tab:'seed', rows:[
-      {k:'Pot', v:pot||'', sub: sp>=0 ? 'Practice ' + (sp+1) : '',
-       tab:'seed', pot:potOf(tid)}]});
+    /* Same row anatomy as the check-in Mapping/Practice rows, so the pot
+       practice time reads in the same face, size and colour. */
+    const rows = [];
+    if(pot) rows.push({k:'Pot', v:pot, tab:'seed', pot:potOf(tid)});
+    if(sp >= 0) rows.push({k:'Practice', v:'Group ' + (sp+1),
+      sub: potPrcSlot(sp) ? 'D2 ' + potPrcSlot(sp) : '', tab:'seed'});
+    f.cards.push({key:'pot', title:'Pots', tab:'seed', rows:rows});
   }
 
   /* ---- day 3 group: every match, in running order ---- */
@@ -2994,8 +3255,18 @@ function teamMatches(q){
   return D.teams.filter(t => t.name.toLowerCase().indexOf(s) >= 0).slice(0, 8);
 }
 
+/* keyboard cursor over the suggestion list; -1 = nothing highlighted */
+let HIT_SEL = -1;
+function hitButtons(){
+  return Array.prototype.slice.call(document.querySelectorAll('#teamHits .thit[data-tid]'));
+}
+function paintHitSel(){
+  hitButtons().forEach((b,i)=> b.classList.toggle('kbd', i===HIT_SEL));
+}
+
 function renderTeamSearch(){
   const box = $('teamHits'); if(!box) return;
+  HIT_SEL = -1;                       // the list is about to change
   const q = $('teamQ') ? $('teamQ').value : '';
   const hits = teamMatches(q);
   if(!q.trim() || (hits.length===1 && TEAM_PICK===hits[0].id)){
@@ -3085,6 +3356,10 @@ function renderTeamCard(){
       + '<span class="tgo">›</span></button>'
     : '';
 
+  /* Day markers inside a sub get the same yellow tag treatment as the
+     group-card time bands, and double as separators in a run of times. */
+  const subFmt = s => esc(s).replace(/\b(D[12])\b/g, '<b>$1</b>');
+
   const rowHTML = r => {
     const i = (r.tab || r.pot) ? go(r) : -1;
     const tag = i >= 0 ? 'button' : 'div';
@@ -3099,7 +3374,7 @@ function renderTeamCard(){
               + '<i>' + esc(ch.t) + '</i>' + esc(ch.v) + '</span>').join('')
             + '</span>'
           : '<span class="tv">' + esc(r.v) + '</span>')
-      + (r.sub ? '<span class="tsub mono">' + esc(r.sub) + '</span>' : '')
+      + (r.sub ? '<span class="tsub mono">' + subFmt(r.sub) + '</span>' : '')
       + (i >= 0 ? '<span class="tgo">›</span>' : '') + '</' + tag + '>';
   };
 
@@ -3217,8 +3492,80 @@ function syncTabs(){
   // the DAY switch belongs to Head-to-Head only
   $('daySeg').style.display = (CUR==='h2h') ? '' : 'none';
 }
+/* The TIME TABLE section, drawn from D.tt (falling back to TT_DEF), so a
+   session moved in the management tool updates here on the next sync.
+   Breaks are not stored — they are the gaps between consecutive sessions. */
+function renderTimetable(){
+  const host = $('ttGrid'); if(!host) return;
+  const rot = (k) => {                       // rotation session → row model
+    const s = ttGet(k), a = hm2min(s.start);
+    return {a:a, b:a + 5*(s.min||30), min:s.min||30};
+  };
+  const fix = (k) => {                       // fixed session with an end
+    const s = ttGet(k);
+    return {a:hm2min(s.start), b:s.end ? hm2min(s.end) : null};
+  };
+  /* Breaks are their own editable sessions now; a zero-length one is a way
+     for the operator to remove it from the board. */
+  const brk = (k, note) => {
+    const s = ttGet(k), a = hm2min(s.start), b = hm2min(s.end);
+    return b > a ? {a:a, b:b, name:'Break', brk:true, sub:note||''} : null;
+  };
+  const seq = k => {
+    const o = ttOrder(ttGet(k));
+    return String(o) === '1,2,3,4,5' ? '1 → 5' : o.join(' → ');
+  };
+  const each = k => 'Group ' + seq(k) + ' · ' + (ttGet(k).min||30) + ' min each';
+
+  const prc2a = rot('prc2a'), prc2b = rot('prc2b');
+  const prc2sub = 'Group ' + seq('prc2a') + ' · ' + prc2a.min + ' min × 2 rounds'
+    + (seq('prc2b') !== seq('prc2a') ? ' · R2 ' + seq('prc2b') : '');
+  const days = [
+    {n:1, date:'AUG 24 · MON', rows:[
+      Object.assign(fix('reg'),  {name:'Registration & Inspection', open:true}),
+      Object.assign(rot('map'),  {name:'Group Mapping',  sub:each('map')}),
+      brk('brk1'),
+      Object.assign(rot('prc1'), {name:'Group Practice', sub:each('prc1')}),
+      brk('brk2'),
+      {a:prc2a.a, b:prc2b.b, name:'Group Practice', sub:prc2sub}
+    ]},
+    {n:2, date:'AUG 25 · TUE', rows:[
+      Object.assign(rot('prcD2'), {name:'Group Practice', sub:each('prcD2')}),
+      brk('brk3', 'race preparation'),
+      Object.assign(fix('qual'),  {name:'Qualifying', sub:'4 min per team'}),
+      brk('brk4'),
+      Object.assign(rot('pot'),   {name:'Group Practice',
+        sub:'Pot ' + seq('pot') + ' · ' + (ttGet('pot').min||30) + ' min each'})
+    ]},
+    {n:3, date:'AUG 26 · WED', rows:[
+      Object.assign(fix('h2h1'), {name:'Head-to-Head', sub:'group stage'})
+    ]},
+    {n:4, date:'AUG 27 · THU', rows:[
+      Object.assign(fix('h2h2'),  {name:'Head-to-Head', sub:'round of 32'}),
+      Object.assign(fix('award'), {name:'Award Ceremony', open:true})
+    ]}
+  ];
+
+  const rowHTML = r => {
+    const t = r.open ? min2hm(r.a) + ' ~'
+                     : min2hm(r.a) + ' – ' + min2hm(r.b);
+    return '<div class="ttrow' + (r.brk ? ' brk' : '') + '">'
+      + '<span class="ttt mono">' + t + '</span>'
+      + '<div class="ttp">' + esc(r.name)
+      + (r.sub ? '<small>' + esc(r.sub) + '</small>' : '')
+      + '</div></div>';
+  };
+
+  host.innerHTML = days.map(d =>
+    '<div class="ttday">'
+    + '<div class="tthead"><b>DAY ' + d.n + '</b><span>' + d.date + '</span></div>'
+    + d.rows.filter(Boolean).map(rowHTML).join('') + '</div>'
+  ).join('');
+}
+
 function renderAll(){
   renderInspection();
+  renderTimetable();
   renderGroups();
   renderQual(); renderRank(); applyQualView();
   renderSeedsView();
@@ -3266,6 +3613,25 @@ function wireTeamSearch(){
     if(had && !TEAM_PICK) renderAll();      // clearing also clears the markers
     else { renderTeamSearch(); renderTeamCard(); }
   }));
+  /* arrow keys walk the suggestions, Enter picks, Esc closes the list */
+  if(q) q.addEventListener('keydown', safe(ev=>{
+    const btns = hitButtons();
+    if(ev.key==='ArrowDown' || ev.key==='ArrowUp'){
+      if(!btns.length) return;
+      ev.preventDefault();
+      const d = ev.key==='ArrowDown' ? 1 : -1;
+      HIT_SEL = (HIT_SEL + d + btns.length) % btns.length;
+      paintHitSel();
+      btns[HIT_SEL].scrollIntoView({block:'nearest'});
+    } else if(ev.key==='Enter'){
+      if(!btns.length) return;
+      ev.preventDefault();
+      btns[HIT_SEL>=0 ? HIT_SEL : 0].click();
+    } else if(ev.key==='Escape'){
+      const box=$('teamHits'); if(box) box.innerHTML='';
+      HIT_SEL = -1;
+    }
+  }));
   if(clr) clr.onclick = safe(()=>{
     if(q) q.value = '';
     TEAM_PICK = null;
@@ -3284,8 +3650,16 @@ function wireViews(){
 buildNav(); wireFolds(); wireViews(); wireTeamSearch(); syncTabs();
 syncHeaderHeight();
 window.addEventListener('resize', syncHeaderHeight);
+renderTimetable();   // defaults draw immediately; live data refines them
 fetchState();
-if(!DEMO) setInterval(fetchState, POLL_MS);
+/* 고정 주기 대신 1초마다 "경기 중인가"를 재평가해 낼 때만 폴링한다.
+   긴 타이머를 걸어두는 방식은 idle→active 전환이 한 박자 늦는다. */
+let _pollLast = 0;
+if(!DEMO) setInterval(safe(()=>{
+  const active = _lastChange && (Date.now() - _lastChange < ACTIVE_MS);
+  const due = active ? POLL_FAST : POLL_IDLE;
+  if(Date.now() - _pollLast >= due - 100){ _pollLast = Date.now(); fetchState(); }
+}), 1000);
 setInterval(()=>{ if(UPDATED_AT) $('upd').textContent='updated '+timeAgo(UPDATED_AT); }, 5000);
 
 </script>
