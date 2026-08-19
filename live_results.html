@@ -401,9 +401,11 @@ tr.rwo td{opacity:.4}
 .gcard .gt div[data-t]{cursor:grab;border-radius:5px;padding:2px 5px;margin:0 -5px;transition:.1s}
 .gcard .gt div[data-t]:hover{background:var(--t3);outline:1px solid var(--line)}
 .gcard .gt div[data-t]:active{cursor:grabbing}
+/* The drag handle is invisible until hover, so it must not reserve width the
+   team name could use. Collapse it to zero and let it expand on hover only. */
 .gcard .gt .gh6{color:var(--line);font-size:9px;letter-spacing:-1px;flex:0 0 auto;
-  opacity:0;transition:.1s;font-weight:400}
-.gcard .gt div[data-t]:hover .gh6{opacity:1;color:var(--signal)}
+  opacity:0;transition:.1s;font-weight:400;width:0;overflow:hidden}
+.gcard .gt div[data-t]:hover .gh6{opacity:1;color:var(--signal);width:auto}
 .gcard .gt div.dragging{opacity:.3}
 .gcard .gt div.dragover{box-shadow:inset 0 0 0 1px var(--signal);background:rgba(245,197,24,.16)}
 .gcard .gt div[data-t].picked,
@@ -482,12 +484,12 @@ tr.md-bronze td:first-child{box-shadow:inset 3px 0 0 #CD7F32}
 .gcard .gt{font-size:12px;line-height:1.85;color:var(--dim)}
 .gcard .gt div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:5px;align-items:center;min-height:22px}
 /* Seed numbers only ever run 1..6 here, so a 20px column was pure dead space
-   on a narrow card — every pixel saved goes to the team name. */
+   on a 178px card — every pixel saved goes to the team name. */
 .gcard .gt em{font-family:var(--mono);font-size:9.5px;font-style:normal;color:var(--dim2);flex:0 0 auto;min-width:9px;text-align:right}
 /* A flex item defaults to min-width:auto, so a long team name refuses to shrink
    and pushes the pot badge out of the row, where overflow:hidden clips it.
    Let the name shrink and ellipsize; the badge keeps its full width. */
-.gcard .gt div>span{flex:0 1 auto;min-width:0;
+.gcard .gt div[data-t] span[data-raw]{flex:0 1 auto;min-width:0;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gcard .gt div.adv{color:#9FE6BE;font-weight:600}
 .gcard .gt div.out{color:#5A6577;text-decoration:line-through}
@@ -644,7 +646,7 @@ tbody tr.hllive td:first-child{box-shadow:inset 3px 0 0 var(--go)}
    text in the other cells; inline-flex centres them on the row instead. */
 .dntag,.lvtag{display:inline-flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.1em;
-  padding:3px 7px;border-radius:4px;line-height:1}
+  padding:3px 7px;border-radius:4px;line-height:1;white-space:nowrap}
 /* An inline-flex pill still hangs off the cell's text baseline, so in a row
    made tall by the winner badges it sits low. Turning the cell into a flex
    container fixes the alignment but collapses the row height, so keep the
@@ -697,6 +699,244 @@ td.pick.win:hover .pk{background:rgba(245,197,24,.14);border-color:var(--signal)
 .sb[data-pot]{color:var(--pc);
   background:color-mix(in srgb, var(--pc) 15%, transparent);
   box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--pc) 38%, transparent)}
+
+/* A finished bracket card must not use opacity.
+   Any opacity below 1 creates its own stacking context, which takes the card
+   out of the z-index order it shares with the connector SVG — the dashed
+   lines then draw straight through the card. Fade it with colour instead. */
+.mbox.mdone{opacity:1;border-color:rgba(61,190,122,.4)}
+.mbox.mdone .mh{color:var(--dim)}
+.mbox.mdone .slot,.mbox.mdone .side{color:var(--dim)}
+.mbox.mdone .snm{color:var(--dim)}
+.slot.wdslot{color:#5A6577}
+
+/* ---------- final ranking ----------
+   A knockout has no third-place match, so teams knocked out in the same round
+   share a placing. Each band is one block with its place range on the left;
+   the top four carry the podium colours, below that a colour would only add
+   noise to a band of eight or more. */
+:root{--gold:#F5C518; --silver:#C8D2DE; --bronze:#CD8B4A; --qtr:#6E8AA6}
+
+.frlistwrap{display:flex;flex-direction:column;gap:10px;padding-bottom:20px}
+.frband{border:1px solid var(--line);border-left-width:3px;border-radius:10px;
+  background:var(--t2);overflow:hidden}
+.frbandhead{display:flex;align-items:center;gap:12px;padding:9px 15px;
+  background:rgba(255,255,255,.02);border-bottom:1px solid var(--line2)}
+.frnum{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--dim);
+  min-width:46px}
+.frpos{font-size:14px;font-weight:800;letter-spacing:-.01em}
+.frcount{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.1em;
+  color:var(--dim2)}
+.frrow2{display:flex;align-items:center;gap:12px;padding:10px 15px 10px 61px;
+  border-bottom:1px solid rgba(55,65,79,.35)}
+.frrow2:last-child{border-bottom:0}
+.frname{font-size:14.5px;font-weight:700;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.frmeta{margin-left:auto;font-size:10.5px;color:var(--dim2);letter-spacing:.06em;
+  display:flex;gap:10px;align-items:center;white-space:nowrap;flex:none}
+.frmeta i{font-style:normal;opacity:.75}
+
+.frband.t-gold{border-left-color:var(--gold)}
+.frband.t-gold .frbandhead{background:rgba(245,197,24,.09)}
+.frband.t-gold .frpos,.frband.t-gold .frnum{color:var(--gold)}
+.frband.t-gold .frname{color:#FFE79B;font-size:16px}
+
+.frband.t-silver{border-left-color:var(--silver)}
+.frband.t-silver .frbandhead{background:rgba(200,210,222,.06)}
+.frband.t-silver .frpos,.frband.t-silver .frnum{color:var(--silver)}
+
+.frband.t-bronze{border-left-color:var(--bronze)}
+.frband.t-bronze .frbandhead{background:rgba(205,139,74,.07)}
+.frband.t-bronze .frpos,.frband.t-bronze .frnum{color:var(--bronze)}
+
+.frband.t-qtr{border-left-color:var(--qtr)}
+.frband.t-qtr .frbandhead{background:rgba(110,138,166,.06)}
+.frband.t-qtr .frpos,.frband.t-qtr .frnum{color:var(--qtr)}
+
+/* ---------- my team ----------
+   A spectator looking themselves up scans for three things: their running
+   number, the time they go out, and who they are against. Those carry the
+   weight here — the labels beside them stay quiet, and the cards are plain
+   so nothing competes with the values. */
+.tsearch{position:relative;margin-bottom:10px}
+.tsearch input{width:100%;font-family:var(--sans);font-size:15px;font-weight:600;
+  color:var(--paint);background:var(--t2);border:1px solid var(--line);
+  border-radius:10px;padding:12px 40px 12px 14px;outline:none;transition:.15s}
+.tsearch input:focus{border-color:var(--pick);
+  box-shadow:0 0 0 3px rgba(245,197,24,.14)}
+.tsearch input::placeholder{color:var(--dim2);font-weight:500}
+.tsearch input::-webkit-search-cancel-button{display:none}
+.tclear{position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  width:30px;height:30px;border:0;border-radius:8px;background:none;
+  color:var(--dim2);font-size:19px;line-height:1;cursor:pointer}
+.tclear:hover{color:var(--paint);background:var(--t3)}
+
+.thits{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.thit{text-align:left;font-family:var(--sans);font-size:14px;font-weight:600;
+  color:var(--paint);background:var(--t2);border:1px solid var(--line);
+  border-radius:8px;padding:10px 14px;cursor:pointer;transition:.12s}
+.thit:hover{border-color:var(--pick);background:var(--t3)}
+.thit.tnone{color:var(--dim2);font-weight:500;cursor:default;border-style:dashed}
+.thit.tnone:hover{border-color:var(--line);background:var(--t2)}
+
+.tteam{display:flex;flex-direction:column;gap:12px}
+.thead{display:flex;align-items:center;gap:10px;padding:2px 2px 0}
+.tname{font-size:22px;font-weight:800;letter-spacing:-.01em;color:var(--pick)}
+
+/* up next — the same green a live match uses everywhere else */
+.tnext{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%;
+  text-align:left;padding:12px 16px;border:1px solid var(--go);
+  border-radius:11px;background:rgba(61,190,122,.10);cursor:pointer;
+  transition:.13s}
+.tnext:hover{background:rgba(61,190,122,.16)}
+.tnexttag{font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.14em;
+  color:#07210F;background:var(--go);padding:3px 7px;border-radius:5px;
+  white-space:nowrap}
+.tnextseq{font-size:17px;font-weight:800;color:var(--paint)}
+.tnextid{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--signal)}
+.tnextvs{font-size:14px;color:var(--dim)}
+.tnextvs em{font-style:normal;font-size:11px;letter-spacing:.08em;color:var(--dim2)}
+.tnextvs b{color:var(--paint);font-weight:800}
+
+.tcards{display:flex;flex-direction:column;gap:10px}
+.tcard{border:1px solid var(--line);border-radius:11px;background:var(--t2);
+  overflow:hidden}
+.tchead{display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  padding:10px 16px;background:rgba(255,255,255,.02);border:0;
+  border-bottom:1px solid var(--line2);cursor:pointer;transition:.12s}
+.tchead:hover{background:rgba(255,255,255,.05)}
+div.tchead{cursor:default}
+div.tchead:hover{background:rgba(255,255,255,.02)}
+/* The heading names the stage, so it should be findable when scrolling.
+   Five different accents turned the page into a paint chart and none of them
+   meant anything, so every card now shares one quiet rule and the colour is
+   spent where it carries information — the pot tag, a live race, a result. */
+.tchead{border-left:3px solid var(--line)}
+.tctitle{font-size:13.5px;font-weight:800;letter-spacing:.04em;color:var(--paint)}
+
+/* The accent tracks the competition, not the card: whichever stage is being
+   contested right now is the one lit, and it moves down the card stack as the
+   event runs — qualifying, then pots, then day 3, then day 4. Stages already
+   finished stay legible but unlit, so the colour keeps meaning one thing. */
+.tcard.c-live{border-color:rgba(245,197,24,.4)}
+.tcard.c-live .tchead{border-left-color:var(--signal)}
+/* A record is two opposite facts, so it is coloured as two — won in the same
+   green a live race uses, lost in the red kept for withdrawals and defeats. */
+.tcrec{display:inline-flex;gap:7px;font-size:10.5px;font-weight:800;
+  letter-spacing:.08em;background:var(--t3);padding:3px 8px;border-radius:5px}
+.tcrec b{font-weight:800;color:var(--go)}
+.tcrec s{text-decoration:none;color:var(--stop)}
+.tcbadge{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--paint);
+  background:var(--t3);padding:3px 8px;border-radius:5px}
+.tcout{font-size:11.5px;font-weight:700;color:var(--dim)}
+.tgo{margin-left:auto;color:var(--dim2);font-size:17px;line-height:1;flex:none}
+.tchead:hover .tgo,.trow:hover .tgo,.tnext:hover .tgo,
+.tmatch:hover .tgo{color:var(--pick)}
+
+/* one line per fact: quiet label, loud value */
+.tcrows{display:flex;flex-direction:column}
+.trow{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;
+  padding:11px 16px;background:none;border:0;
+  border-bottom:1px solid rgba(55,65,79,.35);cursor:pointer;transition:.12s}
+.trow:last-child{border-bottom:0}
+.trow:hover{background:rgba(255,255,255,.03)}
+.trow.tflat{cursor:default}
+.trow.tflat:hover{background:none}
+.tk{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--dim);
+  min-width:92px;text-transform:uppercase;flex:none}
+.tv{font-size:15px;font-weight:700;color:var(--paint);min-width:0;flex:0 1 auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tsub{font-size:12.5px;color:var(--dim);letter-spacing:.02em;font-weight:600}
+
+/* Each session in its own box: the label sits inside, small and quiet, so the
+   number beside it is the thing the eye lands on. */
+.tchips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.tchip{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;
+  font-weight:800;color:var(--paint);background:var(--t3);
+  border:1px solid var(--line);border-radius:7px;padding:4px 9px;
+  white-space:nowrap}
+.tchip i{font-style:normal;font-family:var(--mono);font-size:9.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--dim2)}
+/* Only the autonomy flag is coloured — it is a yes/no the reader is looking
+   for. The session times are all the same kind of value, so they stay alike. */
+.tchip.ch-fa{color:var(--signal);border-color:rgba(245,197,24,.45);
+  background:rgba(245,197,24,.11)}
+.tchip.ch-fa i{color:rgba(245,197,24,.7)}
+.tchip.ch-no{color:var(--dim2)}
+/* a session with no time yet — present, so it cannot be mistaken for absent */
+.tchip.ch-none{color:var(--dim2)}
+.trow.tone-time .tv{font-family:var(--mono);font-size:17px;font-weight:800;
+  color:var(--signal);letter-spacing:.02em}
+.trow.tone-strong .tv{color:var(--signal);font-weight:800;font-size:16px}
+/* A slash is punctuation — it should separate without competing. Both halves
+   read as values; only the mark between them steps back. */
+.trow[data-pot] .tv{color:var(--pc)}
+/* The second half of a pair is a value too — same size, same face, same
+   weight as the first. Only the slash between them steps back. */
+.trow[data-pot] .tsub,.trow.tpair .tsub{color:var(--paint);font-weight:700;
+  font-size:15px;font-family:inherit;letter-spacing:0}
+.trow[data-pot] .tsub::before,.trow.tpair .tsub::before{content:"/";
+  margin-right:7px;color:var(--dim2);font-weight:400}
+/* the go arrow is what claims the right edge; everything else stays together */
+.trow .tgo{margin-left:auto}
+.trow .tsub{margin-left:0}
+
+/* every match: number, fixture, opponent, outcome — aligned down the card */
+.tmatches{display:flex;flex-direction:column}
+.tmatch{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  padding:10px 16px;background:none;border:0;
+  border-bottom:1px solid rgba(55,65,79,.35);cursor:pointer;transition:.12s}
+.tmatch:last-child{border-bottom:0}
+.tmatch:hover{background:rgba(255,255,255,.03)}
+.tmno{font-size:14px;font-weight:800;color:var(--paint);min-width:38px;flex:none}
+.tmid{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--signal);
+  min-width:78px;flex:none}
+.tmvs{font-size:14px;font-weight:600;color:var(--paint);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tmvs em{font-style:normal;font-size:10.5px;letter-spacing:.08em;color:var(--dim2);
+  margin-right:4px}
+.tmst{font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.1em;
+  flex:none;margin-left:auto;color:var(--dim2)}
+/* Beaten opponents are struck out — the row still says who it was, but the
+   result is legible without reading the word at the end of the line. */
+.tmatch.s-won .tmst{color:var(--go)}
+/* The rule crosses out the opponent, not the "vs" that introduces them, so it
+   is set on the name itself — a strike on the parent cannot be lifted here. */
+.tmvs b{font-weight:inherit}
+.tmatch.s-won .tmvs{color:var(--dim)}
+.tmatch.s-won .tmvs b{text-decoration:line-through;
+  text-decoration-color:var(--dim2);text-decoration-thickness:1px}
+.tmatch.s-lost{opacity:.6}
+/* Race number and opponent stay legible whatever the state — they are the two
+   things the row exists to tell you. Only the outcome word carries the tone. */
+.tmatch.s-pending .tmst{color:var(--dim2)}
+.tmatch.s-pending .tmst{color:var(--dim2)}
+
+/* ---------- searched team ----------
+   The looked-up team is marked in the same signal yellow the rest of the page
+   uses for "look here". A separate hue was tried and only added a colour to
+   learn; yellow already reads as attention, and green stays reserved for a
+   race that is running. */
+:root{--pick:#F5C518; --pick-s:rgba(245,197,24,.13)}
+
+/* one match singled out by following a link from MY TEAM */
+.isthis{outline:2px solid var(--pick);outline-offset:-2px}
+.mbox.isthis{box-shadow:0 0 0 2px var(--pick), 0 8px 26px rgba(245,197,24,.18)}
+tr.isthis td{background:rgba(245,197,24,.2)!important}
+
+tr.ishere td{background:var(--pick-s)!important}
+tr.ishere td:first-child{box-shadow:inset 3px 0 0 var(--pick)}
+.gi.ishere{background:var(--pick-s);border-color:rgba(245,197,24,.5)}
+.gi.ishere .nm{color:var(--pick);font-weight:800}
+.gcard.ishere{border-color:rgba(245,197,24,.55);
+  box-shadow:0 0 0 1px rgba(245,197,24,.2)}
+.gcard .gt div.ishere{background:var(--pick-s);border-radius:4px}
+.gcard .gt div.ishere span{color:var(--pick);font-weight:800}
+.mrow.ishere{background:var(--pick-s);box-shadow:inset 3px 0 0 var(--pick)}
+.mbox.ishere{border-color:rgba(245,197,24,.6);
+  box-shadow:0 0 0 1px rgba(245,197,24,.25)}
+.frrow2.ishere{background:var(--pick-s);box-shadow:inset 3px 0 0 var(--pick)}
+.frrow2.ishere .frname{color:var(--pick)}
 
 /* a team the draw still references but the roster no longer has */
 .gone{color:var(--dim2);font-style:italic}
@@ -930,6 +1170,43 @@ td .pk .wdtag{top:0;margin-left:0}
   /* the badge is 10 px here against 8.5 px on desktop, so it needs less lift */
   td .wdtag{top:-1.8px}
 
+  /* --- final ranking --- */
+  .frbandhead{padding:8px 11px;gap:9px}
+  .frnum{font-size:11px;min-width:40px}
+  .frpos{font-size:13px}
+  .frrow2{padding:9px 11px 9px 51px;gap:8px}
+  .frname{font-size:13.5px}
+  .frband.t-gold .frname{font-size:14.5px}
+  .frmeta{font-size:9.5px;gap:7px}
+
+  /* --- my team ---
+     The label column would squeeze the value on a phone, so the pair stacks
+     and the value keeps its size — that is the part being scanned for. */
+  .tsearch input{font-size:16px;padding:11px 38px 11px 12px}
+  .tname{font-size:19px}
+  /* the opponent belongs beside the match, not wrapped underneath it */
+  .tnext{padding:10px 12px;gap:8px;flex-wrap:nowrap}
+  .tnextseq{font-size:15px}
+  .tnextid{font-size:11px}
+  .tnextvs{flex:1 1 auto;min-width:0;font-size:13px;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  .tchead{padding:10px 13px;gap:8px}
+  .tctitle{font-size:13px;letter-spacing:.03em}
+  .tcbadge{font-size:9.5px;padding:2px 6px}
+  .tcout{font-size:10.5px}
+  .trow{padding:10px 13px;gap:8px;flex-wrap:wrap;align-items:center}
+  .tk{min-width:0;flex:1 1 100%;font-size:9px;margin-bottom:-5px}
+  /* auto, not 1 — growing the value pushes anything after it to the far edge */
+  .tv,.trow[data-pot] .tsub,.trow.tpair .tsub{font-size:14.5px}
+  .tv{flex:0 1 auto}
+  .trow.tone-time .tv{font-size:16px}
+  .tmatch{padding:9px 12px;gap:8px;flex-wrap:nowrap}
+  .tmno{min-width:28px;font-size:12.5px}
+  .tmid{min-width:52px;font-size:10px}
+  .tmvs{font-size:13px;flex:1 1 auto;min-width:0;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  .tmst{font-size:9px}
+
   /* legends are for operators, not spectators */
   .legend{font-size:11.5px;line-height:1.6}
 
@@ -959,8 +1236,8 @@ td .pk .wdtag{top:0;margin-left:0}
     <h1>IFAC 2026 RoboRacer<small>29th RoboRacer Autonomous Racing Competition · Live</small></h1>
     <div class="hspace"></div>
     <span class="segtog dayseg" id="daySeg" style="display:none">
-      <button id="segH1" class="on">DAY 1</button>
-      <button id="segH2">DAY 2</button>
+      <button id="segH1" class="on">DAY 3</button>
+      <button id="segH2">DAY 4</button>
     </span>
     <span class="pill" id="teamCnt">0 teams</span>
     <span class="livewrap"><i class="livedot" id="liveDot"></i><span class="upd mono" id="upd">connecting…</span></span>
@@ -1029,7 +1306,7 @@ td .pk .wdtag{top:0;margin-left:0}
 
   <!-- ============ HEAD-TO-HEAD ============ -->
   <section class="tab" id="tab-h2h">
-    <!-- ---- DAY 1 ---- -->
+    <!-- ---- DAY 3 (internally d1) ---- -->
     <div id="h2hD1">
       <div class="nowbar" id="d1Now"></div>
       <div class="sect">
@@ -1051,7 +1328,7 @@ td .pk .wdtag{top:0;margin-left:0}
       </div>
     </div>
 
-    <!-- ---- DAY 2 ---- -->
+    <!-- ---- DAY 4 (internally d2) ---- -->
     <div id="h2hD2" style="display:none">
       <div class="nowbar" id="d2Now"></div>
       <div class="sect">
@@ -1074,6 +1351,35 @@ td .pk .wdtag{top:0;margin-left:0}
         <h3 class="secthead"><span class="cav">▾</span>BRACKET</h3>
         <div class="sbody"><div class="tree" id="d2Tree"></div></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ MY TEAM ============ -->
+  <section class="tab" id="tab-team">
+    <!-- Whichever day is running now. Built on render, not up front: day 4
+         only appears once day 3 has nothing left to race. -->
+    <div class="nowbar" id="teamNow"></div>
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">&#9662;</span>FIND YOUR TEAM
+        <span class="hint">TYPE TEAM NAME</span>
+      </h3>
+      <div class="tsearch">
+        <input id="teamQ" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Type team name">
+        <button id="teamClear" class="tclear" title="Clear">&times;</button>
+      </div>
+      <div id="teamHits" class="thits"></div>
+      <div id="teamCard"></div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL RANKING ============ -->
+  <section class="tab" id="tab-rank">
+    <div class="sect">
+      <h3 class="secthead"><span class="cav">&#9662;</span>FINAL RANKING
+        <span class="hint">DECIDED ON DAY 4</span>
+      </h3>
+      <div id="finalRank"></div>
     </div>
   </section>
 </main>
@@ -1656,6 +1962,16 @@ function enText(s){
 function mLabelEN(id){ return enText(mLabel(id)); }
 const noteEN = n => enText(n || '');
 
+/* The competition runs on days 3 and 4 of the event, but the shared logic was
+   written when they were days 1 and 2 and still labels the bracket that way.
+   Rather than edit the copied source — which build_viz.py would overwrite —
+   rename the label on its way to the canvas. */
+const DAY_LABEL = {'TO DAY 2':'TO DAY 4', 'DAY 2 진출':'TO DAY 4'};
+const _tTitle = tTitle;
+tTitle = function(canvas, col, text){
+  return _tTitle(canvas, col, DAY_LABEL[text] || text);
+};
+
 /* A handful of team names (SKKUDERIA_SKKAI, F1TENTH_Kyutech) overrun a
    half-width match box on a phone by a few pixels. Ellipsis hides the end of
    a name the spectator came to read, so shrink the type just enough to fit
@@ -1690,7 +2006,7 @@ if(typeof ResizeObserver === 'function'){
 }
 
 /* view toggles */
-let CUR='insp', CUR_GSET='gm', CUR_QVIEW='order', CUR_PVIEW='pot',
+let CUR='team', CUR_GSET='gm', CUR_QVIEW='order', CUR_PVIEW='pot',
     CUR_D1G=null, CUR_H2H='d1';
 
 /* =========================================================
@@ -1702,7 +2018,11 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbwCrJhXfwwxiAYcTWw2iZnj
    timestamp has moved. Checking often is therefore cheap, so the interval is
    set by how fresh the screen should feel, not by bandwidth.
    Measured: 300 concurrent readers all answered in under 2 s. */
-const POLL_MS = 2000;
+/* Apps Script bills concurrency, not bytes: every poll occupies an execution
+   slot for the ~1.4s it takes to answer, whatever the response size. At 2s a
+   viewer was almost never idle, so 300 phones meant ~150 requests a second.
+   Eight seconds leaves each viewer quiet ~80% of the time. */
+const POLL_MS = 8000;
 let jsonpN = 0, FIRST = true;
 
 /* Local preview: ?demo=<path> loads a saved status JSON instead of the API,
@@ -1736,7 +2056,9 @@ function jsonp(mode, ok, fail){
                       if(s.parentNode) s.parentNode.removeChild(s); };
   window[cb] = data=>{ if(done) return; done=true; clean(); ok(data); };
   s.onerror = ()=>{ if(done) return; done=true; clean(); fail('connection failed'); };
-  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 12000);
+  /* A cold Apps Script instance has been measured at 16s; 12s called that a
+     failure when it was only slow. */
+  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 30000);
   s.src = API_URL + (API_URL.indexOf('?')<0?'?':'&') +
           'live=' + mode + '&callback=' + cb + '&t=' + Date.now();
   document.head.appendChild(s);
@@ -1748,12 +2070,15 @@ let inFlight = false;
 /* Ask for the timestamp first and pull the body only when it has moved. A
    quiet minute then costs ~100 bytes per check instead of 27 kB, which is
    what makes a short interval affordable for a whole grandstand. */
-function fetchLive(){
+function fetchLive(retry){
   if(inFlight) return;
   inFlight = true;
 
   const fail = msg =>{
     inFlight = false;
+    /* A cold start looks exactly like an outage for one round trip. Try once
+       more before saying anything — by then the instance is warm. */
+    if(!retry){ setTimeout(safe(()=>fetchLive(1)), 1200); return; }
     $('liveDot').classList.add('off');
     $('upd').textContent = msg;
     if(FIRST) showError(msg);
@@ -1834,6 +2159,7 @@ function renderInspection(){
     const gpi=D.gp.findIndex(g=>g.indexOf(t.id)>=0);
     const tr=document.createElement('tr');
     if(t.wd) tr.className='offrow';
+    if(t.id===TEAM_PICK) tr.classList.add('ishere');
     tr.innerHTML='<td class="num">'+(i+1)+'</td>'+
       '<td class="mono" style="color:var(--dim2)">'+esc(t.time||'')+'</td>'+
       '<td style="min-width:140px;font-weight:600">'+esc(t.name)+
@@ -1870,7 +2196,8 @@ function renderGroupSet(hostId, lists, opts){
     const list=document.createElement('div'); list.className='glist';
     g.forEach((tid, idx)=>{
       const t=team(tid), wdT=isWD(tid);
-      const it=document.createElement('div'); it.className='gi'+(wdT?' wd':'');
+      const it=document.createElement('div');
+      it.className='gi'+(wdT?' wd':'')+(tid===TEAM_PICK?' ishere':'');
       const pn = potOf(tid);
       it.innerHTML='<span class="ix mono">'+(idx+1)+'</span>'+
         (opts.badge?'<span class="sb mono"'+(pn?' data-pot="'+pn+'" style="--pc:'+
@@ -1911,6 +2238,7 @@ function renderQual(){
     const t=team(r.tid), ii=tindex(r.tid);
     const tr=document.createElement('tr');
     if(isWD(r.tid)) tr.className='offrow';
+    if(r.tid===TEAM_PICK) tr.classList.add('ishere');
     tr.innerHTML='<td class="num">'+(i+1)+'</td>'+
       '<td class="mono">'+esc(fmtHM(r.sched))+'</td>'+
       '<td class="mono" style="color:var(--dim2);white-space:nowrap">'+(ii<0?'–':'#'+(ii+1))+'</td>'+
@@ -1940,6 +2268,7 @@ function renderRank(){
     const medal=(!wd && medalN<3)?['gold','silver','bronze'][medalN++]:'';
     if(medal) tr.className='md-'+medal;
     if(wd) tr.classList.add('offrow');
+    if(tid===TEAM_PICK) tr.classList.add('ishere');
     tr.innerHTML=
       '<td class="num">'+(wd?'<span style="color:var(--dim2)">–</span>'
         :(medal?'<span class="medal">'+nums[i]+'</span>':nums[i]))+'</td>'+
@@ -2009,8 +2338,8 @@ function renderNowBar(phase){
        when the screen is narrow. */
     const narrow = window.matchMedia('(max-width:900px)').matches;
     const doneMsg = narrow
-      ? (phase==='d1' ? 'DAY 1 COMPLETE' : 'DAY 2 COMPLETE')
-      : (phase==='d1' ? 'ALL DAY 1 MATCHES COMPLETE' : 'ALL DAY 2 MATCHES COMPLETE');
+      ? (phase==='d1' ? 'DAY 3 COMPLETE' : 'DAY 4 COMPLETE')
+      : (phase==='d1' ? 'ALL DAY 3 MATCHES COMPLETE' : 'ALL DAY 4 MATCHES COMPLETE');
     box.innerHTML='<div class="nowtop">'+tgl+'<span class="nowtag">ALL DONE</span>'+
       '<span class="nowid">'+doneMsg+'</span>'+
       '<span class="nowprog"><span>'+doneN+' / '+totalN+'</span>'+
@@ -2027,7 +2356,10 @@ function renderNowBar(phase){
         (wdS?'<i class="wdtag">WD</i>':'')+'</div>';
     };
     box.innerHTML=
-      '<div class="nowtop">'+tgl+'<span class="nowtag">NOW</span>'+
+      /* "NOW" claims a race is under way, but this is whichever match is next
+         in the running order — between races nothing is actually running.
+         "UP NEXT" is what the group cards already say. */
+      '<div class="nowtop">'+tgl+'<span class="nowtag">UP NEXT</span>'+
         '<span class="nowseq mono">#'+seq+'</span>'+
         '<span class="nowid">'+esc(phase==='d1'?'GROUP '+mLabelEN(live):mLabelEN(live))+'</span>'+
         (nt?'<span class="nownote">'+esc(nt)+'</span>':'')+
@@ -2066,6 +2398,8 @@ function renderMatchSheet(hostId, phase){
     if(id===LIVE) cls+=' hllive';
     else if(phase==='d1' && CUR_D1G!=null && D.d1.groups[CUR_D1G]
             && D.d1.groups[CUR_D1G].ids.indexOf(id)>=0) cls+=' hlgroup';
+    if(TEAM_PICK && (a===TEAM_PICK || b===TEAM_PICK)) cls+=' ishere';
+    if(MATCH_PICK===id) cls+=' isthis';
     tr.className=cls.trim();
     /* same markup as the management sheet, minus the click target */
     const cell=(tid,src)=>{
@@ -2078,7 +2412,7 @@ function renderMatchSheet(hostId, phase){
     tr.innerHTML='<td class="num">'+(wo?'<span style="color:var(--dim2)">–</span>':seqNo)+'</td>'+
       '<td>'+(wo?'<span class="wotag">W.O.</span>'
         :(m.done?'<span class="dntag">DONE</span>'
-          :(id===LIVE?'<span class="lvtag">NOW</span>':'<span style="color:var(--dim2)">—</span>')))+'</td>'+
+          :(id===LIVE?'<span class="lvtag">UP NEXT</span>':'<span style="color:var(--dim2)">—</span>')))+'</td>'+
       '<td class="mono" style="color:var(--signal);white-space:nowrap;font-weight:700">'+esc(mLabelEN(id))+'</td>'+
       cell(a,m.a)+cell(b,m.b);
     body.appendChild(tr);
@@ -2109,6 +2443,8 @@ function mbox(m, extra){
   };
   const ph = D.d1.matches[m.id] ? 'd1' : 'd2';
   const seq = raceNo(ph, m.id);
+  if(TEAM_PICK && (a===TEAM_PICK || b===TEAM_PICK)) el.classList.add('ishere');
+  if(MATCH_PICK && m.id===MATCH_PICK) el.classList.add('isthis');
   el.innerHTML='<div class="mh"><span class="lbl">'+esc(mLabelEN(m.id))+'</span>'+
     (extra?'<span>'+esc(enText(extra))+'</span>':'')+
     '<span class="ord mono">'+(seq>0?'#'+seq:'')+'</span></div>'+
@@ -2142,7 +2478,8 @@ function renderDay1(){
     const adv=d1Advancers(gi);
     const b=document.createElement('div');
     b.setAttribute('role','button'); b.tabIndex=0;
-    b.className='gcard'+(gi===CUR_D1G?' sel':'')+(gi===liveG?' live':'');
+    b.className='gcard'+(gi===CUR_D1G?' sel':'')+(gi===liveG?' live':'')
+      +(TEAM_PICK && g.teams.indexOf(TEAM_PICK)>=0 ? ' ishere':'');
     const total=real.length;
     const status = gi===liveG?'UP NEXT'
       :(played>=total?'COMPLETE':(played?played+' / '+total:'PENDING'));
@@ -2151,7 +2488,8 @@ function renderDay1(){
     g.teams.forEach((t,k)=>{
       const isAdv=adv.indexOf(t)>=0, wd=isWD(t);
       const out=!wd && played>=total && !isAdv;
-      list+='<div class="'+(wd?'wd':(isAdv?'adv':(out?'out':'')))+'">'+
+      list+='<div class="'+(wd?'wd':(isAdv?'adv':(out?'out':'')))
+            +(t===TEAM_PICK?' ishere':'')+'">'+
             '<em>'+(k+1)+'</em>'+
             '<span>'+esc(tname(t))+'</span>'+
             (wd?'<i class="wdtag">WD</i>'
@@ -2181,7 +2519,9 @@ function renderDay1(){
       const a=M.resolve(m.a), b2=M.resolve(m.b), w=M.win(m);
       const seq=raceNo('d1', id);
       const row=document.createElement('div');
-      row.className='mrow'+((m.done||bye)?' done':'')+(id===live?' live':'');
+      row.className='mrow'+((m.done||bye)?' done':'')+(id===live?' live':'')
+        +(TEAM_PICK && (a===TEAM_PICK || b2===TEAM_PICK) ? ' ishere':'')
+        +(MATCH_PICK===id ? ' isthis':'');
       const side=(key,tid,src)=>{
         const wdS = tid && isWDp(tid, phaseOf(m));
         const cls = wdS?'wdside':(tid?(w?(tid===w?'win':'lose'):''):'tbd');
@@ -2216,7 +2556,7 @@ function renderD2Entrants(){
   const host=$('d2Entrants'); if(!host) return;
   const cnt=$('d2QT');
   if(!D.d1.groups.length){
-    host.innerHTML='<div class="empty">Day 1 must finish first.</div>'; return;
+    host.innerHTML='<div class="empty">Day 3 must finish first.</div>'; return;
   }
   const ent=d2Entrants(), p=d2Plan();
   /* A Day 2 withdrawal keeps its slot so the bracket size does not shift —
@@ -2242,6 +2582,7 @@ function renderD2Entrants(){
     const e=d2Entry(i+1);
     const tr=document.createElement('tr');
     if(wdE) tr.className='offrow';
+    if(tid===TEAM_PICK) tr.classList.add('ishere');
     tr.innerHTML='<td class="num">'+(n==null?'<span style="color:var(--dim2)">–</span>':n)+'</td>'+
       '<td style="min-width:130px;font-weight:600">'+esc(tname(tid))+
         (wdE?'<i class="wdtag">WD</i>':'')+'</td>'+
@@ -2262,14 +2603,14 @@ function renderDay2(){
   const info=$('d2Info');
   if(info){
     if(!D.d1.groups.length || p.M<2){
-      info.textContent='Day 2 seeding appears once Day 1 results are in.';
+      info.textContent='Day 4 seeding appears once Day 3 results are in.';
     } else {
       /* A withdrawn team keeps its place in the bracket — its match becomes a
          walkover — so the qualified count and the racing count differ. Say so
          outright rather than quietly showing two numbers that look like a typo. */
       const ent = d2Entrants();
       const wdN = ent.filter(t=>isWDp(t,'d2')).length;
-      info.innerHTML='Three teams advance from each Day 1 group → <b>'+p.M+' qualified</b>.<br>'+
+      info.innerHTML='Three teams advance from each Day 3 group → <b>'+p.M+' qualified</b>.<br>'+
         (p.playIn>0 ? 'The lowest '+(p.playIn*2)+' seeds meet in '+
                       (p.playIn===1 ? 'a play-in' : p.playIn+' play-ins')+
                       ' to fill the last '+(p.playIn===1?'place':'places')+
@@ -2287,7 +2628,7 @@ function renderDay2(){
   applyWoView();
 
   const host=$('d2Tree'); if(!host) return;
-  if(!D.d2.built){ host.innerHTML='<div class="empty">Day 2 draw not published yet.</div>'; return; }
+  if(!D.d2.built){ host.innerHTML='<div class="empty">Day 4 draw not published yet.</div>'; return; }
   const live2=nextMatchId('d2');
   const ms=D.d2.matches, P=p.P, playIn=p.playIn, rounds=Math.round(Math.log2(P));
   const hasPI=playIn>0, base=hasPI?1:0;
@@ -2339,10 +2680,524 @@ function applyH2HView(){
 }
 
 /* =========================================================
+   9. FINAL RANKING
+   =========================================================
+   There is no third-place match, so the placings below the winner and
+   runner-up are shared: both beaten semi-finalists rank equal third, and all
+   four beaten quarter-finalists rank equal fifth. Nothing is shown until the
+   final itself is decided — a half-finished bracket would otherwise imply
+   placings that are not settled. */
+
+
+/* Walk the day 4 bracket back from the final. Returns null until the final
+   has a winner, so the tab stays empty while the tournament is running. */
+/* Every team's final placing, not just the podium.
+
+   A knockout only orders the teams it eliminates round by round, so anyone
+   knocked out in the same round shares a placing: both beaten semi-finalists
+   are equal 3rd, all four beaten quarter-finalists equal 5th, and so on down.
+   Teams that never reached day 4 share the last band, ordered by their
+   qualifying rank so the list still reads in a sensible order. */
+function finalStandings(){
+  if(!D.d2 || !D.d2.built) return null;
+  const ms = D.d2.matches;
+  const rounds = [];
+  Object.keys(ms).forEach(id=>{
+    const m = /^d2-r(\d+)-m\d+$/.exec(id);
+    if(m) rounds[+m[1]] = (rounds[+m[1]]||0) + 1;
+  });
+  const last = rounds.length - 1;
+  if(last < 1) return null;
+
+  const at = (r,i) => ms['d2-r'+r+'-m'+i];
+  const finalM = at(last, 0);
+  const champ = finalM ? M.win(finalM) : null;
+  if(!champ) return null;                       // final not decided yet
+
+  const rankIdx = {}; D.rank.forEach((t,i)=>rankIdx[t]=i);
+  const byQual = a => a.slice().sort((x,y)=>
+    (rankIdx[x]==null?9e9:rankIdx[x]) - (rankIdx[y]==null?9e9:rankIdx[y]));
+
+  const losersOf = r => {
+    const out = [];
+    for(let i=0; i<(rounds[r]||0); i++){
+      const l = M.lose(at(r,i));
+      if(l) out.push(l);
+    }
+    return byQual(out);
+  };
+
+  /* Build the bands from the top down. The label for a losing round is the
+     name of the round they lost in, which is what a spectator recognises. */
+  const bands = [];
+  bands.push({key:'champion', label:'1st Place', teams:[champ]});
+  const runner = M.lose(finalM);
+  bands.push({key:'runnerup', label:'2nd Place', teams: runner ? [runner] : []});
+
+  const P = d2Plan().P;
+  for(let r = last-1; r >= 1; r--){
+    const teams = losersOf(r);
+    if(!teams.length) continue;
+    const size = P / Math.pow(2, r-1);          // teams still in at that round
+    const label = size===4 ? 'Semi-Finalist'
+                : size===8 ? 'Quarter-Finalist'
+                : 'Round of ' + size;
+    bands.push({key:'r'+r, label:label, teams:teams});
+  }
+
+  /* Everyone else: qualified for day 4 but knocked out in a play-in, and the
+     teams that never got out of their day 3 group. */
+  const placed = new Set();
+  bands.forEach(b => b.teams.forEach(t => placed.add(t)));
+  const rest = byQual(D.rank.filter(t => !placed.has(t) && !isWD(t)));
+  if(rest.length) bands.push({key:'rest', label:'Group Stage', teams:rest});
+
+  /* Number the bands: each starts where the previous one ended. */
+  let pos = 1;
+  bands.forEach(b=>{
+    b.from = pos;
+    b.to   = pos + b.teams.length - 1;
+    pos   += b.teams.length;
+  });
+  return bands;
+}
+
+function renderFinalRank(){
+  const host = $('finalRank'); if(!host) return;
+  const bands = finalStandings();
+  if(!bands){
+    host.innerHTML = '<div class="empty">The final ranking appears once the '
+      + 'Day 4 final has been decided.</div>';
+    return;
+  }
+  const rankOf = rankMap();
+  const gOf = {};
+  (D.d1.groups||[]).forEach((g,gi)=> g.teams.forEach(t=> gOf[t]=gLabel(gi)));
+
+  /* Only the top four bands get their own colour; below the quarter-finals a
+     placing is a band of eight or more and the colour would say nothing. */
+  const tone = b => b.key==='champion' ? 't-gold'
+                  : b.key==='runnerup' ? 't-silver'
+                  : b.label==='Semi-Finalist' ? 't-bronze'
+                  : b.label==='Quarter-Finalist' ? 't-qtr' : '';
+
+  host.innerHTML = '<div class="frlistwrap">' + bands.map(b => {
+    if(!b.teams.length) return '';
+    const place = b.from===b.to ? String(b.from) : b.from+'–'+b.to;
+    const rows = b.teams.map(tid =>
+      '<div class="frrow2' + (tid===TEAM_PICK ? ' ishere' : '') + '">'
+      + '<span class="frname">' + esc(tname(tid)) + '</span>'
+      + '<span class="frmeta mono">'
+      +   (gOf[tid] ? 'GROUP ' + esc(gOf[tid]) : '')
+      +   (rankOf[tid] ? '<i>QUAL #' + rankOf[tid] + '</i>' : '')
+      + '</span></div>').join('');
+    return '<div class="frband ' + tone(b) + '">'
+      + '<div class="frbandhead">'
+      +   '<span class="frnum mono">' + place + '</span>'
+      +   '<span class="frpos">' + esc(b.label) + '</span>'
+      +   '<span class="frcount mono">' + b.teams.length
+      +     (b.teams.length>1 ? ' teams' : ' team') + '</span>'
+      + '</div>' + rows + '</div>';
+  }).join('') + '</div>';
+}
+
+/* =========================================================
+   9. MY TEAM
+   =========================================================
+   Every line here is read straight off the state, and no stage is ever called
+   "finished". Only the head-to-head rounds carry a done flag, so only they can
+   state where a team stands; check-in and qualifying show their values and
+   leave the reading to whoever is looking. */
+
+/* What is known about one team, grouped the way the competition runs.
+
+   Nothing is ever labelled "complete": only the head-to-head rounds carry a
+   done flag, so only they can state a result. Everywhere else the recorded
+   values are shown as they stand and the reading is left to whoever looks.
+
+   Each stage is one line — a spectator scanning for their own number, time or
+   opponent should not have to read a table to find it. */
+/* How far the competition has got. Each stage opens only once the one before
+   it has produced its output, which is also the order the cards are drawn in,
+   so the newest open stage is the live one.
+
+     qual   a lap time has been entered by anyone
+     pot    the ranking is published, so seeding can be drawn
+     d1     the groups exist
+     d2     day 3 is over and the day 4 bracket is built  */
+function liveStage(){
+  if(D.d2 && D.d2.built) return 'd2';
+  if((D.d1.groups||[]).length) return 'd1';
+  if((D.rank||[]).length) return 'pot';
+  if((D.qual||[]).some(r => r.q3 != null || r.q2 || r.q1 || r.fa)) return 'qual';
+  return 'checkin';
+}
+
+function teamFacts(tid){
+  const t = team(tid); if(!t) return null;
+  const f = {id:tid, name:t.name, wd:isWD(tid), cards:[], stage:liveStage()};
+
+  const groupIndex = (lists) => {
+    for(let i=0;i<(lists||[]).length;i++)
+      if(lists[i].indexOf(tid) >= 0) return i;
+    return -1;
+  };
+
+  /* ---- check-in: roster position and the two practice group sets ---- */
+  const ci = tindex(tid);
+  if(ci >= 0){
+    const rows = [{k:'Order', v:'#' + (ci+1), sub:t.time || '', tab:'insp'}];
+    const gm = groupIndex(D.gm), gp = groupIndex(D.gp);
+    const grp = [];
+    if(gm >= 0) grp.push('Mapping ' + (gm+1));
+    if(gp >= 0) grp.push('Practice ' + (gp+1));
+    /* two values, not one string — the separator can then be toned down and
+       each half keeps its own weight, exactly as the pot row does */
+    if(grp.length) rows.push({k:'Groups', v:grp[0], sub:grp[1] || '',
+                              pair:true, tab:'grp',
+                              gset: gm>=0 ? 'gm' : 'gp'});
+    f.cards.push({key:'checkin', title:'Check-in', tab:'insp', rows:rows});
+  }
+
+  /* ---- qualifying: when they run, then the whole result on one line ---- */
+  const q = D.qual.find(r => r.tid === tid);
+  const rk = rankMap()[tid];
+  if(q || rk){
+    const rows = [];
+    if(q && q.sched != null)
+      rows.push({k:'Scheduled', v:fmtHM(q.sched), tone:'time', tab:'qual'});
+    if(q){
+      /* One chip per session. Run together on a single line the numbers blur
+         into each other; boxed, each reads as its own fact. Sessions with no
+         result are left out rather than shown empty. */
+      /* Every session is shown once any of them has a result. Dropping the
+         empty ones made a scored zero and an unrun session look identical. */
+      const chips = [{t:'FA', v:q.fa ? 'O' : 'X', tone:q.fa ? 'fa' : 'no'}];
+      chips.push({t:'Q3', v: q.q3 != null ? lapTxt(q.q3) : '–',
+                  tone: q.q3 == null ? 'none' : ''});
+      chips.push({t:'Q2', v: q.q2 || 0});
+      chips.push({t:'Q1', v: q.q1 || 0});
+      rows.push({k:'Result', chips:chips, tab:'qual'});
+    }
+    if(rk) rows.push({k:'Rank', v:'#' + rk, tab:'qual', view:'rank', tone:'strong'});
+    f.cards.push({key:'qual', title:'Qualifying', tab:'qual', rows:rows});
+  }
+
+  /* ---- pots: seeding pot and its practice group, on one line ---- */
+  const pot = seedTag(tid);
+  const sp = groupIndex(D.sprac);
+  if(pot || sp >= 0){
+    const bits = [];
+    if(pot) bits.push(pot);
+    if(sp >= 0) bits.push('Practice ' + (sp+1));
+    f.cards.push({key:'pot', title:'Pots', tab:'seed', rows:[
+      {k:'Pot', v:pot||'', sub: sp>=0 ? 'Practice ' + (sp+1) : '',
+       tab:'seed', pot:potOf(tid)}]});
+  }
+
+  /* ---- day 3 group: every match, in running order ---- */
+  let gi = -1;
+  (D.d1.groups||[]).forEach((g,i)=>{ if(g.teams.indexOf(tid)>=0) gi=i; });
+  if(gi >= 0){
+    const gr = D.d1.groups[gi], ms = D.d1.matches;
+    const matches = [];
+    let w=0, l=0;
+    d1SeqIds(gi).forEach(id=>{
+      const m = ms[id]; if(!m) return;
+      const a = M.resolve(m.a), b = M.resolve(m.b);
+      if(a!==tid && b!==tid) return;
+      const win = M.win(m), other = a===tid ? b : a;
+      let state = 'pending';
+      if(win){ state = win===tid ? 'won' : 'lost'; if(win===tid) w++; else l++; }
+      else if(M.walkover(m)) state = 'wo';
+      matches.push({label:mLabelEN(id), seq:raceNo('d1',id),
+                    vs: other ? tname(other) : 'TBD', state:state,
+                    tab:'h2h', group:gi, mid:id});
+    });
+    const adv = d1Advancers(gi).indexOf(tid) >= 0;
+    const played = gr.ids.filter(id => ms[id] && M.win(ms[id])).length;
+    f.cards.push({key:'d1', title:'Day 3  ·  Group ' + gLabel(gi),
+                  tab:'h2h', group:gi,
+                  record: (w||l) ? {w:w, l:l} : null,
+                  outcome: adv ? 'advancing'
+                         : played >= gr.ids.length ? 'eliminated' : null,
+                  matches: matches, rows: []});
+  }
+
+  /* ---- day 4: the seed and every bracket match this team appears in ---- */
+  if(D.d2 && D.d2.built){
+    const ent = d2Entrants();
+    const seed = ent.indexOf(tid);
+    if(seed >= 0){
+      const rounds = [];
+      Object.keys(D.d2.matches).forEach(id=>{
+        const m = /^d2-r(\d+)-m\d+$/.exec(id);
+        if(m) rounds[+m[1]] = (rounds[+m[1]]||0) + 1;
+      });
+      const P = d2Plan().P;
+      const matches = [];
+      let out = null, won = 0;
+      const add = (id) => {
+        const m = D.d2.matches[id]; if(!m) return null;
+        const a = M.resolve(m.a), b = M.resolve(m.b);
+        if(a!==tid && b!==tid) return null;
+        const win = M.win(m), other = a===tid ? b : a;
+        let state = 'pending';
+        if(win) state = win===tid ? 'won' : 'lost';
+        matches.push({label:mLabelEN(id), seq:raceNo('d2',id),
+                      vs: other ? tname(other) : 'TBD', state:state,
+                      tab:'h2h', day:'d2', mid:id});
+        return win;
+      };
+      Object.keys(D.d2.matches).filter(id=>/^d2-pi-\d+$/.test(id)).sort()
+        .forEach(id => { if(add(id) === tid) won++; });
+      for(let r=1; r<rounds.length; r++){
+        for(let i=0; i<rounds[r]; i++){
+          const win = add('d2-r'+r+'-m'+i);
+          if(win === tid) won++;
+          else if(win) out = P / Math.pow(2, r-1);
+        }
+      }
+      const outcome = out==null ? (won ? won + ' win' + (won>1?'s':'') : null)
+                    : out===2 ? 'runner-up'
+                    : out===4 ? 'lost in the semi-final'
+                    : out===8 ? 'lost in the quarter-final'
+                    : 'lost in the round of ' + out;
+      f.cards.push({key:'d2', title:'Day 4', tab:'h2h', day:'d2',
+                    badge:'SEED #' + (seed+1), outcome: outcome,
+                    matches: matches, rows: []});
+    }
+  }
+
+  /* the one thing a spectator looks for first: is this team racing next? */
+  ['d1','d2'].forEach(ph=>{
+    const id = nextMatchId(ph); if(!id) return;
+    const m = D[ph].matches[id];
+    const a = M.resolve(m.a), b = M.resolve(m.b);
+    if(a!==tid && b!==tid) return;
+    const other = a===tid ? b : a;
+    f.next = {phase:ph, seq:raceNo(ph,id), label:mLabelEN(id),
+              vs: other ? tname(other) : 'TBD',
+              group: ph==='d1' ? d1GroupOfMatch(id) : -1,
+              day: ph==='d2' ? 'd2' : null};
+  });
+  return f;
+}
+
+let TEAM_PICK = null;
+/* a single match singled out by following a link from MY TEAM */
+let MATCH_PICK = null;
+
+function teamMatches(q){
+  const s = q.trim().toLowerCase();
+  if(!s) return [];
+  return D.teams.filter(t => t.name.toLowerCase().indexOf(s) >= 0).slice(0, 8);
+}
+
+function renderTeamSearch(){
+  const box = $('teamHits'); if(!box) return;
+  const q = $('teamQ') ? $('teamQ').value : '';
+  const hits = teamMatches(q);
+  if(!q.trim() || (hits.length===1 && TEAM_PICK===hits[0].id)){
+    box.innerHTML = ''; return;
+  }
+  if(!hits.length){
+    box.innerHTML = '<div class="thit tnone">No team matches that name.</div>';
+    return;
+  }
+  box.innerHTML = hits.map(t =>
+    '<button class="thit" data-tid="' + esc(t.id) + '">' + esc(t.name) + '</button>').join('');
+  box.querySelectorAll('[data-tid]').forEach(btn=>{
+    btn.onclick = safe(()=>{
+      TEAM_PICK = btn.dataset.tid;
+      MATCH_PICK = null;
+      if($('teamQ')) $('teamQ').value = tname(TEAM_PICK);
+      /* the marker shows on every sheet, so they all need redrawing */
+      renderAll();
+    });
+  });
+}
+
+/* Facts carry where they live, so a row can take you there. */
+const _goStore = [];
+
+/* The bar at the top of MY TEAM follows the competition rather than a fixed
+   day: day 3 while any of its races remain, then day 4 once the bracket has
+   taken over. Nothing is drawn before there is something to race. */
+function renderTeamNow(){
+  const host = $('teamNow'); if(!host) return;
+  /* Once everything has been raced there is no next match to point at, so the
+     bar falls back to reporting the furthest day that actually happened —
+     day 4 if its bracket was built, otherwise day 3. Falling back to day 3
+     unconditionally announced "DAY 3 COMPLETE" long after the final. */
+  const d2on = !!(D.d2 && D.d2.built);
+  const phase = nextMatchId('d1') ? 'd1'
+              : (d2on && nextMatchId('d2')) ? 'd2'
+              : d2on ? 'd2'
+              : (D.d1.order.length ? 'd1' : null);
+  if(!phase){ host.innerHTML = ''; return; }
+
+  /* renderNowBar draws into <phase>Now, so borrow its markup and move it */
+  const real = $(phase + 'Now');
+  const tmp = document.createElement('div');
+  if(real) real.id = phase + 'Now__held';
+  tmp.id = phase + 'Now';
+  document.body.appendChild(tmp);
+  renderNowBar(phase);
+  host.innerHTML = tmp.innerHTML;
+  tmp.remove();
+  if(real) real.id = phase + 'Now';
+
+  const tgl = host.querySelector('[data-mini]');
+  if(tgl) tgl.onclick = safe(()=>{ NOW_MINI = !NOW_MINI; renderAll(); });
+  const bar = host.querySelector('.nowin');
+  if(bar) bar.onclick = safe(ev=>{
+    if(ev.target.closest('[data-mini]')) return;
+    const live = nextMatchId(phase);
+    goTo({tab:'h2h', day: phase==='d2' ? 'd2' : null,
+          group: phase==='d1' && live ? d1GroupOfMatch(live) : -1});
+  });
+}
+
+function renderTeamCard(){
+  const host = $('teamCard'); if(!host) return;
+  if(!TEAM_PICK || !team(TEAM_PICK)){
+    host.innerHTML = '<div class="empty">Search for a team to follow it '
+      + 'through the competition.</div>';
+    return;
+  }
+  const f = teamFacts(TEAM_PICK);
+  if(!f){
+    host.innerHTML = '<div class="empty">That team is no longer on the roster.</div>';
+    return;
+  }
+  _goStore.length = 0;
+  const go = obj => { _goStore.push(obj); return _goStore.length - 1; };
+
+  /* the next race gets its own bar: number, match, opponent */
+  const next = f.next
+    ? '<button class="tnext" data-i="' + go(
+          {tab:'h2h', group:f.next.group, day:f.next.day}) + '">'
+      + '<span class="tnexttag">UP NEXT</span>'
+      + '<span class="tnextseq mono">#' + f.next.seq + '</span>'
+      + '<span class="tnextid mono">' + esc(f.next.label) + '</span>'
+      + '<span class="tnextvs"><em>vs</em> <b>' + esc(f.next.vs) + '</b></span>'
+      + '<span class="tgo">›</span></button>'
+    : '';
+
+  const rowHTML = r => {
+    const i = (r.tab || r.pot) ? go(r) : -1;
+    const tag = i >= 0 ? 'button' : 'div';
+    return '<' + tag + ' class="trow' + (r.tone ? ' tone-' + r.tone : '')
+      + (r.pair ? ' tpair' : '') + (i < 0 ? ' tflat' : '') + '"'
+      + (i >= 0 ? ' data-i="' + i + '"' : '')
+      + (r.pot ? ' data-pot="' + r.pot + '" style="--pc:' + potColor(r.pot) + '"' : '')
+      + '><span class="tk mono">' + esc(r.k) + '</span>'
+      + (r.chips
+          ? '<span class="tchips">' + r.chips.map(ch =>
+              '<span class="tchip' + (ch.tone ? ' ch-' + ch.tone : '') + '">'
+              + '<i>' + esc(ch.t) + '</i>' + esc(ch.v) + '</span>').join('')
+            + '</span>'
+          : '<span class="tv">' + esc(r.v) + '</span>')
+      + (r.sub ? '<span class="tsub mono">' + esc(r.sub) + '</span>' : '')
+      + (i >= 0 ? '<span class="tgo">›</span>' : '') + '</' + tag + '>';
+  };
+
+  /* every match, laid out so the running number, the fixture and the
+     opponent line up down the card — that is what people scan for */
+  const matchHTML = m => {
+    const i = go({tab:m.tab, group:m.group, day:m.day, mid:m.mid});
+    return '<button class="tmatch s-' + m.state + '" data-i="' + i + '">'
+      + '<span class="tmno mono">' + (m.seq ? '#' + m.seq : '–') + '</span>'
+      + '<span class="tmid mono">' + esc(m.label) + '</span>'
+      + '<span class="tmvs"><em>vs</em> <b>' + esc(m.vs) + '</b></span>'
+      + '<span class="tmst">' + (m.state==='won' ? 'WON'
+                               : m.state==='lost' ? 'LOST'
+                               : m.state==='wo' ? 'W.O.' : 'TO RACE') + '</span>'
+      + '<span class="tgo">›</span></button>';
+  };
+
+  /* The stage the event has reached may not have a card yet — a team can be
+     ranked before the pots are drawn. Light the last card that exists at or
+     before that stage, so the accent is always on something the reader sees. */
+  const ORDER = ['checkin','qual','pot','d1','d2'];
+  const reached = ORDER.indexOf(f.stage);
+  let lit = null;
+  f.cards.forEach(c => {
+    const i = ORDER.indexOf(c.key);
+    if(i >= 0 && i <= reached) lit = c.key;
+  });
+
+  const cards = f.cards.map(c => {
+    const i = c.tab ? go(c) : -1;
+    /* the stage being contested right now carries the accent */
+    return '<div class="tcard c-' + c.key
+      + (c.key === lit ? ' c-live' : '') + '">'
+      + '<' + (i>=0 ? 'button' : 'div') + ' class="tchead"'
+      +   (i>=0 ? ' data-i="' + i + '"' : '') + '>'
+      +   '<span class="tctitle">' + esc(c.title) + '</span>'
+      +   (c.record
+             ? '<span class="tcrec mono"><b>' + c.record.w + 'W</b>'
+               + '<s>' + c.record.l + 'L</s></span>' : '')
+      +   (c.badge ? '<span class="tcbadge mono">' + esc(c.badge) + '</span>' : '')
+      +   (c.outcome ? '<span class="tcout">' + esc(c.outcome) + '</span>' : '')
+      +   (i>=0 ? '<span class="tgo">›</span>' : '')
+      + '</' + (i>=0 ? 'button' : 'div') + '>'
+      + (c.rows && c.rows.length ? '<div class="tcrows">'
+          + c.rows.map(rowHTML).join('') + '</div>' : '')
+      + (c.matches && c.matches.length ? '<div class="tmatches">'
+          + c.matches.map(matchHTML).join('') + '</div>' : '')
+      + '</div>';
+  }).join('');
+
+  host.innerHTML =
+    '<div class="tteam">'
+    + '<div class="thead"><span class="tname">' + esc(f.name) + '</span>'
+    +   (f.wd ? '<i class="wdtag">WD</i>' : '') + '</div>'
+    + next
+    + '<div class="tcards">' + (cards
+        || '<div class="empty">Nothing recorded for this team yet.</div>') + '</div>'
+    + '</div>';
+
+  host.querySelectorAll('[data-i]').forEach(el=>{
+    el.onclick = safe(()=> goTo(_goStore[+el.dataset.i]));
+  });
+}
+
+/* Jump to wherever a fact lives, setting the view that shows it. Searching
+   also marks the team, so it stays picked out on whichever sheet you land on. */
+function goTo(r){
+  if(!r || !r.tab) return;
+  CUR = r.tab;
+  if(r.view  === 'rank')     CUR_QVIEW = 'rank';
+  if(r.gset)                 CUR_GSET  = r.gset;
+  if(r.pview === 'practice') CUR_PVIEW = 'practice';
+  else if(r.pot)             CUR_PVIEW = 'pot';
+  if(r.day === 'd2') CUR_H2H = 'd2';
+  else if(r.tab === 'h2h') CUR_H2H = 'd1';
+  if(typeof r.group === 'number' && r.group >= 0) CUR_D1G = r.group;
+  MATCH_PICK = r.mid || null;
+  renderAll();
+  window.scrollTo(0, 0);
+  /* let the layout settle, then bring the target into view — the exact match
+     when one was named, otherwise the first place the team is marked */
+  setTimeout(safe(()=>{
+    /* A named match is drawn in two places — the race-order row and the
+       bracket box. The bracket is the one being asked for, so it wins even
+       though the row comes first in the document. */
+    const el = document.querySelector('.tab.on .mbox.isthis')
+            || document.querySelector('.tab.on .isthis')
+            || document.querySelector('.tab.on .ishere');
+    if(el) el.scrollIntoView({block:'center', behavior:'smooth'});
+  }), 60);
+}
+
+/* =========================================================
    9. TABS / RENDER
    ========================================================= */
-const TABS=[['insp','INSPECTION'],['grp','MAPPING/PRACTICE'],['qual','QUALIFYING'],
-            ['seed','POTS/PRACTICE'],['h2h','HEAD-TO-HEAD']];
+const TABS=[['team','MY TEAM'],
+            ['insp','INSPECTION'],['grp','MAPPING/PRACTICE'],['qual','QUALIFYING'],
+            ['seed','POTS/PRACTICE'],['h2h','HEAD-TO-HEAD'],['rank','RANKING']];
 function buildNav(){
   const nav=$('nav'); nav.innerHTML='';
   TABS.forEach(([k,label])=>{
@@ -2368,6 +3223,8 @@ function renderAll(){
   renderQual(); renderRank(); applyQualView();
   renderSeedsView();
   renderDay1(); renderDay2(); applyH2HView();
+  renderFinalRank();
+  renderTeamNow(); renderTeamSearch(); renderTeamCard();
   syncTabs();
 }
 
@@ -2399,6 +3256,24 @@ const VIEWS = {
   segH1:()=>{ CUR_H2H='d1'; applyH2HView(); },
   segH2:()=>{ CUR_H2H='d2'; applyH2HView(); }
 };
+/* The search box is the only input on the page, so it owns its own wiring
+   rather than joining the toggle table below. */
+function wireTeamSearch(){
+  const q = $('teamQ'), clr = $('teamClear');
+  if(q) q.addEventListener('input', safe(()=>{
+    const had = TEAM_PICK;
+    if(TEAM_PICK && q.value.trim() !== tname(TEAM_PICK)) TEAM_PICK = null;
+    if(had && !TEAM_PICK) renderAll();      // clearing also clears the markers
+    else { renderTeamSearch(); renderTeamCard(); }
+  }));
+  if(clr) clr.onclick = safe(()=>{
+    if(q) q.value = '';
+    TEAM_PICK = null;
+    renderAll();
+    if(q) q.focus();
+  });
+}
+
 function wireViews(){
   Object.keys(VIEWS).forEach(id=>{
     const el=$(id); if(el) el.onclick=safe(VIEWS[id]);
@@ -2406,7 +3281,7 @@ function wireViews(){
 }
 
 /* ---------- boot ---------- */
-buildNav(); wireFolds(); wireViews(); syncTabs();
+buildNav(); wireFolds(); wireViews(); wireTeamSearch(); syncTabs();
 syncHeaderHeight();
 window.addEventListener('resize', syncHeaderHeight);
 fetchState();
