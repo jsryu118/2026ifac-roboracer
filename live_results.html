@@ -2018,7 +2018,11 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbwCrJhXfwwxiAYcTWw2iZnj
    timestamp has moved. Checking often is therefore cheap, so the interval is
    set by how fresh the screen should feel, not by bandwidth.
    Measured: 300 concurrent readers all answered in under 2 s. */
-const POLL_MS = 2000;
+/* Apps Script bills concurrency, not bytes: every poll occupies an execution
+   slot for the ~1.4s it takes to answer, whatever the response size. At 2s a
+   viewer was almost never idle, so 300 phones meant ~150 requests a second.
+   Eight seconds leaves each viewer quiet ~80% of the time. */
+const POLL_MS = 8000;
 let jsonpN = 0, FIRST = true;
 
 /* Local preview: ?demo=<path> loads a saved status JSON instead of the API,
@@ -2052,7 +2056,9 @@ function jsonp(mode, ok, fail){
                       if(s.parentNode) s.parentNode.removeChild(s); };
   window[cb] = data=>{ if(done) return; done=true; clean(); ok(data); };
   s.onerror = ()=>{ if(done) return; done=true; clean(); fail('connection failed'); };
-  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 12000);
+  /* A cold Apps Script instance has been measured at 16s; 12s called that a
+     failure when it was only slow. */
+  setTimeout(()=>{ if(!done){ done=true; clean(); fail('timed out'); } }, 30000);
   s.src = API_URL + (API_URL.indexOf('?')<0?'?':'&') +
           'live=' + mode + '&callback=' + cb + '&t=' + Date.now();
   document.head.appendChild(s);
@@ -2064,12 +2070,15 @@ let inFlight = false;
 /* Ask for the timestamp first and pull the body only when it has moved. A
    quiet minute then costs ~100 bytes per check instead of 27 kB, which is
    what makes a short interval affordable for a whole grandstand. */
-function fetchLive(){
+function fetchLive(retry){
   if(inFlight) return;
   inFlight = true;
 
   const fail = msg =>{
     inFlight = false;
+    /* A cold start looks exactly like an outage for one round trip. Try once
+       more before saying anything — by then the instance is warm. */
+    if(!retry){ setTimeout(safe(()=>fetchLive(1)), 1200); return; }
     $('liveDot').classList.add('off');
     $('upd').textContent = msg;
     if(FIRST) showError(msg);
