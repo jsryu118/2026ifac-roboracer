@@ -25,7 +25,7 @@ h2, h3, h4, h5, h6 {
 </style>
 
 
-*Last Updated: 2026-07-15*
+*Last Updated: 2026-08-20*
 
 
 **Table of content**
@@ -173,7 +173,7 @@ This is the approximate map shape, and it may change slightly.
 ## 5.1 General
 
 - Practice and qualifying both use the same track.
-- Every stage of qualifying must be completed within **8 minutes**.
+- Every stage of qualifying must be completed within **4 minutes**.
   - This may change depending on the total number of participating teams.
 - Qualifying consists of **3 missions** — **Q1, Q2, Q3** — and **1 achievement condition** called **Fully Autonomous**.
 - Q1 through Q3 proceed sequentially and cannot be skipped.
@@ -195,8 +195,8 @@ This is the approximate map shape, and it may change slightly.
 
 ## 5.4 Qualifying 3 (Q3)
 
-- Qualifying 3 aims to achieve the **minimum lap time** on an obstacle-free track for 2 minutes.
-- The shortest lap time achieved while running freely for 2 minutes is used.
+- Qualifying 3 aims to achieve the **minimum lap time** on an obstacle-free track for 1 minute.
+- The shortest lap time achieved while running freely for 1 minute is used.
 - If human intervention occurs, the lap time is invalidated.
 
 ## 5.5 Fully Autonomous (Achievement Condition)
@@ -227,7 +227,7 @@ This is the approximate map shape, and it may change slightly.
 ## 5.7 Invalidated Records
 
 - If a human intervenes and affects the vehicle, the **lap time is invalidated** and the lap is **excluded from the completed lap count**.
-- If there is contact with a static obstacle, the **lap time is invalidated** and the lap is **excluded from the completed lap count**.
+- If there is contact with a static obstacle, the **lap in progress is invalidated** and is **excluded from the completed lap count**.
 - If the vehicle touches the track but can continue driving without human intervention, it is considered minor contact and the record remains valid.
 
 ## 5.8 Final Ranking Decision
@@ -293,24 +293,21 @@ This is the approximate map shape, and it may change slightly.
 
 ## 6.1 Tournament Format
 
-- Head-to-head races proceed in a **Double Elimination** format.
-- Each team is eliminated after **two losses**.
-- **Day 3 (August 26):** Winners Bracket — no team is eliminated on this day.
-- **Day 4 (August 27):** Losers Bracket races begin. Teams eliminated from the Winners Bracket join the Losers Bracket.
-- The final winner is decided through the bracket.
-- Depending on the number of participating teams, a regular tournament may be used instead.
+- **Day 3 (August 26):** Group Stage — races are held within each group, and **3 teams per group** advance to Day 4.
+- **Day 4 (August 27):** The teams selected on Day 3 race in the **round of 32**.
+- Depending on the number of participating teams, the race format may change.
 
 ## 6.2 General
 
 - The two vehicles start from different start lines located on opposite sides.
 - A total of 3 static obstacles are used. After all teams complete their race preparations, each participating team installs one obstacle, and the referee installs the other one.
-- The static obstacles on the track are removed when the leading vehicle has completed 10 laps.
-- Each vehicle must be the first to complete 20 laps within the time limit while avoiding obstacles and the opponent.
+- The static obstacles on the track are removed when the leading vehicle has completed **half** of the total laps it must finish.
+- Each vehicle must be the first to complete 10 laps within the time limit while avoiding obstacles and the opponent.
 
 ## 6.3 Objective
 
-- Be the first to complete 20 laps.
-  - Races before the quarterfinals may be adjusted to 10 laps.
+- Be the first to complete 10 laps.
+  - Races from the quarterfinals onward may be adjusted to 20 laps depending on how the competition is running.
 
 ## 6.4 Random Static Obstacles
 
