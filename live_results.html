@@ -1509,7 +1509,14 @@ function isWDp(tid, phase){
   return phase==='d2' && (D.d2wd||[]).indexOf(tid)>=0;
 }
 function achievedQ3(r){ return r.q1>=3 && r.q2>=3; }
-function faValid(r){ return r.fa && r.q3!=null; }
+/* Same rule as the management tool — the tool ships cfg.faRule in the live
+   state. Q3-GATED: the team must have cleared Q1 and Q2 (a Q3 lap time is not
+   required). FA-FIRST: any FA mark counts. */
+function faValid(r){
+  if(r.faOk != null) return !!r.faOk;     // the tool's decision wins
+  if(!r.fa) return false;
+  return D.cfg.faRule==='first' ? true : achievedQ3(r);   // old data only
+}
 function cmpQual(a,b){
   const fa = (faValid(b)?1:0)-(faValid(a)?1:0);            // 1. Fully Autonomous 우선
   if(fa) return fa;
