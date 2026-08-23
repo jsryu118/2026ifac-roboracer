@@ -175,12 +175,12 @@ td{padding:8px 9px;border-bottom:1px solid rgba(55,65,79,.45);vertical-align:mid
 td.mono{white-space:nowrap}
 th{padding-left:9px;padding-right:9px}
 /* 번호는 우측 정렬인데 머리글은 좌측이라 열이 어긋나 보였다 — 숫자에 맞춘다 */
-.sheetbox th:first-child+th{text-align:right}
+.sheetbox th:first-child+th{text-align:left}
 tbody tr{transition:background .12s}
 tbody tr:hover td{background:rgba(255,255,255,.025)}
 tbody tr.dragging{opacity:.35}
 tbody tr.dragover td{box-shadow:inset 0 2px 0 var(--signal)}
-td.num{font-family:var(--mono);font-size:13px;font-weight:800;color:var(--signal);text-align:right;width:48px}
+td.num{font-family:var(--mono);font-size:13px;font-weight:800;color:var(--signal);text-align:left;width:48px}
 td.grip{width:22px;color:var(--line);cursor:grab;text-align:center;user-select:none;font-size:12px}
 tr:hover td.grip{color:var(--dim)}
 .empty{color:var(--dim);padding:56px 20px;text-align:center;font-size:13.5px}
@@ -1010,7 +1010,7 @@ td .pk .wdtag{top:0;margin-left:0}
 
 /* The running number is right-aligned but its heading was not, so "NO" sat
    away from the column it labels. Align the heading to the numbers. */
-.sheetbox th:first-child{text-align:right}
+.sheetbox th:first-child{text-align:left}
 
 
 /* =========================================================
@@ -2001,7 +2001,7 @@ function potOf(tid){
   for(let i=0;i<D.seeds.length;i++) if(D.seeds[i].indexOf(tid)>=0) return i+1;
   return 0;
 }
-function lapTxt(v){ return (Math.round(v*10)/10).toFixed(1)+' s'; }
+function lapTxt(v){ return (Math.round(v*100)/100).toFixed(2)+' s'; }   // stored to 3 dp, shown to 2
 function safe(fn){ return function(){ try{ return fn.apply(this,arguments); }catch(e){ console.error(e); }; }; }
 /* the shared logic calls L(ko,en); the viewer is English-only */
 function L(ko, en){ return en!=null ? en : ko; }
