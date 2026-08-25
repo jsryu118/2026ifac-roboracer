@@ -1575,8 +1575,8 @@ function mLabel(id){
   if(m){
     const gi=d1GroupOfMatch(id);
     if(gi>=0){
-      if(isBye(id) || M.walkover(D.d1.matches[id])) return gLabel(gi)+' · —';
-      const k=d1SeqIds(gi).filter(x=>!isBye(x) && !M.walkover(D.d1.matches[x])).indexOf(id);
+      if(isBye(id)) return gLabel(gi)+' · —';
+      const k=d1SeqIds(gi).filter(x=>!isBye(x)).indexOf(id);   // walkovers keep their M number
       return gLabel(gi)+' · M'+(k+1);
     }
   }
@@ -2778,7 +2778,7 @@ function renderDay1(){
     let mno=0;
     d1SeqIds(CUR_D1G).forEach(id=>{
       const m=ms[id]; if(!m) return;
-      const wo=M.walkover(m), bye=isBye(id)||wo;
+      const wo=M.walkover(m), bye=isBye(id);      // walkovers are matches with a known result
       const k=bye?-1:mno++;
       const a=M.resolve(m.a), b2=M.resolve(m.b), w=M.win(m);
       const seq=raceNo('d1', id);
