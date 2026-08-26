@@ -1739,10 +1739,13 @@ function invalidateEntrants(){ _entCache = null; }
 /* ---- Day-3 qualified practice (set in the tool's Day 2 tab; ships as D.pr2) ---- */
 const PR2_DEF = { groups:4, max:9, start:'09:00', end:'11:00', loops:1 };
 const pr2Cfg = () => Object.assign({}, PR2_DEF, D.pr2 || {});
+/* practice entrants: the qualified list minus anyone who has withdrawn from Day 4 —
+   d2Entrants() keeps those in place for the bracket (walkovers), practice does not */
+function pr2Ent(){ return (D.d1.groups||[]).length ? d2Entrants() : []; }   // withdrawn teams stay, shown as WD
 function pr2Auto(){
   /* fresh grouping in qualified order: as even as possible, never above MAX,
      adding groups when GROUPS × MAX cannot seat everyone */
-  const c=pr2Cfg(), ent=(D.d1.groups||[]).length ? d2Entrants() : [];
+  const c=pr2Cfg(), ent=pr2Ent();
   const MX=Math.max(1, c.max|0), N=ent.length, G=Math.max(1, c.groups|0);
   /* every group but the last gets an equal share capped at MAX; the last
      group takes whatever is left (it may exceed MAX by design) */
@@ -1755,7 +1758,7 @@ function pr2Groups(){
   /* The stored list (D.pr2.list) is what the operator arranged by drag.
      It is kept in step with the entrants: teams no longer qualified drop
      out, newly qualified teams join the lightest group. */
-  const c=pr2Cfg(), ent=(D.d1.groups||[]).length ? d2Entrants() : [], set=new Set(ent);
+  const c=pr2Cfg(), ent=pr2Ent(), set=new Set(ent);
   let lists = Array.isArray(c.list) && c.list.length ? c.list : null;
   if(!lists){ lists = pr2Auto(); if(D.pr2) D.pr2.list = lists; }
   else{
@@ -1783,7 +1786,7 @@ function renderPractice(){
   if(hint) hint.textContent=gr.total+' TEAMS · '+gr.groups.length+' GROUPS ('+gr.groups.map(g=>g.length).join(' / ')+') · '+sl.per+' MIN PER SLOT';
   const rk=rankMap();
   host.className='gwrap';
-  renderGroupSet('d1Practice', gr.groups, {label:'PG', max:pr2Cfg().max, meta:t=>'Q'+(rk[t]||'–'),
+  renderGroupSet('d1Practice', gr.groups, {label:'PG', max:pr2Cfg().max, meta:t=>'Q'+(rk[t]||'–'), wd:t=>isWD(t)||isWDp(t,'d2'),
     times: gi => sl.slots.filter(x=>x.g===gi).map(x=>'<b>L'+x.loop+'</b> '+min2hm(x.start)+' – '+min2hm(x.end))});
 }
 function d2Plan(){
@@ -2500,7 +2503,8 @@ function renderGroupSet(hostId, lists, opts){
       box.dataset.pot = gi+1;
       box.style.setProperty('--pc', potColor(gi+1));
     }
-    const liveN=g.filter(t=>!isWD(t)).length;
+    const isOut=opts.wd || isWD;                  // a card can use its own withdrawal rule (practice: Day-4 WD too)
+    const liveN=g.filter(t=>!isOut(t)).length;
     const capN=Math.max(opts.max!=null?opts.max:D.cfg.groupMax, g.length);
     box.innerHTML='<h3>'+(opts.label||'Group')+' '+(gi+1)+
       '<span class="cnt'+(liveN>=capN?' full':'')+'">'+liveN+' / '+capN+'</span></h3>';
@@ -2516,7 +2520,7 @@ function renderGroupSet(hostId, lists, opts){
     }
     const list=document.createElement('div'); list.className='glist';
     g.forEach((tid, idx)=>{
-      const t=team(tid), wdT=isWD(tid);
+      const t=team(tid), wdT=isOut(tid);
       const it=document.createElement('div');
       it.className='gi'+(wdT?' wd':'')+(tid===TEAM_PICK?' ishere':'');
       const pn = potOf(tid);
