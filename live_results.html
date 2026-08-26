@@ -383,6 +383,9 @@ select.demon{border-color:var(--stop);color:#F2A79F}
 .nowside.tbd{background:transparent;border:2px dashed var(--line2);color:var(--dim2);
   font-size:15px;font-weight:600;font-style:italic;cursor:default}
 .nowside .nnm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* qualifying rank beside a team name — the same badge as the bracket's race number (.mh .ord) */
+.qr{font-family:var(--mono);font-size:.78em;font-weight:800;font-style:normal;line-height:1.35;color:var(--signal);background:rgba(245,197,24,.12);padding:2px 6px;border-radius:4px;margin-left:.6em;letter-spacing:.02em;flex:0 0 auto;vertical-align:middle}
+.nowside .qr{font-size:.6em;align-self:center;padding:3px 8px}
 .nowside .sb{font-size:11px;padding:4px 7px}
 .nowvs{display:flex;align-items:center;font-family:var(--mono);font-size:12px;font-weight:800;
   letter-spacing:.14em;color:var(--dim2);flex:0 0 auto}
@@ -1563,6 +1566,8 @@ function seedTag(tid){
   }
   return '';
 }
+/* qualifying rank as a small tag — the same number the ranking sheet shows */
+function qrTag(tid){ const n = tid ? rankMap()[tid] : null; return n ? '<i class="qr">Q'+n+'</i>' : ''; }
 function gLabel(i){ return i<26 ? String.fromCharCode(65+i) : 'G'+(i+1); }
 function isBye(id){ const m=D.d1.matches[id]||D.d2.matches[id]; return !!m && (M.empty(m.a)||M.empty(m.b)); }
 function d1SeqIds(gi){
@@ -2616,7 +2621,7 @@ function renderNowBar(phase){
       const wdS = tid && isWDp(tid, phaseOf(m));
       const cls = wdS?'wdside':(tid?(w?(tid===w?'win':'lose'):''):'tbd');
       return '<div class="nowside '+cls+'">'+
-        '<span class="nnm">'+esc(tid?tname(tid):enText(slotHint(src)))+'</span>'+
+        '<span class="nnm">'+esc(tid?tname(tid):enText(slotHint(src)))+'</span>'+qrTag(tid)+
         (wdS?'<i class="wdtag">WD</i>':'')+'</div>';
     };
     box.innerHTML=
@@ -2670,7 +2675,7 @@ function renderMatchSheet(hostId, phase){
       if(!tid) return '<td class="pick empty">'+esc(enText(slotHint(src)))+'</td>';
       const wdS = isWDp(tid, phaseOf(m));
       const cls = w ? (tid===w ? 'pick win' : 'pick lose') : 'pick';
-      return '<td class="'+cls+'"><span class="pk"><span data-raw>'+esc(tname(tid))+'</span>'+
+      return '<td class="'+cls+'"><span class="pk"><span data-raw>'+esc(tname(tid))+'</span>'+qrTag(tid)+
         (wdS?'<i class="wdtag">WD</i>':'')+'</span></td>';
     };
     tr.innerHTML='<td class="num">'+(wo?'<span style="color:var(--dim2)">–</span>':seqNo)+'</td>'+
