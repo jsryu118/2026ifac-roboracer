@@ -254,7 +254,11 @@ select.demon{border-color:var(--stop);color:#F2A79F}
 .fixlb.on{color:var(--signal)}
 .glist{min-height:40px;padding:8px;display:flex;flex-direction:column;gap:3px;
   flex:1 1 auto}                                   /* 카드 아래 빈 공간까지 드롭 영역으로 */
-.gwrap{align-items:stretch}                        /* 같은 줄의 카드 높이를 맞춘다 */
+.gwrap{align-items:stretch}
+#d1Practice{grid-template-columns:repeat(auto-fit,minmax(230px,300px));justify-content:center}
+/* the practice block sits apart from the bracket above it: a dashed rule and breathing room */
+.sect:has(> #d1Practice){margin-top:72px;padding-top:84px;border-top:2px dashed var(--line)}
+html.tvmode #d1Practice{grid-template-columns:repeat(auto-fit,minmax(230px,300px));justify-content:center}                        /* 같은 줄의 카드 높이를 맞춘다 */
 .glist.dragover{outline:1px dashed var(--signal);outline-offset:-3px;border-radius:6px;
   background:rgba(245,197,24,.06)}
 .gi{
@@ -1386,6 +1390,12 @@ td .pk .wdtag{top:0;margin-left:0}
         <div class="ggrid" id="d1GroupGrid"></div>
         <div id="d1GroupDetail"></div>
       </div>
+      <div class="sect">
+        <h3 class="secthead"><span class="cav">▾</span>QUALIFIED PRACTICE
+          <span class="hint">AFTER THE GROUP STAGE · IN QUALIFIED ORDER</span>
+        </h3>
+        <div class="gwrap" id="d1Practice"></div>
+      </div>
     </div>
 
     <!-- ---- DAY 4 (internally d2) ---- -->
@@ -1726,6 +1736,56 @@ function d2Entrants(){
   return all;
 }
 function invalidateEntrants(){ _entCache = null; }
+/* ---- Day-3 qualified practice (set in the tool's Day 2 tab; ships as D.pr2) ---- */
+const PR2_DEF = { groups:4, max:9, start:'09:00', end:'11:00', loops:1 };
+const pr2Cfg = () => Object.assign({}, PR2_DEF, D.pr2 || {});
+function pr2Auto(){
+  /* fresh grouping in qualified order: as even as possible, never above MAX,
+     adding groups when GROUPS × MAX cannot seat everyone */
+  const c=pr2Cfg(), ent=(D.d1.groups||[]).length ? d2Entrants() : [];
+  const MX=Math.max(1, c.max|0), N=ent.length, G=Math.max(1, c.groups|0);
+  /* every group but the last gets an equal share capped at MAX; the last
+     group takes whatever is left (it may exceed MAX by design) */
+  const base=Math.min(MX, Math.floor(N/G)), sizes=[];
+  for(let i=0;i<G;i++) sizes.push(i===G-1 ? Math.max(0, N-base*(G-1)) : base);
+  const out=[]; let k=0; sizes.forEach(n=>{ out.push(ent.slice(k,k+n)); k+=n; });
+  return out;
+}
+function pr2Groups(){
+  /* The stored list (D.pr2.list) is what the operator arranged by drag.
+     It is kept in step with the entrants: teams no longer qualified drop
+     out, newly qualified teams join the lightest group. */
+  const c=pr2Cfg(), ent=(D.d1.groups||[]).length ? d2Entrants() : [], set=new Set(ent);
+  let lists = Array.isArray(c.list) && c.list.length ? c.list : null;
+  if(!lists){ lists = pr2Auto(); if(D.pr2) D.pr2.list = lists; }
+  else{
+    lists.forEach(g=>{ for(let i=g.length-1;i>=0;i--) if(!set.has(g[i])) g.splice(i,1); });
+    const have=new Set([].concat.apply([], lists));
+    ent.forEach(t=>{ if(!have.has(t)){ let k=0; lists.forEach((g,i)=>{ if(g.length<lists[k].length) k=i; }); lists[k].push(t); have.add(t); } });
+  }
+  return {groups:lists, overflow:0, total:ent.length};
+}
+function pr2Slots(){
+  const c=pr2Cfg(), s=hm2min(c.start), e=hm2min(c.end);
+  const G=pr2Groups().groups.length, L=Math.max(1, c.loops|0);
+  if(!(e>s)) return {slots:[], per:0, ok:false};
+  const n=G*L, per=Math.floor((e-s)/n), slots=[];
+  for(let l=0;l<L;l++) for(let g=0;g<G;g++){ const i=l*G+g; slots.push({i, loop:l+1, g, start:s+i*per, end:s+(i+1)*per}); }
+  return {slots, per, ok:per>0};
+}
+function renderPractice(){
+  const host=$('d1Practice'); if(!host) return;
+  if(!D.pr2 || !(D.d1.groups||[]).length){ host.closest('.sect').style.display='none'; return; }
+  const gr=pr2Groups(), sl=pr2Slots();
+  if(!sl.ok || !gr.total){ host.closest('.sect').style.display='none'; return; }
+  host.closest('.sect').style.display='';
+  const hint=host.closest('.sect').querySelector('.hint');
+  if(hint) hint.textContent=gr.total+' TEAMS · '+gr.groups.length+' GROUPS ('+gr.groups.map(g=>g.length).join(' / ')+') · '+sl.per+' MIN PER SLOT';
+  const rk=rankMap();
+  host.className='gwrap';
+  renderGroupSet('d1Practice', gr.groups, {label:'PG', max:pr2Cfg().max, meta:t=>'Q'+(rk[t]||'–'),
+    times: gi => sl.slots.filter(x=>x.g===gi).map(x=>'<b>L'+x.loop+'</b> '+min2hm(x.start)+' – '+min2hm(x.end))});
+}
 function d2Plan(){
   const Mtot = D.d1.groups.length ? d2Entrants().length : D.rank.length;
   if(Mtot<2) return {M:Mtot, P:Mtot>0?1:0, playIn:0, byes:0};
@@ -2320,6 +2380,7 @@ function applyState(d){
   D.d1 = live.d1 || {groups:[],matches:{},order:[]};
   D.d2 = live.d2 || {matches:{},order:[],built:false};
   D.tt = live.tt || null;
+  D.pr2 = live.pr2 || null;        // Day-3 qualified practice (groups, slots)
   if(live.cfg){ Object.assign(D.cfg, live.cfg); }
   /* Withdrawn teams always show in place here: the grouped view is an
      operator convenience, and a spectator reading a ranking wants each team
@@ -2597,6 +2658,7 @@ function renderNowBar(phase){
   const doneN=ord.filter(id=>ms[id]&&ms[id].done&&!M.walkover(ms[id])).length;
   const totalN=raceTotal(phase);
   const live=nextMatchId(phase);
+  if(!live){ host.innerHTML=''; return; }         // every match settled: nothing is "up next", so no bar
   const box=document.createElement('div');
   box.className='nowin'+(live?'':' idle')+(NOW_MINI?' mini':'');
   const pct=Math.round(doneN/Math.max(1,totalN)*100);
@@ -3197,6 +3259,17 @@ function teamFacts(tid){
                   matches: matches, rows: []});
   }
 
+  /* ---- day 3 evening: this team's practice group and slot times ---- */
+  if(D.pr2 && gi >= 0){
+    const pg = pr2Groups().groups, sl = pr2Slots().slots;
+    const g = pg.findIndex(x => x.indexOf(tid) >= 0);
+    const c = f.cards.find(x => x.key === 'd1');
+    if(g >= 0 && c){
+      const times = sl.filter(x => x.g === g).map(x => min2hm(x.start) + ' – ' + min2hm(x.end)).join('  ·  ');
+      c.rows.push({k:'Practice', v:'PG' + (g+1), sub:'D3 ' + times, tone:'time', tab:'h2h', group:gi});
+    }
+  }
+
   /* ---- day 4: the seed and every bracket match this team appears in ---- */
   if(D.d2 && D.d2.built){
     const ent = d2Entrants();
@@ -3550,7 +3623,10 @@ function renderTimetable(){
         sub:'Pot ' + seq('pot') + ' · ' + (ttGet('pot').min||30) + ' min each'})
     ]},
     {n:3, date:'AUG 26 · WED', rows:[
-      Object.assign(fix('h2h1'), {name:'Head-to-Head', sub:'group stage'})
+      Object.assign(fix('h2h1'), {name:'Head-to-Head', sub:'group stage'}),
+      (function(){ if(!D.pr2) return null; const c=pr2Cfg(), sl=pr2Slots(); if(!sl.ok) return null;
+        return {a:hm2min(c.start), b:hm2min(c.end), name:'Qualified Practice',
+                sub:pr2Groups().groups.length+' groups · '+sl.per+' min each' + (c.loops>1 ? ' × '+c.loops+' loops' : '')}; })()
     ]},
     {n:4, date:'AUG 27 · THU', rows:[
       Object.assign(fix('h2h2'),  {name:'Head-to-Head', sub:'round of 32'}),
@@ -3581,7 +3657,7 @@ function renderAll(){
   renderGroups();
   renderQual(); renderRank(); applyQualView();
   renderSeedsView();
-  renderDay1(); renderDay2(); applyH2HView();
+  renderDay1(); renderPractice(); renderDay2(); applyH2HView();
   renderFinalRank();
   renderTeamNow(); renderTeamSearch(); renderTeamCard();
   syncTabs();
